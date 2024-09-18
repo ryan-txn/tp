@@ -1,18 +1,78 @@
 package seedu.Healthmate;
 
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 public class HealthMate {
-    /**
-     * Main entry-point for the java.duke.Duke application.
-     */
+    private static ArrayList<Meal> mealOptions = new ArrayList<>();
+    private static ArrayList<MealEntry> mealEntries = new ArrayList<>();
+    private static ArrayList<CalorieEntry> calorieEntries = new ArrayList<>();
+    private static ArrayList<WeightEntry> weightEntries = new ArrayList<>();
+    private static ArrayList<HeightEntry> heightEntries = new ArrayList<>();
+    private static double dailyCalorieGoal;
+
     public static void main(String[] args) {
         String logo = "HealthMate";
         System.out.println("Welcome to \n" + logo);
-        System.out.println("What is your name?");
+        
+        Scanner scanner = new Scanner(System.in);
+        boolean isRunning = true;
 
-        Scanner in = new Scanner(System.in);
-        System.out.println("Hello " + in.nextLine());
-        in.close();
+        while (isRunning) {
+            //TODO: Handle main logic here
+        }
+    }
+}
+
+class Meal {
+    String name;
+    int calories;
+
+    public Meal(String name, int calories) {
+        this.name = name;
+        this.calories = calories;
+    }
+}
+
+class MealEntry {
+    Meal meal;
+    LocalDateTime timestamp;
+
+    public MealEntry(Meal meal) {
+        this.meal = meal;
+        this.timestamp = LocalDateTime.now();
+    }
+}
+
+class CalorieEntry {
+    int calories;
+    LocalDateTime timestamp;
+
+    public CalorieEntry(int calories) {
+        this.calories = calories;
+        this.timestamp = LocalDateTime.now();
+    }
+}
+
+class WeightEntry {
+    double weight;
+    LocalDateTime timestamp;
+
+    public WeightEntry(double weight) {
+        this.weight = weight;
+        this.timestamp = LocalDateTime.now();
+    }
+}
+
+class HeightEntry {
+    double height;
+    LocalDateTime timestamp;
+
+    public HeightEntry(double height) {
+        this.height = height;
+        this.timestamp = LocalDateTime.now();
     }
 }
