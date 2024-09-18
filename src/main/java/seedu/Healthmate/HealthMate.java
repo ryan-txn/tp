@@ -8,8 +8,7 @@ public class HealthMate {
     private static ArrayList<Meal> mealOptions = new ArrayList<>();
     private static ArrayList<MealEntry> mealEntries = new ArrayList<>();
     private static ArrayList<CalorieEntry> calorieEntries = new ArrayList<>();
-    private static ArrayList<WeightEntry> weightEntries = new ArrayList<>();
-    private static ArrayList<HeightEntry> heightEntries = new ArrayList<>();
+    private static ArrayList<User> users = new ArrayList<>();
     private static double dailyCalorieGoal;
 
     public static void main(String[] args) {
@@ -52,6 +51,24 @@ class CalorieEntry {
     public CalorieEntry(int calories) {
         this.calories = calories;
         this.timestamp = LocalDateTime.now();
+    }
+}
+
+class User {
+    private ArrayList<WeightEntry> weightEntries;
+    private ArrayList<HeightEntry> heightEntries;
+
+    public User() {
+        this.weightEntries = new ArrayList<>();
+        this.heightEntries = new ArrayList<>();
+    }
+
+    public void addWeightEntry(double weight) {
+        weightEntries.add(new WeightEntry(weight));
+    }
+
+    public void addHeightEntry(double height) {
+        heightEntries.add(new HeightEntry(height));
     }
 }
 
