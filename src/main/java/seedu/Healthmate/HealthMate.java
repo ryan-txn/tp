@@ -1,11 +1,9 @@
 package seedu.Healthmate;
 
 import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.ArrayList;     
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
-
+        
 public class HealthMate {
     private static ArrayList<Meal> mealOptions = new ArrayList<>();
     private static ArrayList<MealEntry> mealEntries = new ArrayList<>();
