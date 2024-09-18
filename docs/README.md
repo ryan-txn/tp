@@ -1,4 +1,4 @@
-# Duke
+# HealthMate
 
 {Give product intro here}
 
