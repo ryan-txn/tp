@@ -1,13 +1,12 @@
 package seedu.Healthmate;
 
-import java.util.Optional;
 import java.util.Scanner;
 
 public class ChatParser {
 
+    public static final String CALORIE_SIGNALLER = "/c";
     private final MealEntriesList mealEntries;
     private final MealList mealOptions;
-    public static final String CALORIE_SIGNALLER = "/c";
 
     public ChatParser(MealEntriesList mealEntries, MealList mealOptions){
         this.mealEntries = mealEntries;
