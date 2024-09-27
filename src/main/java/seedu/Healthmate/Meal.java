@@ -11,7 +11,9 @@ public class Meal {
         this.calories = calories;
     }
 
-    public static Optional<String> extractMealDescription(String input, String command, String calorieSignaller) throws EmptyCalorieException, StringIndexOutOfBoundsException {
+    public static Optional<String> extractMealDescription(String input,
+                                                          String command,
+                                                          String calorieSignaller) throws EmptyCalorieException {
         int mealDescriptionIndex = input.indexOf(command) + command.length();
         int calorieIndex = input.indexOf(calorieSignaller);
         return Optional.ofNullable(input.substring(mealDescriptionIndex, calorieIndex).strip());
