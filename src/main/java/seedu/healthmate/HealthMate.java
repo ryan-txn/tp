@@ -1,4 +1,4 @@
-package seedu.Healthmate;
+package seedu.healthmate;
 
 public class HealthMate {
     private static MealList mealOptions = new MealList();
@@ -7,6 +7,7 @@ public class HealthMate {
     private static ChatParser chatParser = new ChatParser(mealEntries, mealOptions);
 
     public static void main(String[] args) {
+
         UI.printGreeting();
         chatParser.run();
 

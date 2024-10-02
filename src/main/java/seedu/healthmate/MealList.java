@@ -1,6 +1,6 @@
-package seedu.Healthmate;
-import static seedu.Healthmate.ChatParser.CALORIE_SIGNALLER;
-import static seedu.Healthmate.Meal.extractMealFromString;
+package seedu.healthmate;
+import static seedu.healthmate.ChatParser.CALORIE_SIGNALLER;
+import static seedu.healthmate.Meal.extractMealFromString;
 
 import java.util.ArrayList;
 
