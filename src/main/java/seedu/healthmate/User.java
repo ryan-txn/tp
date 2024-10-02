@@ -1,4 +1,4 @@
-package seedu.Healthmate;
+package seedu.healthmate;
 
 import java.util.ArrayList;
 
