@@ -10,7 +10,7 @@ public class UI {
             + INTENDATION + "     \\\\|//\n"
             + INTENDATION + "    \\\\\\|///\n"
             + INTENDATION + "    \\\\\\|///\n"
-            + INTENDATION + "     \\\\|//n"
+            + INTENDATION + "     \\\\|//\n"
             + INTENDATION + "      \\|/\n"
             + INTENDATION + "       |\n";
 
