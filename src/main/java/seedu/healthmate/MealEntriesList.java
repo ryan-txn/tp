@@ -1,7 +1,7 @@
-package seedu.Healthmate;
+package seedu.healthmate;
 
-import static seedu.Healthmate.ChatParser.CALORIE_SIGNALLER;
-import static seedu.Healthmate.MealEntry.extractMealEntryFromString;
+import static seedu.healthmate.ChatParser.CALORIE_SIGNALLER;
+import static seedu.healthmate.MealEntry.extractMealEntryFromString;
 
 public class MealEntriesList extends MealList {
 
