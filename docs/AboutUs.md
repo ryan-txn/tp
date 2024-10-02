@@ -7,4 +7,3 @@ Display |      Name       |            Github Profile             | Portfolio
 ![](https://via.placeholder.com/100.png?text=Photo) |   Ryan Leong    | [Github](https://github.com/ryryry-3302) | [Portfolio](https://github.com/ryryry-3302)
 ![](https://via.placeholder.com/100.png?text=Photo) | Kenneth Styppa  | [Github](https://github.com/kennethSty) | [Portfolio](https://github.com/kennethSty)
 ![](https://via.placeholder.com/100.png?text=Photo) | Deepan Krishnaa | [Github](https://github.com/DarkDragoon2002) | [Portfolio](https://github.com/DarkDragoon2002)
-![](https://via.placeholder.com/100.png?text=Photo) |     Don Roe     | [Github](https://github.com/) | [Portfolio](docs/team/johndoe.md)
