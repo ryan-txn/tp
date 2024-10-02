@@ -5,14 +5,14 @@ public class UI {
     private static final String SEPARATOR = "_________________________________________________________________________";
     private static final String INTENDATION = "      ";
     private static final String LOGO =
-              INTENDATION + " |              \n"
-            + INTENDATION + "     \\\\|//           \n"
-            + INTENDATION + "     \\\\|//        \n"
-            + INTENDATION + "    \\\\\\|///      \n"
-            + INTENDATION + "    \\\\\\|///      \n"
-            + INTENDATION + "     \\\\|//        \n"
-            + INTENDATION + "      \\|/           \n"
-            + INTENDATION + "       |              \n";
+              INTENDATION + " |\n"
+            + INTENDATION + "     \\\\|//\n"
+            + INTENDATION + "     \\\\|//\n"
+            + INTENDATION + "    \\\\\\|///\n"
+            + INTENDATION + "    \\\\\\|///\n"
+            + INTENDATION + "     \\\\|//n"
+            + INTENDATION + "      \\|/\n"
+            + INTENDATION + "       |\n";
 
 
     public static void printReply(String input, String actionPerformed) {
