@@ -3,6 +3,7 @@ import static seedu.healthmate.ChatParser.CALORIE_SIGNALLER;
 import static seedu.healthmate.Meal.extractMealFromString;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MealList {
 
@@ -47,6 +48,9 @@ public class MealList {
 
     public String toMealString(int mealIndex) {
         return this.mealList.get(mealIndex).toString();
+    }
+    public List<Meal> getMealList() {
+        return new ArrayList<>(mealList);
     }
 
 }

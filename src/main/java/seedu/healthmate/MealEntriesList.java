@@ -3,6 +3,9 @@ package seedu.healthmate;
 import static seedu.healthmate.ChatParser.CALORIE_SIGNALLER;
 import static seedu.healthmate.MealEntry.extractMealEntryFromString;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MealEntriesList extends MealList {
 
     public MealEntriesList() {
@@ -28,6 +31,10 @@ public class MealEntriesList extends MealList {
         } catch (NumberFormatException n) {
             UI.printReply("A calorie entry needs to be an integer", "Error: ");
         }
+    }
+
+    public List<Meal> getMealEntries() {
+        return new ArrayList<>(mealList);
     }
 
 }

@@ -5,12 +5,14 @@ import java.util.Scanner;
 public class ChatParser {
 
     public static final String CALORIE_SIGNALLER = "/c";
-    private final MealEntriesList mealEntries;
-    private final MealList mealOptions;
+    private MealEntriesList mealEntries;
+    private MealList mealOptions;
+    private final HistoryTracker historyTracker;
 
     public ChatParser(MealEntriesList mealEntries, MealList mealOptions){
-        this.mealEntries = mealEntries;
-        this.mealOptions = mealOptions;
+        this.historyTracker = new HistoryTracker();
+        this.mealEntries = historyTracker.loadMealEntries();
+        this.mealOptions = historyTracker.loadMealOptions();
     }
 
     public void run() {
@@ -44,9 +46,11 @@ public class ChatParser {
             break;
         case "save meal":
             mealOptions.appendMealFromString(userInput, command);
+            historyTracker.saveMealOptions(mealOptions);
             break;
         case "add mealEntry":
             mealEntries.appendMealFromString(userInput, command);
+            historyTracker.saveMealEntries(mealEntries);
             break;
         case "log meals":
             UI.printMealEntries(this.mealEntries);

@@ -46,5 +46,13 @@ public class Meal {
     public String toString() {
         return this.name.orElse("Meal") + " with " + this.calories + " calories";
     }
+
+    public Optional<String> getName() {
+        return this.name;
+    }
+
+    public int getCalories() {
+        return this.calories;
+    }
 }
 
