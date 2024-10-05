@@ -9,7 +9,7 @@ public class ChatParser {
     private MealList mealOptions;
     private final HistoryTracker historyTracker;
 
-    public ChatParser(MealEntriesList mealEntries, MealList mealOptions){
+    public ChatParser(){
         this.historyTracker = new HistoryTracker();
         this.mealEntries = historyTracker.loadMealEntries();
         this.mealOptions = historyTracker.loadMealOptions();
