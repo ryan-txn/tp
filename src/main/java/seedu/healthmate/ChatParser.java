@@ -2,6 +2,8 @@ package seedu.healthmate;
 
 import java.util.Scanner;
 
+
+
 /**
  * Encapsulates the main logic of the application by parsing user input into objects
  * and storing them respectively.
@@ -9,6 +11,7 @@ import java.util.Scanner;
 public class ChatParser {
 
     public static final String CALORIE_SIGNALLER = "/c";
+
     private MealEntriesList mealEntries;
     private MealList mealOptions;
     private final HistoryTracker historyTracker;
@@ -53,22 +56,25 @@ public class ChatParser {
         String commandToken2 = inputTokens[1].strip();
         String command = commandToken1 + " " + commandToken2;
         switch (command) {
-        case "list meals":
+        case Commands.MEAL_MENU:
             UI.printMealOptions(this.mealOptions);
             break;
-        case "save meal":
+        case Commands.SAVE_MEAL:
             mealOptions.appendMealFromString(userInput, command);
             historyTracker.saveMealOptions(mealOptions);
             break;
-        case "add mealEntry":
+        case Commands.ADD_MEAL_ENTRY:
             mealEntries.appendMealFromString(userInput, command);
             historyTracker.saveMealEntries(mealEntries);
             break;
-        case "log meals":
+        case Commands.LOG_MEALS:
             UI.printMealEntries(this.mealEntries);
             break;
+        case Commands.LIST_COMMANDS:
+            UI.printCommands();
+            break;
         default:
-            UI.printReply("Use a valid command", "Retry");
+            UI.printReply("Use a valid command", "Retry: ");
             break;
         }
     }

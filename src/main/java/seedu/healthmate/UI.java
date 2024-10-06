@@ -55,5 +55,13 @@ public class UI {
             printReply("No meal options added yet", "");
         }
     }
+    public static void printCommands() {
+        System.out.println(INTENDATION + SEPARATOR);
+        for (String command: Commands.getAllCommands()){
+            System.out.println(INTENDATION + "-" + command);
+        }
+        System.out.println(INTENDATION + SEPARATOR);
+
+    }
 
 }
