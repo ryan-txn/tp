@@ -21,7 +21,7 @@ public class MealList {
     public void deleteMeal(int mealNumber) {
         Meal mealToDelete = this.mealList.get(mealNumber - 1);
         this.mealList.remove(mealNumber - 1);
-        UI.printReply(mealToDelete.toString(), "Deleted: ");
+        UI.printReply(mealToDelete.toString(), "Deleted option: ");
     }
 
     public int size() {
@@ -46,7 +46,7 @@ public class MealList {
         }
     }
 
-    public void removeFromMealList(String userInput, String command) {
+    public void removeMealFromString(String userInput, String command) {
         try {
             int mealNumber = Integer.parseInt(userInput.replaceAll(command, "").strip());
             deleteMeal(mealNumber);

@@ -16,7 +16,7 @@ public class UI {
 
 
     public static void printReply(String input, String actionPerformed) {
-        System.out.println("");
+        System.out.println(INTENDATION + SEPARATOR);
         System.out.println(INTENDATION + actionPerformed + input);
         System.out.println(INTENDATION + SEPARATOR);
     }
@@ -48,6 +48,7 @@ public class UI {
     }
 
     public static void printMealEntries(MealEntriesList mealEntries) {
+        System.out.println(INTENDATION + SEPARATOR);
         if (mealEntries.size() > 0) {
             for (int i = 0; i < mealEntries.size(); i++) {
                 System.out.println(INTENDATION + (i + 1)
@@ -56,6 +57,7 @@ public class UI {
         } else {
             printReply("No meal options added yet", "");
         }
+        System.out.println(INTENDATION + SEPARATOR);
     }
 
 }
