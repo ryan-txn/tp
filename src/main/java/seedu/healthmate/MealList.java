@@ -19,7 +19,7 @@ public class MealList {
     }
 
     public void deleteMeal(int mealNumber) {
-        Meal mealToDelete = this.mealList.get(mealNumber -1);
+        Meal mealToDelete = this.mealList.get(mealNumber - 1);
         this.mealList.remove(mealNumber - 1);
         UI.printReply(mealToDelete.toString(), "Deleted: ");
     }
@@ -43,6 +43,17 @@ public class MealList {
                     "Retry: ");
         } catch (NumberFormatException n) {
             UI.printReply("A calorie entry needs to be an integer", "Error: ");
+        }
+    }
+
+    public void removeFromMealList(String userInput, String command) {
+        try {
+            int mealNumber = Integer.parseInt(userInput.replaceAll(command, "").strip());
+            deleteMeal(mealNumber);
+        } catch (NumberFormatException n) {
+            UI.printReply("Meal index needs to be an integer", "Error: ");
+        } catch (IndexOutOfBoundsException s) {
+            UI.printReply("Meal index needs to be within range", "Error: ");
         }
     }
 

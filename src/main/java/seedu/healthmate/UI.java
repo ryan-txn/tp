@@ -35,20 +35,22 @@ public class UI {
     }
 
     public static void printMealOptions(MealList mealOptions) {
+        System.out.println(INTENDATION + SEPARATOR);
         if (mealOptions.size() > 0) {
             for (int i = 0; i < mealOptions.size(); i++) {
-                System.out.println(INTENDATION + i
+                System.out.println(INTENDATION + (i + 1)
                         + ": " + mealOptions.toMealString(i));
             }
         } else {
             printReply("No meal options added yet", "");
         }
+        System.out.println(INTENDATION + SEPARATOR);
     }
 
     public static void printMealEntries(MealEntriesList mealEntries) {
         if (mealEntries.size() > 0) {
             for (int i = 0; i < mealEntries.size(); i++) {
-                System.out.println(INTENDATION + i
+                System.out.println(INTENDATION + (i + 1)
                         + ": " + mealEntries.toMealString(i));
             }
         } else {

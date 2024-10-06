@@ -67,6 +67,10 @@ public class ChatParser {
         case "log meals":
             UI.printMealEntries(this.mealEntries);
             break;
+        case "delete meal":
+            mealOptions.removeFromMealList(userInput, command);
+            historyTracker.saveMealOptions(mealOptions);
+            break;
         default:
             UI.printReply("Use a valid command", "Retry");
             break;
