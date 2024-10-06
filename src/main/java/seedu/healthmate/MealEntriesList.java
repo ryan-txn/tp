@@ -25,8 +25,6 @@ public class MealEntriesList extends MealList {
         UI.printReply(mealToDelete.toString(), "Deleted entry: ");
     }
 
-
-
     @Override
     public void appendMealFromString(String userInput, String command) {
         try {

@@ -38,8 +38,9 @@ public class HistoryTracker {
         List<Meal> meals = loadFromFile(MEAL_ENTRIES_FILE);
         MealEntriesList mealEntriesList = new MealEntriesList();
         for (Meal meal : meals) {
-            mealEntriesList.addMeal(meal);
+            mealEntriesList.addMealWithoutMsg(meal);
         }
+        UI.printString("Meal Entries Loaded Successfully!");
         return mealEntriesList;
     }
 
@@ -47,8 +48,9 @@ public class HistoryTracker {
         List<Meal> meals = loadFromFile(MEAL_OPTIONS_FILE);
         MealList mealList = new MealList();
         for (Meal meal : meals) {
-            mealList.addMeal(meal);
+            mealList.addMealWithoutMsg(meal);
         }
+        UI.printString("Meal Options Loaded Successfully!");
         return mealList;
     }
 

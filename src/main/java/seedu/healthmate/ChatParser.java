@@ -15,8 +15,10 @@ public class ChatParser {
 
     public ChatParser(){
         this.historyTracker = new HistoryTracker();
+        UI.printSeparator();
         this.mealEntries = historyTracker.loadMealEntries();
         this.mealOptions = historyTracker.loadMealOptions();
+        UI.printSeparator();
     }
 
     /**

@@ -13,6 +13,10 @@ public class MealList {
         this.mealList = new ArrayList<Meal>();
     }
 
+    public void addMealWithoutMsg(Meal meal) {
+        this.mealList.add(meal);
+    }
+
     public void addMeal(Meal meal) {
         this.mealList.add(meal);
         UI.printReply(meal.toString(), "Added to options: ");
