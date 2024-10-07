@@ -79,4 +79,12 @@ public class ChatParser {
         }
     }
 
+    public String toMealOptionsString() {
+        return UI.toMealOptionsString(this.mealOptions);
+    }
+
+    public String toMealEntriesString() {
+        return UI.toMealEntriesString(this.mealEntries);
+    }
+
 }

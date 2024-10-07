@@ -52,7 +52,7 @@ public class UI {
                         + ": " + mealEntries.toMealString(i));
             }
         } else {
-            printReply("No meal options added yet", "");
+            printReply("No meal entries added yet", "");
         }
     }
     public static void printCommands() {
@@ -62,6 +62,48 @@ public class UI {
         }
         System.out.println(INTENDATION + SEPARATOR);
 
+    }
+
+    public static String simulateReply(String input, String actionPerformed) {
+        String line1 = "\n";
+        String line2 = INTENDATION + actionPerformed + input + "\n";
+        String line3 = INTENDATION + SEPARATOR + "\n";
+        return  line1 + line2 + line3;
+    }
+
+    public static String simulateFareWell() {
+        String line1 = INTENDATION + "Stay healthy!" + "\n";
+        String line2 = INTENDATION + SEPARATOR + "\n";
+        return line1 + line2;
+    }
+
+    public static String simulateInitOutput() {
+        return UI.simulateReply("Meal Entries Loaded Successfully!", "")
+                + UI.simulateReply("Meal Options Loaded Successfully!", "");
+    }
+
+    public static String toMealOptionsString(MealList mealOptions) {
+        String mealOptionsString = "";
+        if (mealOptions.size() > 0) {
+            for (int i = 0; i < mealOptions.size(); i++) {
+                mealOptionsString += INTENDATION + i + ": " + mealOptions.toMealString(i) + "\n";
+            }
+        } else {
+            mealOptionsString = simulateReply("No meal options added yet", "");
+        }
+        return mealOptionsString;
+    }
+
+    public static String toMealEntriesString(MealList mealEntries) {
+        String mealOptionsString = "";
+        if (mealEntries.size() > 0) {
+            for (int i = 0; i < mealEntries.size(); i++) {
+                mealOptionsString += INTENDATION + i + ": " + mealEntries.toMealString(i) + "\n";
+            }
+        } else {
+            mealOptionsString = simulateReply("No meal options added yet", "");
+        }
+        return mealOptionsString;
     }
 
 }
