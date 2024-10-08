@@ -67,5 +67,13 @@ public class UI {
         }
         printSeparator();
     }
+    public static void printCommands() {
+        System.out.println(INTENDATION + SEPARATOR);
+        for (String command: Commands.getAllCommands()){
+            System.out.println(INTENDATION + "-" + command);
+        }
+        System.out.println(INTENDATION + SEPARATOR);
+
+    }
 
 }
