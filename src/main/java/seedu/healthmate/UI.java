@@ -3,7 +3,7 @@ package seedu.healthmate;
 public class UI {
 
     private static final String SEPARATOR = "_________________________________________________________________________";
-    private static final String INDENTATION = "      ";
+    public static final String INDENTATION = "      ";
     private static final String LOGO =
               INDENTATION + " |\n"
             + INDENTATION + "     \\\\|//\n"
