@@ -27,6 +27,8 @@ public class ChatParser {
      * and initiates the parsing process steered by one-token and two-token-based user prompts.
      */
     public void run() {
+        askForHealthGoal();
+
         Scanner scanner = new Scanner(System.in);
         String userInput = "";
 
@@ -44,6 +46,26 @@ public class ChatParser {
                 }
             }
         }
+    }
+
+
+    public void askForHealthGoal() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println(UI.INDENTATION + "Before we begin, please enter your current height, weight and health goal!");
+
+        System.out.println(UI.INDENTATION + "Weight: ");
+        double weight = scanner.nextDouble();
+        User.addWeightEntry(weight);
+
+        System.out.println(UI.INDENTATION + "Height: "); 
+        double height = scanner.nextDouble();
+        User.addHeightEntry(height);
+
+        System.out.println(UI.INDENTATION + "Health Goal: ");
+        String healthGoal = scanner.nextLine();
+        parseHealthGoal(healthGoal);
+
     }
 
     /**
@@ -75,6 +97,19 @@ public class ChatParser {
             break;
         default:
             UI.printReply("Use a valid command", "Retry: ");
+            break;
+        }
+    }
+
+    public void parseHealthGoal(String healthGoal) {
+        switch (healthGoal) {
+        case "cut weight":
+            break;
+        case "bulk up":
+            break;
+        case "higher wellbeing":
+            break;
+        default:
             break;
         }
     }
