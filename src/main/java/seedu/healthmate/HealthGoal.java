@@ -1,5 +1,5 @@
 package seedu.healthmate;
 
 public enum HealthGoal {
-    WEIGHT_LOSS, MUSCLE_GROWTH, HIGHER_WELLBEING;
+    WEIGHT_CUT, BULK_UP, HIGHER_WELLBEING;
 }
