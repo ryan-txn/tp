@@ -65,11 +65,11 @@ public class ChatParser {
             mealOptions.appendMealFromString(userInput, command);
             historyTracker.saveMealOptions(mealOptions);
             break;
-        case "delete meal":
+        case Commands.DELETE_MEAL:
             mealOptions.removeMealFromString(userInput, command);
             historyTracker.saveMealOptions(mealOptions);
             break;
-        case "delete mealEntry":
+        case Commands.DELETE_MEAL_ENTRY:
             mealEntries.removeMealFromString(userInput, command);
             historyTracker.saveMealEntries(mealEntries);
             break;
