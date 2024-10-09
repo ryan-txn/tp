@@ -54,7 +54,8 @@ public class ChatParser {
     public void askForHealthGoal() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println(UI.INDENTATION + "Before we begin, please enter your current height, weight and health goal!");
+        System.out.println(UI.INDENTATION + "Before we begin, please enter your " +
+                "current height, weight and health goal!");
 
         System.out.println(UI.INDENTATION + "Weight: ");
         double weight = scanner.nextDouble();
