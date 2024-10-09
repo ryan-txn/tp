@@ -85,39 +85,35 @@ public class UI {
 
     public static String simulateFareWell() {
         String line1 = INTENDATION + "Stay healthy!" + "\n";
-        String line2 = INTENDATION + SEPARATOR + "\n";
-        return line1 + line2;
+        String lineSep = INTENDATION + SEPARATOR + "\n";
+        return line1 + lineSep;
     }
 
     public static String simulateInitOutput() {
-        return SEPARATOR + "\n" + INTENDATION + "Meal Entries Loaded Successfully!" + "\n"
+        return INTENDATION + SEPARATOR + "\n" + INTENDATION + "Meal Entries Loaded Successfully!" + "\n"
                 + INTENDATION + "Meal Options Loaded Successfully!" + "\n"
-                + SEPARATOR+ "\n"
-                + SEPARATOR;
+                + INTENDATION + SEPARATOR+ "\n"
+                + INTENDATION + SEPARATOR;
     }
 
-    public static String toMealOptionsString(MealList mealOptions) {
+    /**
+     * Ouputs the result of list meals as a String if a newMealString would be added at the end
+     * @param mealOptions
+     * @param newMealString
+     * @return
+     */
+    public static String toMealOptionsString(MealList mealOptions, String newMealString) {
+        String SeperatorLine = INTENDATION + SEPARATOR;
         String mealOptionsString = "";
         if (mealOptions.size() > 0) {
             for (int i = 0; i < mealOptions.size(); i++) {
-                mealOptionsString += INTENDATION + i + ": " + mealOptions.toMealString(i) + "\n";
+                mealOptionsString += INTENDATION + (i + 1) + ": " + mealOptions.toMealString(i) + "\n";
             }
+            mealOptionsString += INTENDATION + (mealOptions.size() + 1) + ": " + newMealString + "\n";
         } else {
             mealOptionsString = simulateReply("No meal options added yet", "");
         }
-        return mealOptionsString;
-    }
-
-    public static String toMealEntriesString(MealList mealEntries) {
-        String mealOptionsString = "";
-        if (mealEntries.size() > 0) {
-            for (int i = 0; i < mealEntries.size(); i++) {
-                mealOptionsString += INTENDATION + i + ": " + mealEntries.toMealString(i) + "\n";
-            }
-        } else {
-            mealOptionsString = simulateReply("No meal options added yet", "");
-        }
-        return mealOptionsString;
+        return SeperatorLine + "\n" + mealOptionsString + SeperatorLine + "\n";
     }
 
 }

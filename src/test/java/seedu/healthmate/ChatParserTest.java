@@ -7,6 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.io.ByteArrayOutputStream;
 import java.io.ByteArrayInputStream;
 import java.io.PrintStream;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 public class ChatParserTest {
     private final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -33,6 +35,7 @@ public class ChatParserTest {
         System.setIn(new ByteArrayInputStream(simulatedInput.getBytes()));
         chatParser.run();
         assertEquals(outputStream.toString(), expectedOutput);
+
     }
 
 
@@ -58,7 +61,7 @@ public class ChatParserTest {
         String simulatedInput = "save meal burger /c 300\nmeal menu\nbye\n";
         String expectedOutput = UI.simulateInitOutput()
             + UI.simulateReply("burger with 300 calories", "Added to options: ")
-            + chatParser.toMealOptionsString()
+            + chatParser.toMealOptionsStringWithNew("burger with 300 calories")
             + UI.simulateFareWell();
         compareChatParserOutput(chatParser, simulatedInput, expectedOutput);
     }
@@ -80,10 +83,11 @@ public class ChatParserTest {
      */
     @Test void trackMealEntryWithCalories_success() {
         ChatParser chatParser = new ChatParser();
-        String simulatedInput = "add mealEntry burger /c 300";
-        String expectedouput = UI.simulateInitOutput()
-            + UI.simulateReply("burger with 300 calories", "Tracked: ")
+        String simulatedInput = "add mealEntry pizza /c 300\nbye";
+        String timeString = "(at: " + LocalDateTime.now().truncatedTo(ChronoUnit.DAYS).toString() + ")";
+        String expectedOuput = UI.simulateInitOutput()
+            + UI.simulateReply("pizza with 300 calories " + timeString, "Tracked: ")
             + UI.simulateFareWell();
-        compareChatParserOutput(chatParser, simulatedInput, expectedouput);
+        compareChatParserOutput(chatParser, simulatedInput, expectedOuput);
     }
 }
