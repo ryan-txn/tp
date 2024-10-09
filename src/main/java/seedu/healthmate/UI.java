@@ -90,8 +90,9 @@ public class UI {
     }
 
     public static String simulateInitOutput() {
-        return UI.simulateReply("Meal Entries Loaded Successfully!", "")
-                + UI.simulateReply("Meal Options Loaded Successfully!", "");
+        return INTENDATION + "Meal Entries Loaded Successfully!" + "\n"
+                + INTENDATION + "Meal Options Loaded Successfully!" + "\n"
+                + SEPARATOR;
     }
 
     public static String toMealOptionsString(MealList mealOptions) {
