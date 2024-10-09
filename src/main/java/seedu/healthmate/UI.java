@@ -19,9 +19,9 @@ public class UI {
         System.out.println("");
         System.out.println(INDENTATION + actionPerformed + input);
         System.out.println(INDENTATION + SEPARATOR);
-        System.out.println(INTENDATION + SEPARATOR);
-        System.out.println(INTENDATION + actionPerformed + input);
-        System.out.println(INTENDATION + SEPARATOR);
+        System.out.println(INDENTATION + SEPARATOR);
+        System.out.println(INDENTATION + actionPerformed + input);
+        System.out.println(INDENTATION + SEPARATOR);
     }
 
     public static void printGreeting() {
