@@ -89,4 +89,15 @@ public class ChatParser {
         }
     }
 
+    public String toMealOptionsStringWithNew(String newMealString) {
+        return UI.toMealOptionsString(this.mealOptions, newMealString);
+    }
+
+    public void cleanListsAfterTesting() {
+        this.mealEntries = this.historyTracker.loadEmptyMealEntries();
+        this.mealOptions = this.historyTracker.loadEmptyMealOptions();
+        historyTracker.saveMealOptions(mealOptions);
+        historyTracker.saveMealEntries(mealEntries);
+    }
+
 }

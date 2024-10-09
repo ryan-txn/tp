@@ -13,7 +13,7 @@ public class MealList {
         this.mealList = new ArrayList<Meal>();
     }
 
-    public void addMealWithoutCLIMsg(Meal meal) {
+    public void addMealWithoutCLIMessage(Meal meal) {
         this.mealList.add(meal);
     }
 
