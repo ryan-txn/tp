@@ -18,8 +18,10 @@ public class ChatParser {
 
     public ChatParser(){
         this.historyTracker = new HistoryTracker();
+        UI.printSeparator();
         this.mealEntries = historyTracker.loadMealEntries();
         this.mealOptions = historyTracker.loadMealOptions();
+        UI.printSeparator();
     }
 
     /**
@@ -84,6 +86,14 @@ public class ChatParser {
         case Commands.SAVE_MEAL:
             mealOptions.appendMealFromString(userInput, command);
             historyTracker.saveMealOptions(mealOptions);
+            break;
+        case Commands.DELETE_MEAL:
+            mealOptions.removeMealFromString(userInput, command);
+            historyTracker.saveMealOptions(mealOptions);
+            break;
+        case Commands.DELETE_MEAL_ENTRY:
+            mealEntries.removeMealFromString(userInput, command);
+            historyTracker.saveMealEntries(mealEntries);
             break;
         case Commands.ADD_MEAL_ENTRY:
             mealEntries.appendMealFromString(userInput, command);

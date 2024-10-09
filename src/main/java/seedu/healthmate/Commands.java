@@ -10,6 +10,8 @@ public class Commands {
     public static final String SAVE_MEAL = "save meal";
     public static final String MEAL_MENU = "meal menu";
     public static final String SET_HEALTH_GOAL = "set healthGoal";
+    public static final String DELETE_MEAL_ENTRY = "delete mealEntry";
+    public static final String DELETE_MEAL = "delete meal";
 
     // Method to return all commands as a List
     public static List<String> getAllCommands() {
