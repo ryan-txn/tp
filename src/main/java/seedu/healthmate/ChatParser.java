@@ -18,8 +18,10 @@ public class ChatParser {
 
     public ChatParser(){
         this.historyTracker = new HistoryTracker();
+        UI.printSeparator();
         this.mealEntries = historyTracker.loadMealEntries();
         this.mealOptions = historyTracker.loadMealOptions();
+        UI.printSeparator();
     }
 
     /**
@@ -63,6 +65,14 @@ public class ChatParser {
             mealOptions.appendMealFromString(userInput, command, mealOptions);
             historyTracker.saveMealOptions(mealOptions);
             break;
+        case Commands.DELETE_MEAL:
+            mealOptions.removeMealFromString(userInput, command);
+            historyTracker.saveMealOptions(mealOptions);
+            break;
+        case Commands.DELETE_MEAL_ENTRY:
+            mealEntries.removeMealFromString(userInput, command);
+            historyTracker.saveMealEntries(mealEntries);
+            break;
         case Commands.ADD_MEAL_ENTRY:
             mealEntries.appendMealFromString(userInput, command, mealOptions);
             historyTracker.saveMealEntries(mealEntries);
@@ -77,6 +87,17 @@ public class ChatParser {
             UI.printReply("Use a valid command", "Retry: ");
             break;
         }
+    }
+
+    public String toMealOptionsStringWithNew(String newMealString) {
+        return UI.toMealOptionsString(this.mealOptions, newMealString);
+    }
+
+    public void cleanListsAfterTesting() {
+        this.mealEntries = this.historyTracker.loadEmptyMealEntries();
+        this.mealOptions = this.historyTracker.loadEmptyMealOptions();
+        historyTracker.saveMealOptions(mealOptions);
+        historyTracker.saveMealEntries(mealEntries);
     }
 
 }

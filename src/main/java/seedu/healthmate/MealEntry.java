@@ -2,6 +2,7 @@ package seedu.healthmate;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
+import java.time.temporal.ChronoUnit;
 
 public class MealEntry extends Meal{
     private final LocalDateTime timestamp;
@@ -32,6 +33,6 @@ public class MealEntry extends Meal{
 
     @Override
     public String toString() {
-        return super.toString() + " (at: " + this.timestamp + ")";
+        return super.toString() + " (at: " + this.timestamp.truncatedTo(ChronoUnit.DAYS) + ")";
     }
 }

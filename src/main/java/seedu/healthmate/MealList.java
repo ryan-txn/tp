@@ -14,15 +14,19 @@ public class MealList {
         this.mealList = new ArrayList<Meal>();
     }
 
+    public void addMealWithoutCLIMessage(Meal meal) {
+        this.mealList.add(meal);
+    }
+
     public void addMeal(Meal meal) {
         this.mealList.add(meal);
         UI.printReply(meal.toString(), "Added to options: ");
     }
 
     public void deleteMeal(int mealNumber) {
-        Meal mealToDelete = this.mealList.get(mealNumber -1);
+        Meal mealToDelete = this.mealList.get(mealNumber - 1);
         this.mealList.remove(mealNumber - 1);
-        UI.printReply(mealToDelete.toString(), "Deleted: ");
+        UI.printReply(mealToDelete.toString(), "Deleted option: ");
     }
 
     public int size() {
@@ -44,6 +48,17 @@ public class MealList {
                     "Retry: ");
         } catch (NumberFormatException n) {
             UI.printReply("A calorie entry needs to be an integer", "Error: ");
+        }
+    }
+
+    public void removeMealFromString(String userInput, String command) {
+        try {
+            int mealNumber = Integer.parseInt(userInput.replaceAll(command, "").strip());
+            deleteMeal(mealNumber);
+        } catch (NumberFormatException n) {
+            UI.printReply("Meal index needs to be an integer", "Error: ");
+        } catch (IndexOutOfBoundsException s) {
+            UI.printReply("Meal index needs to be within range", "Error: ");
         }
     }
 
