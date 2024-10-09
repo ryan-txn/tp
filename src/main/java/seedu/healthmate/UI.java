@@ -39,18 +39,18 @@ public class UI {
     }
 
     public static void printString(String input) {
-        System.out.println(INTENDATION + input);
+        System.out.println(INDENTATION + input);
     }
 
     public static void printSeparator() {
-        System.out.println(INTENDATION + SEPARATOR);
+        System.out.println(INDENTATION + SEPARATOR);
     }
 
     public static void printMealOptions(MealList mealOptions) {
         printSeparator();
         if (mealOptions.size() > 0) {
             for (int i = 0; i < mealOptions.size(); i++) {
-                System.out.println(INTENDATION + (i + 1)
+                System.out.println(INDENTATION + (i + 1)
                         + ": " + mealOptions.toMealString(i));
             }
         } else {
@@ -63,7 +63,7 @@ public class UI {
         printSeparator();
         if (mealEntries.size() > 0) {
             for (int i = 0; i < mealEntries.size(); i++) {
-                System.out.println(INTENDATION + (i + 1)
+                System.out.println(INDENTATION + (i + 1)
                         + ": " + mealEntries.toMealString(i));
             }
         } else {
