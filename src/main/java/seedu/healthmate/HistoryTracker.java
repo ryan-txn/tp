@@ -54,6 +54,14 @@ public class HistoryTracker {
         return mealList;
     }
 
+    public MealEntriesList loadEmptyMealEntries() {
+        return new MealEntriesList();
+    }
+
+    public MealList loadEmptyMealOptions() {
+        return new MealList();
+    }
+
     private void saveToFile(List<Meal> meals, String fileName) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(DATA_DIRECTORY + File.separator + fileName))) {
             for (Meal meal : meals) {

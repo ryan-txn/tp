@@ -105,14 +105,10 @@ public class UI {
     public static String toMealOptionsString(MealList mealOptions, String newMealString) {
         String SeperatorLine = INTENDATION + SEPARATOR;
         String mealOptionsString = "";
-        if (mealOptions.size() > 0) {
-            for (int i = 0; i < mealOptions.size(); i++) {
-                mealOptionsString += INTENDATION + (i + 1) + ": " + mealOptions.toMealString(i) + "\n";
-            }
-            mealOptionsString += INTENDATION + (mealOptions.size() + 1) + ": " + newMealString + "\n";
-        } else {
-            mealOptionsString = simulateReply("No meal options added yet", "");
+        for (int i = 0; i < mealOptions.size(); i++) {
+            mealOptionsString += INTENDATION + (i + 1) + ": " + mealOptions.toMealString(i) + "\n";
         }
+        mealOptionsString += INTENDATION + (mealOptions.size() + 1) + ": " + newMealString + "\n";
         return SeperatorLine + "\n" + mealOptionsString + SeperatorLine + "\n";
     }
 

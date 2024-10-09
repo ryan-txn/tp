@@ -35,7 +35,7 @@ public class ChatParserTest {
         System.setIn(new ByteArrayInputStream(simulatedInput.getBytes()));
         chatParser.run();
         assertEquals(outputStream.toString(), expectedOutput);
-
+        chatParser.cleanListsAfterTesting();
     }
 
 
@@ -84,7 +84,7 @@ public class ChatParserTest {
     @Test void trackMealEntryWithCalories_success() {
         ChatParser chatParser = new ChatParser();
         String simulatedInput = "add mealEntry pizza /c 300\nbye";
-        String timeString = "(at: " + LocalDateTime.now().truncatedTo(ChronoUnit.DAYS).toString() + ")";
+        String timeString = "(at: " + LocalDateTime.now().truncatedTo(ChronoUnit.DAYS) + ")";
         String expectedOuput = UI.simulateInitOutput()
             + UI.simulateReply("pizza with 300 calories " + timeString, "Tracked: ")
             + UI.simulateFareWell();
