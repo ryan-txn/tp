@@ -37,6 +37,9 @@ public class UITest {
         System.setOut(originalOut);
     }
 
+    /**
+     * Tests if print greeting methods prints correctly
+     */
     @Test
     public void testPrintGreeting() {
         UI.printGreeting();
@@ -50,6 +53,9 @@ public class UITest {
         assertEquals(expectedOutput, outContent.toString());
     }
 
+    /**
+     * Tests if farewell message prints correctly
+     */
     @Test
     public void testPrintFarewell() {
         UI.printFarewell();
@@ -57,6 +63,22 @@ public class UITest {
         assertEquals(expectedOutput, outContent.toString());
     }
 
-   
+    /**
+     * Tests if reply method works with and without arguments
+     */
+    @Test
+    public void testPrintReply() {
+        UI.printReply("Test input", "Action performed: ");
+        String expectedOutput = LINE + LINE_SEPARATOR
+                + INDENTATION + "Action performed: Test input" + LINE_SEPARATOR
+                + LINE + LINE_SEPARATOR;
+        assertEquals(expectedOutput, outContent.toString());
+
+        UI.printReply("", "");
+        String expectedOutput2 = LINE + LINE_SEPARATOR
+                + INDENTATION + LINE_SEPARATOR
+                + LINE + LINE_SEPARATOR;
+        assertEquals(expectedOutput + expectedOutput2, outContent.toString());
+    }
 
 }
