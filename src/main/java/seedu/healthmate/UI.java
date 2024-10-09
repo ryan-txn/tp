@@ -1,9 +1,11 @@
 package seedu.healthmate;
 
 public class UI {
-
+    
+    private static final String lineSeparator = System.lineSeparator();
     private static final String SEPARATOR = "_________________________________________________________________________";
     private static final String INTENDATION = "      ";
+    private static final String frameLine = INTENDATION + SEPARATOR + lineSeparator;
     private static final String LOGO =
               INTENDATION + " |\n"
             + INTENDATION + "     \\\\|//\n"
@@ -77,23 +79,21 @@ public class UI {
     }
 
     public static String simulateReply(String input, String actionPerformed) {
-        String line1 = "\n";
-        String line2 = INTENDATION + actionPerformed + input + "\n";
-        String line3 = INTENDATION + SEPARATOR + "\n";
-        return  line1 + line2 + line3;
+        String line1 = lineSeparator;
+        String line2 = INTENDATION + actionPerformed + input + lineSeparator;
+        return  line1 + line2 + frameLine;
     }
 
     public static String simulateFareWell() {
-        String line1 = INTENDATION + "Stay healthy!" + "\n";
-        String lineSep = INTENDATION + SEPARATOR + "\n";
-        return line1 + lineSep;
+        String line1 = INTENDATION + "Stay healthy!" + lineSeparator;;
+        return line1 + frameLine;
     }
 
-    public static String simulateInitOutput() {
-        return INTENDATION + SEPARATOR + "\n" + INTENDATION + "Meal Entries Loaded Successfully!" + "\n"
-                + INTENDATION + "Meal Options Loaded Successfully!" + "\n"
-                + INTENDATION + SEPARATOR+ "\n"
-                + INTENDATION + SEPARATOR;
+    public static String simulateInitOutput() {;
+        String line2 = INTENDATION + "Meal Entries Loaded Successfully!" + lineSeparator;
+        String line3 = INTENDATION + "Meal Options Loaded Successfully!" + lineSeparator;
+        return frameLine + line2 + line3 + frameLine + INTENDATION + SEPARATOR;
+
     }
 
     /**
@@ -103,13 +103,13 @@ public class UI {
      * @return
      */
     public static String toMealOptionsString(MealList mealOptions, String newMealString) {
-        String SeperatorLine = INTENDATION + SEPARATOR;
+        String seperatorLine = INTENDATION + SEPARATOR;
         String mealOptionsString = "";
         for (int i = 0; i < mealOptions.size(); i++) {
-            mealOptionsString += INTENDATION + (i + 1) + ": " + mealOptions.toMealString(i) + "\n";
+            mealOptionsString += INTENDATION + (i + 1) + ": " + mealOptions.toMealString(i) + lineSeparator;
         }
-        mealOptionsString += INTENDATION + (mealOptions.size() + 1) + ": " + newMealString + "\n";
-        return SeperatorLine + "\n" + mealOptionsString + SeperatorLine + "\n";
+        mealOptionsString += INTENDATION + (mealOptions.size() + 1) + ": " + newMealString + lineSeparator;
+        return seperatorLine + lineSeparator + mealOptionsString + seperatorLine + lineSeparator;
     }
 
 }
