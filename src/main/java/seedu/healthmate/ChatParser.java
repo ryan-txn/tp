@@ -57,15 +57,15 @@ public class ChatParser {
         System.out.println(UI.INDENTATION + "Before we begin, please enter your " +
                 "current height, weight and health goal!");
 
-        System.out.println(UI.INDENTATION + "Weight: ");
+        System.out.println(UI.INDENTATION + "Weight:");
         double weight = scanner.nextDouble();
         User.addWeightEntry(weight);
 
-        System.out.println(UI.INDENTATION + "Height: "); 
+        System.out.println(UI.INDENTATION + "Height:");
         double height = scanner.nextDouble();
         User.addHeightEntry(height);
 
-        System.out.println(UI.INDENTATION + "Health Goal: ");
+        System.out.println(UI.INDENTATION + "Health Goal:");
         String healthGoal = scanner.nextLine();
         parseHealthGoal(healthGoal);
 
