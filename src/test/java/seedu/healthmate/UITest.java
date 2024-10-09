@@ -50,6 +50,13 @@ public class UITest {
         assertEquals(expectedOutput, outContent.toString());
     }
 
+    @Test
+    public void testPrintFarewell() {
+        UI.printFarewell();
+        String expectedOutput = INDENTATION + "Stay healthy!" + LINE_SEPARATOR + LINE + LINE_SEPARATOR;
+        assertEquals(expectedOutput, outContent.toString());
+    }
 
+   
 
 }
