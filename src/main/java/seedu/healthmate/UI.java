@@ -90,8 +90,9 @@ public class UI {
     }
 
     public static String simulateInitOutput() {
-        return INTENDATION + "Meal Entries Loaded Successfully!" + "\n"
+        return SEPARATOR + "\n" + INTENDATION + "Meal Entries Loaded Successfully!" + "\n"
                 + INTENDATION + "Meal Options Loaded Successfully!" + "\n"
+                + SEPARATOR+ "\n"
                 + SEPARATOR;
     }
 
