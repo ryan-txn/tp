@@ -13,10 +13,18 @@ public class MealEntry extends Meal{
 
     public static MealEntry extractMealEntryFromString(String input,
                                              String command,
-                                             String calorieSignaller) throws EmptyCalorieException {
+                                             String calorieSignaller,
+                                             MealList mealOptions) throws EmptyCalorieException {
         Optional<String> mealDescription = extractMealDescription(input, command, calorieSignaller);
-        String caloriesString = extractCalories(input, calorieSignaller);
-        int calories = Integer.parseInt(caloriesString);
+        int calories;
+        try {
+            String caloriesString = extractCalories(input, calorieSignaller);
+            calories = Integer.parseInt(caloriesString);
+        } catch (Exception e) {
+            System.out.println("Getting info from meal options...");
+            Optional<Integer> optionalCalories = mealOptions.getCaloriesByMealName(mealDescription.orElse(""));
+            calories = optionalCalories.orElseThrow(() -> new EmptyCalorieException());
+        }
         MealEntry mealEntry = new MealEntry(mealDescription, calories);
         return mealEntry;
     }

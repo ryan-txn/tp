@@ -60,11 +60,11 @@ public class ChatParser {
             UI.printMealOptions(this.mealOptions);
             break;
         case Commands.SAVE_MEAL:
-            mealOptions.appendMealFromString(userInput, command);
+            mealOptions.appendMealFromString(userInput, command, mealOptions);
             historyTracker.saveMealOptions(mealOptions);
             break;
         case Commands.ADD_MEAL_ENTRY:
-            mealEntries.appendMealFromString(userInput, command);
+            mealEntries.appendMealFromString(userInput, command, mealOptions);
             historyTracker.saveMealEntries(mealEntries);
             break;
         case Commands.LOG_MEALS:
