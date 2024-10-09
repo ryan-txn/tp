@@ -16,7 +16,7 @@ public class UI {
 
 
     public static void printReply(String input, String actionPerformed) {
-        System.out.println("");
+        System.out.println(INTENDATION + SEPARATOR);
         System.out.println(INTENDATION + actionPerformed + input);
         System.out.println(INTENDATION + SEPARATOR);
     }
@@ -34,26 +34,38 @@ public class UI {
         System.out.println(INTENDATION + SEPARATOR);
     }
 
+    public static void printString(String input) {
+        System.out.println(INTENDATION + input);
+    }
+
+    public static void printSeparator() {
+        System.out.println(INTENDATION + SEPARATOR);
+    }
+
     public static void printMealOptions(MealList mealOptions) {
+        printSeparator();
         if (mealOptions.size() > 0) {
             for (int i = 0; i < mealOptions.size(); i++) {
-                System.out.println(INTENDATION + i
+                System.out.println(INTENDATION + (i + 1)
                         + ": " + mealOptions.toMealString(i));
             }
         } else {
             printReply("No meal options added yet", "");
         }
+        printSeparator();
     }
 
     public static void printMealEntries(MealEntriesList mealEntries) {
+        printSeparator();
         if (mealEntries.size() > 0) {
             for (int i = 0; i < mealEntries.size(); i++) {
-                System.out.println(INTENDATION + i
+                System.out.println(INTENDATION + (i + 1)
                         + ": " + mealEntries.toMealString(i));
             }
         } else {
             printReply("No meal entries added yet", "");
         }
+        printSeparator();
     }
     public static void printCommands() {
         System.out.println(INTENDATION + SEPARATOR);
