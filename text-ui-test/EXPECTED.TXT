@@ -17,4 +17,3 @@
       _________________________________________________________________________
       Before we begin, please enter your current height, weight and health goal!
       Weight:
-
