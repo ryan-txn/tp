@@ -6,6 +6,7 @@ import static seedu.healthmate.MealEntry.extractMealEntryFromString;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class MealEntriesList extends MealList {
 
     public MealEntriesList() {
@@ -53,7 +54,7 @@ public class MealEntriesList extends MealList {
     }
 
     public List<Meal> getMealEntries() {
-        return new ArrayList<>(mealList);
+        return new ArrayList<>(super.mealList);
     }
 
 }

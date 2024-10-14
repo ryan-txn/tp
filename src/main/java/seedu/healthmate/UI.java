@@ -71,7 +71,7 @@ public class UI {
         }
         printSeparator();
     }
-  
+
     public static void printCommands() {
         System.out.println(LINE);
         for (String command: Commands.getAllCommands()){

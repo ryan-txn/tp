@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -35,7 +36,7 @@ public class HistoryTracker {
     }
 
     public MealEntriesList loadMealEntries() {
-        List<Meal> meals = loadFromFile(MEAL_ENTRIES_FILE);
+        List<Meal> meals = loadFromFile(MEAL_ENTRIES_FILE, true);
         MealEntriesList mealEntriesList = new MealEntriesList();
         for (Meal meal : meals) {
             mealEntriesList.addMealWithoutCLIMessage(meal);
@@ -45,7 +46,7 @@ public class HistoryTracker {
     }
 
     public MealList loadMealOptions() {
-        List<Meal> meals = loadFromFile(MEAL_OPTIONS_FILE);
+        List<Meal> meals = loadFromFile(MEAL_OPTIONS_FILE, false);
         MealList mealList = new MealList();
         for (Meal meal : meals) {
             mealList.addMealWithoutCLIMessage(meal);
@@ -65,7 +66,7 @@ public class HistoryTracker {
     private void saveToFile(List<Meal> meals, String fileName) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(DATA_DIRECTORY + File.separator + fileName))) {
             for (Meal meal : meals) {
-                writer.write(meal.getName().orElse("") + "," + meal.getCalories());
+                writer.write(meal.toSaveString());
                 writer.newLine();
             }
         } catch (IOException e) {
@@ -73,20 +74,34 @@ public class HistoryTracker {
         }
     }
 
-    private List<Meal> loadFromFile(String fileName) {
+    private List<Meal> loadFromFile(String fileName, boolean isEntry) {
         List<Meal> meals = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(DATA_DIRECTORY + File.separator + fileName))) {
+        try (BufferedReader reader = new BufferedReader(
+                new FileReader(DATA_DIRECTORY + File.separator + fileName))
+            ) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
-                if (parts.length == 2) {
-                    String name = parts[0].isEmpty() ? null : parts[0];
-                    int calories = Integer.parseInt(parts[1]);
-                    meals.add(new Meal(Optional.ofNullable(name), calories));
-                }
+                meals = parseAndAddMeal(meals, parts, isEntry);
             }
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        return meals;
+    }
+
+    private List<Meal> parseAndAddMeal(List<Meal> meals, String[] parts, boolean isEntry) {
+        boolean isCorrectMealEntry = isEntry && (parts.length == 3);
+        boolean isCorrectMeal = !isEntry && (parts.length == 2);
+        if (isCorrectMealEntry) {
+            String name = parts[0].isEmpty() ? null : parts[0];
+            int calories = Integer.parseInt(parts[1]);
+            LocalDateTime timestamp = LocalDateTime.parse(parts[2].strip());
+            meals.add(new MealEntry(Optional.ofNullable(name), calories, timestamp));
+        } else if (isCorrectMeal) {
+            String name = parts[0].isEmpty() ? null : parts[0];
+            int calories = Integer.parseInt(parts[1]);
+            meals.add(new Meal(Optional.ofNullable(name), calories));
         }
         return meals;
     }
