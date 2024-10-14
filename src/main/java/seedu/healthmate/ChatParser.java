@@ -15,6 +15,8 @@ public class ChatParser {
     private MealEntriesList mealEntries;
     private MealList mealOptions;
     private final HistoryTracker historyTracker;
+    private static final String INDENTATION = "      ";
+
 
     public ChatParser(){
         this.historyTracker = new HistoryTracker();
@@ -54,18 +56,18 @@ public class ChatParser {
     public void askForHealthGoal() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println(UI.INDENTATION + "Before we begin, please enter your " +
+        System.out.println(INDENTATION + "Before we begin, please enter your " +
                 "current height, weight and health goal!");
 
-        System.out.println(UI.INDENTATION + "Weight:");
+        System.out.println(INDENTATION + "Weight:");
         double weight = scanner.nextDouble();
         User.addWeightEntry(weight);
 
-        System.out.println(UI.INDENTATION + "Height:");
+        System.out.println(INDENTATION + "Height:");
         double height = scanner.nextDouble();
         User.addHeightEntry(height);
 
-        System.out.println(UI.INDENTATION + "Health Goal:");
+        System.out.println(INDENTATION + "Health Goal:");
         String healthGoal = scanner.nextLine();
         parseHealthGoal(healthGoal);
 
@@ -85,7 +87,7 @@ public class ChatParser {
             UI.printMealOptions(this.mealOptions);
             break;
         case Commands.SAVE_MEAL:
-            mealOptions.appendMealFromString(userInput, command);
+            mealOptions.appendMealFromString(userInput, command, mealOptions);
             historyTracker.saveMealOptions(mealOptions);
             break;
         case Commands.DELETE_MEAL:
@@ -97,7 +99,7 @@ public class ChatParser {
             historyTracker.saveMealEntries(mealEntries);
             break;
         case Commands.ADD_MEAL_ENTRY:
-            mealEntries.appendMealFromString(userInput, command);
+            mealEntries.appendMealFromString(userInput, command, mealOptions);
             historyTracker.saveMealEntries(mealEntries);
             break;
         case Commands.LOG_MEALS:
@@ -123,6 +125,17 @@ public class ChatParser {
         default:
             break;
         }
+    }
+
+    public String toMealOptionsStringWithNew(String newMealString) {
+        return UI.toMealOptionsString(this.mealOptions, newMealString);
+    }
+
+    public void cleanListsAfterTesting() {
+        this.mealEntries = this.historyTracker.loadEmptyMealEntries();
+        this.mealOptions = this.historyTracker.loadEmptyMealOptions();
+        historyTracker.saveMealOptions(mealOptions);
+        historyTracker.saveMealEntries(mealEntries);
     }
 
 }
