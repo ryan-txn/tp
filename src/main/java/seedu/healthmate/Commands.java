@@ -22,13 +22,5 @@ public class Commands {
                 MEAL_MENU
         );
     }
-
-    // Method to print all commands
-    public static void printAllCommands() {
-        System.out.println("Available Commands:");
-        for (String command : getAllCommands()) {
-            System.out.println(command);
-        }
-    }
 }
 
