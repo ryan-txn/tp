@@ -37,7 +37,6 @@ public class CommandMap {
     public static List<Command> getAllCommands() {
         // Assert that the command map is not empty
         assert !COMMANDSMAP.isEmpty() : "Command map should not be empty";
-
         List<Command> commands = new ArrayList<>(COMMANDSMAP.values());
 
         // Log the number of commands retrieved
