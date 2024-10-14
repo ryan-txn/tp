@@ -84,7 +84,7 @@ public class ChatParserTest {
     @Test void trackMealEntryWithCalories_success() {
         ChatParser chatParser = new ChatParser();
         String simulatedInput = "add mealEntry pizza /c 300\nbye";
-        String timeString = "(at: " + LocalDateTime.now().truncatedTo(ChronoUnit.DAYS) + ")";
+        String timeString = "(at: " + LocalDateTime.now().truncatedTo(ChronoUnit.HOURS) + ")";
         String expectedOuput = UI.simulateInitOutput()
             + UI.simulateReply("pizza with 300 calories " + timeString, "Tracked: ")
             + UI.simulateFareWell();

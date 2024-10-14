@@ -45,6 +45,10 @@ public class Meal {
         return meal;
     }
 
+    public String toSaveString() {
+        return this.name.orElse("") + "," + this.getCalories();
+    }
+
     @Override
     public String toString() {
         return this.name.orElse("Meal") + " with " + this.calories + " calories";
