@@ -12,6 +12,11 @@ public class MealEntry extends Meal{
         this.timestamp = LocalDateTime.now();
     }
 
+    public MealEntry(Optional<String> name, int calories, LocalDateTime timestamp) {
+        super(name, calories);
+        this.timestamp = timestamp;
+    }
+
     public static MealEntry extractMealEntryFromString(String input,
                                              String command,
                                              String calorieSignaller,
@@ -30,9 +35,14 @@ public class MealEntry extends Meal{
         return mealEntry;
     }
 
+    @Override
+    public String toSaveString() {
+        return super.toSaveString() + ", " + this.timestamp;
+    }
+
 
     @Override
     public String toString() {
-        return super.toString() + " (at: " + this.timestamp.truncatedTo(ChronoUnit.DAYS) + ")";
+        return super.toString() + " (at: " + this.timestamp.truncatedTo(ChronoUnit.HOURS) + ")";
     }
 }
