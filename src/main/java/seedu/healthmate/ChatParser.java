@@ -1,5 +1,13 @@
 package seedu.healthmate;
 
+import seedu.healthmate.command.commands.LogMealsCommand;
+import seedu.healthmate.command.commands.SaveMealCommand;
+import seedu.healthmate.command.commands.ListCommandsCommand;
+import seedu.healthmate.command.commands.AddMealEntryCommand;
+import seedu.healthmate.command.commands.DeleteMealCommand;
+import seedu.healthmate.command.commands.DeleteMealEntryCommand;
+import seedu.healthmate.command.commands.MealMenuCommand;
+
 import java.util.Scanner;
 
 
@@ -58,29 +66,29 @@ public class ChatParser {
         String commandToken2 = inputTokens[1].strip();
         String command = commandToken1 + " " + commandToken2;
         switch (command) {
-        case Commands.MEAL_MENU:
+        case MealMenuCommand.COMMAND:
             UI.printMealOptions(this.mealOptions);
             break;
-        case Commands.SAVE_MEAL:
+        case SaveMealCommand.COMMAND:
             mealOptions.appendMealFromString(userInput, command, mealOptions);
             historyTracker.saveMealOptions(mealOptions);
             break;
-        case Commands.DELETE_MEAL:
+        case DeleteMealCommand.COMMAND:
             mealOptions.removeMealFromString(userInput, command);
             historyTracker.saveMealOptions(mealOptions);
             break;
-        case Commands.DELETE_MEAL_ENTRY:
+        case DeleteMealEntryCommand.COMMAND:
             mealEntries.removeMealFromString(userInput, command);
             historyTracker.saveMealEntries(mealEntries);
             break;
-        case Commands.ADD_MEAL_ENTRY:
+        case AddMealEntryCommand.COMMAND:
             mealEntries.appendMealFromString(userInput, command, mealOptions);
             historyTracker.saveMealEntries(mealEntries);
             break;
-        case Commands.LOG_MEALS:
+        case LogMealsCommand.COMMAND:
             UI.printMealEntries(this.mealEntries);
             break;
-        case Commands.LIST_COMMANDS:
+        case ListCommandsCommand.COMMAND:
             UI.printCommands();
             break;
         default:
