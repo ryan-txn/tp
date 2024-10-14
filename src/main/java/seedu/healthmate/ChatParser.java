@@ -11,12 +11,11 @@ import java.util.Scanner;
 public class ChatParser {
 
     public static final String CALORIE_SIGNALLER = "/c";
+    private static final String INDENTATION = "      ";
 
     private MealEntriesList mealEntries;
     private MealList mealOptions;
     private final HistoryTracker historyTracker;
-    private static final String INDENTATION = "      ";
-
 
     public ChatParser(){
         this.historyTracker = new HistoryTracker();
