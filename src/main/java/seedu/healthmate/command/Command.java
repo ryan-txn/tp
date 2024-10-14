@@ -1,24 +1,24 @@
 package seedu.healthmate.command;
 
 public abstract class Command {
-    private final String FORMAT;
-    public final String COMMAND;
-    private final String description;
     private static final String INDENTATION = "      ";
+    private final String format;
+    public final String command;
+    private final String description;
 
     public Command(String command, String format, String description) {
-        this.FORMAT = format;
-        this.COMMAND = command;
+        this.format = format;
+        this.command = command;
         this.description = description;
     }
 
     @Override
     public String toString() {
-        return "Command: " + COMMAND + "\n" +
-                INDENTATION + "Format: " + FORMAT + "\n" +
+        return "Command: " + command + "\n" +
+                INDENTATION + "Format: " + format + "\n" +
                 INDENTATION + "Description: " + description;
     }
     public String getCommand() {
-        return COMMAND;
+        return command;
     }
 }

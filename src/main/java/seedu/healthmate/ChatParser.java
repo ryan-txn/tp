@@ -1,6 +1,12 @@
 package seedu.healthmate;
 
-import seedu.healthmate.command.commands.*;
+import seedu.healthmate.command.commands.LogMealsCommand;
+import seedu.healthmate.command.commands.SaveMealCommand;
+import seedu.healthmate.command.commands.ListCommandsCommand;
+import seedu.healthmate.command.commands.AddMealEntryCommand;
+import seedu.healthmate.command.commands.DeleteMealCommand;
+import seedu.healthmate.command.commands.DeleteMealEntryCommand;
+import seedu.healthmate.command.commands.MealMenuCommand;
 
 import java.util.Scanner;
 
