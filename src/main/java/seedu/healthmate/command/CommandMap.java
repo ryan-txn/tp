@@ -12,8 +12,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 public class CommandMap {
+    private static final Logger logger = Logger.getLogger(CommandMap.class.getName());
     private static final Map<String, Command> COMMANDSMAP = new HashMap<>();
 
     static {
@@ -31,7 +33,16 @@ public class CommandMap {
         return COMMANDSMAP.get(commandName);
     }
 
+    // Retrieve all commands with assertions and logging
     public static List<Command> getAllCommands() {
-        return new ArrayList<>(COMMANDSMAP.values());
+        // Assert that the command map is not empty
+        assert !COMMANDSMAP.isEmpty() : "Command map should not be empty";
+
+        List<Command> commands = new ArrayList<>(COMMANDSMAP.values());
+
+        // Log the number of commands retrieved
+        logger.info("Retrieved " + commands.size() + " commands from the CommandMap");
+
+        return commands;
     }
 }
