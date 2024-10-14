@@ -76,7 +76,9 @@ public class HistoryTracker {
 
     private List<Meal> loadFromFile(String fileName, boolean isEntry) {
         List<Meal> meals = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(DATA_DIRECTORY + File.separator + fileName))) {
+        try (BufferedReader reader = new BufferedReader(
+                new FileReader(DATA_DIRECTORY + File.separator + fileName))
+            ) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");

@@ -3,13 +3,9 @@ package seedu.healthmate;
 import static seedu.healthmate.ChatParser.CALORIE_SIGNALLER;
 import static seedu.healthmate.MealEntry.extractMealEntryFromString;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
 
 public class MealEntriesList extends MealList {
 
