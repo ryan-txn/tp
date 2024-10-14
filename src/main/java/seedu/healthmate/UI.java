@@ -91,7 +91,7 @@ public class UI {
         return line1 + FRAME_LINE;
     }
 
-    public static String simulateInitOutput() {;
+    public static String simulateInitOutput() {
         String line2 = INTENDATION + "Meal Entries Loaded Successfully!" + LINE_SEPARATOR;
         String line3 = INTENDATION + "Meal Options Loaded Successfully!" + LINE_SEPARATOR;
         return FRAME_LINE + line2 + line3 + FRAME_LINE + LINE;
