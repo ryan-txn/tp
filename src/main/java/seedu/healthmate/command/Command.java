@@ -2,8 +2,9 @@ package seedu.healthmate.command;
 
 public abstract class Command {
     private static final String INDENTATION = "      ";
-    private final String format;
+    
     public final String command;
+    private final String format;
     private final String description;
 
     public Command(String command, String format, String description) {
