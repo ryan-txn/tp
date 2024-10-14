@@ -2,6 +2,7 @@ package seedu.healthmate;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
+import java.time.temporal.ChronoUnit;
 
 public class MealEntry extends Meal{
     private final LocalDateTime timestamp;
@@ -13,10 +14,18 @@ public class MealEntry extends Meal{
 
     public static MealEntry extractMealEntryFromString(String input,
                                              String command,
-                                             String calorieSignaller) throws EmptyCalorieException {
+                                             String calorieSignaller,
+                                             MealList mealOptions) throws EmptyCalorieException {
         Optional<String> mealDescription = extractMealDescription(input, command, calorieSignaller);
-        String caloriesString = extractCalories(input, calorieSignaller);
-        int calories = Integer.parseInt(caloriesString);
+        int calories;
+        try {
+            String caloriesString = extractCalories(input, calorieSignaller);
+            calories = Integer.parseInt(caloriesString);
+        } catch (Exception e) {
+            System.out.println("Getting info from meal options...");
+            Optional<Integer> optionalCalories = mealOptions.getCaloriesByMealName(mealDescription.orElse(""));
+            calories = optionalCalories.orElseThrow(() -> new EmptyCalorieException());
+        }
         MealEntry mealEntry = new MealEntry(mealDescription, calories);
         return mealEntry;
     }
@@ -24,6 +33,6 @@ public class MealEntry extends Meal{
 
     @Override
     public String toString() {
-        return super.toString() + " (at: " + this.timestamp + ")";
+        return super.toString() + " (at: " + this.timestamp.truncatedTo(ChronoUnit.DAYS) + ")";
     }
 }

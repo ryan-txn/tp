@@ -16,6 +16,9 @@ public class Meal {
                                                           String calorieSignaller) throws EmptyCalorieException {
         int mealDescriptionIndex = input.indexOf(command) + command.length();
         int calorieIndex = input.indexOf(calorieSignaller);
+        if (calorieIndex == -1) {
+            calorieIndex = input.length();
+        }
         return Optional.ofNullable(input.substring(mealDescriptionIndex, calorieIndex).strip());
     }
 
