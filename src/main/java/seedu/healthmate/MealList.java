@@ -4,7 +4,6 @@ import static seedu.healthmate.Meal.extractMealFromString;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class MealList {
 
@@ -14,7 +13,7 @@ public class MealList {
         this.mealList = new ArrayList<Meal>();
     }
 
-    public void addMealWithoutCLIMessage(Meal meal) {
+    public void addMealWithoutCLIMsg(Meal meal) {
         this.mealList.add(meal);
     }
 
@@ -33,7 +32,7 @@ public class MealList {
         return this.mealList.size();
     }
 
-    public void appendMealFromString(String userInput, String command, MealList mealOptions) {
+    public void appendMealFromString(String userInput, String command) {
         try {
             Meal meal = extractMealFromString(userInput, command, CALORIE_SIGNALLER);
             if (!meal.descriptionIsEmpty()) {
@@ -65,17 +64,8 @@ public class MealList {
     public String toMealString(int mealIndex) {
         return this.mealList.get(mealIndex).toString();
     }
-
     public List<Meal> getMealList() {
         return new ArrayList<>(mealList);
     }
 
-    public Optional<Integer> getCaloriesByMealName(String mealName) {
-        for (Meal meal : mealList) {
-            if (meal.getName().isPresent() && meal.getName().get().equalsIgnoreCase(mealName)) {
-                return Optional.of(meal.getCalories());
-            }
-        }
-        return Optional.empty();
-    }
 }

@@ -26,9 +26,9 @@ public class MealEntriesList extends MealList {
     }
 
     @Override
-    public void appendMealFromString(String userInput, String command,  MealList mealOptions) {
+    public void appendMealFromString(String userInput, String command) {
         try {
-            MealEntry meal = extractMealEntryFromString(userInput, command, CALORIE_SIGNALLER, mealOptions);
+            MealEntry meal = extractMealEntryFromString(userInput, command, CALORIE_SIGNALLER);
             this.addMeal(meal);
         } catch (EmptyCalorieException e) {
             UI.printReply("Every meal needs a calorie integer. (e.g. 120)", "");
