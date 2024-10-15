@@ -15,4 +15,8 @@ public class WeightEntry {
     public String toString() {
         return "weight: " + this.weight;
     }
+
+    public double getWeight() {
+        return weight;
+    }
 }

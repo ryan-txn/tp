@@ -6,6 +6,7 @@ class User {
     private ArrayList<WeightEntry> weightEntries;
     private ArrayList<HeightEntry> heightEntries;
 
+
     public User() {
         this.weightEntries = new ArrayList<>();
         this.heightEntries = new ArrayList<>();
