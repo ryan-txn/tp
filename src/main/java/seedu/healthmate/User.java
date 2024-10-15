@@ -1,6 +1,6 @@
 package seedu.healthmate;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
 public class User {
     private HeightEntry heightEntry;

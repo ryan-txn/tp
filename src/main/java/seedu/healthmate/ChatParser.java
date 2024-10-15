@@ -64,23 +64,6 @@ public class ChatParser {
 
     public void checkForUserData() {
         historyTracker.loadUserData();
-//        Scanner scanner = new Scanner(System.in);
-//
-//        System.out.println(INDENTATION + "Before we begin, please enter your " +
-//                "current height, weight and health goal!");
-//
-//        System.out.println(INDENTATION + "Weight:");
-//        double weight = scanner.nextDouble();
-//        User.addWeightEntry(weight);
-//
-//        System.out.println(INDENTATION + "Height:");
-//        double height = scanner.nextDouble();
-//        User.addHeightEntry(height);
-//
-//        System.out.println(INDENTATION + "Health Goal:");
-//        String healthGoal = scanner.nextLine();
-//        parseHealthGoal(healthGoal);
-
     }
 
     /**
@@ -152,19 +135,6 @@ public class ChatParser {
 
         return new User(height, weight, isMale, age, healthGoal);
     }
-
-/*    public void parseHealthGoal(String healthGoal) {
-        switch (healthGoal) {
-        case "cut weight":
-            break;
-        case "bulk up":
-            break;
-        case "higher wellbeing":
-            break;
-        default:
-            break;
-        }
-    }*/
 
     public String toMealOptionsStringWithNew(String newMealString) {
         return UI.toMealOptionsString(this.mealOptions, newMealString);
