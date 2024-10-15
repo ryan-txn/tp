@@ -7,6 +7,7 @@ import seedu.healthmate.command.commands.AddMealEntryCommand;
 import seedu.healthmate.command.commands.DeleteMealCommand;
 import seedu.healthmate.command.commands.DeleteMealEntryCommand;
 import seedu.healthmate.command.commands.MealMenuCommand;
+import seedu.healthmate.command.commands.UpdateUserDataCommand;
 
 import java.util.Scanner;
 
@@ -117,13 +118,42 @@ public class ChatParser {
         case ListCommandsCommand.COMMAND:
             UI.printCommands();
             break;
+        case UpdateUserDataCommand.COMMAND:
+            User currentUser = askForUserData();
+            historyTracker.saveUserDataFile(currentUser);
+            break;
         default:
             UI.printReply("Use a valid command", "Retry: ");
             break;
         }
     }
 
-    public void parseHealthGoal(String healthGoal) {
+    public User askForUserData() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println(INDENTATION + "Please enter your " +
+                "current height, weight, gender, age and health goal!");
+
+        System.out.println(INDENTATION + "Height:");
+        double height = Double.parseDouble(scanner.nextLine());
+
+        System.out.println(INDENTATION + "Weight:");
+        double weight = Double.parseDouble(scanner.nextLine());
+
+        System.out.println(INDENTATION + "Gender:");
+        String gender = scanner.nextLine();
+        boolean isMale = (gender.equalsIgnoreCase("Male"));
+
+        System.out.println(INDENTATION + "Age:");
+        int age = Integer.parseInt(scanner.nextLine());
+
+        System.out.println(INDENTATION + "Health Goal:");
+        String healthGoal = scanner.nextLine();
+
+        return new User(height, weight, isMale, age, healthGoal);
+    }
+
+/*    public void parseHealthGoal(String healthGoal) {
         switch (healthGoal) {
         case "cut weight":
             break;
@@ -134,7 +164,7 @@ public class ChatParser {
         default:
             break;
         }
-    }
+    }*/
 
     public String toMealOptionsStringWithNew(String newMealString) {
         return UI.toMealOptionsString(this.mealOptions, newMealString);

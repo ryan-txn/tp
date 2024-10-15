@@ -9,9 +9,10 @@ public class Commands {
     public static final String ADD_MEAL_ENTRY = "add mealEntry";
     public static final String SAVE_MEAL = "save meal";
     public static final String MEAL_MENU = "meal menu";
-    public static final String SET_HEALTH_GOAL = "set healthGoal";
+    public static final String UPDATE_USER_DATA = "update userdata";
     public static final String DELETE_MEAL_ENTRY = "delete mealEntry";
     public static final String DELETE_MEAL = "delete meal";
+
 
     // Method to return all commands as a List
     public static List<String> getAllCommands() {
@@ -21,7 +22,7 @@ public class Commands {
                 ADD_MEAL_ENTRY,
                 SAVE_MEAL,
                 MEAL_MENU,
-                SET_HEALTH_GOAL
+                UPDATE_USER_DATA
         );
     }
 }

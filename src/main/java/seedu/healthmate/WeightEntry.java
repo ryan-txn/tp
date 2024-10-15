@@ -13,6 +13,10 @@ public class WeightEntry {
 
     @Override
     public String toString() {
-        return "weight: " + this.weight;
+        return "" + this.weight;
+    }
+
+    public double getWeight() {
+        return weight;
     }
 }

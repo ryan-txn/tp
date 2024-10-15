@@ -3,19 +3,22 @@ package seedu.healthmate;
 import java.util.ArrayList;
 
 public class User {
-    private WeightEntry weightEntry;
     private HeightEntry heightEntry;
+    private WeightEntry weightEntry;
     private boolean isMale;
     private int age;
-    private HealthGoal healthGoals;
-    private static int idealCalories;
+    private HealthGoal healthGoal;
+    private double idealCalories;
 
-    public User(WeightEntry weightEntry, HeightEntry heightEntry, HealthGoal healthGoal) {
-        this.weightEntry = weightEntry;
-        this.heightEntry = heightEntry;
-
-
+    public User(double height, double weight, boolean isMale, int age, String healthGoal) {
+        this.heightEntry = new HeightEntry(height);
+        this.weightEntry = new WeightEntry(weight);
+        this.isMale = isMale;
+        this.age = age;
+        this.healthGoal = new HealthGoal(healthGoal);
+        this.idealCalories = this.healthGoal.getTargetCalories(height, weight, isMale, age);
     }
+
 
     /*public void addWeightEntry(double weight) {
         weightEntries.add(new WeightEntry(weight));
@@ -23,11 +26,11 @@ public class User {
 
     public void addHeightEntry(double height) {
         heightEntries.add(new HeightEntry(height));
-    }
+    }*/
 
     @Override
     public String toString() {
-        return "User with" + weightEntries.get(weightEntries.size() - 1)
-            + " and " + heightEntries.get(heightEntries.size() - 1);
-    }*/
+        return heightEntry.toString() + "\n" + weightEntry.toString() + "\n"
+                + isMale + "\n" + age + "\n" + healthGoal.toString();
+    }
 }
