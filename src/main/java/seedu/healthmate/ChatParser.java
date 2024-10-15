@@ -94,6 +94,7 @@ public class ChatParser {
             break;
         case SetHealthGoalCommand.COMMAND:
             UI.printReply("Work in Progress", "Setting HealthGoal");
+            break;
         default:
             UI.printReply("Use a valid command", "Retry: ");
             break;
