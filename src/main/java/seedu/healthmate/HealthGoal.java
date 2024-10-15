@@ -17,24 +17,20 @@ public class HealthGoal {
         saveHealthGoal(healthGoalInput);
     }
 
-    public boolean saveHealthGoal(String healthGoalInput) {
+    public void saveHealthGoal(String healthGoalInput) {
         switch (healthGoalInput) {
-            case WEIGHT_LOSS -> {
-                currentHealthGoal = WEIGHT_LOSS;
-                return true;
-            }
-            case STEADY_STATE -> {
-                currentHealthGoal = STEADY_STATE;
-                return true;
-            }
-            case BULKING -> {
-                currentHealthGoal = BULKING;
-                return true;
-            }
-            default -> {
-                // If healthGoalInput is invalid
-                return false;
-            }
+        case WEIGHT_LOSS:
+            currentHealthGoal = WEIGHT_LOSS;
+
+        case STEADY_STATE:
+            currentHealthGoal = STEADY_STATE;
+
+        case BULKING:
+            currentHealthGoal = BULKING;
+
+        default:
+            // If healthGoalInput is invalid
+            UI.printReply("Invalid Health Goal", "Save Health Goal Error: ");
         }
     }
 
@@ -51,19 +47,19 @@ public class HealthGoal {
             rawCaloriesTarget =  447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age);
         }
         switch (currentHealthGoal) {
-            case WEIGHT_LOSS -> {
-                return rawCaloriesTarget * weightLossModifier;
-            }
-            case STEADY_STATE -> {
-                return rawCaloriesTarget * steadyStateModifier;
-            }
-            case BULKING -> {
-                return rawCaloriesTarget * bulkingModifier;
-            }
-            default -> {
-                // If healthGoalInput is invalid
-                return 0;
-            }
+        case WEIGHT_LOSS:
+            return rawCaloriesTarget * weightLossModifier;
+
+        case STEADY_STATE:
+            return rawCaloriesTarget * steadyStateModifier;
+
+        case BULKING:
+            return rawCaloriesTarget * bulkingModifier;
+
+        default:
+            // If healthGoalInput is invalid
+            return 0;
+
         }
     }
 }
