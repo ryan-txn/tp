@@ -1,7 +1,6 @@
 package seedu.healthmate;
 
 public class HealthGoal {
-    private String currentHealthGoal;
 
     private static final String WEIGHT_LOSS = "WEIGHT_LOSS";
     private static final String STEADY_STATE = "STEADY_STATE";
@@ -11,7 +10,7 @@ public class HealthGoal {
     private static final double steadyStateModifier = 1.1;
     private static final double bulkingModifier = 1.5;
 
-
+    private String currentHealthGoal;
 
     public HealthGoal(String healthGoalInput) {
         saveHealthGoal(healthGoalInput);
