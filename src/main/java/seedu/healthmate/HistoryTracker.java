@@ -1,20 +1,17 @@
 package seedu.healthmate;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Scanner;
 
 public class HistoryTracker {
     private static final String DATA_DIRECTORY = "data";
     private static final String MEAL_ENTRIES_FILE = "meal_entries.csv";
     private static final String MEAL_OPTIONS_FILE = "meal_options.csv";
+    private static final String USER_DATA_FILE = "user_data.txt";
 
     public HistoryTracker() {
         createDataDirectoryIfNotExists();
@@ -28,15 +25,50 @@ public class HistoryTracker {
     }
 
     public void saveMealEntries(MealEntriesList mealEntries) {
-        saveToFile(mealEntries.getMealEntries(), MEAL_ENTRIES_FILE);
+        saveMealToFile(mealEntries.getMealEntries(), MEAL_ENTRIES_FILE);
     }
 
     public void saveMealOptions(MealList mealOptions) {
-        saveToFile(mealOptions.getMealList(), MEAL_OPTIONS_FILE);
+        saveMealToFile(mealOptions.getMealList(), MEAL_OPTIONS_FILE);
     }
 
+    public void loadUserData() {
+        try {
+            File userDataFile = new File(DATA_DIRECTORY, USER_DATA_FILE);
+
+            if (!userDataFile.exists()) {
+                userDataFile.createNewFile();  // Create the file if it doesn't exist
+                return;  // Exit early since there's no data to load
+            }
+
+            printUserDataFile();
+            updateUser();
+        } catch (IOException e) {
+            System.out.println("Error creating user data file: " + e.getMessage());
+        }
+    }
+
+    public void printUserDataFile() {
+        try {
+            // assign file to object
+            File userDataFile = new File(DATA_DIRECTORY, USER_DATA_FILE);
+            // use scanner to print file contents
+            Scanner s = new Scanner(userDataFile);
+            while (s.hasNext()) {
+                UI.printString(s.nextLine());
+            }
+        } catch (FileNotFoundException e) {
+            UI.printString("Error printing user data file: " + e.getMessage());
+        }
+    }
+
+    public void updateUser() {
+        return;
+    }
+
+
     public MealEntriesList loadMealEntries() {
-        List<Meal> meals = loadFromFile(MEAL_ENTRIES_FILE, true);
+        List<Meal> meals = loadMealFromFile(MEAL_ENTRIES_FILE, true);
         MealEntriesList mealEntriesList = new MealEntriesList();
         for (Meal meal : meals) {
             mealEntriesList.addMealWithoutCLIMessage(meal);
@@ -46,7 +78,7 @@ public class HistoryTracker {
     }
 
     public MealList loadMealOptions() {
-        List<Meal> meals = loadFromFile(MEAL_OPTIONS_FILE, false);
+        List<Meal> meals = loadMealFromFile(MEAL_OPTIONS_FILE, false);
         MealList mealList = new MealList();
         for (Meal meal : meals) {
             mealList.addMealWithoutCLIMessage(meal);
@@ -63,7 +95,7 @@ public class HistoryTracker {
         return new MealList();
     }
 
-    private void saveToFile(List<Meal> meals, String fileName) {
+    private void saveMealToFile(List<Meal> meals, String fileName) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(DATA_DIRECTORY + File.separator + fileName))) {
             for (Meal meal : meals) {
                 writer.write(meal.toSaveString());
@@ -74,7 +106,7 @@ public class HistoryTracker {
         }
     }
 
-    private List<Meal> loadFromFile(String fileName, boolean isEntry) {
+    private List<Meal> loadMealFromFile(String fileName, boolean isEntry) {
         List<Meal> meals = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(
                 new FileReader(DATA_DIRECTORY + File.separator + fileName))

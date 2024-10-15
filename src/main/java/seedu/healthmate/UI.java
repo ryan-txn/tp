@@ -1,5 +1,8 @@
 package seedu.healthmate;
 
+import seedu.healthmate.command.Command;
+import seedu.healthmate.command.CommandMap;
+
 public class UI {
     
     private static final String LINE_SEPARATOR = System.lineSeparator();
@@ -74,10 +77,11 @@ public class UI {
 
     public static void printCommands() {
         System.out.println(LINE);
-        for (String command: Commands.getAllCommands()){
-            System.out.println(INDENTATION + "-" + command);
+        for (Command command: CommandMap.getAllCommands()){
+            System.out.println(INDENTATION + command.toString());
+            System.out.println(LINE);
         }
-        System.out.println(LINE);
+
     }
 
     public static String simulateReply(String input, String actionPerformed) {

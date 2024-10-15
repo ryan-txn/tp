@@ -15,5 +15,3 @@
       Welcome to HealthMate
       Let's get healthy!
       _________________________________________________________________________
-      Before we begin, please enter your current height, weight and health goal!
-      Weight:

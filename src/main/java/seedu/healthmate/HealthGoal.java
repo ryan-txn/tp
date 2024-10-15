@@ -1,5 +1,14 @@
 package seedu.healthmate;
 
-public enum HealthGoal {
-    WEIGHT_CUT, BULK_UP, HIGHER_WELLBEING;
+public class HealthGoal {
+    private HistoryTracker historyTracker;
+
+    public void Healthgoal() {
+        this.historyTracker = new HistoryTracker();
+    }
+
+    public void saveHealthGoal() {
+
+    }
+
 }
