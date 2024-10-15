@@ -13,6 +13,10 @@ class HeightEntry {
 
     @Override
     public String toString() {
-        return "weight:" + this.height;
+        return "height:" + this.height;
+    }
+
+    public double getHeight() {
+        return height;
     }
 }

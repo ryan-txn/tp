@@ -7,6 +7,7 @@ import seedu.healthmate.command.commands.AddMealEntryCommand;
 import seedu.healthmate.command.commands.DeleteMealCommand;
 import seedu.healthmate.command.commands.DeleteMealEntryCommand;
 import seedu.healthmate.command.commands.MealMenuCommand;
+import seedu.healthmate.command.commands.SetHealthGoalCommand;
 
 import java.util.Scanner;
 
@@ -90,6 +91,9 @@ public class ChatParser {
             break;
         case ListCommandsCommand.COMMAND:
             UI.printCommands();
+            break;
+        case SetHealthGoalCommand.COMMAND:
+            UI.printReply("Work in Progress", "Setting HealthGoal");
             break;
         default:
             UI.printReply("Use a valid command", "Retry: ");
