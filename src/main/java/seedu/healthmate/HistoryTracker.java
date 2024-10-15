@@ -129,7 +129,7 @@ public class HistoryTracker {
         } catch (FileNotFoundException e) {
             UI.printString("Error updating user info from user data file: " + e.getMessage());
         } catch (NumberFormatException e) {
-        System.out.println("Error parsing a number." + e.getMessage());
+            System.out.println("Error parsing a number." + e.getMessage());
         }
     }
 
