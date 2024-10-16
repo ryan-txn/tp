@@ -9,8 +9,14 @@ import seedu.healthmate.command.commands.DeleteMealEntryCommand;
 import seedu.healthmate.command.commands.MealMenuCommand;
 import seedu.healthmate.command.commands.UpdateUserDataCommand;
 
+import java.io.IOException;
 import java.util.Scanner;
-
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
+import java.util.logging.FileHandler;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.SimpleFormatter;
 
 
 /**
@@ -22,15 +28,21 @@ public class ChatParser {
     public static final String CALORIE_SIGNALLER = "/c";
     private static final String INDENTATION = "      ";
 
+    private static Logger logger = Logger.getLogger(ChatParser.class.getName());
+
     private MealEntriesList mealEntries;
     private MealList mealOptions;
     private final HistoryTracker historyTracker;
 
     public ChatParser(){
+        ChatParser.setupLogger();
         this.historyTracker = new HistoryTracker();
+        logger.log(Level.INFO, "Initializing HistoryTracker");
         UI.printSeparator();
         this.mealEntries = historyTracker.loadMealEntries();
+        logger.log(Level.INFO, "Loaded MealEntries");
         this.mealOptions = historyTracker.loadMealOptions();
+        logger.log(Level.INFO, "Loaded MealOptions");
         UI.printSeparator();
     }
 
@@ -40,21 +52,26 @@ public class ChatParser {
      */
     public void run() {
         // check for health goal file existence and create file if none exists
+        logger.log(Level.INFO, "Checking if user data exists");
         checkForUserData();
 
         Scanner scanner = new Scanner(System.in);
         String userInput = "";
 
         while (!userInput.equals("bye")) {
+            logger.log(Level.INFO, "Getting next user input line");
             userInput = scanner.nextLine().strip();
             switch (userInput) {
             case "bye":
+                logger.log(Level.INFO, "User closes application");
                 UI.printFarewell();
                 break;
             default:
                 try {
                     this.multiCommandParsing(userInput);
+                    logger.log(Level.INFO, "User input contains more than 1 token");
                 } catch (ArrayIndexOutOfBoundsException a) {
+                    logger.log(Level.WARNING, "Invalid command", a);
                     UI.printReply("Invalid command", "Retry: ");
                 }
             }
@@ -71,37 +88,48 @@ public class ChatParser {
      * @param userInput String user input from the command line
      */
     public void multiCommandParsing(String userInput) {
+
         String[] inputTokens = userInput.split(" ");
         String commandToken1 = inputTokens[0].strip();
         String commandToken2 = inputTokens[1].strip();
         String command = commandToken1 + " " + commandToken2;
+        logger.log(Level.INFO, "User command is: " + command);
+
         switch (command) {
         case MealMenuCommand.COMMAND:
+            logger.log(Level.INFO, "Executing meal menu command to show meal options");
             UI.printMealOptions(this.mealOptions);
             break;
         case SaveMealCommand.COMMAND:
+            logger.log(Level.INFO, "Executing command to save meal to meal options");
             mealOptions.appendMealFromString(userInput, command, mealOptions);
             historyTracker.saveMealOptions(mealOptions);
             break;
         case DeleteMealCommand.COMMAND:
+            logger.log(Level.INFO, "Executing command to delete a meal from meal options");
             mealOptions.removeMealFromString(userInput, command);
             historyTracker.saveMealOptions(mealOptions);
             break;
         case DeleteMealEntryCommand.COMMAND:
+            logger.log(Level.INFO, "Executing command to delete a meal from mealEntries");
             mealEntries.removeMealFromString(userInput, command);
             historyTracker.saveMealEntries(mealEntries);
             break;
         case AddMealEntryCommand.COMMAND:
+            logger.log(Level.INFO, "Executing command to add a meal to mealEntries");
             mealEntries.appendMealFromString(userInput, command, mealOptions);
             historyTracker.saveMealEntries(mealEntries);
             break;
         case LogMealsCommand.COMMAND:
+            logger.log(Level.INFO, "Executing command to show meal history");
             UI.printMealEntries(this.mealEntries);
             break;
         case ListCommandsCommand.COMMAND:
+            logger.log(Level.INFO, "Executing command to show all available commands");
             UI.printCommands();
             break;
         case UpdateUserDataCommand.COMMAND:
+            logger.log(Level.INFO, "Executing command to update user data");
             User currentUser = askForUserData();
             historyTracker.saveUserDataFile(currentUser);
             break;
@@ -145,6 +173,24 @@ public class ChatParser {
         this.mealOptions = this.historyTracker.loadEmptyMealOptions();
         historyTracker.saveMealOptions(mealOptions);
         historyTracker.saveMealEntries(mealEntries);
+    }
+
+    private static void setupLogger() {
+        LogManager.getLogManager().reset();
+        logger.setLevel(Level.ALL);
+
+        ConsoleHandler ch = new ConsoleHandler();
+        ch.setLevel(Level.SEVERE);
+        logger.addHandler(ch);
+
+        try {
+            FileHandler fh = new FileHandler("logs/" + ChatParser.class.getName() + ".log");
+            fh.setFormatter(new SimpleFormatter());
+            fh.setLevel(Level.ALL);
+            logger.addHandler(fh);
+        } catch (IOException ex) {
+            logger.log(Level.SEVERE, "Missing logger file", ex);
+        }
     }
 
 }

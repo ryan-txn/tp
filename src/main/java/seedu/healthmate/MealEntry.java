@@ -25,6 +25,7 @@ public class MealEntry extends Meal{
         int calories;
         try {
             String caloriesString = extractCalories(input, calorieSignaller);
+            assert caloriesString.length() > 0: "caloriesString cannot be empty";
             calories = Integer.parseInt(caloriesString);
         } catch (Exception e) {
             System.out.println("Getting info from meal options...");
