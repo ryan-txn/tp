@@ -71,10 +71,13 @@ public class ChatParser {
      * @param userInput String user input from the command line
      */
     public void multiCommandParsing(String userInput) {
+
         String[] inputTokens = userInput.split(" ");
+        assert inputTokens.length > 1: "Should be at least 2";
         String commandToken1 = inputTokens[0].strip();
         String commandToken2 = inputTokens[1].strip();
         String command = commandToken1 + " " + commandToken2;
+
         switch (command) {
         case MealMenuCommand.COMMAND:
             UI.printMealOptions(this.mealOptions);
