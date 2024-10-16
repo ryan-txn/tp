@@ -1,0 +1,5 @@
+175
+75
+true
+22
+WEIGHT_LOSS
