@@ -1,5 +1,8 @@
 package seedu.healthmate;
 
+import java.time.LocalDateTime;
+import java.util.stream.IntStream;
+
 import seedu.healthmate.command.Command;
 import seedu.healthmate.command.CommandMap;
 
@@ -103,7 +106,7 @@ public class UI {
     }
 
     /**
-     * Ouputs the result of list meals as a String if a newMealString would be added at the end
+     * Outputs the result of list meals as a String if a newMealString would be added at the end
      * @param mealOptions
      * @param newMealString
      * @return
@@ -116,5 +119,47 @@ public class UI {
         mealOptionsString += INDENTATION + (mealOptions.size() + 1) + ": " + newMealString + LINE_SEPARATOR;
         return LINE + LINE_SEPARATOR + mealOptionsString + LINE + LINE_SEPARATOR;
     }
+
+    /**
+     * Prints bar comparing actual versus an expected calorie consumption
+     * @param message Message printed if actual is 2x larger than expected with exact value
+     * @param expectedValue double expected value
+     * @param actualValue int actual value
+     * @param timestamp timestamp in which the provided actualValue was consumed
+     */
+    public static void printConsumptionBar(String message,
+                                           double expectedValue,
+                                           int actualValue,
+                                           LocalDateTime timestamp) {
+
+        int percentageOfExpected = (int) ((actualValue / expectedValue) * 100);
+
+        if (actualValue < expectedValue * 2) {
+
+            String incomplete = "░"; // U+2591 Unicode Character
+            String complete = "█"; // U+2588 Unicode Character
+
+            int numberOfIcons = 40;
+            double totalPercent = 100.0;
+            StringBuilder builder = new StringBuilder();
+
+            IntStream.rangeClosed(1, numberOfIcons)
+                    .boxed()
+                    .map(i -> {
+                        //maps progress from 100 percent scale to numberOfIcons scale
+                        if (i <= ((percentageOfExpected / totalPercent) * numberOfIcons)) {
+                            return complete;
+                        } else if (i == (numberOfIcons / 2)) {
+                            return "|100%|";
+                        } else {
+                            return incomplete;
+                        }
+                    }).forEach(step -> builder.append(step));
+            System.out.println(timestamp + ": " + builder);
+        } else {
+            System.out.println(message + " " + timestamp + ": " + percentageOfExpected);
+        }
+    }
+
 
 }
