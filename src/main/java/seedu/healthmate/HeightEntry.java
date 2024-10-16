@@ -13,7 +13,7 @@ class HeightEntry {
 
     @Override
     public String toString() {
-        return "height:" + this.height;
+        return "" + height;
     }
 
     public double getHeight() {

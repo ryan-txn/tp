@@ -7,7 +7,7 @@ import seedu.healthmate.command.commands.AddMealEntryCommand;
 import seedu.healthmate.command.commands.DeleteMealCommand;
 import seedu.healthmate.command.commands.DeleteMealEntryCommand;
 import seedu.healthmate.command.commands.MealMenuCommand;
-import seedu.healthmate.command.commands.SetHealthGoalCommand;
+import seedu.healthmate.command.commands.UpdateUserDataCommand;
 
 import java.util.Scanner;
 
@@ -20,6 +20,7 @@ import java.util.Scanner;
 public class ChatParser {
 
     public static final String CALORIE_SIGNALLER = "/c";
+    private static final String INDENTATION = "      ";
 
     private MealEntriesList mealEntries;
     private MealList mealOptions;
@@ -38,6 +39,9 @@ public class ChatParser {
      * and initiates the parsing process steered by one-token and two-token-based user prompts.
      */
     public void run() {
+        // check for health goal file existence and create file if none exists
+        checkForUserData();
+
         Scanner scanner = new Scanner(System.in);
         String userInput = "";
 
@@ -55,6 +59,11 @@ public class ChatParser {
                 }
             }
         }
+    }
+
+
+    public void checkForUserData() {
+        historyTracker.loadUserData();
     }
 
     /**
@@ -92,13 +101,39 @@ public class ChatParser {
         case ListCommandsCommand.COMMAND:
             UI.printCommands();
             break;
-        case SetHealthGoalCommand.COMMAND:
-            UI.printReply("Work in Progress", "Setting HealthGoal");
+        case UpdateUserDataCommand.COMMAND:
+            User currentUser = askForUserData();
+            historyTracker.saveUserDataFile(currentUser);
             break;
         default:
             UI.printReply("Use a valid command", "Retry: ");
             break;
         }
+    }
+
+    public User askForUserData() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println(INDENTATION + "Please enter your " +
+                "current height, weight, gender, age and health goal!");
+
+        System.out.println(INDENTATION + "Height:");
+        double height = Double.parseDouble(scanner.nextLine());
+
+        System.out.println(INDENTATION + "Weight:");
+        double weight = Double.parseDouble(scanner.nextLine());
+
+        System.out.println(INDENTATION + "Gender:");
+        String gender = scanner.nextLine();
+        boolean isMale = (gender.equalsIgnoreCase("Male"));
+
+        System.out.println(INDENTATION + "Age:");
+        int age = Integer.parseInt(scanner.nextLine());
+
+        System.out.println(INDENTATION + "Health Goal:");
+        String healthGoal = scanner.nextLine();
+
+        return new User(height, weight, isMale, age, healthGoal);
     }
 
     public String toMealOptionsStringWithNew(String newMealString) {

@@ -61,4 +61,8 @@ public class HealthGoal {
 
         }
     }
+
+    public String toString() {
+        return currentHealthGoal;
+    }
 }
