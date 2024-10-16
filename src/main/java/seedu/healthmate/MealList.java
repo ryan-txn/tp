@@ -35,6 +35,7 @@ public class MealList {
 
     public void appendMealFromString(String userInput, String command, MealList mealOptions) {
         try {
+            assert userInput.split(" ").length == 1: "meals can only have one word as a name";
             Meal meal = extractMealFromString(userInput, command, CALORIE_SIGNALLER);
             if (!meal.descriptionIsEmpty()) {
                 this.addMeal(meal);
@@ -53,6 +54,7 @@ public class MealList {
 
     public void removeMealFromString(String userInput, String command) {
         try {
+            assert userInput.split(" ").length == 1;
             int mealNumber = Integer.parseInt(userInput.replaceAll(command, "").strip());
             deleteMeal(mealNumber);
         } catch (NumberFormatException n) {
