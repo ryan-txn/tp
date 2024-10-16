@@ -25,6 +25,7 @@ public class HistoryTracker {
         if (!directory.exists()) {
             directory.mkdir();
         }
+        assert directory.exists() : "Data directory should exist after creation";
     }
 
     public void saveMealEntries(MealEntriesList mealEntries) {
