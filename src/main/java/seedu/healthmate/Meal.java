@@ -13,7 +13,7 @@ public class Meal {
 
     public static Optional<String> extractMealDescription(String input,
                                                           String command,
-                                                          String calorieSignaller) throws EmptyCalorieException {
+                                                          String calorieSignaller) {
         int mealDescriptionIndex = input.indexOf(command) + command.length();
         int calorieIndex = input.indexOf(calorieSignaller);
         if (calorieIndex == -1) {

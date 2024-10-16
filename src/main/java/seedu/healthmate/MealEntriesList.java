@@ -29,7 +29,6 @@ public class MealEntriesList extends MealList {
     @Override
     public void appendMealFromString(String userInput, String command,  MealList mealOptions) {
         try {
-            assert userInput.split(" ").length == 1: "meals can only have one word as a name";
             MealEntry meal = extractMealEntryFromString(userInput, command, CALORIE_SIGNALLER, mealOptions);
             this.addMeal(meal);
         } catch (EmptyCalorieException e) {
@@ -45,7 +44,6 @@ public class MealEntriesList extends MealList {
     @Override
     public void removeMealFromString(String userInput, String command) {
         try {
-            assert userInput.split(" ").length == 1: "meals can only have one word as a name";
             int mealNumber = Integer.parseInt(userInput.replaceAll(command, "").strip());
             deleteMeal(mealNumber);
         } catch (NumberFormatException n) {
