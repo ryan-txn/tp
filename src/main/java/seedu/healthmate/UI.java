@@ -1,5 +1,6 @@
 package seedu.healthmate;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.stream.IntStream;
 
@@ -132,7 +133,7 @@ public class UI {
     public static void printConsumptionBar(String message,
                                            double expectedValue,
                                            int actualValue,
-                                           LocalDateTime timestamp) {
+                                           LocalDate timestamp) {
 
         int percentageOfExpected = (int) ((actualValue / expectedValue) * 100);
 
@@ -141,23 +142,25 @@ public class UI {
             String incomplete = "░"; // U+2591 Unicode Character
             String complete = "█"; // U+2588 Unicode Character
 
-            int numberOfIcons = 40;
+            int numberOfBoxes = 60;
             double totalPercent = 100.0;
+            int hundredPercentMark = (numberOfBoxes / 2);
             StringBuilder builder = new StringBuilder();
 
-            IntStream.rangeClosed(1, numberOfIcons)
+            IntStream.rangeClosed(1, numberOfBoxes)
                     .boxed()
                     .map(i -> {
                         //maps progress from 100 percent scale to numberOfIcons scale
-                        if (i <= ((percentageOfExpected / totalPercent) * numberOfIcons)) {
+                        if (i == hundredPercentMark) {
+                            return "|" + percentageOfExpected + "%|";
+                        } else if (i <= ((percentageOfExpected / totalPercent) * hundredPercentMark)) {
                             return complete;
-                        } else if (i == (numberOfIcons / 2)) {
-                            return "|100%|";
                         } else {
                             return incomplete;
                         }
                     }).forEach(step -> builder.append(step));
-            System.out.println(timestamp + ": " + builder);
+            System.out.println(INDENTATION + message + System.lineSeparator()
+                    + INDENTATION + builder + " (" + timestamp + ")");
         } else {
             System.out.println(message + " " + timestamp + ": " + percentageOfExpected);
         }

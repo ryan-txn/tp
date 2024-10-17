@@ -14,6 +14,10 @@ public class MealList {
         this.mealList = new ArrayList<Meal>();
     }
 
+    public MealList(ArrayList<Meal> mealList) {
+        this.mealList = mealList;
+    }
+
     public void addMealWithoutCLIMessage(Meal meal) {
         this.mealList.add(meal);
     }

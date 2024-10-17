@@ -3,14 +3,22 @@ package seedu.healthmate;
 import static seedu.healthmate.ChatParser.CALORIE_SIGNALLER;
 import static seedu.healthmate.MealEntry.extractMealEntryFromString;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class MealEntriesList extends MealList {
 
     public MealEntriesList() {
         super();
+    }
+
+    public MealEntriesList(ArrayList<Meal> mealList) {
+        super(mealList);
     }
 
     @Override
@@ -29,8 +37,19 @@ public class MealEntriesList extends MealList {
     @Override
     public void appendMealFromString(String userInput, String command,  MealList mealOptions) {
         try {
+
             MealEntry meal = extractMealEntryFromString(userInput, command, CALORIE_SIGNALLER, mealOptions);
             this.addMeal(meal);
+
+            LocalDateTime now = LocalDateTime.now();
+            LocalDateTime todayMidnight = now.truncatedTo(ChronoUnit.DAYS);
+            LocalDate today = now.toLocalDate();
+            MealEntriesList mealsConsumedToday = this.getMealEntriesByDate(now, todayMidnight);
+            int caloriesConsumed = mealsConsumedToday.getTotalCaloriesConsumed();
+
+            //TODO: Use user.printConsumptionBar as soon as user properly implemented
+            UI.printConsumptionBar("% of Expected Calorie Intake Consumed: ", 3000, caloriesConsumed, today);
+
         } catch (EmptyCalorieException e) {
             UI.printReply("Every meal needs a calorie integer. (e.g. 120)", "");
         } catch (StringIndexOutOfBoundsException s) {
@@ -51,6 +70,20 @@ public class MealEntriesList extends MealList {
         } catch (IndexOutOfBoundsException s) {
             UI.printReply("Meal Entry index needs to be within range", "Error: ");
         }
+    }
+
+    public MealEntriesList getMealEntriesByDate(LocalDateTime upperDateBound, LocalDateTime lowerDateBound) {
+        ArrayList<Meal> filteredMeals = super.mealList.stream()
+                .filter(meal -> meal.isBeforeEqualDate(upperDateBound))
+                .filter(meal -> meal.isAfterEqualDate(lowerDateBound))
+                .collect(Collectors.toCollection(() -> new ArrayList<Meal>()));
+        return new MealEntriesList(filteredMeals);
+    }
+
+    public int getTotalCaloriesConsumed() {
+        return this.mealList.stream()
+                .map(meal -> meal.getCalories())
+                .reduce(0, (accumulator, calorie) -> accumulator + calorie);
     }
 
     public List<Meal> getMealEntries() {
