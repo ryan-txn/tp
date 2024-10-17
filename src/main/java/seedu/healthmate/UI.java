@@ -142,7 +142,7 @@ public class UI {
                                        double expectedValue,
                                        int actualValue,
                                        LocalDate timestamp) {
-        int percentageOfExpected = (int) ((actualValue / expectedValue) * 100);
+        int percentageOfExpected = (int) Math.ceil((actualValue / expectedValue) * 100);
 
         String incomplete = "░"; // U+2591 Unicode Character
         String complete = "█"; // U+2588 Unicode Character
