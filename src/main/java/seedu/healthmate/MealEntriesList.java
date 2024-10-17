@@ -40,13 +40,7 @@ public class MealEntriesList extends MealList {
 
             MealEntry meal = extractMealEntryFromString(userInput, command, CALORIE_SIGNALLER, mealOptions);
             this.addMeal(meal);
-
-            LocalDateTime now = LocalDateTime.now();
-            LocalDateTime todayMidnight = now.truncatedTo(ChronoUnit.DAYS);
-            LocalDate today = now.toLocalDate();
-            MealEntriesList mealsConsumedToday = this.getMealEntriesByDate(now, todayMidnight);
-            int caloriesConsumed = mealsConsumedToday.getTotalCaloriesConsumed();
-            user.printConsumptionBar("% of Expected Calorie Intake Consumed: ", caloriesConsumed, today);
+            printDaysConsumptionBar(user, LocalDateTime.now());
 
         } catch (EmptyCalorieException e) {
             UI.printReply("Every meal needs a calorie integer. (e.g. 120)", "");
@@ -59,15 +53,24 @@ public class MealEntriesList extends MealList {
     }
 
     @Override
-    public void removeMealFromString(String userInput, String command) {
+    public void removeMealFromString(String userInput, String command, User user) {
         try {
             int mealNumber = Integer.parseInt(userInput.replaceAll(command, "").strip());
             deleteMeal(mealNumber);
+            printDaysConsumptionBar(user, LocalDateTime.now());
         } catch (NumberFormatException n) {
             UI.printReply("Meal Entry index needs to be an integer", "Error: ");
         } catch (IndexOutOfBoundsException s) {
             UI.printReply("Meal Entry index needs to be within range", "Error: ");
         }
+    }
+
+    private void printDaysConsumptionBar(User user, LocalDateTime endOfDayTime) {
+        LocalDateTime todayMidnight = endOfDayTime.truncatedTo(ChronoUnit.DAYS);
+        LocalDate today = endOfDayTime.toLocalDate();
+        MealEntriesList mealsConsumedToday = this.getMealEntriesByDate(endOfDayTime, todayMidnight);
+        int caloriesConsumed = mealsConsumedToday.getTotalCaloriesConsumed();
+        user.printConsumptionBar("% of Expected Calorie Intake Consumed: ", caloriesConsumed, today);
     }
 
     public MealEntriesList getMealEntriesByDate(LocalDateTime upperDateBound, LocalDateTime lowerDateBound) {
@@ -78,7 +81,7 @@ public class MealEntriesList extends MealList {
         return new MealEntriesList(filteredMeals);
     }
 
-    public int getTotalCaloriesConsumed() {
+    private int getTotalCaloriesConsumed() {
         return this.mealList.stream()
                 .map(meal -> meal.getCalories())
                 .reduce(0, (accumulator, calorie) -> accumulator + calorie);

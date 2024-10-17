@@ -55,7 +55,7 @@ public class MealList {
         }
     }
 
-    public void removeMealFromString(String userInput, String command) {
+    public void removeMealFromString(String userInput, String command, User user) {
         try {
             int mealNumber = Integer.parseInt(userInput.replaceAll(command, "").strip());
             deleteMeal(mealNumber);
