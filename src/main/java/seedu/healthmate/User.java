@@ -53,7 +53,7 @@ public class User {
 
             User user = new User(height, weight, isMale, age, healthGoal);
             UI.printString("Profile creation Successful!");
-            UI.printReply("Great! You can now begin to use the app!1", "");
+            UI.printReply("Great! You can now begin to use the app!", "");
             return user;
         } catch (Exception exception) {
             UI.printReply("Wrong user input", "Retry: ");
