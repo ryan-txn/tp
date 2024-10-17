@@ -1,28 +1,8 @@
-Okt. 17, 2024 1:19:01 PM seedu.healthmate.ChatParser <init>
+Okt. 17, 2024 1:49:42 PM seedu.healthmate.ChatParser <init>
 INFORMATION: Initializing HistoryTracker
-Okt. 17, 2024 1:19:01 PM seedu.healthmate.ChatParser <init>
+Okt. 17, 2024 1:49:42 PM seedu.healthmate.ChatParser <init>
 INFORMATION: Loaded MealEntries
-Okt. 17, 2024 1:19:01 PM seedu.healthmate.ChatParser <init>
+Okt. 17, 2024 1:49:42 PM seedu.healthmate.ChatParser <init>
 INFORMATION: Loaded MealOptions
-Okt. 17, 2024 1:19:01 PM seedu.healthmate.ChatParser run
+Okt. 17, 2024 1:49:42 PM seedu.healthmate.ChatParser run
 INFORMATION: Checking if user data exists
-Okt. 17, 2024 1:19:01 PM seedu.healthmate.ChatParser run
-INFORMATION: Getting next user input line
-Okt. 17, 2024 1:19:13 PM seedu.healthmate.ChatParser multiCommandParsing
-INFORMATION: User command is: add mealEntry
-Okt. 17, 2024 1:19:13 PM seedu.healthmate.ChatParser multiCommandParsing
-INFORMATION: Executing command to add a meal to mealEntries
-Okt. 17, 2024 1:19:13 PM seedu.healthmate.ChatParser run
-INFORMATION: User input contains more than 1 token
-Okt. 17, 2024 1:19:13 PM seedu.healthmate.ChatParser run
-INFORMATION: Getting next user input line
-Okt. 17, 2024 1:19:25 PM seedu.healthmate.ChatParser multiCommandParsing
-INFORMATION: User command is: add mealEntry
-Okt. 17, 2024 1:19:25 PM seedu.healthmate.ChatParser multiCommandParsing
-INFORMATION: Executing command to add a meal to mealEntries
-Okt. 17, 2024 1:19:25 PM seedu.healthmate.ChatParser run
-INFORMATION: User input contains more than 1 token
-Okt. 17, 2024 1:19:25 PM seedu.healthmate.ChatParser run
-INFORMATION: Getting next user input line
-Okt. 17, 2024 1:19:28 PM seedu.healthmate.ChatParser run
-INFORMATION: User closes application
