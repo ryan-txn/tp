@@ -1,10 +1,12 @@
-Okt. 17, 2024 12:47:20 PM seedu.healthmate.ChatParser <init>
+Okt. 17, 2024 12:54:22 PM seedu.healthmate.ChatParser <init>
 INFORMATION: Initializing HistoryTracker
-Okt. 17, 2024 12:47:20 PM seedu.healthmate.ChatParser <init>
+Okt. 17, 2024 12:54:22 PM seedu.healthmate.ChatParser <init>
 INFORMATION: Loaded MealEntries
-Okt. 17, 2024 12:47:20 PM seedu.healthmate.ChatParser <init>
+Okt. 17, 2024 12:54:22 PM seedu.healthmate.ChatParser <init>
 INFORMATION: Loaded MealOptions
-Okt. 17, 2024 12:47:20 PM seedu.healthmate.ChatParser run
+Okt. 17, 2024 12:54:22 PM seedu.healthmate.ChatParser run
 INFORMATION: Checking if user data exists
-Okt. 17, 2024 12:47:20 PM seedu.healthmate.ChatParser run
+Okt. 17, 2024 12:54:22 PM seedu.healthmate.ChatParser run
 INFORMATION: Getting next user input line
+Okt. 17, 2024 12:54:22 PM seedu.healthmate.ChatParser run
+INFORMATION: User closes application
