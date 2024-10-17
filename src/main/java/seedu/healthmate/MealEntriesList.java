@@ -35,7 +35,7 @@ public class MealEntriesList extends MealList {
     }
 
     @Override
-    public void appendMealFromString(String userInput, String command,  MealList mealOptions) {
+    public void appendMealFromString(String userInput, String command,  MealList mealOptions, User user) {
         try {
 
             MealEntry meal = extractMealEntryFromString(userInput, command, CALORIE_SIGNALLER, mealOptions);
@@ -46,9 +46,7 @@ public class MealEntriesList extends MealList {
             LocalDate today = now.toLocalDate();
             MealEntriesList mealsConsumedToday = this.getMealEntriesByDate(now, todayMidnight);
             int caloriesConsumed = mealsConsumedToday.getTotalCaloriesConsumed();
-
-            //TODO: Use user.printConsumptionBar as soon as user properly implemented
-            UI.printConsumptionBar("% of Expected Calorie Intake Consumed: ", 3000, caloriesConsumed, today);
+            user.printConsumptionBar("% of Expected Calorie Intake Consumed: ", caloriesConsumed, today);
 
         } catch (EmptyCalorieException e) {
             UI.printReply("Every meal needs a calorie integer. (e.g. 120)", "");

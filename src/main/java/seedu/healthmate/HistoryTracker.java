@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.time.LocalDateTime;
+import java.util.NoSuchElementException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -19,7 +20,6 @@ public class HistoryTracker {
     private static final String MEAL_OPTIONS_FILE = "meal_options.csv";
     private static final String USER_DATA_FILE = "user_data.txt";
 
-    private User user;
 
     public HistoryTracker() {
         createDataDirectoryIfNotExists();
@@ -41,20 +41,21 @@ public class HistoryTracker {
         saveMealToFile(mealOptions.getMealList(), MEAL_OPTIONS_FILE);
     }
 
-    public void loadUserData() {
+    public Optional<User> loadUserData() {
         try {
             File userDataFile = new File(DATA_DIRECTORY, USER_DATA_FILE);
 
             if (!userDataFile.exists()) {
-                userDataFile.createNewFile();  // Create the file if it doesn't exist
-                return;  // Exit early since there's no data to load
+                userDataFile.createNewFile();
+                return Optional.empty();
             }
 
-            //printUserDataFile();
-            updateUserFromSaveFile();
+            Optional<User> user = updateUserFromSaveFile();
+            return user;
         } catch (IOException e) {
             System.out.println("Error creating user data file: " + e.getMessage());
         }
+        return Optional.empty();
     }
 
     public void saveUserDataFile(User user) {
@@ -63,8 +64,8 @@ public class HistoryTracker {
             File userDataFile = new File(DATA_DIRECTORY, USER_DATA_FILE);
 
             if (!userDataFile.exists()) {
-                userDataFile.createNewFile();  // Create the file if it doesn't exist
-                return;  // Exit early since there's no data to load
+                userDataFile.createNewFile();
+                return;
             }
 
             clearUserDataFile();
@@ -108,30 +109,28 @@ public class HistoryTracker {
         }
     }
 
-    public void updateUserFromSaveFile() {
+    public Optional<User> updateUserFromSaveFile() {
         try {
+
             File userDataFile = new File(DATA_DIRECTORY, USER_DATA_FILE);
             Scanner s = new Scanner(userDataFile);
 
-            // Read the first two lines as doubles for height and weight
             double userHeight = Double.parseDouble(s.nextLine());
             double userWeight = Double.parseDouble(s.nextLine());
-
-            // Read the third line as a boolean for isMale
             boolean isMale = Boolean.parseBoolean(s.nextLine());
-
-            // Read the fourth line as an int for age
             int age = Integer.parseInt(s.nextLine());
-
-            // Read the fifth line as a string for the goal
             String goal = s.nextLine();
 
-            this.user = new User(userHeight, userWeight, isMale, age, goal);
+            return Optional.of(new User(userHeight, userWeight, isMale, age, goal));
+
         } catch (FileNotFoundException e) {
             UI.printString("Error updating user info from user data file: " + e.getMessage());
         } catch (NumberFormatException e) {
             System.out.println("Error parsing a number." + e.getMessage());
+        } catch (NoSuchElementException e) {
+            // if user file exists but is empty or does not contain enough lines
         }
+        return Optional.empty();
     }
 
 

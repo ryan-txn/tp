@@ -1,5 +1,5 @@
-175
-75
+180.0
+80.0
 true
-22
-WEIGHT_LOSS
+20
+BULKING

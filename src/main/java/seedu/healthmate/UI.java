@@ -137,33 +137,29 @@ public class UI {
 
         int percentageOfExpected = (int) ((actualValue / expectedValue) * 100);
 
-        if (actualValue < expectedValue * 2) {
+        String incomplete = "░"; // U+2591 Unicode Character
+        String complete = "█"; // U+2588 Unicode Character
 
-            String incomplete = "░"; // U+2591 Unicode Character
-            String complete = "█"; // U+2588 Unicode Character
+        int numberOfBoxes = 60;
+        double totalPercent = 100.0;
+        int hundredPercentMark = (numberOfBoxes / 2);
+        StringBuilder builder = new StringBuilder();
 
-            int numberOfBoxes = 60;
-            double totalPercent = 100.0;
-            int hundredPercentMark = (numberOfBoxes / 2);
-            StringBuilder builder = new StringBuilder();
-
-            IntStream.rangeClosed(1, numberOfBoxes)
-                    .boxed()
-                    .map(i -> {
-                        //maps progress from 100 percent scale to numberOfIcons scale
-                        if (i == hundredPercentMark) {
-                            return "|" + percentageOfExpected + "%|";
-                        } else if (i <= ((percentageOfExpected / totalPercent) * hundredPercentMark)) {
-                            return complete;
-                        } else {
-                            return incomplete;
-                        }
-                    }).forEach(step -> builder.append(step));
-            System.out.println(INDENTATION + message + System.lineSeparator()
-                    + INDENTATION + builder + " (" + timestamp + ")");
-        } else {
-            System.out.println(message + " " + timestamp + ": " + percentageOfExpected);
-        }
+        IntStream.rangeClosed(1, numberOfBoxes)
+                .boxed()
+                .map(i -> {
+                    //maps progress from 100 percent scale to numberOfIcons scale
+                    if (i == hundredPercentMark) {
+                        return "|" + percentageOfExpected + "%|";
+                    } else if (i <= ((percentageOfExpected / totalPercent) * hundredPercentMark)) {
+                        return complete;
+                    } else {
+                        return incomplete;
+                    }
+                }).forEach(step -> builder.append(step));
+        System.out.println(INDENTATION + message + LINE_SEPARATOR
+                + INDENTATION + builder + " (" + timestamp + ")"
+                + LINE_SEPARATOR + LINE);
     }
 
 

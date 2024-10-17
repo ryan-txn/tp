@@ -41,7 +41,7 @@ public class HealthGoal {
         // A lot of magic numbers but cannot be labelled
         double rawCaloriesTarget;
         if (isMale) {
-            rawCaloriesTarget =  88.362 + (13.397 * weight) + (4.799 * height * 100) - (5.677 * age);
+            rawCaloriesTarget =  88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age);
         } else {
             rawCaloriesTarget =  447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age);
         }

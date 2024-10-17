@@ -37,7 +37,7 @@ public class MealList {
         return this.mealList.size();
     }
 
-    public void appendMealFromString(String userInput, String command, MealList mealOptions) {
+    public void appendMealFromString(String userInput, String command, MealList mealOptions, User user) {
         try {
             Meal meal = extractMealFromString(userInput, command, CALORIE_SIGNALLER);
             if (!meal.descriptionIsEmpty()) {
