@@ -163,12 +163,13 @@ public class ChatParser {
         logger.addHandler(ch);
 
         try {
+            HistoryTracker.createDirectoryIfNotExists("logs");
             FileHandler fh = new FileHandler("logs" + File.separator + ChatParser.class.getName() + ".log");
             fh.setFormatter(new SimpleFormatter());
             fh.setLevel(Level.ALL);
             logger.addHandler(fh);
         } catch (IOException ex) {
-            logger.log(Level.SEVERE, "Missing logger file", ex);
+            logger.log(Level.SEVERE, "Logger file creation unsuccessful", ex);
         }
     }
 

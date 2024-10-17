@@ -22,11 +22,11 @@ public class HistoryTracker {
 
 
     public HistoryTracker() {
-        createDataDirectoryIfNotExists();
+        createDirectoryIfNotExists(DATA_DIRECTORY);
     }
 
-    private void createDataDirectoryIfNotExists() {
-        File directory = new File(DATA_DIRECTORY);
+    public static void createDirectoryIfNotExists(String folderName) {
+        File directory = new File(folderName);
         if (!directory.exists()) {
             directory.mkdir();
         }
