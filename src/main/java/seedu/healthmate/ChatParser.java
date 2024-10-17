@@ -9,6 +9,7 @@ import seedu.healthmate.command.commands.DeleteMealEntryCommand;
 import seedu.healthmate.command.commands.MealMenuCommand;
 import seedu.healthmate.command.commands.UpdateUserDataCommand;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
 import java.util.Scanner;
@@ -27,7 +28,6 @@ import java.util.logging.SimpleFormatter;
 public class ChatParser {
 
     public static final String CALORIE_SIGNALLER = "/c";
-    private static final String INDENTATION = "      ";
 
     private static Logger logger = Logger.getLogger(ChatParser.class.getName());
 
@@ -163,7 +163,7 @@ public class ChatParser {
         logger.addHandler(ch);
 
         try {
-            FileHandler fh = new FileHandler("logs/" + ChatParser.class.getName() + ".log");
+            FileHandler fh = new FileHandler("logs" + File.separator + ChatParser.class.getName() + ".log");
             fh.setFormatter(new SimpleFormatter());
             fh.setLevel(Level.ALL);
             logger.addHandler(fh);

@@ -95,20 +95,6 @@ public class HistoryTracker {
         }
     }
 
-    public void printUserDataFile() {
-        try {
-            // assign file to object
-            File userDataFile = new File(DATA_DIRECTORY, USER_DATA_FILE);
-            // use scanner to print file contents
-            Scanner s = new Scanner(userDataFile);
-            while (s.hasNext()) {
-                UI.printString(s.nextLine());
-            }
-        } catch (FileNotFoundException e) {
-            UI.printString("Error printing user data file: " + e.getMessage());
-        }
-    }
-
     public Optional<User> updateUserFromSaveFile() {
         try {
 
