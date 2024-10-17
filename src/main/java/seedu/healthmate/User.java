@@ -27,6 +27,10 @@ public class User {
         UI.printConsumptionBar(message, this.idealCalories, currentCalories, timestamp);
     }
 
+    public String buildConsumptionBar(String message, int currentCalories, LocalDate timestamp) {
+        return UI.buildConsumptionBar(message, this.idealCalories, currentCalories, timestamp);
+    }
+
     public static User askForUserData() {
 
         try {

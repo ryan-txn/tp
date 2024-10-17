@@ -135,6 +135,14 @@ public class UI {
                                            int actualValue,
                                            LocalDate timestamp) {
 
+        String consumptionBar = buildConsumptionBar(message, expectedValue, actualValue, timestamp);
+        System.out.println(consumptionBar);
+    }
+
+    public static String buildConsumptionBar(String message,
+                                       double expectedValue,
+                                       int actualValue,
+                                       LocalDate timestamp) {
         int percentageOfExpected = (int) ((actualValue / expectedValue) * 100);
 
         String incomplete = "░"; // U+2591 Unicode Character
@@ -157,10 +165,13 @@ public class UI {
                         return incomplete;
                     }
                 }).forEach(step -> builder.append(step));
-        System.out.println(INDENTATION + message + LINE_SEPARATOR
+        return INDENTATION + message + LINE_SEPARATOR
                 + INDENTATION + builder + " (" + timestamp + ")"
-                + LINE_SEPARATOR + LINE);
+                + LINE_SEPARATOR + LINE;
+
     }
+
+
 
 
 }

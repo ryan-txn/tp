@@ -83,10 +83,16 @@ public class ChatParserTest {
      */
     @Test void trackMealEntryWithCalories_success() {
         ChatParser chatParser = new ChatParser();
+        User user = chatParser.checkForUserData();
         String simulatedInput = "add mealEntry pizza /c 300\nbye";
-        String timeString = "(at: " + LocalDateTime.now().truncatedTo(ChronoUnit.HOURS) + ")";
+        LocalDateTime today = LocalDateTime.now().truncatedTo(ChronoUnit.HOURS);
+        String timeString = "(at: " + today + ")";
         String expectedOuput = UI.simulateInitOutput()
             + UI.simulateReply("pizza with 300 calories " + timeString, "Tracked: ")
+            + user.buildConsumptionBar("% of Expected Calorie Intake Consumed: ",
+                300,
+                today.toLocalDate())
+            + System.lineSeparator()
             + UI.simulateFareWell();
         compareChatParserOutput(chatParser, simulatedInput, expectedOuput);
     }
