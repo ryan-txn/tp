@@ -13,5 +13,4 @@ src/main/resources/docs/
 *.iml
 bin/
 
-# Log files
-logs/
+

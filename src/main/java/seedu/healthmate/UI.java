@@ -1,12 +1,16 @@
 package seedu.healthmate;
 
+import java.time.LocalDate;
+import java.util.stream.IntStream;
+
 import seedu.healthmate.command.Command;
 import seedu.healthmate.command.CommandMap;
 
 public class UI {
     
     private static final String LINE_SEPARATOR = System.lineSeparator();
-    private static final String SEPARATOR = "_________________________________________________________________________";
+    private static final String SEPARATOR =
+            "_____________________________________________________________________________";
     private static final String INDENTATION = "      ";
     private static final String LINE = INDENTATION + SEPARATOR;
     private static final String FRAME_LINE = LINE + LINE_SEPARATOR;
@@ -103,7 +107,7 @@ public class UI {
     }
 
     /**
-     * Ouputs the result of list meals as a String if a newMealString would be added at the end
+     * Outputs the result of list meals as a String if a newMealString would be added at the end
      * @param mealOptions
      * @param newMealString
      * @return
@@ -116,5 +120,58 @@ public class UI {
         mealOptionsString += INDENTATION + (mealOptions.size() + 1) + ": " + newMealString + LINE_SEPARATOR;
         return LINE + LINE_SEPARATOR + mealOptionsString + LINE + LINE_SEPARATOR;
     }
+
+    /**
+     * Prints bar comparing actual versus an expected calorie consumption
+     * Inspired by:
+     * https://medium.com/javarevisited/how-to-display-progressbar-on-the-standard-console-using-java-18f01d52b30e
+     * @param message Message printed if actual is 2x larger than expected with exact value
+     * @param expectedValue double expected value
+     * @param actualValue int actual value
+     * @param timestamp timestamp in which the provided actualValue was consumed
+     */
+    public static void printConsumptionBar(String message,
+                                           double expectedValue,
+                                           int actualValue,
+                                           LocalDate timestamp) {
+
+        String consumptionBar = buildConsumptionBar(message, expectedValue, actualValue, timestamp);
+        System.out.println(consumptionBar);
+    }
+
+    public static String buildConsumptionBar(String message,
+                                       double expectedValue,
+                                       int actualValue,
+                                       LocalDate timestamp) {
+        int percentageOfExpected = (int) Math.ceil((actualValue / expectedValue) * 100);
+
+        String incomplete = "░"; // U+2591 Unicode Character
+        String complete = "█"; // U+2588 Unicode Character
+
+        int numberOfBoxes = 60;
+        double totalPercent = 100.0;
+        int hundredPercentMark = (numberOfBoxes / 2);
+        StringBuilder builder = new StringBuilder();
+
+        IntStream.rangeClosed(1, numberOfBoxes)
+                .boxed()
+                .map(i -> {
+                    //maps progress from 100 percent scale to numberOfIcons scale
+                    if (i == hundredPercentMark) {
+                        return "|" + percentageOfExpected + "%|";
+                    } else if (i <= ((percentageOfExpected / totalPercent) * hundredPercentMark)) {
+                        return complete;
+                    } else {
+                        return incomplete;
+                    }
+                }).forEach(step -> builder.append(step));
+        return INDENTATION + message + LINE_SEPARATOR
+                + INDENTATION + builder + " (" + timestamp + ")"
+                + LINE_SEPARATOR + LINE;
+
+    }
+
+
+
 
 }

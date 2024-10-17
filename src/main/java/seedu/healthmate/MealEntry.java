@@ -41,6 +41,15 @@ public class MealEntry extends Meal{
         return super.toSaveString() + ", " + this.timestamp;
     }
 
+    @Override
+    public boolean isBeforeEqualDate(LocalDateTime timestamp) {
+        return this.timestamp.isBefore(timestamp) || this.timestamp.isEqual(timestamp);
+    }
+
+    @Override
+    public boolean isAfterEqualDate(LocalDateTime timestamp) {
+        return this.timestamp.isAfter(timestamp) || this.timestamp.isEqual(timestamp);
+    }
 
     @Override
     public String toString() {

@@ -1,5 +1,6 @@
 package seedu.healthmate;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 public class Meal {
@@ -47,6 +48,14 @@ public class Meal {
 
     public String toSaveString() {
         return this.name.orElse("") + "," + this.getCalories();
+    }
+
+    public boolean isBeforeEqualDate(LocalDateTime timestamp) {
+        return false;
+    }
+
+    public boolean isAfterEqualDate(LocalDateTime timestamp) {
+        return false;
     }
 
     @Override

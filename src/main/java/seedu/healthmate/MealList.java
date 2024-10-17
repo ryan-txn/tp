@@ -14,6 +14,10 @@ public class MealList {
         this.mealList = new ArrayList<Meal>();
     }
 
+    public MealList(ArrayList<Meal> mealList) {
+        this.mealList = mealList;
+    }
+
     public void addMealWithoutCLIMessage(Meal meal) {
         this.mealList.add(meal);
     }
@@ -33,7 +37,7 @@ public class MealList {
         return this.mealList.size();
     }
 
-    public void appendMealFromString(String userInput, String command, MealList mealOptions) {
+    public void appendMealFromString(String userInput, String command, MealList mealOptions, User user) {
         try {
             Meal meal = extractMealFromString(userInput, command, CALORIE_SIGNALLER);
             if (!meal.descriptionIsEmpty()) {
@@ -51,7 +55,7 @@ public class MealList {
         }
     }
 
-    public void removeMealFromString(String userInput, String command) {
+    public void removeMealFromString(String userInput, String command, User user) {
         try {
             int mealNumber = Integer.parseInt(userInput.replaceAll(command, "").strip());
             deleteMeal(mealNumber);
