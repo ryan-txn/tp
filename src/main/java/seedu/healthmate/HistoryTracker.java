@@ -110,12 +110,12 @@ public class HistoryTracker {
 
         } catch (FileNotFoundException e) {
             UI.printString("Error updating user info from user data file: " + e.getMessage());
+            System.out.println("Current working directory: " + System.getProperty("user.dir"));
+            e.printStackTrace();
         } catch (NumberFormatException e) {
             System.out.println("Error parsing a number." + e.getMessage());
         } catch (NoSuchElementException e) {
             // silent catch if user file is empty
-        } catch (IOException e) {
-            e.printStackTrace();
         }
         return Optional.empty();
     }
