@@ -1,7 +1,6 @@
 package seedu.healthmate;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.stream.IntStream;
 
 import seedu.healthmate.command.Command;

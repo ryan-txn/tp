@@ -1,9 +1,6 @@
 package seedu.healthmate;
 
-//import java.util.ArrayList;
-
 import java.time.LocalDate;
-import java.util.Optional;
 import java.util.Scanner;
 
 public class User {
