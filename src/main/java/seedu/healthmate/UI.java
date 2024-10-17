@@ -9,7 +9,8 @@ import seedu.healthmate.command.CommandMap;
 public class UI {
     
     private static final String LINE_SEPARATOR = System.lineSeparator();
-    private static final String SEPARATOR = "_________________________________________________________________________";
+    private static final String SEPARATOR =
+            "_____________________________________________________________________________";
     private static final String INDENTATION = "      ";
     private static final String LINE = INDENTATION + SEPARATOR;
     private static final String FRAME_LINE = LINE + LINE_SEPARATOR;
