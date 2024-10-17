@@ -122,6 +122,8 @@ public class UI {
 
     /**
      * Prints bar comparing actual versus an expected calorie consumption
+     * Inspired by:
+     * https://medium.com/javarevisited/how-to-display-progressbar-on-the-standard-console-using-java-18f01d52b30e
      * @param message Message printed if actual is 2x larger than expected with exact value
      * @param expectedValue double expected value
      * @param actualValue int actual value
