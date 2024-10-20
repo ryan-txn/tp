@@ -35,7 +35,7 @@ public class ChatParserTest {
         System.setIn(new ByteArrayInputStream(simulatedInput.getBytes()));
         chatParser.run();
         assertEquals(outputStream.toString(), expectedOutput);
-        chatParser.cleanListsAfterTesting();
+        chatParser.cleanMealLists();
     }
 
 
@@ -61,7 +61,7 @@ public class ChatParserTest {
         String simulatedInput = "save meal burger /c 300\nmeal menu\nbye\n";
         String expectedOutput = UI.simulateInitOutput()
             + UI.simulateReply("burger with 300 calories", "Added to options: ")
-            + chatParser.toMealOptionsStringWithNew("burger with 300 calories")
+            + chatParser.getMealOptionsStringWithNewMeal("burger with 300 calories")
             + UI.simulateFareWell();
         compareChatParserOutput(chatParser, simulatedInput, expectedOutput);
     }
@@ -83,13 +83,13 @@ public class ChatParserTest {
      */
     @Test void trackMealEntryWithCalories_success() {
         ChatParser chatParser = new ChatParser();
-        User user = chatParser.checkForUserData();
+        User user = User.checkForUserData(chatParser.getHistoryTracker());
         String simulatedInput = "add mealEntry pizza /c 300\nbye";
         LocalDateTime today = LocalDateTime.now().truncatedTo(ChronoUnit.HOURS);
         String timeString = "(at: " + today + ")";
         String expectedOuput = UI.simulateInitOutput()
             + UI.simulateReply("pizza with 300 calories " + timeString, "Tracked: ")
-            + user.buildConsumptionBar("% of Expected Calorie Intake Consumed: ",
+            + user.buildUsersConsumptionBar("% of Expected Calorie Intake Consumed: ",
                 300,
                 today.toLocalDate())
             + System.lineSeparator()

@@ -9,16 +9,9 @@ import seedu.healthmate.command.commands.DeleteMealEntryCommand;
 import seedu.healthmate.command.commands.MealMenuCommand;
 import seedu.healthmate.command.commands.UpdateUserDataCommand;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Optional;
 import java.util.Scanner;
 import java.util.logging.Level;
-import java.util.logging.LogManager;
 import java.util.logging.Logger;
-import java.util.logging.FileHandler;
-import java.util.logging.ConsoleHandler;
-import java.util.logging.SimpleFormatter;
 
 
 /**
@@ -30,13 +23,12 @@ public class ChatParser {
     public static final String CALORIE_SIGNALLER = "/c";
 
     private static Logger logger = Logger.getLogger(ChatParser.class.getName());
-
     private MealEntriesList mealEntries;
     private MealList mealOptions;
     private final HistoryTracker historyTracker;
 
     public ChatParser(){
-        ChatParser.setupLogger();
+        Logging.setupLogger(logger, ChatParser.class.getName());
         this.historyTracker = new HistoryTracker();
         logger.log(Level.INFO, "Initializing HistoryTracker");
         UI.printSeparator();
@@ -54,7 +46,7 @@ public class ChatParser {
     public void run() {
         // check for health goal file existence and create file if none exists
         logger.log(Level.INFO, "Checking if user data exists");
-        User user = checkForUserData();
+        User user = User.checkForUserData(this.historyTracker);
 
         Scanner scanner = new Scanner(System.in);
         String userInput = "";
@@ -77,14 +69,6 @@ public class ChatParser {
                 }
             }
         }
-    }
-
-
-    public User checkForUserData() {
-        Optional<User> optionalUser = historyTracker.loadUserData();
-        User user = optionalUser.orElseGet(() -> User.askForUserData());
-        historyTracker.saveUserDataFile(user);
-        return user;
     }
 
     /**
@@ -143,34 +127,19 @@ public class ChatParser {
         }
     }
 
-    public String toMealOptionsStringWithNew(String newMealString) {
+    public HistoryTracker getHistoryTracker() {
+        return this.historyTracker;
+    }
+
+    public String getMealOptionsStringWithNewMeal(String newMealString) {
         return UI.toMealOptionsString(this.mealOptions, newMealString);
     }
 
-    public void cleanListsAfterTesting() {
+    public void cleanMealLists() {
         this.mealEntries = this.historyTracker.loadEmptyMealEntries();
         this.mealOptions = this.historyTracker.loadEmptyMealOptions();
         historyTracker.saveMealOptions(mealOptions);
         historyTracker.saveMealEntries(mealEntries);
-    }
-
-    private static void setupLogger() {
-        LogManager.getLogManager().reset();
-        logger.setLevel(Level.ALL);
-
-        ConsoleHandler ch = new ConsoleHandler();
-        ch.setLevel(Level.SEVERE);
-        logger.addHandler(ch);
-
-        try {
-            HistoryTracker.createDirectoryIfNotExists("logs");
-            FileHandler fh = new FileHandler("logs" + File.separator + ChatParser.class.getName() + ".log");
-            fh.setFormatter(new SimpleFormatter());
-            fh.setLevel(Level.ALL);
-            logger.addHandler(fh);
-        } catch (IOException ex) {
-            logger.log(Level.SEVERE, "Logger file creation unsuccessful", ex);
-        }
     }
 
 }

@@ -70,7 +70,7 @@ public class MealEntriesList extends MealList {
         LocalDate today = endOfDayTime.toLocalDate();
         MealEntriesList mealsConsumedToday = this.getMealEntriesByDate(endOfDayTime, todayMidnight);
         int caloriesConsumed = mealsConsumedToday.getTotalCaloriesConsumed();
-        user.printConsumptionBar("% of Expected Calorie Intake Consumed: ", caloriesConsumed, today);
+        user.printUsersConsumptionBar("% of Expected Calorie Intake Consumed: ", caloriesConsumed, today);
     }
 
     public MealEntriesList getMealEntriesByDate(LocalDateTime upperDateBound, LocalDateTime lowerDateBound) {

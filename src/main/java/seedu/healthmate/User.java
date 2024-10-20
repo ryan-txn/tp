@@ -1,6 +1,7 @@
 package seedu.healthmate;
 
 import java.time.LocalDate;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class User {
@@ -20,12 +21,11 @@ public class User {
         this.idealCalories = this.healthGoal.getTargetCalories(height, weight, isMale, age);
     }
 
-    public void printConsumptionBar(String message, int currentCalories, LocalDate timestamp) {
-        UI.printConsumptionBar(message, this.idealCalories, currentCalories, timestamp);
-    }
-
-    public String buildConsumptionBar(String message, int currentCalories, LocalDate timestamp) {
-        return UI.buildConsumptionBar(message, this.idealCalories, currentCalories, timestamp);
+    public static User checkForUserData(HistoryTracker historyTracker) {
+        Optional<User> optionalUser = historyTracker.loadUserData();
+        User user = optionalUser.orElseGet(() -> User.askForUserData());
+        historyTracker.saveUserDataFile(user);
+        return user;
     }
 
     public static User askForUserData() {
@@ -60,6 +60,14 @@ public class User {
             User user = askForUserData();
             return user;
         }
+    }
+
+    public void printUsersConsumptionBar(String message, int currentCalories, LocalDate timestamp) {
+        UI.printConsumptionBar(message, this.idealCalories, currentCalories, timestamp);
+    }
+
+    public String buildUsersConsumptionBar(String message, int currentCalories, LocalDate timestamp) {
+        return UI.buildConsumptionBar(message, this.idealCalories, currentCalories, timestamp);
     }
 
     @Override
