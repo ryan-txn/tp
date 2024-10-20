@@ -58,7 +58,7 @@ public class UI {
         if (mealOptions.size() > 0) {
             for (int i = 0; i < mealOptions.size(); i++) {
                 System.out.println(INDENTATION + (i + 1)
-                        + ": " + mealOptions.toMealString(i));
+                        + ": " + mealOptions.toMealStringByIndex(i));
             }
         } else {
             printReply("No meal options added yet", "");
@@ -71,7 +71,7 @@ public class UI {
         if (mealEntries.size() > 0) {
             for (int i = 0; i < mealEntries.size(); i++) {
                 System.out.println(INDENTATION + (i + 1)
-                        + ": " + mealEntries.toMealString(i));
+                        + ": " + mealEntries.toMealStringByIndex(i));
             }
         } else {
             printReply("No meal entries added yet", "");
@@ -115,7 +115,7 @@ public class UI {
     public static String toMealOptionsString(MealList mealOptions, String newMealString) {
         String mealOptionsString = "";
         for (int i = 0; i < mealOptions.size(); i++) {
-            mealOptionsString += INDENTATION + (i + 1) + ": " + mealOptions.toMealString(i) + LINE_SEPARATOR;
+            mealOptionsString += INDENTATION + (i + 1) + ": " + mealOptions.toMealStringByIndex(i) + LINE_SEPARATOR;
         }
         mealOptionsString += INDENTATION + (mealOptions.size() + 1) + ": " + newMealString + LINE_SEPARATOR;
         return LINE + LINE_SEPARATOR + mealOptionsString + LINE + LINE_SEPARATOR;
