@@ -95,7 +95,7 @@ public class ChatParser {
             break;
         case DeleteMealCommand.COMMAND:
             logger.log(Level.INFO, "Executing command to delete a meal from meal options");
-            mealOptions.removeMealFromString(userInput, command);
+            mealOptions.extractAndRemoveMeal(userInput, command);
             historyTracker.saveMealOptions(mealOptions);
             break;
         case DeleteMealEntryCommand.COMMAND:

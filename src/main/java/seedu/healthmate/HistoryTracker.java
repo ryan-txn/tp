@@ -41,23 +41,6 @@ public class HistoryTracker {
         saveMealToFile(mealOptions.getMealList(), MEAL_OPTIONS_FILE);
     }
 
-    public Optional<User> loadUserData() {
-        try {
-            File userDataFile = new File(DATA_DIRECTORY + File.separator + USER_DATA_FILE);
-
-            if (!userDataFile.exists()) {
-                userDataFile.createNewFile();
-                return Optional.empty();
-            }
-
-            Optional<User> user = loadUserFromFile();
-            return user;
-        } catch (IOException e) {
-            System.out.println("Error creating user data file: " + e.getMessage());
-        }
-        return Optional.empty();
-    }
-
     public void saveUserDataFile(User user) {
         try {
 
@@ -75,24 +58,41 @@ public class HistoryTracker {
         }
     }
 
-    public void clearUserDataFile(){
-        try {
-            FileWriter fw = new FileWriter(DATA_DIRECTORY + File.separator + USER_DATA_FILE);
-            fw.write("");
-            fw.close();
-        } catch (IOException e) {
-            System.out.println("Error clearing user data file: " + e.getMessage());
+    public MealEntriesList loadMealEntries() {
+        List<Meal> meals = loadMealFromFile(MEAL_ENTRIES_FILE, true);
+        MealEntriesList mealEntriesList = new MealEntriesList();
+        for (Meal meal : meals) {
+            mealEntriesList.addMealWithoutCLIMessage(meal);
         }
+        UI.printString("Meal Entries Loaded Successfully!");
+        return mealEntriesList;
     }
 
-    public void updateUserDataFile(User user) {
-        try {
-            FileWriter fw = new FileWriter(DATA_DIRECTORY + File.separator + USER_DATA_FILE, true);
-            fw.write(user.toString());
-            fw.close();
-        } catch (IOException e) {
-            System.out.println("Error updating user data file: " + e.getMessage());
+    public MealList loadMealOptions() {
+        List<Meal> meals = loadMealFromFile(MEAL_OPTIONS_FILE, false);
+        MealList mealList = new MealList();
+        for (Meal meal : meals) {
+            mealList.addMealWithoutCLIMessage(meal);
         }
+        UI.printString("Meal Options Loaded Successfully!");
+        return mealList;
+    }
+
+    public Optional<User> loadUserData() {
+        try {
+            File userDataFile = new File(DATA_DIRECTORY + File.separator + USER_DATA_FILE);
+
+            if (!userDataFile.exists()) {
+                userDataFile.createNewFile();
+                return Optional.empty();
+            }
+
+            Optional<User> user = loadUserFromFile();
+            return user;
+        } catch (IOException e) {
+            System.out.println("Error creating user data file: " + e.getMessage());
+        }
+        return Optional.empty();
     }
 
     public Optional<User> loadUserFromFile() {
@@ -120,25 +120,24 @@ public class HistoryTracker {
         return Optional.empty();
     }
 
-
-    public MealEntriesList loadMealEntries() {
-        List<Meal> meals = loadMealFromFile(MEAL_ENTRIES_FILE, true);
-        MealEntriesList mealEntriesList = new MealEntriesList();
-        for (Meal meal : meals) {
-            mealEntriesList.addMealWithoutCLIMessage(meal);
+    public void clearUserDataFile(){
+        try {
+            FileWriter fw = new FileWriter(DATA_DIRECTORY + File.separator + USER_DATA_FILE);
+            fw.write("");
+            fw.close();
+        } catch (IOException e) {
+            System.out.println("Error clearing user data file: " + e.getMessage());
         }
-        UI.printString("Meal Entries Loaded Successfully!");
-        return mealEntriesList;
     }
 
-    public MealList loadMealOptions() {
-        List<Meal> meals = loadMealFromFile(MEAL_OPTIONS_FILE, false);
-        MealList mealList = new MealList();
-        for (Meal meal : meals) {
-            mealList.addMealWithoutCLIMessage(meal);
+    public void updateUserDataFile(User user) {
+        try {
+            FileWriter fw = new FileWriter(DATA_DIRECTORY + File.separator + USER_DATA_FILE, true);
+            fw.write(user.toString());
+            fw.close();
+        } catch (IOException e) {
+            System.out.println("Error updating user data file: " + e.getMessage());
         }
-        UI.printString("Meal Options Loaded Successfully!");
-        return mealList;
     }
 
     public MealEntriesList loadEmptyMealEntries() {

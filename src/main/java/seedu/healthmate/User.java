@@ -5,7 +5,7 @@ import java.util.Optional;
 import java.util.Scanner;
 
 public class User {
-    public double idealCalories; //TODO: to be made private until loading of user data configured
+    private double idealCalories;
     private HeightEntry heightEntry;
     private WeightEntry weightEntry;
     private boolean isMale;

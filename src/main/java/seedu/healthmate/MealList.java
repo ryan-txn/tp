@@ -18,25 +18,6 @@ public class MealList {
         this.mealList = mealList;
     }
 
-    public void addMealWithoutCLIMessage(Meal meal) {
-        this.mealList.add(meal);
-    }
-
-    public void addMeal(Meal meal) {
-        this.mealList.add(meal);
-        UI.printReply(meal.toString(), "Added to options: ");
-    }
-
-    public void deleteMeal(int mealNumber) {
-        Meal mealToDelete = this.mealList.get(mealNumber - 1);
-        this.mealList.remove(mealNumber - 1);
-        UI.printReply(mealToDelete.toString(), "Deleted option: ");
-    }
-
-    public int size() {
-        return this.mealList.size();
-    }
-
     public void extractAndAppendMeal(String userInput, String command, MealList mealOptions, User user) {
         try {
             Meal meal = extractMealFromString(userInput, command, CALORIE_SIGNALLER);
@@ -55,7 +36,7 @@ public class MealList {
         }
     }
 
-    public void removeMealFromString(String userInput, String command) {
+    public void extractAndRemoveMeal(String userInput, String command) {
         try {
             int mealNumber = Integer.parseInt(userInput.replaceAll(command, "").strip());
             deleteMeal(mealNumber);
@@ -66,8 +47,19 @@ public class MealList {
         }
     }
 
-    public String toMealStringByIndex(int mealIndex) {
-        return this.mealList.get(mealIndex).toString();
+    public void addMealWithoutCLIMessage(Meal meal) {
+        this.mealList.add(meal);
+    }
+
+    public void addMeal(Meal meal) {
+        this.mealList.add(meal);
+        UI.printReply(meal.toString(), "Added to options: ");
+    }
+
+    public void deleteMeal(int mealNumber) {
+        Meal mealToDelete = this.mealList.get(mealNumber - 1);
+        this.mealList.remove(mealNumber - 1);
+        UI.printReply(mealToDelete.toString(), "Deleted option: ");
     }
 
     public List<Meal> getMealList() {
@@ -82,4 +74,13 @@ public class MealList {
         }
         return Optional.empty();
     }
+
+    public String toMealStringByIndex(int mealIndex) {
+        return this.mealList.get(mealIndex).toString();
+    }
+
+    public int size() {
+        return this.mealList.size();
+    }
+
 }
