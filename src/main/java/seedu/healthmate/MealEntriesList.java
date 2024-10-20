@@ -35,7 +35,7 @@ public class MealEntriesList extends MealList {
     }
 
     @Override
-    public void appendMealFromString(String userInput, String command,  MealList mealOptions, User user) {
+    public void extractAndAppendMeal(String userInput, String command, MealList mealOptions, User user) {
         try {
 
             MealEntry meal = extractMealEntryFromString(userInput, command, CALORIE_SIGNALLER, mealOptions);
@@ -52,8 +52,7 @@ public class MealEntriesList extends MealList {
         }
     }
 
-    @Override
-    public void removeMealFromString(String userInput, String command, User user) {
+    public void removeMealWithFeedback(String userInput, String command, User user) {
         try {
             int mealNumber = Integer.parseInt(userInput.replaceAll(command, "").strip());
             deleteMeal(mealNumber);

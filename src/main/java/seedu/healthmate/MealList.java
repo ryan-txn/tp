@@ -37,7 +37,7 @@ public class MealList {
         return this.mealList.size();
     }
 
-    public void appendMealFromString(String userInput, String command, MealList mealOptions, User user) {
+    public void extractAndAppendMeal(String userInput, String command, MealList mealOptions, User user) {
         try {
             Meal meal = extractMealFromString(userInput, command, CALORIE_SIGNALLER);
             if (!meal.descriptionIsEmpty()) {
@@ -55,7 +55,7 @@ public class MealList {
         }
     }
 
-    public void removeMealFromString(String userInput, String command, User user) {
+    public void removeMealFromString(String userInput, String command) {
         try {
             int mealNumber = Integer.parseInt(userInput.replaceAll(command, "").strip());
             deleteMeal(mealNumber);
@@ -66,7 +66,7 @@ public class MealList {
         }
     }
 
-    public String toMealString(int mealIndex) {
+    public String toMealStringByIndex(int mealIndex) {
         return this.mealList.get(mealIndex).toString();
     }
 

@@ -90,22 +90,22 @@ public class ChatParser {
             break;
         case SaveMealCommand.COMMAND:
             logger.log(Level.INFO, "Executing command to save meal to meal options");
-            mealOptions.appendMealFromString(userInput, command, mealOptions, user);
+            mealOptions.extractAndAppendMeal(userInput, command, mealOptions, user);
             historyTracker.saveMealOptions(mealOptions);
             break;
         case DeleteMealCommand.COMMAND:
             logger.log(Level.INFO, "Executing command to delete a meal from meal options");
-            mealOptions.removeMealFromString(userInput, command, user);
+            mealOptions.removeMealFromString(userInput, command);
             historyTracker.saveMealOptions(mealOptions);
             break;
         case DeleteMealEntryCommand.COMMAND:
             logger.log(Level.INFO, "Executing command to delete a meal from mealEntries");
-            mealEntries.removeMealFromString(userInput, command, user);
+            mealEntries.removeMealWithFeedback(userInput, command, user);
             historyTracker.saveMealEntries(mealEntries);
             break;
         case AddMealEntryCommand.COMMAND:
             logger.log(Level.INFO, "Executing command to add a meal to mealEntries");
-            mealEntries.appendMealFromString(userInput, command, mealOptions, user);
+            mealEntries.extractAndAppendMeal(userInput, command, mealOptions, user);
             historyTracker.saveMealEntries(mealEntries);
             break;
         case LogMealsCommand.COMMAND:
