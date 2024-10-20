@@ -1,6 +1,11 @@
 # Developer Guide
 
 ## Acknowledgements
+ChatParser structure inspired by: 
+[this repository](https://github.com/kennethSty/ip)
+Calorie consumption bar inspired by 
+[this blogpost](https://medium.com/javarevisited/how-to-display-progressbar-on-the-standard-console-using-java-18f01d52b30e)
+
 ## Design & implementation
 ### High Level Class Design
 The main classes of this implementation are the following:
