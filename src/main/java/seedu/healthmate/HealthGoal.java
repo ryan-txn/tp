@@ -31,17 +31,17 @@ public class HealthGoal {
         assert healthGoalInput != null : "Health goal input cannot be null";
 
         switch (healthGoalInput) {
-            case WEIGHT_LOSS:
-                currentHealthGoal = WEIGHT_LOSS;
-                break;
-            case STEADY_STATE:
-                currentHealthGoal = STEADY_STATE;
-                break;
-            case BULKING:
-                currentHealthGoal = BULKING;
-                break;
-            default:
-                UI.printReply("Invalid Health Goal", "Save Health Goal Error: ");
+        case WEIGHT_LOSS:
+            currentHealthGoal = WEIGHT_LOSS;
+            break;
+        case STEADY_STATE:
+            currentHealthGoal = STEADY_STATE;
+            break;
+        case BULKING:
+            currentHealthGoal = BULKING;
+            break;
+        default:
+            UI.printReply("Invalid Health Goal", "Save Health Goal Error: ");
         }
     }
 
@@ -78,14 +78,14 @@ public class HealthGoal {
         assert currentHealthGoal != null : "Current health goal must be set";
 
         switch (currentHealthGoal) {
-            case WEIGHT_LOSS:
-                return rawCaloriesTarget * WEIGHT_LOSS_MODIFIER;
-            case STEADY_STATE:
-                return rawCaloriesTarget * STEADY_STATE_MODIFIER;
-            case BULKING:
-                return rawCaloriesTarget * BULKING_MODIFIER;
-            default:
-                return -1;
+        case WEIGHT_LOSS:
+            return rawCaloriesTarget * WEIGHT_LOSS_MODIFIER;
+        case STEADY_STATE:
+            return rawCaloriesTarget * STEADY_STATE_MODIFIER;
+        case BULKING:
+            return rawCaloriesTarget * BULKING_MODIFIER;
+        default:
+            return -1;
         }
     }
 
