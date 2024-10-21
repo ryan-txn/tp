@@ -6,7 +6,7 @@ ChatParser structure inspired by:
 Calorie consumption bar inspired by 
 [this blogpost](https://medium.com/javarevisited/how-to-display-progressbar-on-the-standard-console-using-java-18f01d52b30e)
 
-## Design & implementation
+## Design & Implementation
 ### High Level Class Design
 The main classes of this implementation are the following:
 - HealthMate
@@ -65,6 +65,126 @@ is however an Optional<String> allowing a case, where no meaningful label can be
 The MealEntry class extends the meal class and contains an additional field timestamp. 
 This distinction was made, as objects of the Meal class will represent possible meal options to choose form, 
 while a mealEntry is a concrete calorie consumption the user wants to track. The latter makes a timestamp indispensible. 
+
+
+This section describes how a feature was developed by each member of the team
+
+## Features
+
+### List Commands Feature Documentation
+
+This section describes the implementation of the `CommandMap` class in the `seedu.healthmate.command` package, which 
+serves as the central registry and handler for all available commands in the HealthMate application. 
+
+---
+
+## Design & Implementation
+### High Level Class Design
+The main classes of this implementation are the following:
+- HealthMate
+- ChatParser
+- User
+- MealList
+- MealEntriesList
+- Meal
+- MealEntry
+- HistoryTracker
+- UI
+  The following diagram illustrates their associations, methods and attributes.
+  ![High Level CD](images/highLevelClassDiagram.jpg)
+
+#### HealthMate
+Entry point to the application is the main function of HealthMate.
+The HealthMate class contains a private ChatParser attribute. This attribute's run function initiates,
+after an initial greeting to the user, the interaction process. In this process,
+the user enters commands with additional information into his command line application.
+The content of these commands is parsed by the ChatParser.
+
+#### ChatParser
+The ChatParser class, which is instantiated exactly once, manages the overall usage flow via its run() method.
+It contains a MealEntriesList object called MealEntries as well as a MealList object called mealOptions.
+Thereby MealEntries contain tracked calorie consumptions. mealOptions tracks possible meals that are presaved by the
+user in order to quickly select from a list of meals for which the calories of a portion are already saved.
+Therefore, mealEntries and mealOptions are the primary objects with which the user interacts through his command line.
+The ChatParser class orchestrates the effects of the users command line prompts, ensuring no unintended changes are done.
+Thereby, we distinguish between basic command prompts such as "bye" which are handled directly within run() and more
+sophisticated commands that require several tokens and are therefore abstracted into the multiCommandParsing() method,
+which is called within the run() method.
+To save the changes temporarily the ChatParser object also has a HistoryTracker object which facilitates the process of
+storing User data, mealEntries data and mealOptions data to their corresponding files. Besides storing data,
+loading existing data from the files, once another usage session is initiated is conducted by the HistoryTracker as well.
+
+#### MealList
+The MealList class contains a private ArrayList of Meal object.
+Further, it encapsulates behaviour to operate on this list of meals. Most notably,
+this adding or deleting a Meal to/from the list.
+
+#### MealEntriesList
+The MealEntriesList class extends the MealList class. It overwrites the extractAndAppendMeal(...) method,
+and additionally includes methods specifically tailored to providing helpul user feedback, as the MealEntries stored
+within its instance, signify the users calorie consumption.
+As a MealEntry object differs from a Meal object by the additional timestamp attribute, this includes
+computations based on the time dimension. More specifically, the printDaysConsumptionBar() uses the UIs class'
+methods in the background to visualize the percentage of a certain days total consumption versus the idaeal consumption
+of a User class.
+
+#### Meal
+The Meal class encapsulates the concept of a meal. As the purpose of this application
+is to track calorie consumption, this consists of a mandatory calorie entry. The meal's name attribute,
+is however an Optional<String> allowing a case, where no meaningful label can be attached to a certain consumption.
+
+#### MealEntry
+The MealEntry class extends the meal class and contains an additional field timestamp.
+This distinction was made, as objects of the Meal class will represent possible meal options to choose form,
+while a mealEntry is a concrete calorie consumption the user wants to track. The latter makes a timestamp indispensible.
+
+
+This section describes how a feature was developed by each member of the team
+
+## Features
+
+This section will document the contributions made by each team member regarding the implementation or planned feature enhancements, detailing the design and thought processes behind them.
+
+---
+
+### Command Handling with CommandMap Class
+
+#### Overview
+
+The `CommandMap` feature enhances the system's command handling by centralizing the lookup, and 
+storage of commands. It allows users to efficiently view commands usage within the HealthMate application.
+
+#### Feature Implementation
+
+The `CommandMap` class in the `seedu.healthmate.command` package maps command names to their corresponding 
+`Command` objects using a `HashMap<String, Command>`. This ensures fast retrieval and allows users to explore 
+commands with ease.
+
+#### Why It Is Implemented This Way
+
+Using a `HashMap` allows efficient command lookups with a constant time complexity of O(1). Centralizing all 
+commands within `CommandMap` simplifies the system's command handling process and makes it more maintainable  as new 
+commands are added.
+
+#### Alternatives Considered
+
+An alternative was storing commands in a list and iterating through them sequentially to find the matching command. 
+However, this approach was less efficient for frequent lookups compared to the `HashMap`.
+
+#### Proposed additions for v2.1
+
+The `CommandMap` can be built upon to support saving and usage of user created scripts as commands. For example 
+using a user could possibly create an add morningRoutine command by creating a command that runs multiple add 
+mealEntry commands of their regular breakfast as well as triggering the updateUser data command.
+
+#### Sequence Diagram TBD
+
+1. **Command Lookup Process**: Illustrate the flow from when a user enters a command to when `CommandMap.
+getCommandByName()` retrieves the command and the UI displays the results.
+    - Components: `UI`, `ChatParser`, `CommandMap`, `Command`.
+    - Highlight how `CommandMap` retrieves the appropriate command based on user input.
+
+---
 
 ## Product scope
 ### Target user profile
