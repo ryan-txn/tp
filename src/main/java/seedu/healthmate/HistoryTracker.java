@@ -81,10 +81,8 @@ public class HistoryTracker {
     public Optional<User> loadUserData() {
         try {
             File userDataFile = new File(DATA_DIRECTORY + File.separator + USER_DATA_FILE);
-
             if (!userDataFile.exists()) {
                 userDataFile.createNewFile();
-                return Optional.empty();
             }
 
             Optional<User> user = loadUserFromFile(userDataFile);
@@ -95,7 +93,7 @@ public class HistoryTracker {
         return Optional.empty();
     }
 
-    public Optional<User> loadUserFromFile(File userDataFile) {
+    public Optional<User> loadUserFromFile(File userDataFile) throws FileNotFoundException{
         try {
             Scanner s = new Scanner(userDataFile);
             double userHeight = Double.parseDouble(s.nextLine());
@@ -106,14 +104,10 @@ public class HistoryTracker {
 
             return Optional.of(new User(userHeight, userWeight, isMale, age, goal));
 
-        } catch (FileNotFoundException e) {
-            UI.printString("Error updating user info from user data file: " + e.getMessage());
-            System.out.println("Current working directory: " + System.getProperty("user.dir"));
-            e.printStackTrace();
         } catch (NumberFormatException e) {
             System.out.println("Error parsing a number." + e.getMessage());
         } catch (NoSuchElementException e) {
-            // silent catch if user file is empty
+            // silent catch if existing user file contains no content
         }
         return Optional.empty();
     }
