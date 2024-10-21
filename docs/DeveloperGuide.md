@@ -69,11 +69,21 @@ while a mealEntry is a concrete calorie consumption the user wants to track. The
 ## Product scope
 ### Target user profile
 
-{Describe the target user profile}
+The target user profile for HealthMate includes:
+- Health-conscious individuals who want to monitor their daily calorie intake
+- People trying to lose weight or maintain a healthy weight
+- Fitness enthusiasts who want to balance their calorie consumption with their exercise routines
+- Individuals with specific dietary requirements or restrictions
+- Anyone interested in developing better eating habits and nutritional awareness
 
 ### Value proposition
 
-{Describe the value proposition: what problem does it solve?}
+HealthMate solves the following problems:
+- Difficulty in tracking daily calorie intake: Users can easily log their meals and snacks
+- Lack of awareness about calorie consumption: The app provides visual representations of daily intake
+- Inconvenience of manual calorie calculations: Pre-saved meal options make tracking quicker and more efficient
+- Inability to see patterns in eating habits: Historical data allows users to analyze their consumption over time
+- Struggle to maintain consistent healthy eating habits: Regular tracking encourages mindful eating and helps users stay accountable to their health goals
 
 ## User Stories
 
@@ -84,12 +94,48 @@ while a mealEntry is a concrete calorie consumption the user wants to track. The
 
 ## Non-Functional Requirements
 
-{Give non-functional requirements}
+1. Usability: The command-line interface should be intuitive and easy to use, even for non-technical users.
+2. Reliability: The application should not lose any user data during normal operation or unexpected shutdowns.
+3. Compatibility: The application should run on common operating systems (Windows, macOS, Linux).
+4. Maintainability: The code should be well-documented and follow clean code principles for easy future enhancements.
+5. Portability: User data should be easily exportable and importable for backup purposes or switching devices.
 
 ## Glossary
 
-* *glossary item* - Definition
+* *Meal* - A food item or combination of food items consumed at one time, with associated calorie information.
+* *MealEntry* - A record of a meal consumed by the user, including the meal details and a timestamp.
+* *MealList* - A collection of pre-saved meals that users can quickly select from when logging their food intake.
+* *MealEntriesList* - A chronological list of all meals consumed by the user.
+* *ChatParser* - The component responsible for interpreting user commands and executing the appropriate actions.
+* *HistoryTracker* - The component that manages the storage and retrieval of user data, meal entries, and meal options.
 
 ## Instructions for manual testing
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+1. Installation and Setup:
+   - Ensure Java Runtime Environment (JRE) is installed on your system.
+   - Download the HealthMate application JAR file.
+   - Open a terminal or command prompt and navigate to the directory containing the JAR file.
+
+2. Running the Application:
+   - Execute the command: `java -jar HealthMate.jar`
+   - Verify that the application starts and displays a welcome message.
+
+3. Testing Basic Commands:
+   - Try entering the command `help` and verify that usage instructions are displayed.
+   - Test the `bye` command to ensure the application exits properly.
+
+4. Adding a Meal:
+   - Use the command `add mealEntry [name] [calories]` (e.g., `add meal "Chicken Salad" 350`)
+   - Verify that the meal is added successf ully and displayed in the meal list.
+
+5. Logging a Meal Entry:
+   - Use the command `log meal [name/index] [portion]` (e.g., `log meal "Chicken Salad" 1`)
+   - Check that the meal entry is recorded with the current timestamp.
+
+
+6. Testing Data Persistence:
+   - Exit the application using the `bye` command.
+   - Restart the application and check if previously added meals and logged entries are still present.
+
+7. Error Handling:
+   - Try entering invalid commands or data to ensure the application handles errors gracefully and provides helpful error messages.
