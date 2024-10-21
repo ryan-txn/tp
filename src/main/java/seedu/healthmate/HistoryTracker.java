@@ -87,7 +87,7 @@ public class HistoryTracker {
                 return Optional.empty();
             }
 
-            Optional<User> user = loadUserFromFile();
+            Optional<User> user = loadUserFromFile(userDataFile);
             return user;
         } catch (IOException e) {
             System.out.println("Error creating user data file: " + e.getMessage());
@@ -95,11 +95,9 @@ public class HistoryTracker {
         return Optional.empty();
     }
 
-    public Optional<User> loadUserFromFile() {
+    public Optional<User> loadUserFromFile(File userDataFile) {
         try {
-            File userDataFile = new File(DATA_DIRECTORY + File.separator + USER_DATA_FILE);
             Scanner s = new Scanner(userDataFile);
-
             double userHeight = Double.parseDouble(s.nextLine());
             double userWeight = Double.parseDouble(s.nextLine());
             boolean isMale = Boolean.parseBoolean(s.nextLine());
