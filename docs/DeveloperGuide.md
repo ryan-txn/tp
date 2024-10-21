@@ -66,6 +66,26 @@ The MealEntry class extends the meal class and contains an additional field time
 This distinction was made, as objects of the Meal class will represent possible meal options to choose form, 
 while a mealEntry is a concrete calorie consumption the user wants to track. The latter makes a timestamp indispensible. 
 
+
+#### HistoryTracker
+The HistoryTracker class is responsible for managing the persistence of data in the HealthMate application. It handles the saving and loading of user data, meal entries, and meal options to and from files. This class plays a crucial role in maintaining the application's state across different sessions.
+
+Key features of the HistoryTracker class include:
+
+1. Data Persistence:
+   - Saves user data, meal entries, and meal options to separate files.
+   - Loads existing data from these files when a new usage session is initiated.
+
+2. File Management:
+   - Creates and manages the necessary files for storing application data.
+   - Handles file I/O operations, ensuring data integrity during read and write processes.
+
+3. Data Formatting:
+   - Converts complex objects (like User, MealEntry, and Meal) into a format suitable for file storage.
+   - Deserializes stored data back into usable objects when loading the application state.
+
+HistoryTracker allows for the persistance of user inputted data between sessions by storing it in a local csv file.
+
 ## Product scope
 ### Target user profile
 
