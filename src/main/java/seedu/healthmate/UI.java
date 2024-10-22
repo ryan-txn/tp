@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 import seedu.healthmate.command.Command;
-import seedu.healthmate.command.CommandMap;
+
 
 public class UI {
     
