@@ -1,20 +1,10 @@
-Okt. 21, 2024 9:08:50 AM seedu.healthmate.ChatParser <init>
-INFORMATION: Initializing HistoryTracker
-Okt. 21, 2024 9:08:50 AM seedu.healthmate.ChatParser <init>
-INFORMATION: Loaded MealEntries
-Okt. 21, 2024 9:08:50 AM seedu.healthmate.ChatParser <init>
-INFORMATION: Loaded MealOptions
-Okt. 21, 2024 9:08:50 AM seedu.healthmate.ChatParser run
-INFORMATION: Checking if user data exists
-Okt. 21, 2024 9:08:50 AM seedu.healthmate.ChatParser run
-INFORMATION: Getting next user input line
-Okt. 21, 2024 9:08:50 AM seedu.healthmate.ChatParser multiCommandParsing
-INFORMATION: User command is: add mealEntry
-Okt. 21, 2024 9:08:50 AM seedu.healthmate.ChatParser multiCommandParsing
-INFORMATION: Executing command to add a meal to mealEntries
-Okt. 21, 2024 9:08:50 AM seedu.healthmate.ChatParser run
-INFORMATION: User input contains more than 1 token
-Okt. 21, 2024 9:08:50 AM seedu.healthmate.ChatParser run
-INFORMATION: Getting next user input line
-Okt. 21, 2024 9:08:50 AM seedu.healthmate.ChatParser run
-INFORMATION: User closes application
+Oct 21, 2024 6:29:34 PM seedu.healthmate.ChatParser <init>
+INFO: Initializing HistoryTracker
+Oct 21, 2024 6:29:34 PM seedu.healthmate.ChatParser <init>
+INFO: Loaded MealEntries
+Oct 21, 2024 6:29:34 PM seedu.healthmate.ChatParser <init>
+INFO: Loaded MealOptions
+Oct 21, 2024 6:29:34 PM seedu.healthmate.ChatParser run
+INFO: Checking if user data exists
+Oct 21, 2024 6:29:34 PM seedu.healthmate.ChatParser run
+INFO: Getting next user input line
