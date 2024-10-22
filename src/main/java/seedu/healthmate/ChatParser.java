@@ -1,5 +1,6 @@
 package seedu.healthmate;
 
+import seedu.healthmate.command.Command;
 import seedu.healthmate.command.commands.LogMealsCommand;
 import seedu.healthmate.command.commands.SaveMealCommand;
 import seedu.healthmate.command.commands.ListCommandsCommand;
@@ -8,7 +9,8 @@ import seedu.healthmate.command.commands.DeleteMealCommand;
 import seedu.healthmate.command.commands.DeleteMealEntryCommand;
 import seedu.healthmate.command.commands.MealMenuCommand;
 import seedu.healthmate.command.commands.UpdateUserDataCommand;
-
+import seedu.healthmate.command.CommandMap;
+import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -114,7 +116,8 @@ public class ChatParser {
             break;
         case ListCommandsCommand.COMMAND:
             logger.log(Level.INFO, "Executing command to show all available commands");
-            UI.printCommands();
+            List<Command> commands= CommandMap.getCommands(userInput, command);
+            UI.printCommands(commands);
             break;
         case UpdateUserDataCommand.COMMAND:
             logger.log(Level.INFO, "Executing command to update user data");
