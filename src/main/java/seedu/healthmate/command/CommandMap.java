@@ -9,7 +9,10 @@ import seedu.healthmate.command.commands.MealMenuCommand;
 import seedu.healthmate.command.commands.SaveMealCommand;
 import seedu.healthmate.command.commands.UpdateUserDataCommand;
 
-import java.util.*;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 public class CommandMap {
