@@ -94,7 +94,9 @@ public class ChatParser {
             logger.log(Level.INFO, "Executing command to save meal to meal options");
             MealSaver mealSaver = new MealSaver(historyTracker);
             Meal mealToSave = mealSaver.extractMealFromUserInput(userInput);
-            mealSaver.saveMeal(mealToSave, mealOptions);
+            if (mealToSave != null) {
+                mealSaver.saveMeal(mealToSave, mealOptions);
+            }
             break;
         case DeleteMealCommand.COMMAND:
             logger.log(Level.INFO, "Executing command to delete a meal from meal options");

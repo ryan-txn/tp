@@ -11,7 +11,12 @@ public class MealSaver {
     public Meal extractMealFromUserInput(String userInput) {
         try {
             String command = "save meal";
-            return Meal.extractMealFromString(userInput, command, ChatParser.CALORIE_SIGNALLER);
+            Meal meal = Meal.extractMealFromString(userInput, command, ChatParser.CALORIE_SIGNALLER);
+            if (meal.descriptionIsEmpty()) {
+                UI.printReply("Meal options require a name", "Retry: ");
+                return null;
+            }
+            return meal;
         } catch (EmptyCalorieException e) {
             UI.printReply("Every meal needs a calorie integer. (e.g. 120)", "");
         } catch (StringIndexOutOfBoundsException s) {
@@ -29,7 +34,6 @@ public class MealSaver {
                 overwriteMeal(meal, mealList);
             }
         } else {
-            System.out.println("New meal found: " + meal.getName());
             mealList.addMeal(meal);
         }
         historyTracker.saveMealOptions(mealList);
@@ -41,7 +45,6 @@ public class MealSaver {
     }
 
     private void overwriteMeal(Meal newMeal, MealList mealList) {
-        System.out.println("Overwriting meal: " + newMeal);
         mealList.updateMeal(newMeal);
     }
 }
