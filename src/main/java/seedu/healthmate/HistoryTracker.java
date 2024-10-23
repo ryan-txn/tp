@@ -38,7 +38,18 @@ public class HistoryTracker {
     }
 
     public void saveMealOptions(MealList mealOptions) {
-        saveMealToFile(mealOptions.getMealList(), MEAL_OPTIONS_FILE);
+        //only saves meals which are new/details change
+        List<Meal> mealList = mealOptions.getMealList();
+        List<Meal> existingMeals = loadMealFromFile(MEAL_OPTIONS_FILE, false);
+        List<Meal> newMeals = new ArrayList<>();
+        
+        for (Meal meal : mealList) {
+            if (!existingMeals.contains(meal)) {
+                newMeals.add(meal);
+            }
+        }
+        
+        saveMealToFile(newMeals, MEAL_OPTIONS_FILE);
     }
 
     public void saveUserDataFile(User user) {
@@ -181,19 +192,5 @@ public class HistoryTracker {
             meals.add(new Meal(Optional.ofNullable(name), calories));
         }
         return meals;
-    }
-
-    public void saveMealOptions(List<Meal> mealList) {
-        //only saves meals which are new/details change
-        List<Meal> existingMeals = loadMealFromFile(MEAL_OPTIONS_FILE, false);
-        List<Meal> newMeals = new ArrayList<>();
-        
-        for (Meal meal : mealList) {
-            if (!existingMeals.contains(meal)) {
-                newMeals.add(meal);
-            }
-        }
-        
-        saveMealToFile(newMeals, MEAL_OPTIONS_FILE);
     }
 }

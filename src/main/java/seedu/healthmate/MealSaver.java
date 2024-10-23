@@ -1,6 +1,5 @@
 package seedu.healthmate;
 
-import java.util.List;
 
 public class MealSaver {
     private HistoryTracker historyTracker;
