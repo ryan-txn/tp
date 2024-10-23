@@ -182,4 +182,18 @@ public class HistoryTracker {
         }
         return meals;
     }
+
+    public void saveMealOptions(List<Meal> mealList) {
+        //only saves meals which are new/details change
+        List<Meal> existingMeals = loadMealFromFile(MEAL_OPTIONS_FILE, false);
+        List<Meal> newMeals = new ArrayList<>();
+        
+        for (Meal meal : mealList) {
+            if (!existingMeals.contains(meal)) {
+                newMeals.add(meal);
+            }
+        }
+        
+        saveMealToFile(newMeals, MEAL_OPTIONS_FILE);
+    }
 }
