@@ -13,7 +13,6 @@ import seedu.healthmate.command.commands.DailyCalorieProgressBarCommand;
 import seedu.healthmate.command.CommandMap;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -135,6 +134,7 @@ public class ChatParser {
             currentUser = User.askForUserData();
             LocalDateTime endOfDayTime = DateTimeUtils.endOfDayLocalDateTime(DateTimeUtils.currentDate());
             mealEntries.printDaysConsumptionBar(currentUser, endOfDayTime);
+            break;
         default:
             UI.printReply("Use a valid command", "Retry: ");
             break;
