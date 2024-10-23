@@ -83,4 +83,14 @@ public class MealList {
         return this.mealList.size();
     }
 
+    public void updateMeal(Meal newMeal) {
+        for (int i = 0; i < mealList.size(); i++) {
+            if (mealList.get(i).getName().equals(newMeal.getName())) {
+                mealList.remove(i);
+                mealList.add(i, newMeal);
+                break;
+            }
+        }
+    }
+
 }
