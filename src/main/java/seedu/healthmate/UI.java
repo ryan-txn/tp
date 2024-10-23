@@ -1,10 +1,11 @@
 package seedu.healthmate;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.stream.IntStream;
 
 import seedu.healthmate.command.Command;
-import seedu.healthmate.command.CommandMap;
+
 
 public class UI {
     
@@ -79,14 +80,21 @@ public class UI {
         printSeparator();
     }
 
-    public static void printCommands() {
+    public static void printCommands(List<Command> commands) {
         System.out.println(LINE);
-        for (Command command: CommandMap.getAllCommands()){
-            System.out.println(INDENTATION + command.toString());
+        if (commands.size() == 1) {
+            System.out.println(INDENTATION + commands.get(0).toString());
+        } else {
+            System.out.println(INDENTATION + "Use `list commands <command>` to view a command's syntax");
             System.out.println(LINE);
+            for (Command command : commands) {
+                System.out.println(INDENTATION + command.command);
+                System.out.println(LINE);
+            }
         }
-
     }
+
+
 
     public static String simulateReply(String input, String actionPerformed) {
         String line1 = LINE_SEPARATOR;

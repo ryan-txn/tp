@@ -9,10 +9,10 @@ import seedu.healthmate.command.commands.MealMenuCommand;
 import seedu.healthmate.command.commands.SaveMealCommand;
 import seedu.healthmate.command.commands.UpdateUserDataCommand;
 
-import java.util.ArrayList;
+import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 public class CommandMap {
@@ -31,12 +31,29 @@ public class CommandMap {
     }
 
     // Retrieve a command by its name
-    public Command getCommandByName(String commandName) {
+    public static List<Command> getCommands(String userInput, String command) {
+        if(userInput.equals(command)) {
+            return  getAllCommands();
+        }
+        String commandToFind = userInput.substring(command.length()).trim();  // Get the part after "list commands"
+
+        // If arguments exist, handle them (e.g., return specific commands or additional functionality)
+
+        List<Command> commands = new ArrayList<>();
+        if(!COMMANDSMAP.containsKey(commandToFind)) {
+            return getAllCommands();
+        }
+        commands.add(getCommandByName(commandToFind));
+        return commands;  // Handle case like "list commands add mealEntry"
+
+    }
+
+    private static Command getCommandByName(String commandName) {
         return COMMANDSMAP.get(commandName);
     }
 
     // Retrieve all commands with assertions and logging
-    public static List<Command> getAllCommands() {
+    private static List<Command> getAllCommands() {
         // Assert that the command map is not empty
         assert !COMMANDSMAP.isEmpty() : "Command map should not be empty";
         List<Command> commands = new ArrayList<>(COMMANDSMAP.values());

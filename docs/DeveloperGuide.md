@@ -91,6 +91,51 @@ Key features of the HistoryTracker class include:
 
 HistoryTracker allows for the persistance of user inputted data between sessions by storing it in a local csv file.
 
+## Features
+
+This section will document the contributions made by each team member regarding the implementation or planned feature enhancements, detailing the design and thought processes behind them.
+
+---
+
+### Command Handling with CommandMap Class
+
+#### Overview
+
+The `CommandMap` feature enhances the system's command handling by centralizing the lookup, and
+storage of commands. It allows users to efficiently view commands usage within the HealthMate application.
+
+#### Feature Implementation
+
+The `CommandMap` class in the `seedu.healthmate.command` package maps command names to their corresponding
+`Command` objects using a `HashMap<String, Command>`. This ensures fast retrieval and allows users to explore
+commands with ease.
+
+#### Why It Is Implemented This Way
+
+Using a `HashMap` allows efficient command lookups with a constant time complexity of O(1). Centralizing all
+commands within `CommandMap` simplifies the system's command handling process and makes it more maintainable  as new
+commands are added.
+
+#### Alternatives Considered
+
+An alternative was storing commands in a list and iterating through them sequentially to find the matching command.
+However, this approach was less efficient for frequent lookups compared to the `HashMap`.
+
+#### Proposed additions for v2.1
+
+The `CommandMap` can be built upon to support saving and usage of user created scripts as commands. For example
+using a user could possibly create an add morningRoutine command by creating a command that runs multiple add
+mealEntry commands of their regular breakfast as well as triggering the updateUser data command.
+
+#### Sequence Diagram TBD
+
+1. **Command Lookup Process**: Illustrate the flow from when a user enters a command to when `CommandMap.
+getCommandByName()` retrieves the command and the UI displays the results.
+   - Components: `UI`, `ChatParser`, `CommandMap`, `Command`.
+   - Highlight how `CommandMap` retrieves the appropriate command based on user input.
+
+---
+
 ## Product scope
 ### Target user profile
 
