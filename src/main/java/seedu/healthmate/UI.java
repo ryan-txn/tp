@@ -1,6 +1,7 @@
 package seedu.healthmate;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -151,6 +152,29 @@ public class UI {
                                        double expectedValue,
                                        int actualValue,
                                        LocalDate timestamp) {
+
+        return INDENTATION + message + LINE_SEPARATOR
+                + INDENTATION + progressBarStringBuilder(expectedValue, actualValue) + " (" + timestamp + ")"
+                + LINE_SEPARATOR + LINE;
+
+    }
+
+    /**
+     * Prints a progress bar for historic consumption data.
+     *
+     * @param expectedValue the expected consumption value
+     * @param actualValue   the actual consumption value
+     * @param timestamp     the timestamp of the consumption data
+     * @throws IllegalArgumentException if the timestamp is null
+     */
+    public static void printHistoricConsumptionBars(double expectedValue, int actualValue, LocalDate timestamp) {
+        assert timestamp != null : "Timestamp cannot be null";
+        System.out.println(INDENTATION
+                + progressBarStringBuilder(expectedValue, actualValue)
+                + " (" + timestamp + ")");
+    }
+
+    private static String progressBarStringBuilder(double expectedValue, int actualValue) {
         int percentageOfExpected = (int) Math.ceil((actualValue / expectedValue) * 100);
 
         String incomplete = "░"; // U+2591 Unicode Character
@@ -166,18 +190,17 @@ public class UI {
                 .map(i -> {
                     //maps progress from 100 percent scale to numberOfIcons scale
                     if (i == hundredPercentMark) {
-                        return "|" + percentageOfExpected + "%|";
+                        return "| " + String.format( "%6s", percentageOfExpected + "% |");
                     } else if (i <= ((percentageOfExpected / totalPercent) * hundredPercentMark)) {
                         return complete;
                     } else {
                         return incomplete;
                     }
                 }).forEach(step -> builder.append(step));
-        return INDENTATION + message + LINE_SEPARATOR
-                + INDENTATION + builder + " (" + timestamp + ")"
-                + LINE_SEPARATOR + LINE;
 
+        return builder.toString();
     }
+
 
 
 

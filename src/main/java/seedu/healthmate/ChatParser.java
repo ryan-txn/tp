@@ -9,7 +9,8 @@ import seedu.healthmate.command.commands.DeleteMealCommand;
 import seedu.healthmate.command.commands.DeleteMealEntryCommand;
 import seedu.healthmate.command.commands.MealMenuCommand;
 import seedu.healthmate.command.commands.UpdateUserDataCommand;
-import seedu.healthmate.command.commands.DailyCalorieProgressBarCommand;
+import seedu.healthmate.command.commands.TodayCalorieProgressCommand;
+import seedu.healthmate.command.commands.HistoricCalorieProgressCommand;
 import seedu.healthmate.command.CommandMap;
 
 import java.time.LocalDateTime;
@@ -129,11 +130,15 @@ public class ChatParser {
             currentUser = User.askForUserData();
             historyTracker.saveUserDataFile(currentUser);
             break;
-        case DailyCalorieProgressBarCommand.COMMAND:
+        case TodayCalorieProgressCommand.COMMAND:
             logger.log(Level.INFO, "Executing command to print daily progress bar");
-            currentUser = User.askForUserData();
-            LocalDateTime endOfDayTime = DateTimeUtils.endOfDayLocalDateTime(DateTimeUtils.currentDate());
-            mealEntries.printDaysConsumptionBar(currentUser, endOfDayTime);
+            printTodayCalorieProgress();
+            break;
+        case HistoricCalorieProgressCommand.COMMAND:
+            logger.log(Level.INFO, "Executing command to print Historic calorie bar");
+            int days = Integer.parseInt(inputTokens[2].strip());
+            currentUser = User.checkForUserData(historyTracker);
+            mealEntries.printHistoricConsumptionBars(currentUser, days);
             break;
         default:
             UI.printReply("Use a valid command", "Retry: ");
@@ -154,6 +159,11 @@ public class ChatParser {
         this.mealOptions = this.historyTracker.loadEmptyMealOptions();
         historyTracker.saveMealOptions(mealOptions);
         historyTracker.saveMealEntries(mealEntries);
+    }
+
+    public void printTodayCalorieProgress() {
+        User currentUser = User.checkForUserData(historyTracker);
+        mealEntries.printDaysConsumptionBar(currentUser, LocalDateTime.now());
     }
 
 }

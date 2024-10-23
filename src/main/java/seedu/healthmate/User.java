@@ -57,8 +57,7 @@ public class User {
             return user;
         } catch (Exception exception) {
             UI.printReply("Wrong user input", "Retry: ");
-            User user = askForUserData();
-            return user;
+            return askForUserData();
         }
     }
 
@@ -68,6 +67,27 @@ public class User {
 
     public String buildUsersConsumptionBar(String message, int currentCalories, LocalDate timestamp) {
         return UI.buildConsumptionBar(message, this.idealCalories, currentCalories, timestamp);
+    }
+
+    /**
+     * Prints the ideal caloric intake.
+     */
+    public void printTargetCalories() {
+        UI.printReply(String.valueOf(this.idealCalories), "Ideal Caloric Intake: ");
+    }
+
+    /**
+     * Prints the historic consumption bar for the current calories and timestamp.
+     *
+     * @param currentCalories the current caloric intake
+     * @param timestamp       the timestamp of the consumption record
+     * @throws IllegalArgumentException if currentCalories is negative or timestamp is null
+     */
+    public void printHistoricConsumptionBar(int currentCalories, LocalDate timestamp) {
+        assert currentCalories >= 0 : "Current calories cannot be negative";
+        assert timestamp != null : "Timestamp cannot be null";
+
+        UI.printHistoricConsumptionBars(this.idealCalories, currentCalories, timestamp);
     }
 
     @Override
