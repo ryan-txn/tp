@@ -66,7 +66,7 @@ public class MealEntriesList extends MealList {
         return new ArrayList<>(super.mealList);
     }
 
-    private void printDaysConsumptionBar(User user, LocalDateTime endOfDayTime) {
+    public void printDaysConsumptionBar(User user, LocalDateTime endOfDayTime) {
         LocalDateTime todayMidnight = endOfDayTime.truncatedTo(ChronoUnit.DAYS);
         LocalDate today = endOfDayTime.toLocalDate();
         MealEntriesList mealsConsumedToday = this.getMealEntriesByDate(endOfDayTime, todayMidnight);
