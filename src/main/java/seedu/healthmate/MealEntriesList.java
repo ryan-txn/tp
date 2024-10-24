@@ -66,12 +66,40 @@ public class MealEntriesList extends MealList {
         return new ArrayList<>(super.mealList);
     }
 
-    private void printDaysConsumptionBar(User user, LocalDateTime endOfDayTime) {
+    public void printDaysConsumptionBar(User user, LocalDateTime endOfDayTime) {
         LocalDateTime todayMidnight = endOfDayTime.truncatedTo(ChronoUnit.DAYS);
         LocalDate today = endOfDayTime.toLocalDate();
         MealEntriesList mealsConsumedToday = this.getMealEntriesByDate(endOfDayTime, todayMidnight);
         int caloriesConsumed = mealsConsumedToday.getTotalCaloriesConsumed();
         user.printUsersConsumptionBar("% of Expected Calorie Intake Consumed: ", caloriesConsumed, today);
+    }
+
+    /**
+     * Prints the historic consumption bars for a specified number of days.
+     *
+     * @param user the User whose consumption history is to be printed
+     * @param days the number of days to include in the consumption history
+     * @throws IllegalArgumentException if user is null or days is negative
+     */
+    public void printHistoricConsumptionBars(User user, int days) {
+        assert user != null : "User cannot be null";
+        assert days >= 0 : "Days cannot be negative";
+
+        LocalDate today = DateTimeUtils.currentDate();
+
+        user.printTargetCalories();
+        for (int i = days; i >= 0; i--) {
+            LocalDate printDate = today.minusDays(i);
+            LocalDateTime upperDateBound = DateTimeUtils.endOfDayLocalDateTime(printDate);
+            LocalDateTime lowerDateBound = DateTimeUtils.startOfDayLocalDateTime(printDate);
+
+            MealEntriesList mealsConsumed = this.getMealEntriesByDate(upperDateBound, lowerDateBound);
+            int caloriesConsumed = mealsConsumed.getTotalCaloriesConsumed();
+
+            user.printHistoricConsumptionBar(caloriesConsumed, printDate);
+        }
+
+        UI.printSeparator();
     }
 
     private MealEntriesList getMealEntriesByDate(LocalDateTime upperDateBound, LocalDateTime lowerDateBound) {
