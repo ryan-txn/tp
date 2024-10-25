@@ -53,12 +53,11 @@ public class ChatParserTest {
         compareChatParserOutput(chatParser, simulatedInput, expectedOutput);
     }
 
-    /**
-     * Tests if adding a meal with correctly specified calories works as expected
-     */
-    @Test void addMealToOptionsWithName_success() {
+
+    @Test
+    void addMealToOptionsWithName_success() {
         ChatParser chatParser = new ChatParser();
-        String simulatedInput = "save meal burger /c 300\nmeal menu\nbye\n";
+        String simulatedInput = "save meal burger /c300\nmeal menu\nbye\n";
         String expectedOutput = UI.simulateInitOutput()
             + UI.simulateReply("burger with 300 calories", "Added to options: ")
             + chatParser.getMealOptionsStringWithNewMeal("burger with 300 calories")
@@ -71,7 +70,7 @@ public class ChatParserTest {
      */
     @Test void addMealToOptionsNoName_failure() {
         ChatParser chatParser = new ChatParser();
-        String simulatedInput = "save meal /c 300\nbye";
+        String simulatedInput = "save meal /c300\nbye";
         String expectedOuput = UI.simulateInitOutput()
             + UI.simulateReply("Meal options require a name", "Retry: ")
             + UI.simulateFareWell();
@@ -84,7 +83,7 @@ public class ChatParserTest {
     @Test void trackMealEntryWithCalories_success() {
         ChatParser chatParser = new ChatParser();
         User user = User.checkForUserData(chatParser.getHistoryTracker());
-        String simulatedInput = "add mealEntry pizza /c 300\nbye";
+        String simulatedInput = "add mealEntry pizza /c300\nbye";
         LocalDateTime today = LocalDateTime.now().truncatedTo(ChronoUnit.HOURS);
         String timeString = "(at: " + today + ")";
         String expectedOuput = UI.simulateInitOutput()
