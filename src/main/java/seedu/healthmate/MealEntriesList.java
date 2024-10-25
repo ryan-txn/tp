@@ -1,8 +1,7 @@
 package seedu.healthmate;
 
-import static seedu.healthmate.ChatParser.CALORIE_SIGNALLER;
-import static seedu.healthmate.MealEntry.extractMealEntryFromString;
 
+import static seedu.healthmate.MealEntry.extractMealEntryFromString;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -24,16 +23,22 @@ public class MealEntriesList extends MealList {
     @Override
     public void extractAndAppendMeal(String userInput, String command, MealList mealOptions, User user) {
         try {
-            MealEntry meal = extractMealEntryFromString(userInput, command, CALORIE_SIGNALLER, mealOptions);
-            this.addMeal(meal);
+            int portions = Parameter.getPortions(userInput);
+            MealEntry meal = extractMealEntryFromString(userInput, command, mealOptions);
+            for (int i =0; i<portions; i++) {
+                this.addMeal(meal);
+            }
             printDaysConsumptionBar(user, LocalDateTime.now());
-        } catch (EmptyCalorieException e) {
-            UI.printReply("Every meal needs a calorie integer. (e.g. 120)", "");
+        } catch (EmptyCalorieException | BadCalorieException e) {
+            UI.printReply("Every meal needs a calorie integer. (e.g. /c120)", "");
         } catch (StringIndexOutOfBoundsException s) {
             UI.printReply("Do not forget to use /c mark the following integer as calories",
                     "Retry: ");
-        } catch (NumberFormatException n) {
-            UI.printReply("A calorie entry needs to be an integer", "Error: ");
+        } catch (MealNotFoundException e) {
+            UI.printReply("Please save this meal to the meal menu first, or use /c and /p to include calories and " + "portion sizes", "");
+        } catch (BadPortionException e) {
+            UI.printReply("Please reformat your portion size properly. (e.g for 2 portions {/p2})",
+                    "Retry: ");
         }
     }
 

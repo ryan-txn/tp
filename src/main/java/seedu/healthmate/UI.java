@@ -80,6 +80,10 @@ public class UI {
         printSeparator();
     }
 
+    public static void printMealNotFound() {
+        System.out.println("The meal was not found in the meal menu!");
+    }
+
     public static void printCommands(List<Command> commands) {
         System.out.println(LINE);
         if (commands.size() == 1) {

@@ -20,19 +20,17 @@ public class MealList {
 
     public void extractAndAppendMeal(String userInput, String command, MealList mealOptions, User user) {
         try {
-            Meal meal = extractMealFromString(userInput, command, CALORIE_SIGNALLER);
+            Meal meal = extractMealFromString(userInput, command);
             if (!meal.descriptionIsEmpty()) {
                 this.addMeal(meal);
             } else {
                 UI.printReply("Meal options require a name", "Retry: ");
             }
-        } catch (EmptyCalorieException e) {
+        } catch (EmptyCalorieException | BadCalorieException e) {
             UI.printReply("Every meal needs a calorie integer. (e.g. 120)", "");
         } catch (StringIndexOutOfBoundsException s) {
             UI.printReply("Do not forget to use /c mark the following integer as calories",
                     "Retry: ");
-        } catch (NumberFormatException n) {
-            UI.printReply("A calorie entry needs to be an integer", "Error: ");
         }
     }
 

@@ -1,4 +1,4 @@
 package seedu.healthmate;
 
-public class BadPortionException {
+public class BadPortionException extends Exception {
 }

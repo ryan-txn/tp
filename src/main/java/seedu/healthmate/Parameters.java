@@ -19,18 +19,37 @@ enum Parameter {
     }
 
     // Method to parse the value associated with a parameter
-    public static int parseParameter(String input, Parameter param) {
+    // Method to parse the value associated with a parameter
+    public static int parseParameter(String input, Parameter param) throws NumberFormatException {
         // Create a regex pattern for the parameter prefix (like /c or /p)
-        String regex = param.getPrefix() + "(\\d+)";
+        String regex = param.getPrefix() + "(\\d+)(\\s|$)";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(input);
+        boolean containsParam = input.contains(param.getPrefix());
 
         if (matcher.find()) {
-            // Extract and return the numeric value after the prefix
             return Integer.parseInt(matcher.group(1));
         } else {
-            // Default value if the parameter is not found
-            return param == PORTIONS_SIGNALLER ? 1 : 0; // Default portions is 1, calories 0
+            // Contains param but bad format response is -2
+            // If param is missing return 1 for portions for default and -1 for Calories
+            return containsParam? -2: param == PORTIONS_SIGNALLER?1:-1;
+
         }
+    }
+    public static int getPortions(String input) throws BadPortionException {
+        int portions = parseParameter(input, Parameter.PORTIONS_SIGNALLER);
+        if (portions == -2) {
+            throw new BadPortionException();
+        }
+        return parseParameter(input, Parameter.PORTIONS_SIGNALLER);
+    }
+    public static int getCalories(String input) throws BadCalorieException, EmptyCalorieException {
+        int calories = parseParameter(input, Parameter.CALORIE_SIGNALLER);
+        if (calories == -1) {
+            throw new EmptyCalorieException();
+        } else if (calories == -2) {
+            throw new BadCalorieException();
+        }
+        return calories;
     }
 }

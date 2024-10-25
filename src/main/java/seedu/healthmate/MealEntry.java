@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 import java.time.temporal.ChronoUnit;
 
+
 public class MealEntry extends Meal{
     private final LocalDateTime timestamp;
 
@@ -18,23 +19,27 @@ public class MealEntry extends Meal{
     }
 
     public static MealEntry extractMealEntryFromString(String input,
-                                             String command,
-                                             String calorieSignaller,
-                                             MealList mealOptions) throws EmptyCalorieException {
-        Optional<String> mealDescription = extractMealDescription(input, command, calorieSignaller);
+                                                       String command,
+                                                       MealList mealOptions) throws EmptyCalorieException, BadCalorieException, MealNotFoundException {
+        Optional<String> mealDescription = extractMealDescription(input, command);
         int calories;
         try {
-            String caloriesString = extractCaloriesString(input, calorieSignaller);
-            assert caloriesString.length() > 0: "caloriesString cannot be empty";
-            calories = Integer.parseInt(caloriesString);
-        } catch (Exception e) {
+            calories = Parameter.getCalories(input);
+
+        } catch (EmptyCalorieException e) {
             System.out.println("Getting info from meal options...");
             Optional<Integer> optionalCalories = mealOptions.getCaloriesByMealName(mealDescription.orElse(""));
+            if (!optionalCalories.isPresent() && !(mealDescription.orElse("").equals(""))) {
+                UI.printMealNotFound();
+                throw new MealNotFoundException();
+            }
             calories = optionalCalories.orElseThrow(() -> new EmptyCalorieException());
         }
+
         MealEntry mealEntry = new MealEntry(mealDescription, calories);
         return mealEntry;
     }
+
 
     @Override
     public String toSaveString() {
