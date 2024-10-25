@@ -1,5 +1,4 @@
 package seedu.healthmate;
-import static seedu.healthmate.ChatParser.CALORIE_SIGNALLER;
 import static seedu.healthmate.Meal.extractMealFromString;
 
 import java.util.ArrayList;
@@ -92,3 +91,4 @@ public class MealList {
     }
 
 }
+

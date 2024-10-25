@@ -35,7 +35,8 @@ public class MealEntriesList extends MealList {
             UI.printReply("Do not forget to use /c mark the following integer as calories",
                     "Retry: ");
         } catch (MealNotFoundException e) {
-            UI.printReply("Please save this meal to the meal menu first, or use /c and /p to include calories and " + "portion sizes", "");
+            UI.printReply("Please save this meal to the meal menu first, or use /c and /p to include calories and"
+                    + " portion sizes", "");
         } catch (BadPortionException e) {
             UI.printReply("Please reformat your portion size properly. (e.g for 2 portions {/p2})",
                     "Retry: ");

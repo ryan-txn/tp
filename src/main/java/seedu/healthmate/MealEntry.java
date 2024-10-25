@@ -18,9 +18,8 @@ public class MealEntry extends Meal{
         this.timestamp = timestamp;
     }
 
-    public static MealEntry extractMealEntryFromString(String input,
-                                                       String command,
-                                                       MealList mealOptions) throws EmptyCalorieException, BadCalorieException, MealNotFoundException {
+    public static MealEntry extractMealEntryFromString(String input, String command, MealList mealOptions)
+            throws EmptyCalorieException, BadCalorieException, MealNotFoundException {
         Optional<String> mealDescription = extractMealDescription(input, command);
         int calories;
         try {
