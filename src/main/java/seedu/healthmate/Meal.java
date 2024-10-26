@@ -13,33 +13,21 @@ public class Meal {
     }
 
     public static Meal extractMealFromString(String input,
-                                             String command,
-                                             String calorieSignaller) throws EmptyCalorieException {
-        Optional<String> mealDescription = extractMealDescription(input, command, calorieSignaller);
-        String caloriesString = extractCaloriesString(input, calorieSignaller);
-        int calories = Integer.parseInt(caloriesString);
+                                             String command) throws EmptyCalorieException, BadCalorieException {
+        Optional<String> mealDescription = extractMealDescription(input, command);
+        int calories = Parameter.getCalories(input);
         Meal meal = new Meal(mealDescription, calories);
         return meal;
     }
 
     public static Optional<String> extractMealDescription(String input,
-                                                          String command,
-                                                          String calorieSignaller) {
+                                                          String command) {
         int mealDescriptionIndex = input.indexOf(command) + command.length();
-        int calorieIndex = input.indexOf(calorieSignaller);
+        int calorieIndex = input.indexOf(Parameter.CALORIE_SIGNALLER.getPrefix());
         if (calorieIndex == -1) {
             calorieIndex = input.length();
         }
         return Optional.ofNullable(input.substring(mealDescriptionIndex, calorieIndex).strip());
-    }
-
-    public static String extractCaloriesString(String input, String calorieSignaller) throws EmptyCalorieException {
-        int calorieIndex = input.indexOf(calorieSignaller) + calorieSignaller.length();
-        String calories = input.substring(calorieIndex, input.length());
-        if (calories.length() == 0) {
-            throw new EmptyCalorieException();
-        }
-        return calories.strip();
     }
 
     public boolean descriptionIsEmpty() {
