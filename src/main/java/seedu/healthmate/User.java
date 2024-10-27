@@ -7,16 +7,16 @@ import java.util.Scanner;
 
 public class User {
     private final double idealCalories;
-    private final HeightEntry heightEntry;
-    private final WeightEntry weightEntry;
+    private final double heightEntry;
+    private final double weightEntry;
     private final boolean isMale;
     private final int age;
     private final HealthGoal healthGoal;
     private final LocalDateTime localDateTime;
 
     public User(double height, double weight, boolean isMale, int age, String healthGoal) {
-        this.heightEntry = new HeightEntry(height);
-        this.weightEntry = new WeightEntry(weight);
+        this.heightEntry = height;
+        this.weightEntry = weight;
         this.isMale = isMale;
         this.age = age;
         this.healthGoal = new HealthGoal(healthGoal);
@@ -95,7 +95,7 @@ public class User {
 
     @Override
     public String toString() {
-        return heightEntry.toString() + "\n" + weightEntry.toString() + "\n"
+        return heightEntry + "\n" + weightEntry + "\n"
                 + isMale + "\n" + age + "\n" + healthGoal.toString();
     }
 }
