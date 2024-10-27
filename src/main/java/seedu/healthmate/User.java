@@ -1,16 +1,18 @@
 package seedu.healthmate;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.Scanner;
 
 public class User {
-    private double idealCalories;
-    private HeightEntry heightEntry;
-    private WeightEntry weightEntry;
-    private boolean isMale;
-    private int age;
-    private HealthGoal healthGoal;
+    private final double idealCalories;
+    private final HeightEntry heightEntry;
+    private final WeightEntry weightEntry;
+    private final boolean isMale;
+    private final int age;
+    private final HealthGoal healthGoal;
+    private final LocalDateTime localDateTime;
 
     public User(double height, double weight, boolean isMale, int age, String healthGoal) {
         this.heightEntry = new HeightEntry(height);
@@ -19,6 +21,7 @@ public class User {
         this.age = age;
         this.healthGoal = new HealthGoal(healthGoal);
         this.idealCalories = this.healthGoal.getTargetCalories(height, weight, isMale, age);
+        this.localDateTime = LocalDateTime.now();
     }
 
     public static User checkForUserData(HistoryTracker historyTracker) {
