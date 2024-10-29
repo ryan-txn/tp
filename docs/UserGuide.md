@@ -8,9 +8,20 @@
 
 Welcome to HealthMate! Follow these steps to get started quickly:
 
+**Create you user profile**
+Input data about yourself needed to compute your ideal daily calorie intake. 
+This includes:
+- Your height in cm (e.g. 180)
+- Your weight in kg (e.g. 80)
+- Your gender (either male or female)
+- Your age in years (e.g. 20)
+- Your personal ealth goal (either WEIGHT_LOSS, STEADY_STATE, BULKING)
+
+
 **Log Your First Meal**
 - Enter the meal name and calories.
 - Example: `add mealEntry grapes /c400`
+- The printed consumption bar shows you how much more (or less) you should consume to reach your health goal.
 
 **Track Your Progress**
 - Use the "Log Meals" feature to view your meal entries and track your daily caloric intake.
@@ -147,13 +158,13 @@ delete mealEntry 1
 [] = optional parameter
 {} = parameter
 
-| Command                             | Syntax                                                                   | Description                                                       |
-|-------------------------------------|--------------------------------------------------------------------------|-------------------------------------------------------------------|
-| List all commmands                  | `list commands` or `list commands [{command}]`                           | Lists all available commands and the proper formatting            
-| Save meal to meal options           | `save meal {meal} /c{Number of calories}`                                | Prompts for meal name, calories, then confirms saving the meal.   |
-| Add meal entry for tracking         | `add mealEntry {meal} [/c{Number of calories}] [/p{Number of portions}]` | Adds meal to daily caloric intake and shows progress toward goal. |
-| Show list of available meal options | `meal menu`                                                              | Prints all available meals from the saved options list.           |
-| Show meal history                   | `log meals`                                                              | Displays history of meals with timestamp and calories.            |
-| Delete meal from meal menu          | `delete meal {index of meal in meal menu}`                               | Deletes meal option from the meal menu at the specified index     |
-| Delete meal entry from meal log     | `delete mealEntry {index of meal in the meal log`                        | Deletes meal entry from the meal log at the specified index       |
+| Command                             | Syntax                                                                   | Description                                                                                                    |
+|-------------------------------------|--------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------|
+| List all commmands                  | `list commands` or `list commands [{command}]`                           | Lists all available commands and the proper formatting.                                                         
+| Save meal to meal options           | `save meal {meal} /c{Number of calories}`                                | Prompts for meal name, calories, then confirms saving the meal.                                                |
+| Add meal entry for tracking         | `add mealEntry {meal} [/c{Number of calories}] [/p{Number of portions}]` | Adds meal to daily caloric intake and shows progress toward goal.                                              |
+| Show list of available meal options | `meal menu`                                                              | Prints all available meals from the saved options list.                                                        |
+| Show meal history                   | `log meals`                                                              | Displays history of meals with timestamp and calories.                                                         |
+| Delete meal from meal menu          | `delete meal {index of meal in meal menu}`                               | Deletes meal option from the meal menu at the specified index.                                                 |
+| Delete meal entry from meal log     | `delete mealEntry {index of meal in the meal log`                        | Deletes meal entry from the meal log at the specified index and shows effect on the days progress toward goal. |
 
