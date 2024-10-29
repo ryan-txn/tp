@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
 public class Logging {
-    public static Logger setupLogger(Logger logger, String NameClassToBeLogged) {
+    public static Logger setupLogger(Logger logger, String nameClassToBeLogged) {
         LogManager.getLogManager().reset();
         logger.setLevel(Level.ALL);
 
@@ -20,7 +20,7 @@ public class Logging {
 
         try {
             HistoryTracker.createDirectoryIfNotExists("logs");
-            FileHandler fh = new FileHandler("logs" + File.separator + NameClassToBeLogged + ".log");
+            FileHandler fh = new FileHandler("logs" + File.separator + nameClassToBeLogged + ".log");
             fh.setFormatter(new SimpleFormatter());
             fh.setLevel(Level.ALL);
             logger.addHandler(fh);
