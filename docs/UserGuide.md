@@ -5,7 +5,30 @@
 **HealthMate** is a meal and calorie tracking application designed to help users manage their dietary intake, monitor their weight, and track their overall health goals. The app enables users to log meals, track calories, and observe their progress towards a healthier lifestyle.
 
 ## Quick Start Guide
-tbd later
+
+Welcome to HealthMate! Follow these steps to get started quickly:
+
+**Log Your First Meal**
+- Enter the meal name and calories.
+- Example: `add mealEntry grapes /c400`
+
+**Track Your Progress**
+- Use the "Log Meals" feature to view your meal entries and track your daily caloric intake.
+- Example: `log meals`
+
+**Store Common Meals**
+- Save frequently eaten meals to your meal menu for quick access
+- Example: `save meal pizza /c800` saves pizza with 800 calories to your meal menu
+- Add meals from the meal menu without specifying the calories
+- Example: `add mealEntry pizza`
+
+**Track Meal Menu**
+- Use the `meal menu` command to view your saved meal options
+- Example: `meal menu`
+
+
+
+Enjoy your journey towards a healthier lifestyle with HealthMate!
 ## Features
 
 ### List Commands
