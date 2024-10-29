@@ -66,6 +66,13 @@ The MealEntry class extends the meal class and contains an additional field time
 This distinction was made, as objects of the Meal class will represent possible meal options to choose form, 
 while a mealEntry is a concrete calorie consumption the user wants to track. The latter makes a timestamp indispensible. 
 
+#### HealthGoal
+The HealthGoal class manages a user's health goal and calculates target calorie intake based on user data such as height, weight, age, and gender. 
+It offers three main health goals: weight loss, steady state, and bulking, each with a corresponding calorie modification factor. 
+The class supports setting, storing, and retrieving the health goal. 
+Additionally, it provides a method to compute target calories using the Harris-Benedict Equation, modified by the current health goal. 
+This allows the class to adapt the calorie calculations according to the user's health objectives, making it versatile for various fitness plans.
+
 #### User
 Placeholder for user class. 
 
