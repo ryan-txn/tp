@@ -139,9 +139,13 @@ public class ChatParser {
             break;
         case HistoricCalorieProgressCommand.COMMAND:
             logger.log(Level.INFO, "Executing command to print Historic calorie bar");
-            int days = Integer.parseInt(inputTokens[2].strip());
-            currentUser = User.checkForUserData(historyTracker);
-            mealEntries.printHistoricConsumptionBars(currentUser, days);
+            try{
+                int days = Integer.parseInt(inputTokens[2].strip());
+                currentUser = User.checkForUserData(historyTracker);
+                mealEntries.printHistoricConsumptionBars(currentUser, days);
+            } catch (NumberFormatException e) {
+                UI.printReply(inputTokens[2].strip(), "THE FOLLOWING IS NOT A VALID NUMBER: ");
+            }
             break;
         default:
             UI.printReply("Use a valid command", "Retry: ");

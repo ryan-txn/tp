@@ -92,18 +92,46 @@ public class MealEntriesList extends MealList {
         assert days >= 0 : "Days cannot be negative";
 
         LocalDate today = DateTimeUtils.currentDate();
-
         user.printTargetCalories();
-        for (int i = days; i >= 0; i--) {
+
+        int idealCalories = (int) user.getIdealCalories();
+        int totalIdealCalories = 0;
+        int totalCaloriesConsumed = 0;
+        int maxCaloriesConsumed = 0;
+        LocalDate maxCaloriesDate = today;
+
+        for (int i = days - 1; i >= 0; i--) {
             LocalDate printDate = today.minusDays(i);
             LocalDateTime upperDateBound = DateTimeUtils.endOfDayLocalDateTime(printDate);
             LocalDateTime lowerDateBound = DateTimeUtils.startOfDayLocalDateTime(printDate);
 
             MealEntriesList mealsConsumed = this.getMealEntriesByDate(upperDateBound, lowerDateBound);
             int caloriesConsumed = mealsConsumed.getTotalCaloriesConsumed();
-
             user.printHistoricConsumptionBar(caloriesConsumed, printDate);
+
+            totalCaloriesConsumed += caloriesConsumed;
+            totalIdealCalories += idealCalories;
+
+            if (maxCaloriesConsumed < caloriesConsumed) {
+                maxCaloriesDate = printDate;
+                maxCaloriesConsumed = caloriesConsumed;
+            }
         }
+
+        UI.printString("Stats over past " + days + " days");
+
+        UI.printString("Total Calories Consumed: " + totalCaloriesConsumed);
+        UI.printString("Total Ideal Calories: " + totalIdealCalories);
+
+        UI.printString("Percent Target Consumed: "
+                + Math.round(100.0 * (float)totalCaloriesConsumed / (float)totalIdealCalories) + "%");
+
+        UI.printString( "Day with Max Calories Consumed: " + maxCaloriesDate);
+
+        UI.printString("Calories Consumed: " + maxCaloriesConsumed);
+
+        UI.printString("Percent Target Consumed: "
+                + Math.round(100.0 * (float)maxCaloriesConsumed / (float)idealCalories) + "%");
 
         UI.printSeparator();
     }
