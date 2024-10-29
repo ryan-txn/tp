@@ -23,10 +23,37 @@ This includes:
 - Example: `add mealEntry grapes /c400`
 - The printed consumption bar shows you how much more (or less) you should consume to reach your health goal.
 
-**Track Your Progress**
+**Get an overview on your calorie consumption**
 - Use the "Log Meals" feature to view your meal entries and track your daily caloric intake.
-- Example: `log meals`
-
+- Example: Add your first mealEntry and then use `log meals` to assess the meals tracked so far. 
+  ```
+  add mealEntry burger /c300
+  _____________________________________________________________________________
+  Tracked: burger with 300 calories (at: 2024-10-29T22:00)
+  _____________________________________________________________________________
+  % of Expected Calorie Intake Consumed:
+  ███░░░░░░░░░░░░░░░░░░░░░░░░░░|  11% |░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ (2024-10-29)
+  _____________________________________________________________________________
+  log meals
+  _____________________________________________________________________________
+  1: burger with 300 calories (at: 2024-10-29T22:00)
+  _____________________________________________________________________________
+  ```
+  
+**Track your daily progress**
+- Based on your user data and your health goal we computed your ideal daily calorie intake. 
+- When you add (or delete) a mealEntry, we print a consumption bar showing how much more/less you should consume.
+- Interpreting the consumption bar:
+  - The percentage in the middle shows how much percent of your ideal calorie consumption you have consumed so far.
+  - The date on the right shows you the date for which this percentage is calculated.
+- Example: On the 29th of October 2024 you have consumed 11% of your ideal calorie intake. 
+```
+  % of Expected Calorie Intake Consumed:
+  ███░░░░░░░░░░░░░░░░░░░░░░░░░░|  11% |░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ (2024-10-29)
+```
+  
+  
+  
 **Store Common Meals**
 - Save frequently eaten meals to your meal menu for quick access
 - Example: `save meal pizza /c800` saves pizza with 800 calories to your meal menu
