@@ -76,7 +76,7 @@ public class User {
      * Prints the ideal caloric intake.
      */
     public void printTargetCalories() {
-        UI.printReply(String.valueOf((int) this.idealCalories), "Ideal Caloric Intake: ");
+        UI.printReply(String.valueOf((int) this.idealCalories), "Ideal Daily Caloric Intake: ");
     }
 
     /**

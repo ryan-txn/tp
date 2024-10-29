@@ -77,6 +77,8 @@ public class MealEntriesList extends MealList {
         LocalDate today = endOfDayTime.toLocalDate();
         MealEntriesList mealsConsumedToday = this.getMealEntriesByDate(endOfDayTime, todayMidnight);
         int caloriesConsumed = mealsConsumedToday.getTotalCaloriesConsumed();
+        user.printTargetCalories();
+        UI.printString("Current Calories Consumed: " + caloriesConsumed);
         user.printUsersConsumptionBar("% of Expected Calorie Intake Consumed: ", caloriesConsumed, today);
     }
 

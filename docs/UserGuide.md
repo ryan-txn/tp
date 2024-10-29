@@ -8,6 +8,10 @@
 
 Welcome to HealthMate! Follow these steps to get started quickly:
 
+**Entering the App**
+- Open CLI and Navigate to location of `HealthMate.jar`
+- Run the following Command: `java -jar HealthMate.jar`
+
 **Log Your First Meal**
 - Enter the meal name and calories.
 - Example: `add mealEntry grapes /c400`
@@ -112,7 +116,7 @@ log meals
       2: pizza with 400 calories (at: 2024-10-14T15:00)
       _________________________________________________________________________
 ```
-#### Delete meal from meal lo: `delete mealEntry {index of meal in the meal log`
+#### Delete meal from meal log: `delete mealEntry {index of meal in the meal log`
 - Deletes meal entry from the meal log at the specified index
 - Example Usage
 ```
@@ -121,16 +125,56 @@ delete mealEntry 1
       Deleted entry: burger with 300 calories (at: 2024-10-14T15:00)
       _________________________________________________________________________
 ```
+### Calorie Progress Commands:
+#### Show Calorie Progress for Today: `show todayCalories`
+- Prints a Calorie Progress Bar to represent Today Calorie Progress
+- Example Usage:
+```
+show todayCalories
+      _____________________________________________________________________________
+      Ideal Daily Caloric Intake: 2865
+      _____________________________________________________________________________
+      Current Calories Consumed: 900
+      % of Expected Calorie Intake Consumed: 
+      █████████░░░░░░░░░░░░░░░░░░░░|  32% |░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ (2024-10-29)
+      _____________________________________________________________________________
+
+```
+#### Show Historic Calorie Progress: `show historicCalories {Number of Days inclu. Today}`
+- Prints Calorie Progress Bars & Various Stats to represent Historical Calorie Progress
+- Example Usage:
+```
+show historicCalories 3
+      _____________________________________________________________________________
+      Ideal Daily Caloric Intake: 2865
+      _____________________________________________________________________________
+      ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░|   0% |░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ (2024-10-27)
+      ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░|   0% |░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ (2024-10-28)
+      █████████░░░░░░░░░░░░░░░░░░░░|  32% |░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ (2024-10-29)
+      Stats over past 3 days
+      Total Calories Consumed: 900
+      Total Ideal Calories: 8595
+      Percent Target Consumed: 10%
+      Day with Max Calories Consumed: 2024-10-29
+      Calories Consumed: 900
+      Percent Target Consumed: 31%
+      _____________________________________________________________________________
+```
+
 ## FAQ
 ## Command Summary
 
-| Command                             | Syntax                                             | Description                                                       |
-|-------------------------------------|----------------------------------------------------|-------------------------------------------------------------------|
-| List all commmands                  | `list commands`                                    | Lists all available commands and the proper formatting            
-| Save meal to meal options           | `save meal {meal} /c{Number of calories}`          | Prompts for meal name, calories, then confirms saving the meal.   |
-| Add meal entry for tracking         | `add mealEntry {meal} /c{Number of calories}`      | Adds meal to daily caloric intake and shows progress toward goal. |
-| Show list of available meal options | `meal menu`                                        | Prints all available meals from the saved options list.           |
-| Show meal history                   | `log meals`                                        | Displays history of meals with timestamp and calories.            |
-| Delete meal from meal menu          | `delete meal {index of meal in meal menu}`         | Deletes meal option from the meal menu at the specified index     |
-| Delete meal entry from meal log     | `delete mealEntry {index of meal in the meal log`  | Deletes meal entry from the meal log at the specified index       |
+| Command                             | Syntax                                                 | Description                                                                            |
+|-------------------------------------|--------------------------------------------------------|----------------------------------------------------------------------------------------|
+| List all commmands                  | `list commands`                                        | Lists all available commands and the proper formatting                                 
+| Save meal to meal options           | `save meal {meal} /c{Number of calories}`              | Prompts for meal name, calories, then confirms saving the meal.                        |
+| Add meal entry for tracking         | `add mealEntry {meal} /c{Number of calories}`          | Adds meal to daily caloric intake and shows progress toward goal.                      |
+| Show list of available meal options | `meal menu`                                            | Prints all available meals from the saved options list.                                |
+| Show meal history                   | `log meals`                                            | Displays history of meals with timestamp and calories.                                 |
+| Delete meal from meal menu          | `delete meal {index of meal in meal menu}`             | Deletes meal option from the meal menu at the specified index                          |
+| Delete meal entry from meal log     | `delete mealEntry {index of meal in the meal log`      | Deletes meal entry from the meal log at the specified index                            |
+| Show Calorie Progress for Today     | `show todayCalories`                                   | Prints a Calorie Progress Bar to represent Today Calorie Progress                      |
+| Show Historic Calorie Progress      | `show historicCalories {Number of Days inclu. Today}`  | Prints Calorie Progress Bars & Various Stats to represent Historical Calorie Progress  |
+
+
 
