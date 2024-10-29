@@ -73,7 +73,7 @@ public class User {
      * Prints the ideal caloric intake.
      */
     public void printTargetCalories() {
-        UI.printReply(String.valueOf(this.idealCalories), "Ideal Caloric Intake: ");
+        UI.printReply(String.valueOf((int) this.idealCalories), "Ideal Caloric Intake: ");
     }
 
     /**
@@ -88,6 +88,10 @@ public class User {
         assert timestamp != null : "Timestamp cannot be null";
 
         UI.printHistoricConsumptionBars(this.idealCalories, currentCalories, timestamp);
+    }
+
+    public double getIdealCalories() {
+        return this.idealCalories;
     }
 
     @Override
