@@ -24,6 +24,12 @@ public class User {
         this.localDateTime = LocalDateTime.now();
     }
 
+    /**
+     * Loads a User instance if a file with user data exists.
+     * Creates a new User instance otherwise
+     * @param historyTracker
+     * @return A newly created or "loaded" user object
+     */
     public static User checkForUserData(HistoryTracker historyTracker) {
         Optional<User> optionalUser = historyTracker.loadUserData();
         User user = optionalUser.orElseGet(() -> User.askForUserData());
@@ -31,6 +37,10 @@ public class User {
         return user;
     }
 
+    /**
+     * Asks user to input specifics for creating a new User instance
+     * @return A new user instance created with the data inputted by user.
+     */
     public static User askForUserData() {
 
         try {
@@ -64,11 +74,24 @@ public class User {
         }
     }
 
+    /**
+     * Prints a user's consumption bar 
+     * @param message Print message to the user
+     * @param currentCalories Actual calorie consumption
+     * @param timestamp The time for which ideal and actual consumption is compared
+     */
     public void printUsersConsumptionBar(String message, int currentCalories, LocalDate timestamp) {
         UI.printConsumptionBar(message, this.idealCalories, currentCalories, timestamp);
     }
 
-    public String buildUsersConsumptionBar(String message, int currentCalories, LocalDate timestamp) {
+    /**
+     * Simulates the construction of a user-specific consumption bar for testing
+     * @param message Print message to the user
+     * @param currentCalories Actual calorie consumption
+     * @param timestamp The time for which ideal and actual consumption is compared
+     * @return The simulated consumption bar
+     */
+    public String simulateUsersConsumptionBar(String message, int currentCalories, LocalDate timestamp) {
         return UI.buildConsumptionBar(message, this.idealCalories, currentCalories, timestamp);
     }
 

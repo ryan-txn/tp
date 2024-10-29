@@ -4,6 +4,7 @@ package seedu.healthmate;
 import static seedu.healthmate.MealEntry.extractMealEntryFromString;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,7 @@ public class MealEntriesList extends MealList {
             for (int i =0; i<portions; i++) {
                 this.addMeal(meal);
             }
-            printDaysConsumptionBar(user, LocalDateTime.now());
+            printDaysConsumptionBar(user, meal.getTimestamp());
         } catch (EmptyCalorieException | BadCalorieException e) {
             UI.printReply("Every meal needs a calorie integer. (e.g. /c120)", "");
         } catch (StringIndexOutOfBoundsException s) {
@@ -43,11 +44,20 @@ public class MealEntriesList extends MealList {
         }
     }
 
+    /**
+     * Removes a meal from the list of tracked meal consumption
+     * Prints out visual feedback to highlight the
+     * resulting change interms of today's calorie consumption bar
+     * @param userInput The user input causing the this remove process
+     * @param command The identified command instance
+     * @param user The user's profile
+     */
     public void removeMealWithFeedback(String userInput, String command, User user) {
         try {
             int mealNumber = Integer.parseInt(userInput.replaceAll(command, "").strip());
+            LocalDateTime mealEntryDate = this.getDateOfMealEntry(mealNumber);
             deleteMeal(mealNumber);
-            printDaysConsumptionBar(user, LocalDateTime.now());
+            printDaysConsumptionBar(user, mealEntryDate);
         } catch (NumberFormatException n) {
             UI.printReply("Meal Entry index needs to be an integer", "Error: ");
         } catch (IndexOutOfBoundsException s) {
@@ -72,14 +82,25 @@ public class MealEntriesList extends MealList {
         return new ArrayList<>(super.mealList);
     }
 
-    public void printDaysConsumptionBar(User user, LocalDateTime endOfDayTime) {
-        LocalDateTime todayMidnight = endOfDayTime.truncatedTo(ChronoUnit.DAYS);
-        LocalDate today = endOfDayTime.toLocalDate();
-        MealEntriesList mealsConsumedToday = this.getMealEntriesByDate(endOfDayTime, todayMidnight);
+    /**
+     * Computes actual calorie consumption and delegates the construction of the
+     * consumption bar to the user instance with the relevant idealCalories consumption data
+     * @param user User profile for which the ideal calorie consumption will be compared with the actual consumption
+     * @param dateTime
+     */
+    public void printDaysConsumptionBar(User user, LocalDateTime dateTime) {
+        assert user != null : "User cannot be null";
+        assert dateTime != null: "Date needs to be specified to print todays consumption bar";
+        LocalDateTime todayMidnight = dateTime.truncatedTo(ChronoUnit.DAYS);
+        LocalDateTime todayEndOfDay = dateTime.toLocalDate().atTime(LocalTime.MAX);
+
+        MealEntriesList mealsConsumedToday = this.getMealEntriesByDate(todayEndOfDay, todayMidnight);
         int caloriesConsumed = mealsConsumedToday.getTotalCaloriesConsumed();
         user.printTargetCalories();
         UI.printString("Current Calories Consumed: " + caloriesConsumed);
-        user.printUsersConsumptionBar("% of Expected Calorie Intake Consumed: ", caloriesConsumed, today);
+        user.printUsersConsumptionBar("% of Expected Calorie Intake Consumed: ",
+                caloriesConsumed,
+                dateTime.toLocalDate());
     }
 
     /**
@@ -150,6 +171,11 @@ public class MealEntriesList extends MealList {
         return this.mealList.stream()
                 .map(meal -> meal.getCalories())
                 .reduce(0, (accumulator, calorie) -> accumulator + calorie);
+    }
+
+    private LocalDateTime getDateOfMealEntry(int mealNumber) {
+        MealEntry mealEntry = (MealEntry) this.mealList.get(mealNumber - 1);
+        return mealEntry.getTimestamp();
     }
 
 }
