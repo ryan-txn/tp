@@ -30,27 +30,47 @@ Welcome to HealthMate! Follow these steps to get started quickly:
 
 Enjoy your journey towards a healthier lifestyle with HealthMate!
 ## Features
-
+### Legend
+[] = optional parameter
+{} = parameter
 ### List Commands
-Use the `list commands` command to view all valid commands and their formats.
-- Example usage to store a meal of grapes with 400 calories
+Use the `list commands [{command}]` command to view all valid commands and their formats.
+- Example usage to list all commands
 ```
 list commands
-      _________________________________________________________________________
-      Command: list commands
-      Format: list commands
-      Description: Lists out all available commands
-      _________________________________________________________________________
-      Command: save meal
-      Format: save meal {meal name} /c{number of calories}
-      Description: Saves a meal to the meal menu for later use with the add mealEntry command
-      _________________________________________________________________________
-      Command: log meals
-      Format: log meals
-      Description: Displays the log of all meal entries along with their Timestamp in Date Time format
-      _________________________________________________________________________
-      ...
+      _____________________________________________________________________________
+      Use `list commands <command>` to view a command's syntax
+      _____________________________________________________________________________
+      list commands
+      _____________________________________________________________________________
+      show todayCalories
+      _____________________________________________________________________________
+      update userdata
+      _____________________________________________________________________________
+      show historicCalories
+      _____________________________________________________________________________
+      save meal
+      _____________________________________________________________________________
+      log meals
+      _____________________________________________________________________________
+      meal menu
+      _____________________________________________________________________________
+      delete mealEntry
+      _____________________________________________________________________________
+      add mealEntry
+      _____________________________________________________________________________
+      delete meal
+      _____________________________________________________________________________
 ```
+List Commands with command parameter
+```
+list commands delete meal
+      _____________________________________________________________________________
+      Command: delete meal
+      Format: delete meal {index of meal in meal menu}
+      Description: Deletes meal option at the specified index from the meal menu
+```
+
 ### Meal Management Commands:
 
 #### Save Meal to Meal Menu: `save meal {Name of Meal} /c{Number of calories}`
@@ -123,14 +143,17 @@ delete mealEntry 1
 ```
 ## FAQ
 ## Command Summary
+### Legend
+[] = optional parameter
+{} = parameter
 
-| Command                             | Syntax                                             | Description                                                       |
-|-------------------------------------|----------------------------------------------------|-------------------------------------------------------------------|
-| List all commmands                  | `list commands`                                    | Lists all available commands and the proper formatting            
-| Save meal to meal options           | `save meal {meal} /c{Number of calories}`          | Prompts for meal name, calories, then confirms saving the meal.   |
-| Add meal entry for tracking         | `add mealEntry {meal} /c{Number of calories}`      | Adds meal to daily caloric intake and shows progress toward goal. |
-| Show list of available meal options | `meal menu`                                        | Prints all available meals from the saved options list.           |
-| Show meal history                   | `log meals`                                        | Displays history of meals with timestamp and calories.            |
-| Delete meal from meal menu          | `delete meal {index of meal in meal menu}`         | Deletes meal option from the meal menu at the specified index     |
-| Delete meal entry from meal log     | `delete mealEntry {index of meal in the meal log`  | Deletes meal entry from the meal log at the specified index       |
+| Command                             | Syntax                                                                   | Description                                                       |
+|-------------------------------------|--------------------------------------------------------------------------|-------------------------------------------------------------------|
+| List all commmands                  | `list commands` or `list commands [{command}]`                           | Lists all available commands and the proper formatting            
+| Save meal to meal options           | `save meal {meal} /c{Number of calories}`                                | Prompts for meal name, calories, then confirms saving the meal.   |
+| Add meal entry for tracking         | `add mealEntry {meal} [/c{Number of calories}] [/p{Number of portions}]` | Adds meal to daily caloric intake and shows progress toward goal. |
+| Show list of available meal options | `meal menu`                                                              | Prints all available meals from the saved options list.           |
+| Show meal history                   | `log meals`                                                              | Displays history of meals with timestamp and calories.            |
+| Delete meal from meal menu          | `delete meal {index of meal in meal menu}`                               | Deletes meal option from the meal menu at the specified index     |
+| Delete meal entry from meal log     | `delete mealEntry {index of meal in the meal log`                        | Deletes meal entry from the meal log at the specified index       |
 
