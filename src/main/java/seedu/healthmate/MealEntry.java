@@ -39,6 +39,10 @@ public class MealEntry extends Meal{
         return mealEntry;
     }
 
+    public LocalDateTime getTimestamp() {
+        return this.timestamp;
+    }
+
 
     @Override
     public String toSaveString() {

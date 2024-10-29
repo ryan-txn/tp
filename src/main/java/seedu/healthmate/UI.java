@@ -15,7 +15,6 @@ public class UI {
     private static final String INDENTATION = "      ";
     private static final String LINE = INDENTATION + SEPARATOR;
     private static final String FRAME_LINE = LINE + LINE_SEPARATOR;
-
     private static final String LOGO =
               INDENTATION + " |\n"
             + INDENTATION + "     \\\\|//\n"
@@ -46,12 +45,12 @@ public class UI {
         System.out.println(LINE);
     }
 
-    public static void printString(String input) {
-        System.out.println(INDENTATION + input);
-    }
-
     public static void printSeparator() {
         System.out.println(LINE);
+    }
+
+    public static void printString(String input) {
+        System.out.println(INDENTATION + input);
     }
 
     public static void printMealOptions(MealList mealOptions) {
@@ -84,6 +83,10 @@ public class UI {
         System.out.println("The meal was not found in the meal menu!");
     }
 
+    /**
+     * Prints list of possible commands to the command line
+     * @param commands A list of possible commands the user can choose to interact with the system
+     */
     public static void printCommands(List<Command> commands) {
         System.out.println(LINE);
         if (commands.size() == 1) {
@@ -96,26 +99,6 @@ public class UI {
                 System.out.println(LINE);
             }
         }
-    }
-
-
-
-    public static String simulateReply(String input, String actionPerformed) {
-        String line1 = LINE_SEPARATOR;
-        String line2 = INDENTATION + actionPerformed + input + LINE_SEPARATOR;
-        return  line1 + line2 + FRAME_LINE;
-    }
-
-    public static String simulateFareWell() {
-        String line1 = INDENTATION + "Stay healthy!" + LINE_SEPARATOR;;
-        return line1 + FRAME_LINE;
-    }
-
-    public static String simulateInitOutput() {
-        String line2 = INDENTATION + "Meal Entries Loaded Successfully!" + LINE_SEPARATOR;
-        String line3 = INDENTATION + "Meal Options Loaded Successfully!" + LINE_SEPARATOR;
-        return FRAME_LINE + line2 + line3 + FRAME_LINE + LINE;
-
     }
 
     /**
@@ -135,6 +118,7 @@ public class UI {
 
     /**
      * Prints bar comparing actual versus an expected calorie consumption
+     *
      * Inspired by:
      * https://medium.com/javarevisited/how-to-display-progressbar-on-the-standard-console-using-java-18f01d52b30e
      * @param message Message printed if actual is 2x larger than expected with exact value
@@ -146,11 +130,21 @@ public class UI {
                                            double expectedValue,
                                            int actualValue,
                                            LocalDate timestamp) {
-
+        assert timestamp != null : "Timestamp cannot be null";
         String consumptionBar = buildConsumptionBar(message, expectedValue, actualValue, timestamp);
         System.out.println(consumptionBar);
     }
 
+    /**
+     * High-level creation function of the progress bar.
+     * Embedds the progress bar into the visual format of the UI
+     *
+     * @param message Message printed if actual is 2x larger than expected with exact value
+     * @param expectedValue double expected value
+     * @param actualValue int actual value
+     * @param timestamp timestamp in which the provided actualValue was consumed
+     * @return the progressBar in form of a String ready to be printed
+     */
     public static String buildConsumptionBar(String message,
                                        double expectedValue,
                                        int actualValue,
@@ -205,7 +199,23 @@ public class UI {
     }
 
 
+    // Functions to simulate UI behaviour for testing
+    public static String simulateReply(String input, String actionPerformed) {
+        String line1 = LINE_SEPARATOR;
+        String line2 = INDENTATION + actionPerformed + input + LINE_SEPARATOR;
+        return  line1 + line2 + FRAME_LINE;
+    }
 
+    public static String simulateFareWell() {
+        String line1 = INDENTATION + "Stay healthy!" + LINE_SEPARATOR;;
+        return line1 + FRAME_LINE;
+    }
 
+    public static String simulateInitOutput() {
+        String line2 = INDENTATION + "Meal Entries Loaded Successfully!" + LINE_SEPARATOR;
+        String line3 = INDENTATION + "Meal Options Loaded Successfully!" + LINE_SEPARATOR;
+        return FRAME_LINE + line2 + line3 + FRAME_LINE + LINE;
+
+    }
 
 }

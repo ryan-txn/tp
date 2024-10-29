@@ -88,7 +88,7 @@ public class ChatParserTest {
         String timeString = "(at: " + today + ")";
         String expectedOuput = UI.simulateInitOutput()
             + UI.simulateReply("pizza with 300 calories " + timeString, "Tracked: ")
-            + user.buildUsersConsumptionBar("% of Expected Calorie Intake Consumed: ",
+            + user.simulateUsersConsumptionBar("% of Expected Calorie Intake Consumed: ",
                 300,
                 today.toLocalDate())
             + System.lineSeparator()
