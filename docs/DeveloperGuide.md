@@ -18,7 +18,12 @@ The main classes of this implementation are the following:
 - MealEntry
 - HistoryTracker
 - UI
+
 The following diagram illustrates their associations, methods and attributes.
+The UI class is omitted since it is used across all classes to systematize any form of printing output to the user.
+To showcase the usage of the UI class, we for the sake of clarity, would like to point the reader to the subsequent 
+sequence diagrams.
+
 ![High Level CD](images/highLevelClassDiagram.jpg)
 
 #### HealthMate
@@ -29,18 +34,21 @@ the user enters commands with additional information into his command line appli
 The content of these commands is parsed by the ChatParser. 
 
 #### ChatParser
-The ChatParser class, which is instantiated exactly once, manages the overall usage flow via its run() method. 
-It contains a MealEntriesList object called MealEntries as well as a MealList object called mealOptions.
-Thereby MealEntries contain tracked calorie consumptions. mealOptions tracks possible meals that are presaved by the 
-user in order to quickly select from a list of meals for which the calories of a portion are already saved. 
-Therefore, mealEntries and mealOptions are the primary objects with which the user interacts through his command line. 
-The ChatParser class orchestrates the effects of the users command line prompts, ensuring no unintended changes are done.
-Thereby, we distinguish between basic command prompts such as "bye" which are handled directly within run() and more
-sophisticated commands that require several tokens and are therefore abstracted into the multiCommandParsing() method,
-which is called within the run() method. 
-To save the changes temporarily the ChatParser object also has a HistoryTracker object which facilitates the process of 
-storing User data, mealEntries data and mealOptions data to their corresponding files. Besides storing data, 
-loading existing data from the files, once another usage session is initiated is conducted by the HistoryTracker as well.
+The ChatParser class, instantiated once per application run, manages HealthMates overal usage 
+flow through its main run() method. 
+
+It has two primary attributes: 
+- A `MealEntriesList` object called `mealEntries` 
+  - Contains tracked calorie consumption 
+- A `MealList` object called `mealOptions` 
+  - Contains meals that are presaved by the user for quick selection to track commonly consumed meals
+
+These objects represent the application's underlying data with which the user interacts through the command line.
+To ensure no unintended changes are done, the ChatParser class orchestrates the effects of the users prompts.
+For saving these changes the ChatParser class makes use the `HistoryTracker`  which facilitates the process of 
+storing (and loading) User data, mealEntries data and mealOptions data to their corresponding files. 
+
+More details on the implementation of ChatParser follows in the Feature Section. 
 
 #### MealList
 The MealList class contains a private ArrayList of Meal object.
@@ -68,7 +76,15 @@ This distinction was made, as objects of the Meal class will represent possible 
 while a mealEntry is a concrete calorie consumption the user wants to track. The latter makes a timestamp indispensible. 
 
 #### User
-Placeholder for user class. 
+The user class encapsulates all necessary information for computing an ideal daily calorie consumption. 
+This includes:
+- Height (in cm): Double 
+- Weight (in cm): Double
+- Age: Integer
+- Gender: Boolean
+- Health goal: HealthGoal
+- Ideal calorie intake: Computed based on the information above 
+- Date: LocalDateTime specifying the date of the above information
 
 The following diagram visualizes the process of creating or loading a User object.
 ![User SD](images/userSequenceDiagram.jpg)
@@ -100,6 +116,36 @@ HistoryTracker allows for the persistance of user inputted data between sessions
 This section will document the contributions made by each team member regarding the implementation or planned feature enhancements, detailing the design and thought processes behind them.
 
 ---
+
+### ChatParser Input Handling
+The 'ChatParser' class has the responsibility of parsing user input to steer the 
+application logic based on predefined commands specified in the `CommandMap' class.
+Therefore, the ChatParser class acts as the main interface between user input and command execution. 
+This includes extracting and routing commands, as well as exception handling for 
+false input. 
+
+#### Feature Implementation
+The `ChatParser class:`
+1. Accepts user input. I.e. it reads input from the command line
+2. Tokenizes commands and identifys one- and two-token commands
+3. Routes commands based on the identified command tokens which are specified in the `CommandMap` class. This is done 
+using methods such as `multiCommandParsing` for 2-token commands and `run` which encapsulates the main loop of
+user interaction until the exit command "bye" terminates the application.
+4. Logs command routing and its effects on a high level to enable tracking of the application's activity.
+
+#### Why It Is Implemented This Way
+The ChatParser class was implemented in the above manner for three reasons:
+1. It allows create one abstract unit for handling the responsibility of orchestrating usage flow.
+2. As a high-level abstraction layer it improves readability by bundliing the overall application logic in one place.
+3. Its modularity allows for easy extensions or modifications to `CommandMap` and `multiCommandParsing`. 
+
+#### Alternatives considered
+Direct command handling in the main loop. Reduces the depth of the application, 
+but comes at the cost of reduced readability and higher cohesion. 
+
+#### Extensions for v.2.1
+Seperating the responsibilities of reading and preprocessing user input from the responsibility 
+to steer command routing. This could improve the maintainability of the ChatParser class in the future. 
 
 ### Command Handling with CommandMap Class
 
