@@ -143,7 +143,7 @@ Getting info from meal options...
 ```
 
 #### Delete meal from meal menu: `delete meal {index of meal in meal menu}`
--  Deletes meal option from the meal menu at the specified index
+- Deletes meal option from the meal menu at the specified index
 - Example usage
 ```
 delete meal 1
@@ -173,14 +173,21 @@ log meals
       2: pizza with 400 calories (at: 2024-10-14T15:00)
       _________________________________________________________________________
 ```
-#### Delete meal from meal log: `delete mealEntry {index of meal in the meal log`
+#### Delete meal from meal log: `delete mealEntry {index of meal in the meal log}`
 - Deletes meal entry from the meal log at the specified index
 - Example Usage
 ```
 delete mealEntry 1
-      _________________________________________________________________________
-      Deleted entry: burger with 300 calories (at: 2024-10-14T15:00)
-      _________________________________________________________________________
+      _____________________________________________________________________________
+      Deleted entry: Cheeseburger with 900 calories (at: 2024-10-30T11:00)
+      _____________________________________________________________________________
+      _____________________________________________________________________________
+      Ideal Daily Caloric Intake: 2865
+      _____________________________________________________________________________
+      Current Calories Consumed: 500
+      % of Expected Calorie Intake Consumed: 
+      █████░░░░░░░░░░░░░░░░░░░░░░░░|  18% |░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ (2024-10-30)
+      _____________________________________________________________________________
 ```
 ### Calorie Progress Commands:
 #### Show Calorie Progress for Today: `show todayCalories`
