@@ -29,12 +29,6 @@ public class MealEntriesList extends MealList {
             for (int i =0; i<portions; i++) {
                 this.addMeal(meal);
             }
-//            LocalDate today = DateTimeUtils.currentDate();
-//            LocalDateTime todayMidnight = DateTimeUtils.startOfDayLocalDateTime(today);
-//            LocalDateTime todayEndOfDay = DateTimeUtils.endOfDayLocalDateTime(today);
-//            MealEntriesList mealsConsumedToday = this.getMealEntriesByDate(todayEndOfDay, todayMidnight);
-//            int caloriesConsumed = mealsConsumedToday.getTotalCaloriesConsumed();
-//            user.printUsersConsumptionBar("% of Expected Calorie Intake Consumed: ", caloriesConsumed, today);
             printDaysConsumptionBar(user, meal.getTimestamp());
         } catch (EmptyCalorieException | BadCalorieException e) {
             UI.printReply("Every meal needs a calorie integer. (e.g. /c120)", "");
