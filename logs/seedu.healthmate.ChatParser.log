@@ -31,4 +31,3 @@ INFO: Executing command to show meal history
 Oct 30, 2024 1:18:30 PM seedu.healthmate.ChatParser run
 INFO: User input contains more than 1 token
 Oct 30, 2024 1:18:30 PM seedu.healthmate.ChatParser run
-INFO: Getting next user input line
