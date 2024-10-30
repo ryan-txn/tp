@@ -96,11 +96,13 @@ public class MealEntriesList extends MealList {
 
         MealEntriesList mealsConsumedToday = this.getMealEntriesByDate(todayEndOfDay, todayMidnight);
         int caloriesConsumed = mealsConsumedToday.getTotalCaloriesConsumed();
-
+        user.printTargetCalories();
+        UI.printString("Current Calories Consumed: " + caloriesConsumed);
         user.printUsersConsumptionBar("% of Expected Calorie Intake Consumed: ",
                 caloriesConsumed,
                 dateTime.toLocalDate());
     }
+
 
     /**
      * Prints the historic consumption bars for a specified number of days.

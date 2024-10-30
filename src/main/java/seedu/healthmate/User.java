@@ -85,21 +85,33 @@ public class User {
     }
 
     /**
-     * Simulates the construction of a user-specific consumption bar for testing
-     * @param message Print message to the user
-     * @param currentCalories Actual calorie consumption
-     * @param timestamp The time for which ideal and actual consumption is compared
-     * @return The simulated consumption bar
+     * Simulates the construction of a user-specific consumption bar for testing.
+     *
+     * @param caloriesConsumed The actual calories consumed by the user.
+     * @param timestamp        The date for which the consumption is being simulated.
+     * @return A string representation of the simulated consumption bar, including
+     *         target calories, current calories consumed, and the percentage of
+     *         expected calorie intake consumed.
      */
-    public String simulateUsersConsumptionBar(String message, int currentCalories, LocalDate timestamp) {
-        return UI.buildConsumptionBar(message, this.idealCalories, currentCalories, timestamp);
+    public String simulateUsersConsumptionBar(int caloriesConsumed, LocalDate timestamp) {
+        return simulateTargetCalories()
+                + UI.simulateString("Current Calories Consumed: " + caloriesConsumed)
+                + UI.buildConsumptionBar("% of Expected Calorie Intake Consumed: ",
+                this.idealCalories,
+                caloriesConsumed,
+                timestamp);
     }
 
     /**
      * Prints the ideal caloric intake.
      */
     public void printTargetCalories() {
-        UI.printReply(String.valueOf((int) this.idealCalories), "Ideal Caloric Intake: ");
+        UI.printReply(String.valueOf((int) this.idealCalories), "Ideal Daily Caloric Intake: ");
+    }
+
+    public String simulateTargetCalories() {
+        return UI.simulateFrameLine() + UI.simulateString("Ideal Daily Caloric Intake: "
+                + (int) this.idealCalories) + UI.simulateFrameLine();
     }
 
     /**
@@ -125,4 +137,7 @@ public class User {
         return heightEntry + "\n" + weightEntry + "\n"
                 + isMale + "\n" + age + "\n" + healthGoal.toString();
     }
+
+
+
 }

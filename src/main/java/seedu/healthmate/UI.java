@@ -206,6 +206,14 @@ public class UI {
         return  line1 + line2 + FRAME_LINE;
     }
 
+    public static String simulateString(String input) {
+        return INDENTATION + input + LINE_SEPARATOR;
+    }
+
+    public static String simulateFrameLine() {
+        return FRAME_LINE;
+    }
+
     public static String simulateFareWell() {
         String line1 = INDENTATION + "Stay healthy!" + LINE_SEPARATOR;;
         return line1 + FRAME_LINE;
