@@ -189,6 +189,7 @@ HealthMate solves the following problems:
 * *MealEntriesList* - A chronological list of all meals consumed by the user.
 * *ChatParser* - The component responsible for interpreting user commands and executing the appropriate actions.
 * *HistoryTracker* - The component that manages the storage and retrieval of user data, meal entries, and meal options.
+* *HealthGoal* - The class that manages functions pertaining to setting of user health goal as well calculating ideal caloric intake based on various factors.
 
 ## Instructions for manual testing
 
@@ -207,16 +208,19 @@ HealthMate solves the following problems:
 
 4. Adding a Meal:
    - Use the command `add mealEntry [name] [calories]` (e.g., `add meal "Chicken Salad" 350`)
-   - Verify that the meal is added successf ully and displayed in the meal list.
+   - Verify that the meal is added successfully and displayed in the meal list.
 
 5. Logging a Meal Entry:
    - Use the command `log meal [name/index] [portion]` (e.g., `log meal "Chicken Salad" 1`)
    - Check that the meal entry is recorded with the current timestamp.
 
+6. Show Historic Caloric Trend:
+   - Use the command `show historicCalories [no. of days]` (e.g., `show historicCalories 5`)
+   - Check that the calories added previously are shown and that all the stats displayed are correct
 
-6. Testing Data Persistence:
+7. Testing Data Persistence:
    - Exit the application using the `bye` command.
    - Restart the application and check if previously added meals and logged entries are still present.
 
-7. Error Handling:
+8. Error Handling:
    - Try entering invalid commands or data to ensure the application handles errors gracefully and provides helpful error messages.
