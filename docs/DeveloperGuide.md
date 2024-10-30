@@ -8,7 +8,7 @@ Calorie consumption bar inspired by
 
 ## Design & implementation
 ### High Level Class Design
-The main classes of this implementation are the following:
+The main classes of this implementation are:
 - HealthMate
 - ChatParser
 - User
@@ -19,10 +19,12 @@ The main classes of this implementation are the following:
 - HistoryTracker
 - UI
 
-The following diagram illustrates their associations, methods and attributes.
-The UI class is omitted since it is used across all classes to systematize any form of printing output to the user.
-To showcase the usage of the UI class, we for the sake of clarity, would like to point the reader to the subsequent 
-sequence diagrams.
+In each class we focused on maintaining a tight abstraction barrier between classes.
+This specifically includes adherance to the "Tell Don't Ask" principle which was enforced by
+making most attributes of all classes above private and avoiding getter methods if possible.
+The following diagram illustrates the resulting associations, methods and attributes.
+For the sake of clarity, UI class is omitted since it is used across most classes to systematize any form of
+printing output to the user.
 
 ![High Level CD](images/highLevelClassDiagram.jpg)
 
@@ -85,12 +87,7 @@ This includes:
 - Health goal: HealthGoal
 - Ideal calorie intake: Computed based on the information above 
 - Date: LocalDateTime specifying the date of the above information
-
-The following diagram visualizes the process of creating or loading a User object.
-![User SD](images/userSequenceDiagram.jpg)
-Reference diagrams used
-![User SD](images/askForUserDataSD.png)
-![Read User SD](images/readUserDataFromFIleSD.png)
+More details follow in the Features section of this guide. 
 
 #### HistoryTracker
 The HistoryTracker class is responsible for managing the persistence of data in the HealthMate application. It handles the saving and loading of user data, meal entries, and meal options to and from files. This class plays a crucial role in maintaining the application's state across different sessions.
@@ -116,6 +113,15 @@ HistoryTracker allows for the persistance of user inputted data between sessions
 This section will document the contributions made by each team member regarding the implementation or planned feature enhancements, detailing the design and thought processes behind them.
 
 ---
+### Creating a User Profile
+To create or load a user profile the `User` class provides the method `checkForUserData` which loads 
+saved user information if available from an existing file usingn the `HistoryTracker` or prompts the user
+to input new information for creating a new profile as shown in the sequence diagram below.
+![User SD](images/userSequenceDiagram.jpg)
+Reference diagrams used
+![User SD](images/askForUserDataSD.png)
+![Read User SD](images/readUserDataFromFIleSD.png)
+
 
 ### ChatParser Input Handling
 The 'ChatParser' class has the responsibility of parsing user input to steer the 
