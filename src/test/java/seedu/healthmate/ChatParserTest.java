@@ -86,13 +86,12 @@ public class ChatParserTest {
         String simulatedInput = "add mealEntry pizza /c300\nbye";
         LocalDateTime today = LocalDateTime.now().truncatedTo(ChronoUnit.HOURS);
         String timeString = "(at: " + today + ")";
-        String expectedOuput = UI.simulateInitOutput()
+        String expectedOutput = UI.simulateInitOutput()
             + UI.simulateReply("pizza with 300 calories " + timeString, "Tracked: ")
-            + user.simulateUsersConsumptionBar("% of Expected Calorie Intake Consumed: ",
-                300,
+            + user.simulateUsersConsumptionBar(300,
                 today.toLocalDate())
             + System.lineSeparator()
             + UI.simulateFareWell();
-        compareChatParserOutput(chatParser, simulatedInput, expectedOuput);
+        compareChatParserOutput(chatParser, simulatedInput, expectedOutput);
     }
 }
