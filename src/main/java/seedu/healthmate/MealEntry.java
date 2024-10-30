@@ -19,7 +19,7 @@ public class MealEntry extends Meal{
     }
 
     public static MealEntry extractMealEntryFromString(String input, String command, MealList mealOptions)
-            throws EmptyCalorieException, BadCalorieException, MealNotFoundException {
+            throws EmptyCalorieException, BadCalorieException, MealNotFoundException, BadTimestampException {
         Optional<String> mealDescription = extractMealDescription(input, command);
         int calories;
         try {
@@ -35,8 +35,14 @@ public class MealEntry extends Meal{
             calories = optionalCalories.orElseThrow(() -> new EmptyCalorieException());
         }
 
-        MealEntry mealEntry = new MealEntry(mealDescription, calories);
-        return mealEntry;
+        try {
+            LocalDateTime timestamp = Parameter.getTimestamp(input);
+            return new MealEntry(mealDescription, calories, timestamp);
+        } catch (EmptyTimestampException e) {
+            return new MealEntry(mealDescription, calories);
+        } catch (BadTimestampException e) {
+            throw new BadTimestampException();
+        }
     }
 
     public LocalDateTime getTimestamp() {

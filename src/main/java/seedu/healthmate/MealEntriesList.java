@@ -41,6 +41,9 @@ public class MealEntriesList extends MealList {
         } catch (BadPortionException e) {
             UI.printReply("Please reformat your portion size properly. (e.g for 2 portions {/p2})",
                     "Retry: ");
+        } catch (BadTimestampException e) {
+            UI.printReply("Please include a timestamp for your meal. (e.g for 2024-10-30 12:00 {/t2024-10-30 12:00})",
+                    "Retry: ");
         }
     }
 
