@@ -15,6 +15,7 @@ import seedu.healthmate.command.CommandMap;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -97,10 +98,8 @@ public class ChatParser {
         case SaveMealCommand.COMMAND:
             logger.log(Level.INFO, "Executing command to save meal to meal options");
             MealSaver mealSaver = new MealSaver(historyTracker);
-            Meal mealToSave = mealSaver.extractMealFromUserInput(userInput);
-            if (mealToSave != null) {
-                mealSaver.saveMeal(mealToSave, mealOptions);
-            }
+            Optional<Meal> mealToSave = mealSaver.extractMealFromUserInput(userInput);
+            mealToSave.ifPresent(meal -> mealSaver.saveMeal(meal, mealOptions));
             break;
         case DeleteMealCommand.COMMAND:
             logger.log(Level.INFO, "Executing command to delete a meal from meal options");
