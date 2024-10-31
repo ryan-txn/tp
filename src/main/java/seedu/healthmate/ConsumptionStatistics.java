@@ -39,7 +39,8 @@ public class ConsumptionStatistics {
     }
 
     public void printStats(int days) {
-        UI.printHistoricConsumptionStats(days, this.idealCalories, this.totalCaloriesConsumed, this.totalIdealCalories, this.maxMeal);
+        UI.printHistoricConsumptionStats(days, this.idealCalories, this.totalCaloriesConsumed,
+                this.totalIdealCalories, this.maxMeal);
     }
 
 }
