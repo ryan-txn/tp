@@ -1,4 +1,4 @@
-# Project Portfolio Page - Dri Water
+# Project Portfolio Page - Dri-water
 
 ## Overview
 HealthMate is a meal and calorie tracking application designed to help users manage their dietary intake, monitor their weight, and track their overall health goals. The app enables users to log meals, track calories, and observe their progress towards a healthier lifestyle.
@@ -6,7 +6,7 @@ HealthMate is a meal and calorie tracking application designed to help users man
 ## Summary of Contributions
 
 ### Code Contributed
-[Link to code contributions](Insert your tP Code Dashboard link here)
+[Link to code contributions](https://nus-cs2113-ay2425s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2024-09-20&tabOpen=true&tabType=authorship&tabAuthor=Dri-water&tabRepo=AY2425S1-CS2113-W12-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 ### Enhancements Implemented
 1. **Enhanced Meal Menu System**
