@@ -146,7 +146,7 @@ public class MealEntriesList extends MealList {
 
         user.printTargetCalories();
         ConsumptionStatistics consumptionStats = ConsumptionStatistics.computeStats(user, days, this);
-        this.printhistoricBarPerDay(days, user);
+        this.printHistoricBarPerDay(days, user);
         consumptionStats.printStats(days);
     }
 
@@ -176,7 +176,7 @@ public class MealEntriesList extends MealList {
      * @param days number of days to go back in time
      * @param user user profile who's the progress bar is built
      */
-    private void printhistoricBarPerDay(int days, User user) {
+    private void printHistoricBarPerDay(int days, User user) {
         LocalDate today = DateTimeUtils.currentDate();
         LocalDate latestConsumptionDate = today;
 
