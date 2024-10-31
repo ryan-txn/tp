@@ -3,10 +3,11 @@ package seedu.healthmate;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Optional;
 import java.util.Scanner;
 
 public class UserEntry {
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
     private final double idealCalories;
     private final double heightEntry;
     private final double weightEntry;
@@ -14,9 +15,6 @@ public class UserEntry {
     private final int age;
     private final HealthGoal healthGoal;
     private final LocalDateTime localDateTime;
-
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-
 
     public UserEntry(double height, double weight, boolean isMale,
                      int age, String healthGoal) {

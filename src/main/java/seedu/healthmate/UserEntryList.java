@@ -1,6 +1,5 @@
 package seedu.healthmate;
 
-import java.sql.Array;
 import java.util.ArrayList;
 
 public class UserEntryList {

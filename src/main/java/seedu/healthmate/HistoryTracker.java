@@ -1,18 +1,15 @@
 package seedu.healthmate;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.time.LocalDateTime;
-import java.util.NoSuchElementException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Scanner;
 
 public class HistoryTracker {
     private static final String DATA_DIRECTORY = "data";

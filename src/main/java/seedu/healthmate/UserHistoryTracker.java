@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -119,7 +118,6 @@ public class UserHistoryTracker {
         File userDataFile = new File(DATA_DIRECTORY + File.separator + USER_DATA_FILE);
 
         try {
-            System.out.println("Saving entry to file at: " + userDataFile.getAbsolutePath());  // Print the absolute file path
             FileWriter fw = new FileWriter(userDataFile, true);
             fw.write(userEntry.toString() + System.lineSeparator());
             fw.close();
