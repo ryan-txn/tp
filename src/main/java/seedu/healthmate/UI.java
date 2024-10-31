@@ -1,7 +1,9 @@
 package seedu.healthmate;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.IntStream;
 
 import seedu.healthmate.command.Command;
@@ -171,6 +173,36 @@ public class UI {
                 + " (" + timestamp + ")");
     }
 
+    public static void printHistoricConsumptionStats(int days,
+                                                     int idealCalories,
+                                                     int totalCaloriesConsumed,
+                                                     int totalIdealCalories,
+                                                     Optional<MealEntry> maxMeal) {
+        LocalDateTime today = DateTimeUtils.currentDate().atTime(23, 59);
+
+        LocalDateTime maxConsumptionDate = maxMeal
+                .map(mealEntry -> mealEntry.getTimestamp())
+                .orElse(today);
+        int maxCaloriesConsumed = maxMeal
+                .map(mealEntry -> mealEntry.getCalories())
+                .orElse(0);
+        String maxMealString = maxMeal
+                .map(mealEntry -> mealEntry.toString())
+                .orElse("No maximum meal available");
+
+        double percentOfIdealConsumed = Math.round(100.0 * (float)totalCaloriesConsumed / (float)totalIdealCalories);
+        double percentMaxOfIdeal = Math.round(100.0 * (float)maxCaloriesConsumed / (float)idealCalories);
+        UI.printString("Stats over past " + days + " days");
+        UI.printString("Total Calories Consumed: " + totalCaloriesConsumed);
+        UI.printString("Total Ideal Calories: " + totalIdealCalories);
+        UI.printString("Percentage of Total Ideal Calories : " + percentOfIdealConsumed + "%");
+        UI.printString( "Day With Heaviest Meal: " + maxConsumptionDate.toLocalDate());
+        UI.printString("Heaviest Meal Consumed: " + maxMealString);
+        UI.printString("Meals Consumption's Percentage of Total Ideal Calories: " + percentMaxOfIdeal + "%");
+        UI.printSeparator();
+
+    }
+
     private static String progressBarStringBuilder(double expectedValue, int actualValue) {
         int percentageOfExpected = (int) Math.ceil((actualValue / expectedValue) * 100);
 
@@ -187,7 +219,7 @@ public class UI {
                 .map(i -> {
                     //maps progress from 100 percent scale to numberOfIcons scale
                     if (i == hundredPercentMark) {
-                        return "| " + String.format( "%6s", percentageOfExpected + "% |");
+                        return "|" + String.format("%6s", percentageOfExpected + "%|");
                     } else if (i <= ((percentageOfExpected / totalPercent) * hundredPercentMark)) {
                         return complete;
                     } else {

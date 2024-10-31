@@ -7,8 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.io.ByteArrayOutputStream;
 import java.io.ByteArrayInputStream;
 import java.io.PrintStream;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 
 public class ChatParserTest {
     private final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -84,12 +84,11 @@ public class ChatParserTest {
         ChatParser chatParser = new ChatParser();
         User user = User.checkForUserData(chatParser.getHistoryTracker());
         String simulatedInput = "add mealEntry pizza /c300\nbye";
-        LocalDateTime today = LocalDateTime.now().truncatedTo(ChronoUnit.HOURS);
+        LocalDate today = LocalDateTime.now().toLocalDate();
         String timeString = "(at: " + today + ")";
         String expectedOutput = UI.simulateInitOutput()
             + UI.simulateReply("pizza with 300 calories " + timeString, "Tracked: ")
-            + user.simulateUsersConsumptionBar(300,
-                today.toLocalDate())
+            + user.simulateUsersConsumptionBar(300, today)
             + System.lineSeparator()
             + UI.simulateFareWell();
         compareChatParserOutput(chatParser, simulatedInput, expectedOutput);

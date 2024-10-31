@@ -14,7 +14,7 @@ public class Pair<T, U> {
     }
 
     public U u() {
-        return this.u();
+        return this.u;
     }
 
     @Override
