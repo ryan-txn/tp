@@ -82,7 +82,7 @@ public class MealEntriesList extends MealList {
      * @param portion the portions consumed of the meal
      */
     public void addPortionsOfMeal(Meal mealEntry, int portion) {
-        IntStream.range(1, portion)
+        IntStream.range(0, Math.max(1, portion))
                 .forEach(i -> this.addMeal(mealEntry));
     }
 

@@ -2,7 +2,6 @@ package seedu.healthmate;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
-import java.time.temporal.ChronoUnit;
 
 
 public class MealEntry extends Meal{
