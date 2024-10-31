@@ -44,6 +44,8 @@ It has two primary attributes:
   - Contains tracked calorie consumption 
 - A `MealList` object called `mealOptions` 
   - Contains meals that are presaved by the user for quick selection to track commonly consumed meals
+  - the command `meal menu` is used to display the current mealOptions. The implementation of this command is shown in the UML diagram below.
+![Meal Menu SD](images/mealMenuSD.png)
 
 These objects represent the application's underlying data with which the user interacts through the command line.
 To ensure no unintended changes are done, the ChatParser class orchestrates the effects of the users prompts.
