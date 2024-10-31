@@ -68,6 +68,6 @@ public class MealEntry extends Meal{
 
     @Override
     public String toString() {
-        return super.toString() + " (at: " + this.timestamp.truncatedTo(ChronoUnit.HOURS) + ")";
+        return super.toString() + " (at: " + this.timestamp.toLocalDate() + ")";
     }
 }

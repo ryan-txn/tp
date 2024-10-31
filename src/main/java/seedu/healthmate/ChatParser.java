@@ -195,6 +195,8 @@ public class ChatParser {
             return Optional.of(days);
         } catch (NumberFormatException e) {
             UI.printReply(commandPair.getCommandByIndex(index), "The following is not a valid number: ");
+        } catch (IndexOutOfBoundsException s) {
+            UI.printReply("Specify the number of days you want to look into the past", "Missing input: ");
         }
         return Optional.empty();
     }

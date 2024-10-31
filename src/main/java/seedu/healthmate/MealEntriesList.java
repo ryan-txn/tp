@@ -2,13 +2,16 @@ package seedu.healthmate;
 
 
 import static seedu.healthmate.MealEntry.extractMealEntryFromString;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 
 public class MealEntriesList extends MealList {
@@ -21,28 +24,33 @@ public class MealEntriesList extends MealList {
         super(mealList);
     }
 
+    /**
+     * Creates a new mealEntry from user input and appends it to the list of mealEntries
+     * @param userInput the original user input
+     * @param command the command that triggered this action
+     * @param mealOptions the list of available presaved meals
+     * @param user the user's profile
+     */
     @Override
     public void extractAndAppendMeal(String userInput, String command, MealList mealOptions, User user) {
         try {
             int portions = Parameter.getPortions(userInput);
             MealEntry meal = extractMealEntryFromString(userInput, command, mealOptions);
-            for (int i =0; i<portions; i++) {
-                this.addMeal(meal);
-            }
+            addPortionsOfMeal(meal, portions);
             printDaysConsumptionBar(user, meal.getTimestamp());
         } catch (EmptyCalorieException | BadCalorieException e) {
-            UI.printReply("Every meal needs a calorie integer. (e.g. /c120)", "");
+            UI.printReply("Every meal needs a calorie integer (e.g. /c120).", "");
         } catch (StringIndexOutOfBoundsException s) {
-            UI.printReply("Do not forget to use /c mark the following integer as calories",
+            UI.printReply("Do not forget to use /c{Integer} mark the following integer as calories",
                     "Retry: ");
         } catch (MealNotFoundException e) {
             UI.printReply("Please save this meal to the meal menu first, or use /c and /p to include calories and"
                     + " portion sizes", "");
         } catch (BadPortionException e) {
-            UI.printReply("Please reformat your portion size properly. (e.g for 2 portions {/p2})",
+            UI.printReply("Please reformat your portion size properly (e.g for 2 portions {/p2}).",
                     "Retry: ");
         } catch (BadTimestampException e) {
-            UI.printReply("Please include a timestamp for your meal. (e.g for 2024-10-30 12:00 {/t2024-10-30 12:00})",
+            UI.printReply("Please include a timestamp for your meal (e.g for 2024-10-30 12:00 {/t2024-10-30 12:00}).",
                     "Retry: ");
         }
     }
@@ -68,12 +76,30 @@ public class MealEntriesList extends MealList {
         }
     }
 
+    /**
+     * Given portions `p`, adds the mealEntry p times to the list of mealEntries
+     * @param mealEntry the meal to be added
+     * @param portion the portions consumed of the meal
+     */
+    public void addPortionsOfMeal(Meal mealEntry, int portion) {
+        IntStream.range(1, portion)
+                .forEach(i -> this.addMeal(mealEntry));
+    }
+
+    /**
+     * Adds a mealEntry to the mealEntriesList
+     * @param mealEntry
+     */
     @Override
     public void addMeal(Meal mealEntry) {
         super.mealList.add(mealEntry);
         UI.printReply(mealEntry.toString(), "Tracked: ");
     }
 
+    /**
+     * Deletes a mealEntry by its index in the log meals overview
+     * @param mealNumber
+     */
     @Override
     public void deleteMeal(int mealNumber) {
         Meal mealToDelete = this.mealList.get(mealNumber - 1);
@@ -118,14 +144,41 @@ public class MealEntriesList extends MealList {
         assert user != null : "User cannot be null";
         assert days >= 0 : "Days cannot be negative";
 
-        LocalDate today = DateTimeUtils.currentDate();
         user.printTargetCalories();
+        ConsumptionStatistics consumptionStats = ConsumptionStatistics.computeStats(user, days, this);
+        this.printhistoricBarPerDay(days, user);
+        consumptionStats.printStats(days);
+    }
 
-        int idealCalories = (int) user.getIdealCalories();
-        int totalIdealCalories = 0;
-        int totalCaloriesConsumed = 0;
-        int maxCaloriesConsumed = 0;
-        LocalDate maxCaloriesDate = today;
+    public int getTotalCaloriesConsumed() {
+        return this.mealList.stream()
+                .map(meal -> meal.getCalories())
+                .reduce(0, (accumulator, calorie) -> accumulator + calorie);
+    }
+
+    public Optional<MealEntry> getMaxCaloriesConsumed() {
+        return this.mealList.stream()
+                .map(meal -> (MealEntry) meal)
+                .reduce((meal1, meal2) -> meal1.getCalories() > meal2.getCalories() ? meal1 : meal2);
+    }
+
+    public MealEntriesList getMealEntriesByDate(LocalDateTime upperDateBound, LocalDateTime lowerDateBound) {
+        ArrayList<Meal> filteredMeals = super.mealList.stream()
+                .filter(meal -> meal.isBeforeEqualDate(upperDateBound))
+                .filter(meal -> meal.isAfterEqualDate(lowerDateBound))
+                .collect(Collectors.toCollection(() -> new ArrayList<Meal>()));
+        return new MealEntriesList(filteredMeals);
+    }
+
+    /**
+     * Credit: Loop by DarkDragoon2002
+     * Iterates daily over this list of mealEntries and prints daily consumption bar
+     * @param days number of days to go back in time
+     * @param user user profile who's the progress bar is built
+     */
+    private void printhistoricBarPerDay(int days, User user) {
+        LocalDate today = DateTimeUtils.currentDate();
+        LocalDate latestConsumptionDate = today;
 
         for (int i = days - 1; i >= 0; i--) {
             LocalDate printDate = today.minusDays(i);
@@ -135,46 +188,7 @@ public class MealEntriesList extends MealList {
             MealEntriesList mealsConsumed = this.getMealEntriesByDate(upperDateBound, lowerDateBound);
             int caloriesConsumed = mealsConsumed.getTotalCaloriesConsumed();
             user.printHistoricConsumptionBar(caloriesConsumed, printDate);
-
-            totalCaloriesConsumed += caloriesConsumed;
-            totalIdealCalories += idealCalories;
-
-            if (maxCaloriesConsumed < caloriesConsumed) {
-                maxCaloriesDate = printDate;
-                maxCaloriesConsumed = caloriesConsumed;
-            }
         }
-
-        UI.printString("Stats over past " + days + " days");
-
-        UI.printString("Total Calories Consumed: " + totalCaloriesConsumed);
-        UI.printString("Total Ideal Calories: " + totalIdealCalories);
-
-        UI.printString("Percent Target Consumed: "
-                + Math.round(100.0 * (float)totalCaloriesConsumed / (float)totalIdealCalories) + "%");
-
-        UI.printString( "Day with Max Calories Consumed: " + maxCaloriesDate);
-
-        UI.printString("Calories Consumed: " + maxCaloriesConsumed);
-
-        UI.printString("Percent Target Consumed: "
-                + Math.round(100.0 * (float)maxCaloriesConsumed / (float)idealCalories) + "%");
-
-        UI.printSeparator();
-    }
-
-    private MealEntriesList getMealEntriesByDate(LocalDateTime upperDateBound, LocalDateTime lowerDateBound) {
-        ArrayList<Meal> filteredMeals = super.mealList.stream()
-                .filter(meal -> meal.isBeforeEqualDate(upperDateBound))
-                .filter(meal -> meal.isAfterEqualDate(lowerDateBound))
-                .collect(Collectors.toCollection(() -> new ArrayList<Meal>()));
-        return new MealEntriesList(filteredMeals);
-    }
-
-    private int getTotalCaloriesConsumed() {
-        return this.mealList.stream()
-                .map(meal -> meal.getCalories())
-                .reduce(0, (accumulator, calorie) -> accumulator + calorie);
     }
 
     private LocalDateTime getDateOfMealEntry(int mealNumber) {
