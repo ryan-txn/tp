@@ -1,6 +1,8 @@
 package seedu.healthmate;
 
 
+import java.util.Optional;
+
 public class MealSaver {
     private HistoryTracker historyTracker;
 
@@ -8,15 +10,15 @@ public class MealSaver {
         this.historyTracker = historyTracker;
     }
 
-    public Meal extractMealFromUserInput(String userInput) {
+    public Optional<Meal> extractMealFromUserInput(String userInput) {
         try {
             String command = "save meal";
             Meal meal = Meal.extractMealFromString(userInput, command);
             if (meal.descriptionIsEmpty()) {
                 UI.printReply("Meal options require a name", "Retry: ");
-                return null;
+                return Optional.empty();
             }
-            return meal;
+            return Optional.of(meal);
         } catch (EmptyCalorieException e) {
             UI.printReply("Every meal needs a calorie integer. (e.g. 120)", "");
         } catch (StringIndexOutOfBoundsException s) {

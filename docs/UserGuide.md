@@ -12,7 +12,7 @@ Welcome to HealthMate! Follow these steps to get started quickly:
 - Open CLI and Navigate to location of `HealthMate.jar`
 - Run the following Command: `java -jar HealthMate.jar`
 - 
-**Create you user profile**
+**Create your user profile**
 Input data about yourself needed to compute your ideal daily calorie intake. 
 This includes:
 - Your height in cm (e.g. 180)
@@ -236,7 +236,7 @@ show historicCalories 3
 |-------------------------------------|--------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------|
 | List all commmands                  | `list commands` or `list commands [{command}]`                           | Lists all available commands and the proper formatting.                                                         
 | Save meal to meal options           | `save meal {meal} /c{Number of calories}`                                | Prompts for meal name, calories, then confirms saving the meal.                                                |
-| Add meal entry for tracking         | `add mealEntry {meal} [/c{Number of calories}] [/p{Number of portions}]` | Adds meal to daily caloric intake and shows progress toward goal.                                              |
+| Add meal entry for tracking         | `add mealEntry {meal} [/c{Number of calories}] [/p{Number of portions}] [/t{timestamp in YYYY-MM-DD HH:MM}]` | Adds meal to daily caloric intake and shows progress toward goal.                                              |
 | Show list of available meal options | `meal menu`                                                              | Prints all available meals from the saved options list.                                                        |
 | Show meal history                   | `log meals`                                                              | Displays history of meals with timestamp and calories.                                                         |
 | Delete meal from meal menu          | `delete meal {index of meal in meal menu}`                               | Deletes meal option from the meal menu at the specified index.                                                 |

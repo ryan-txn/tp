@@ -127,7 +127,7 @@ to input new information for creating a new profile as shown in the sequence dia
 ![User SD](images/userSequenceDiagram.jpg)
 Reference diagrams used
 ![User SD](images/askForUserDataSD.png)
-![Read User SD](images/readUserDataFromFIleSD.png)
+![Read User SD](images/readUserDataFromFileSD.png)
 
 
 ### ChatParser Input Handling
