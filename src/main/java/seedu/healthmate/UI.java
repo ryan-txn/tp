@@ -1,7 +1,9 @@
 package seedu.healthmate;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.IntStream;
 
 import seedu.healthmate.command.Command;
@@ -15,7 +17,6 @@ public class UI {
     private static final String INDENTATION = "      ";
     private static final String LINE = INDENTATION + SEPARATOR;
     private static final String FRAME_LINE = LINE + LINE_SEPARATOR;
-
     private static final String LOGO =
               INDENTATION + " |\n"
             + INDENTATION + "     \\\\|//\n"
@@ -46,12 +47,12 @@ public class UI {
         System.out.println(LINE);
     }
 
-    public static void printString(String input) {
-        System.out.println(INDENTATION + input);
-    }
-
     public static void printSeparator() {
         System.out.println(LINE);
+    }
+
+    public static void printString(String input) {
+        System.out.println(INDENTATION + input);
     }
 
     public static void printMealOptions(MealList mealOptions) {
@@ -84,6 +85,10 @@ public class UI {
         System.out.println("The meal was not found in the meal menu!");
     }
 
+    /**
+     * Prints list of possible commands to the command line
+     * @param commands A list of possible commands the user can choose to interact with the system
+     */
     public static void printCommands(List<Command> commands) {
         System.out.println(LINE);
         if (commands.size() == 1) {
@@ -96,26 +101,6 @@ public class UI {
                 System.out.println(LINE);
             }
         }
-    }
-
-
-
-    public static String simulateReply(String input, String actionPerformed) {
-        String line1 = LINE_SEPARATOR;
-        String line2 = INDENTATION + actionPerformed + input + LINE_SEPARATOR;
-        return  line1 + line2 + FRAME_LINE;
-    }
-
-    public static String simulateFareWell() {
-        String line1 = INDENTATION + "Stay healthy!" + LINE_SEPARATOR;;
-        return line1 + FRAME_LINE;
-    }
-
-    public static String simulateInitOutput() {
-        String line2 = INDENTATION + "Meal Entries Loaded Successfully!" + LINE_SEPARATOR;
-        String line3 = INDENTATION + "Meal Options Loaded Successfully!" + LINE_SEPARATOR;
-        return FRAME_LINE + line2 + line3 + FRAME_LINE + LINE;
-
     }
 
     /**
@@ -135,6 +120,7 @@ public class UI {
 
     /**
      * Prints bar comparing actual versus an expected calorie consumption
+     *
      * Inspired by:
      * https://medium.com/javarevisited/how-to-display-progressbar-on-the-standard-console-using-java-18f01d52b30e
      * @param message Message printed if actual is 2x larger than expected with exact value
@@ -146,11 +132,21 @@ public class UI {
                                            double expectedValue,
                                            int actualValue,
                                            LocalDate timestamp) {
-
+        assert timestamp != null : "Timestamp cannot be null";
         String consumptionBar = buildConsumptionBar(message, expectedValue, actualValue, timestamp);
         System.out.println(consumptionBar);
     }
 
+    /**
+     * High-level creation function of the progress bar.
+     * Embedds the progress bar into the visual format of the UI
+     *
+     * @param message Message printed if actual is 2x larger than expected with exact value
+     * @param expectedValue double expected value
+     * @param actualValue int actual value
+     * @param timestamp timestamp in which the provided actualValue was consumed
+     * @return the progressBar in form of a String ready to be printed
+     */
     public static String buildConsumptionBar(String message,
                                        double expectedValue,
                                        int actualValue,
@@ -177,6 +173,36 @@ public class UI {
                 + " (" + timestamp + ")");
     }
 
+    public static void printHistoricConsumptionStats(int days,
+                                                     int idealCalories,
+                                                     int totalCaloriesConsumed,
+                                                     int totalIdealCalories,
+                                                     Optional<MealEntry> maxMeal) {
+        LocalDateTime today = DateTimeUtils.currentDate().atTime(23, 59);
+
+        LocalDateTime maxConsumptionDate = maxMeal
+                .map(mealEntry -> mealEntry.getTimestamp())
+                .orElse(today);
+        int maxCaloriesConsumed = maxMeal
+                .map(mealEntry -> mealEntry.getCalories())
+                .orElse(0);
+        String maxMealString = maxMeal
+                .map(mealEntry -> mealEntry.toString())
+                .orElse("No maximum meal available");
+
+        double percentOfIdealConsumed = Math.round(100.0 * (float)totalCaloriesConsumed / (float)totalIdealCalories);
+        double percentMaxOfIdeal = Math.round(100.0 * (float)maxCaloriesConsumed / (float)idealCalories);
+        UI.printString("Stats over past " + days + " days");
+        UI.printString("Total Calories Consumed: " + totalCaloriesConsumed);
+        UI.printString("Total Ideal Calories: " + totalIdealCalories);
+        UI.printString("Percentage of Total Ideal Calories : " + percentOfIdealConsumed + "%");
+        UI.printString( "Day With Heaviest Meal: " + maxConsumptionDate.toLocalDate());
+        UI.printString("Heaviest Meal Consumed: " + maxMealString);
+        UI.printString("Meals Consumption's Percentage of Total Ideal Calories: " + percentMaxOfIdeal + "%");
+        UI.printSeparator();
+
+    }
+
     private static String progressBarStringBuilder(double expectedValue, int actualValue) {
         int percentageOfExpected = (int) Math.ceil((actualValue / expectedValue) * 100);
 
@@ -193,7 +219,7 @@ public class UI {
                 .map(i -> {
                     //maps progress from 100 percent scale to numberOfIcons scale
                     if (i == hundredPercentMark) {
-                        return "| " + String.format( "%6s", percentageOfExpected + "% |");
+                        return "|" + String.format("%6s", percentageOfExpected + "%|");
                     } else if (i <= ((percentageOfExpected / totalPercent) * hundredPercentMark)) {
                         return complete;
                     } else {
@@ -205,7 +231,31 @@ public class UI {
     }
 
 
+    // Functions to simulate UI behaviour for testing
+    public static String simulateReply(String input, String actionPerformed) {
+        String line1 = LINE_SEPARATOR;
+        String line2 = INDENTATION + actionPerformed + input + LINE_SEPARATOR;
+        return  line1 + line2 + FRAME_LINE;
+    }
 
+    public static String simulateString(String input) {
+        return INDENTATION + input + LINE_SEPARATOR;
+    }
 
+    public static String simulateFrameLine() {
+        return FRAME_LINE;
+    }
+
+    public static String simulateFareWell() {
+        String line1 = INDENTATION + "Stay healthy!" + LINE_SEPARATOR;;
+        return line1 + FRAME_LINE;
+    }
+
+    public static String simulateInitOutput() {
+        String line2 = INDENTATION + "Meal Entries Loaded Successfully!" + LINE_SEPARATOR;
+        String line3 = INDENTATION + "Meal Options Loaded Successfully!" + LINE_SEPARATOR;
+        return FRAME_LINE + line2 + line3 + FRAME_LINE + LINE;
+
+    }
 
 }

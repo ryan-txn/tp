@@ -40,6 +40,10 @@ public class UserEntry {
         this.localDateTime = LocalDateTime.parse(localDateTime, formatter);
     }
 
+    /**
+     * Asks user to input specifics for creating a new User instance
+     * @return A new user instance created with the data inputted by user.
+     */
     public static UserEntry askForUserData() {
         try {
             Scanner scanner = new Scanner(System.in);
@@ -76,19 +80,44 @@ public class UserEntry {
         }
     }
 
+    /**
+     * Prints a user's consumption bar 
+     * @param message Print message to the user
+     * @param currentCalories Actual calorie consumption
+     * @param timestamp The time for which ideal and actual consumption is compared
+     */
     public void printUsersConsumptionBar(String message, int currentCalories, LocalDate timestamp) {
         UI.printConsumptionBar(message, this.idealCalories, currentCalories, timestamp);
     }
 
-    public String buildUsersConsumptionBar(String message, int currentCalories, LocalDate timestamp) {
-        return UI.buildConsumptionBar(message, this.idealCalories, currentCalories, timestamp);
+    /**
+     * Simulates the construction of a user-specific consumption bar for testing.
+     *
+     * @param caloriesConsumed The actual calories consumed by the user.
+     * @param timestamp        The date for which the consumption is being simulated.
+     * @return A string representation of the simulated consumption bar, including
+     *         target calories, current calories consumed, and the percentage of
+     *         expected calorie intake consumed.
+     */
+    public String simulateUsersConsumptionBar(int caloriesConsumed, LocalDate timestamp) {
+        return simulateTargetCalories()
+                + UI.simulateString("Current Calories Consumed: " + caloriesConsumed)
+                + UI.buildConsumptionBar("% of Expected Calorie Intake Consumed: ",
+                this.idealCalories,
+                caloriesConsumed,
+                timestamp);
     }
 
     /**
      * Prints the ideal caloric intake.
      */
     public void printTargetCalories() {
-        UI.printReply(String.valueOf(this.idealCalories), "Ideal Caloric Intake: ");
+        UI.printReply(String.valueOf((int) this.idealCalories), "Ideal Daily Caloric Intake: ");
+    }
+
+    public String simulateTargetCalories() {
+        return UI.simulateFrameLine() + UI.simulateString("Ideal Daily Caloric Intake: "
+                + (int) this.idealCalories) + UI.simulateFrameLine();
     }
 
     /**
@@ -105,6 +134,10 @@ public class UserEntry {
         UI.printHistoricConsumptionBars(this.idealCalories, currentCalories, timestamp);
     }
 
+    public double getIdealCalories() {
+        return this.idealCalories;
+    }
+
     @Override
     public String toString() {
         return heightEntry + ","
@@ -115,4 +148,7 @@ public class UserEntry {
                 + idealCalories + ","
                 + localDateTime.format(formatter);
     }
+
+
+
 }

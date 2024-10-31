@@ -18,6 +18,12 @@ public class UserHistoryTracker {
         createDirectoryIfNotExists(DATA_DIRECTORY);
     }
 
+    /**
+     * Loads a UserEntry instance if a file with user data exists.
+     * Creates a new User instance otherwise
+     * @param userHistoryTracker
+     * @return A newly created or "loaded" user object
+     */
     public UserEntry checkForUserData(UserHistoryTracker userHistoryTracker) {
         Optional<UserEntryList> optionalUserEntryList = userHistoryTracker.loadUserData();
         return optionalUserEntryList.map(userEntryList -> userEntryList.getLastEntry())

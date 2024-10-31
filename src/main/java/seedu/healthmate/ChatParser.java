@@ -1,6 +1,7 @@
 package seedu.healthmate;
 
 import seedu.healthmate.command.Command;
+import seedu.healthmate.command.CommandPair;
 import seedu.healthmate.command.commands.LogMealsCommand;
 import seedu.healthmate.command.commands.SaveMealCommand;
 import seedu.healthmate.command.commands.ListCommandsCommand;
@@ -15,9 +16,11 @@ import seedu.healthmate.command.CommandMap;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.IntStream;
 
 
 /**
@@ -56,8 +59,10 @@ public class ChatParser {
         // check for health goal file existence and create file if none exists
         logger.log(Level.INFO, "Checking if user data exists");
         UserEntry userEntry = userHistoryTracker.checkForUserData(this.userHistoryTracker);
-        UI.printString(userEntry.toString());
+        parseUserInput(userEntry);
+    }
 
+    private void parseUserInput(UserEntry userEntry) {
         Scanner scanner = new Scanner(System.in);
         String userInput = "";
 
@@ -85,15 +90,13 @@ public class ChatParser {
      * Steers the activation of features offered to the userEntry via two-token commands
      * @param userInput String userEntry input from the command line
      */
+
     public void multiCommandParsing(String userInput, UserEntry userEntry) {
 
-        String[] inputTokens = userInput.split(" ");
-        String commandToken1 = inputTokens[0].strip();
-        String commandToken2 = inputTokens[1].strip();
-        String command = commandToken1 + " " + commandToken2;
-        logger.log(Level.INFO, "UserEntry command is: " + command);
-
-        UserEntry currentUserEntry;
+        UserEntry currentUser = userEntry; //create snapshot in case user is updated
+        CommandPair commandPair = getCommandFromInput(userInput);
+        String command = commandPair.getMainCommand();
+        logger.log(Level.INFO, "User commands are: " + commandPair);
 
         switch (command) {
         case MealMenuCommand.COMMAND:
@@ -103,10 +106,8 @@ public class ChatParser {
         case SaveMealCommand.COMMAND:
             logger.log(Level.INFO, "Executing command to save meal to meal options");
             MealSaver mealSaver = new MealSaver(historyTracker);
-            Meal mealToSave = mealSaver.extractMealFromUserInput(userInput);
-            if (mealToSave != null) {
-                mealSaver.saveMeal(mealToSave, mealOptions);
-            }
+            Optional<Meal> mealToSave = mealSaver.extractMealFromUserInput(userInput);
+            mealToSave.ifPresent(meal -> mealSaver.saveMeal(meal, mealOptions));
             break;
         case DeleteMealCommand.COMMAND:
             logger.log(Level.INFO, "Executing command to delete a meal from meal options");
@@ -115,12 +116,12 @@ public class ChatParser {
             break;
         case DeleteMealEntryCommand.COMMAND:
             logger.log(Level.INFO, "Executing command to delete a meal from mealEntries");
-            mealEntries.removeMealWithFeedback(userInput, command, userEntry);
+            mealEntries.removeMealWithFeedback(userInput, command, currentUser);
             historyTracker.saveMealEntries(mealEntries);
             break;
         case AddMealEntryCommand.COMMAND:
             logger.log(Level.INFO, "Executing command to add a meal to mealEntries");
-            mealEntries.extractAndAppendMeal(userInput, command, mealOptions, userEntry);
+            mealEntries.extractAndAppendMeal(userInput, command, mealOptions, currentUser);
             historyTracker.saveMealEntries(mealEntries);
             break;
         case LogMealsCommand.COMMAND:
@@ -133,19 +134,18 @@ public class ChatParser {
             UI.printCommands(commands);
             break;
         case UpdateUserDataCommand.COMMAND:
-            logger.log(Level.INFO, "Executing command to update userEntry data");
-            currentUserEntry = UserEntry.askForUserData();
+            logger.log(Level.INFO, "Executing command to update user data");
+            UserEntry newUserEntry = UserEntry.askForUserData();
             userHistoryTracker.printAllUserEntries();
             break;
         case TodayCalorieProgressCommand.COMMAND:
             logger.log(Level.INFO, "Executing command to print daily progress bar");
-            printTodayCalorieProgress();
+            mealEntries.printDaysConsumptionBar(currentUser, LocalDateTime.now());;
             break;
         case HistoricCalorieProgressCommand.COMMAND:
             logger.log(Level.INFO, "Executing command to print Historic calorie bar");
-            int days = Integer.parseInt(inputTokens[2].strip());
-            currentUserEntry = userHistoryTracker.checkForUserData(userHistoryTracker);
-            mealEntries.printHistoricConsumptionBars(currentUserEntry, days);
+            Optional<Integer> pastDays = parseDaysFromCommand(commandPair, 0);
+            pastDays.ifPresent(days -> mealEntries.printHistoricConsumptionBars(currentUser, days));
             break;
         default:
             UI.printReply("Use a valid command", "Retry: ");
@@ -153,8 +153,23 @@ public class ChatParser {
         }
     }
 
-    public HistoryTracker getHistoryTracker() {
-        return this.historyTracker;
+    /**
+     * Takes in user input and structures it into a preprocessed pair of a main command and additional commands.
+     * @param userInput
+     * @return CommandPair
+     */
+    private CommandPair getCommandFromInput(String userInput) {
+        String[] inputTokens = userInput.split(" ");
+        String commandToken1 = inputTokens[0].strip();
+        String commandToken2 = inputTokens[1].strip();
+        String twoTokenCommand = commandToken1 + " " + commandToken2;
+        String[] additionalCommands = IntStream.range(Math.min(2, inputTokens.length), inputTokens.length)
+                .boxed()
+                .map(index -> inputTokens[index])
+                .map(token -> token.strip())
+                .toArray(String[]::new);
+
+        return new CommandPair(twoTokenCommand, additionalCommands);
     }
 
     public UserHistoryTracker getUserHistoryTracker() {
@@ -175,6 +190,24 @@ public class ChatParser {
     public void printTodayCalorieProgress() {
         UserEntry currentUserEntry = userHistoryTracker.checkForUserData(userHistoryTracker);
         mealEntries.printDaysConsumptionBar(currentUserEntry, LocalDateTime.now());
+    }
+
+    /**
+     * Tries to parse a certain command token of the customer into an integer
+     * @param commandPair The considered commands
+     * @param index The index of the command in the additionalCommands Array
+     * @return Number of days (Integer)
+     */
+    private Optional<Integer> parseDaysFromCommand(CommandPair commandPair, int index) {
+        try {
+            int days =  Integer.parseInt(commandPair.getCommandByIndex(index));
+            return Optional.of(days);
+        } catch (NumberFormatException e) {
+            UI.printReply(commandPair.getCommandByIndex(index), "The following is not a valid number: ");
+        } catch (IndexOutOfBoundsException s) {
+            UI.printReply("Specify the number of days you want to look into the past", "Missing input: ");
+        }
+        return Optional.empty();
     }
 
 }

@@ -2,7 +2,6 @@ package seedu.healthmate;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
-import java.time.temporal.ChronoUnit;
 
 
 public class MealEntry extends Meal{
@@ -19,12 +18,13 @@ public class MealEntry extends Meal{
     }
 
     public static MealEntry extractMealEntryFromString(String input, String command, MealList mealOptions)
-            throws EmptyCalorieException, BadCalorieException, MealNotFoundException {
-        Optional<String> mealDescription = extractMealDescription(input, command);
+            throws EmptyCalorieException, BadCalorieException, MealNotFoundException, BadTimestampException {
+
         int calories;
+        Optional<String> mealDescription = extractMealDescription(input, command);
+
         try {
             calories = Parameter.getCalories(input);
-
         } catch (EmptyCalorieException e) {
             System.out.println("Getting info from meal options...");
             Optional<Integer> optionalCalories = mealOptions.getCaloriesByMealName(mealDescription.orElse(""));
@@ -35,8 +35,18 @@ public class MealEntry extends Meal{
             calories = optionalCalories.orElseThrow(() -> new EmptyCalorieException());
         }
 
-        MealEntry mealEntry = new MealEntry(mealDescription, calories);
-        return mealEntry;
+        try {
+            LocalDateTime timestamp = Parameter.getTimestamp(input);
+            return new MealEntry(mealDescription, calories, timestamp);
+        } catch (EmptyTimestampException e) {
+            return new MealEntry(mealDescription, calories);
+        } catch (BadTimestampException e) {
+            throw new BadTimestampException();
+        }
+    }
+
+    public LocalDateTime getTimestamp() {
+        return this.timestamp;
     }
 
 
@@ -57,6 +67,6 @@ public class MealEntry extends Meal{
 
     @Override
     public String toString() {
-        return super.toString() + " (at: " + this.timestamp.truncatedTo(ChronoUnit.HOURS) + ")";
+        return super.toString() + " (at: " + this.timestamp.toLocalDate() + ")";
     }
 }
