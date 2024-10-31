@@ -89,8 +89,6 @@ public class ChatParser {
         String command = commandToken1 + " " + commandToken2;
         logger.log(Level.INFO, "User command is: " + command);
 
-        User currentUser;
-
         switch (command) {
         case MealMenuCommand.COMMAND:
             logger.log(Level.INFO, "Executing meal menu command to show meal options");
@@ -130,19 +128,18 @@ public class ChatParser {
             break;
         case UpdateUserDataCommand.COMMAND:
             logger.log(Level.INFO, "Executing command to update user data");
-            currentUser = User.askForUserData();
-            historyTracker.saveUserDataFile(currentUser);
+            user = User.askForUserData();
+            historyTracker.saveUserDataFile(user);
             break;
         case TodayCalorieProgressCommand.COMMAND:
             logger.log(Level.INFO, "Executing command to print daily progress bar");
-            printTodayCalorieProgress();
+            mealEntries.printDaysConsumptionBar(user, LocalDateTime.now());;
             break;
         case HistoricCalorieProgressCommand.COMMAND:
             logger.log(Level.INFO, "Executing command to print Historic calorie bar");
             try{
                 int days = Integer.parseInt(inputTokens[2].strip());
-                currentUser = User.checkForUserData(historyTracker);
-                mealEntries.printHistoricConsumptionBars(currentUser, days);
+                mealEntries.printHistoricConsumptionBars(user, days);
             } catch (NumberFormatException e) {
                 UI.printReply(inputTokens[2].strip(), "THE FOLLOWING IS NOT A VALID NUMBER: ");
             }
@@ -166,11 +163,6 @@ public class ChatParser {
         this.mealOptions = this.historyTracker.loadEmptyMealOptions();
         historyTracker.saveMealOptions(mealOptions);
         historyTracker.saveMealEntries(mealEntries);
-    }
-
-    public void printTodayCalorieProgress() {
-        User currentUser = User.checkForUserData(historyTracker);
-        mealEntries.printDaysConsumptionBar(currentUser, LocalDateTime.now());
     }
 
 }
