@@ -17,7 +17,7 @@ public class MealList {
         this.mealList = mealList;
     }
 
-    public void extractAndAppendMeal(String userInput, String command, MealList mealOptions, User user) {
+    public void extractAndAppendMeal(String userInput, String command, MealList mealOptions, UserEntry userEntry) {
         try {
             Meal meal = extractMealFromString(userInput, command);
             if (!meal.descriptionIsEmpty()) {

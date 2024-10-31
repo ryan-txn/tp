@@ -28,7 +28,7 @@ public class ChatParserTest {
     /**
      * Mocks the chatParser.run() method
      * @param chatParser
-     * @param simulatedInput User input for which the behaviour of chatParser.run() is asserted
+     * @param simulatedInput UserEntry input for which the behaviour of chatParser.run() is asserted
      * @param expectedOutput Expected output printed to the consule that is to be compared with the actual ouput
      */
     private void compareChatParserOutput(ChatParser chatParser, String simulatedInput, String expectedOutput) {
@@ -82,13 +82,14 @@ public class ChatParserTest {
      */
     @Test void trackMealEntryWithCalories_success() {
         ChatParser chatParser = new ChatParser();
-        User user = User.checkForUserData(chatParser.getHistoryTracker());
+        UserHistoryTracker userHistoryTracker = new UserHistoryTracker();
+        UserEntry userEntry = userHistoryTracker.checkForUserData(chatParser.getUserHistoryTracker());
         String simulatedInput = "add mealEntry pizza /c300\nbye";
         LocalDateTime today = LocalDateTime.now().truncatedTo(ChronoUnit.HOURS);
         String timeString = "(at: " + today + ")";
         String expectedOuput = UI.simulateInitOutput()
             + UI.simulateReply("pizza with 300 calories " + timeString, "Tracked: ")
-            + user.buildUsersConsumptionBar("% of Expected Calorie Intake Consumed: ",
+            + userEntry.buildUsersConsumptionBar("% of Expected Calorie Intake Consumed: ",
                 300,
                 today.toLocalDate())
             + System.lineSeparator()

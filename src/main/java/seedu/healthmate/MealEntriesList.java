@@ -21,14 +21,14 @@ public class MealEntriesList extends MealList {
     }
 
     @Override
-    public void extractAndAppendMeal(String userInput, String command, MealList mealOptions, User user) {
+    public void extractAndAppendMeal(String userInput, String command, MealList mealOptions, UserEntry userEntry) {
         try {
             int portions = Parameter.getPortions(userInput);
             MealEntry meal = extractMealEntryFromString(userInput, command, mealOptions);
             for (int i =0; i<portions; i++) {
                 this.addMeal(meal);
             }
-            printDaysConsumptionBar(user, LocalDateTime.now());
+            printDaysConsumptionBar(userEntry, LocalDateTime.now());
         } catch (EmptyCalorieException | BadCalorieException e) {
             UI.printReply("Every meal needs a calorie integer. (e.g. /c120)", "");
         } catch (StringIndexOutOfBoundsException s) {
@@ -43,11 +43,11 @@ public class MealEntriesList extends MealList {
         }
     }
 
-    public void removeMealWithFeedback(String userInput, String command, User user) {
+    public void removeMealWithFeedback(String userInput, String command, UserEntry userEntry) {
         try {
             int mealNumber = Integer.parseInt(userInput.replaceAll(command, "").strip());
             deleteMeal(mealNumber);
-            printDaysConsumptionBar(user, LocalDateTime.now());
+            printDaysConsumptionBar(userEntry, LocalDateTime.now());
         } catch (NumberFormatException n) {
             UI.printReply("Meal Entry index needs to be an integer", "Error: ");
         } catch (IndexOutOfBoundsException s) {
@@ -72,28 +72,28 @@ public class MealEntriesList extends MealList {
         return new ArrayList<>(super.mealList);
     }
 
-    public void printDaysConsumptionBar(User user, LocalDateTime endOfDayTime) {
+    public void printDaysConsumptionBar(UserEntry userEntry, LocalDateTime endOfDayTime) {
         LocalDateTime todayMidnight = endOfDayTime.truncatedTo(ChronoUnit.DAYS);
         LocalDate today = endOfDayTime.toLocalDate();
         MealEntriesList mealsConsumedToday = this.getMealEntriesByDate(endOfDayTime, todayMidnight);
         int caloriesConsumed = mealsConsumedToday.getTotalCaloriesConsumed();
-        user.printUsersConsumptionBar("% of Expected Calorie Intake Consumed: ", caloriesConsumed, today);
+        userEntry.printUsersConsumptionBar("% of Expected Calorie Intake Consumed: ", caloriesConsumed, today);
     }
 
     /**
      * Prints the historic consumption bars for a specified number of days.
      *
-     * @param user the User whose consumption history is to be printed
+     * @param userEntry the UserEntry whose consumption history is to be printed
      * @param days the number of days to include in the consumption history
-     * @throws IllegalArgumentException if user is null or days is negative
+     * @throws IllegalArgumentException if userEntry is null or days is negative
      */
-    public void printHistoricConsumptionBars(User user, int days) {
-        assert user != null : "User cannot be null";
+    public void printHistoricConsumptionBars(UserEntry userEntry, int days) {
+        assert userEntry != null : "UserEntry cannot be null";
         assert days >= 0 : "Days cannot be negative";
 
         LocalDate today = DateTimeUtils.currentDate();
 
-        user.printTargetCalories();
+        userEntry.printTargetCalories();
         for (int i = days; i >= 0; i--) {
             LocalDate printDate = today.minusDays(i);
             LocalDateTime upperDateBound = DateTimeUtils.endOfDayLocalDateTime(printDate);
@@ -102,7 +102,7 @@ public class MealEntriesList extends MealList {
             MealEntriesList mealsConsumed = this.getMealEntriesByDate(upperDateBound, lowerDateBound);
             int caloriesConsumed = mealsConsumed.getTotalCaloriesConsumed();
 
-            user.printHistoricConsumptionBar(caloriesConsumed, printDate);
+            userEntry.printHistoricConsumptionBar(caloriesConsumed, printDate);
         }
 
         UI.printSeparator();

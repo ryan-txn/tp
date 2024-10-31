@@ -18,8 +18,6 @@ public class HistoryTracker {
     private static final String DATA_DIRECTORY = "data";
     private static final String MEAL_ENTRIES_FILE = "meal_entries.csv";
     private static final String MEAL_OPTIONS_FILE = "meal_options.csv";
-    private static final String USER_DATA_FILE = "user_data.txt";
-
 
     public HistoryTracker() {
         createDirectoryIfNotExists(DATA_DIRECTORY);
@@ -52,23 +50,6 @@ public class HistoryTracker {
         saveMealToFile(newMeals, MEAL_OPTIONS_FILE);
     }
 
-    public void saveUserDataFile(User user) {
-        try {
-
-            File userDataFile = new File(DATA_DIRECTORY + File.separator + USER_DATA_FILE);
-
-            if (!userDataFile.exists()) {
-                userDataFile.createNewFile();
-                return;
-            }
-
-            clearUserDataFile();
-            updateUserDataFile(user);
-        } catch (IOException e) {
-            System.out.println("Error creating user data file: " + e.getMessage());
-        }
-    }
-
     public MealEntriesList loadMealEntries() {
         List<Meal> meals = loadMealFromFile(MEAL_ENTRIES_FILE, true);
         MealEntriesList mealEntriesList = new MealEntriesList();
@@ -87,60 +68,6 @@ public class HistoryTracker {
         }
         UI.printString("Meal Options Loaded Successfully!");
         return mealList;
-    }
-
-    public Optional<User> loadUserData() {
-        try {
-            File userDataFile = new File(DATA_DIRECTORY + File.separator + USER_DATA_FILE);
-            if (!userDataFile.exists()) {
-                userDataFile.createNewFile();
-            }
-
-            Optional<User> user = loadUserFromFile(userDataFile);
-            return user;
-        } catch (IOException e) {
-            System.out.println("Error creating user data file: " + e.getMessage());
-        }
-        return Optional.empty();
-    }
-
-    public Optional<User> loadUserFromFile(File userDataFile) throws FileNotFoundException{
-        try {
-            Scanner s = new Scanner(userDataFile);
-            double userHeight = Double.parseDouble(s.nextLine());
-            double userWeight = Double.parseDouble(s.nextLine());
-            boolean isMale = Boolean.parseBoolean(s.nextLine());
-            int age = Integer.parseInt(s.nextLine());
-            String goal = s.nextLine();
-
-            return Optional.of(new User(userHeight, userWeight, isMale, age, goal));
-
-        } catch (NumberFormatException e) {
-            System.out.println("Error parsing a number." + e.getMessage());
-        } catch (NoSuchElementException e) {
-            // silent catch if existing user file contains no content
-        }
-        return Optional.empty();
-    }
-
-    public void clearUserDataFile(){
-        try {
-            FileWriter fw = new FileWriter(DATA_DIRECTORY + File.separator + USER_DATA_FILE);
-            fw.write("");
-            fw.close();
-        } catch (IOException e) {
-            System.out.println("Error clearing user data file: " + e.getMessage());
-        }
-    }
-
-    public void updateUserDataFile(User user) {
-        try {
-            FileWriter fw = new FileWriter(DATA_DIRECTORY + File.separator + USER_DATA_FILE, true);
-            fw.write(user.toString());
-            fw.close();
-        } catch (IOException e) {
-            System.out.println("Error updating user data file: " + e.getMessage());
-        }
     }
 
     public MealEntriesList loadEmptyMealEntries() {
