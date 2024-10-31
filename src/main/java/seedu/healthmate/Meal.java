@@ -20,8 +20,7 @@ public class Meal {
         return meal;
     }
 
-    public static Optional<String> extractMealDescription(String input,
-                                                          String command) {
+    public static Optional<String> extractMealDescription(String input, String command) {
         int mealDescriptionIndex = input.indexOf(command) + command.length();
         int calorieIndex = input.indexOf(Parameter.CALORIE_SIGNALLER.getPrefix());
         if (calorieIndex == -1) {

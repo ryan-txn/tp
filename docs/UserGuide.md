@@ -12,7 +12,7 @@ Welcome to HealthMate! Follow these steps to get started quickly:
 - Open CLI and Navigate to location of `HealthMate.jar`
 - Run the following Command: `java -jar HealthMate.jar`
 - 
-**Create you user profile**
+**Create your user profile**
 Input data about yourself needed to compute your ideal daily calorie intake. 
 This includes:
 - Your height in cm (e.g. 180)
