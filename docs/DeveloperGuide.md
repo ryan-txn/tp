@@ -223,7 +223,15 @@ HealthMate solves the following problems:
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
 |v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+|v1.0|user|save frequently eaten meals|quickly add them in the future without re-entering details|
+|v1.0|user|log my daily meals|track my calorie intake|
+|v1.0|user|see my calorie consumption|know if I'm meeting my daily goals|
+|v1.0|user|set my health goals|have a target to work towards|
+|v2.0|user|see my meal history|analyze my eating patterns over time|
+|v2.0|user|specify custom timestamps for meals|log meals I forgot to enter earlier|
+|v2.0|user|see visual representations of my progress|better understand my eating habits|
+|v2.0|user|export my data|back up my records or analyze them elsewhere|
+|v2.0|user|create custom meal combinations|quickly log common meal combinations|
 
 ## Non-Functional Requirements
 
