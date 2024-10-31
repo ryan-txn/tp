@@ -1,4 +1,4 @@
-# Project Portfolio Page - Dri Water
+# Project Portfolio Page - kennethSty
 
 ## Overview
 HealthMate is a meal and calorie tracking application designed to help users manage their dietary intake, 
@@ -24,14 +24,14 @@ The app enables users to log meals, track calories, and observe their progress t
 
 2. **Implementing the MealList and MealEntriesList class**
 * Created the MealList and MealEntriesList class and their inheritance relationship.
-* Implemented low-level functionality to add and jdelete meals and mealEntries to the lists.
+* Implemented low-level functionality to add and delete meals and mealEntries to the lists.
 
-3**Enhancing the User class**
+3. **Enhancing the User class**
 * Created basic structure of the User class.
 * Added logic of loading a user class, if a user file exists (`checkForUserData`). 
 * Refactored the creation of a new user instance (`askForUserData`), if no user file exists so far.
 
-3. **Contributions to the ChatParser class**
+4. **Contributions to the ChatParser class**
 * Designed the overall ChatParser structure
 * Implemented the preprocessing of user input into commands
 * Created Exception handling for system recovery after incorrect user input
@@ -43,7 +43,7 @@ The app enables users to log meals, track calories, and observe their progress t
 - save meal
 - add mealEntry
 
-4. **Implementing the UI class**
+5. **Implementing the UI class**
 * Implemented static methods to be used throughout this project for standardizing user input. 
 * Added the feature to print the list of previously consumed meals and meal options
 * Added key elements for output structuring and their usage when printing user feedback
@@ -64,7 +64,7 @@ The following exemplifies these elements:
   _____________________________________________________________________________
 ```
 
-4. **Unit Testing**
+6. **Unit Testing**
 * Implemented the ChatParserTest class and the foundational methods setOutputStream, restoreStream, compareChatParserOutput.
 * Added the following tests:
 - randomInput_printsError and the respective simulation methods simulateInitOutput, simulateReply and simulateFareWell
@@ -77,7 +77,7 @@ Added the sections:
 - `Get an overview on your calorie consumption` 
 - `Track your daily progress`
 - `Create your user profile`
-Overall proof reading.
+Overall proofreading.
 
   
 ### Contributions to the Developer Guide
@@ -97,11 +97,11 @@ Overall proof reading.
 
 ### Contributions to Team Tasks
 * Took over responsibility for managing and creating issues for steering team progress
-* Created the first POC applicati for tracking mealEntris and mealOptions to kickstart the project. 
+* Created the first POC application for tracking mealEntries and mealOptions to kickstart the project. 
 * Fixed IO Testing issues
 * Left feedback in my PR reviews, resulting in follow-up issues.
 
 ### Review/Mentoring Contributions
 * Reviewed, approved or if necessary requested changes to multiple PRs
-* Helped to finish the User profile creation procedure when the previous aproach got stuck
+* Helped to finish the User profile creation procedure when the previous approach got stuck
 

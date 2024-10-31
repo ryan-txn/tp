@@ -12,7 +12,7 @@ HealthMate is a meal and calorie tracking application designed to help users man
 1. **Enhanced Meal Menu System**
    * Implemented the meal saving functionality that allows users to store frequently eaten meals with their calorie counts using the `save meal` command (details in mealSaver class)
    * Added ability to retrieve saved meals when logging new meal entries using `add mealEntry`, improving user experience by eliminating the need to remember and re-enter calorie information
-   * Modified mealEntry class to accomodate retrieval of saved meals
+   * Modified mealEntry class to accommodate retrieval of saved meals
 
 2. **Implemented MealSaver Class**
    * This class handles the logic of writing and overwriting the mealOptions
