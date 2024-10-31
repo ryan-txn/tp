@@ -20,11 +20,12 @@ public class MealEntry extends Meal{
 
     public static MealEntry extractMealEntryFromString(String input, String command, MealList mealOptions)
             throws EmptyCalorieException, BadCalorieException, MealNotFoundException, BadTimestampException {
-        Optional<String> mealDescription = extractMealDescription(input, command);
+
         int calories;
+        Optional<String> mealDescription = extractMealDescription(input, command);
+
         try {
             calories = Parameter.getCalories(input);
-
         } catch (EmptyCalorieException e) {
             System.out.println("Getting info from meal options...");
             Optional<Integer> optionalCalories = mealOptions.getCaloriesByMealName(mealDescription.orElse(""));
