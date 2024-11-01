@@ -1,9 +1,13 @@
-package seedu.healthmate;
-import static seedu.healthmate.Meal.extractMealFromString;
+package seedu.healthmate.core;
+import static seedu.healthmate.core.Meal.extractMealFromString;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import seedu.healthmate.services.UI;
+import seedu.healthmate.exceptions.BadCalorieException;
+import seedu.healthmate.exceptions.EmptyCalorieException;
 
 public class MealList {
 

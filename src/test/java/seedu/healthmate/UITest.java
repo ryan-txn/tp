@@ -6,6 +6,8 @@ import org.junit.jupiter.api.AfterEach;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
+import seedu.healthmate.services.UI;
+
 
 public class UITest {
     private static final String LINE_SEPARATOR = System.lineSeparator();

@@ -1,4 +1,4 @@
-package seedu.healthmate;
+package seedu.healthmate.utils;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -6,7 +6,13 @@ import java.time.format.DateTimeParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-enum Parameter {
+import seedu.healthmate.exceptions.BadCalorieException;
+import seedu.healthmate.exceptions.BadPortionException;
+import seedu.healthmate.exceptions.BadTimestampException;
+import seedu.healthmate.exceptions.EmptyCalorieException;
+import seedu.healthmate.exceptions.EmptyTimestampException;
+
+public enum Parameter {
     CALORIE_SIGNALLER("/c"),
     PORTIONS_SIGNALLER("/p"),
     TIMESTAMP_SIGNALLER("/t");

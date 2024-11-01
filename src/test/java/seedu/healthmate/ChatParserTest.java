@@ -10,6 +10,10 @@ import java.io.PrintStream;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import seedu.healthmate.core.User;
+import seedu.healthmate.services.ChatParser;
+import seedu.healthmate.services.UI;
+
 public class ChatParserTest {
     private final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     private final PrintStream originalOutput = System.out;

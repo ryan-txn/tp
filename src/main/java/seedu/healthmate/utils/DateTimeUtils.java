@@ -1,4 +1,4 @@
-package seedu.healthmate;
+package seedu.healthmate.utils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

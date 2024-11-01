@@ -1,4 +1,4 @@
-package seedu.healthmate;
+package seedu.healthmate.utils;
 public class Pair<T, U> {
 
     private final T t;

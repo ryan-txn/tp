@@ -1,4 +1,6 @@
-package seedu.healthmate;
+package seedu.healthmate.core;
+
+import seedu.healthmate.services.UI;
 
 public class HealthGoal {
 

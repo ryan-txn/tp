@@ -1,4 +1,4 @@
-package seedu.healthmate;
+package seedu.healthmate.services;
 
 import seedu.healthmate.command.Command;
 import seedu.healthmate.command.CommandPair;
@@ -13,6 +13,11 @@ import seedu.healthmate.command.commands.UpdateUserDataCommand;
 import seedu.healthmate.command.commands.TodayCalorieProgressCommand;
 import seedu.healthmate.command.commands.HistoricCalorieProgressCommand;
 import seedu.healthmate.command.CommandMap;
+import seedu.healthmate.core.Meal;
+import seedu.healthmate.core.MealEntriesList;
+import seedu.healthmate.core.MealList;
+import seedu.healthmate.core.User;
+import seedu.healthmate.utils.Logging;
 
 import java.time.LocalDateTime;
 import java.util.List;
