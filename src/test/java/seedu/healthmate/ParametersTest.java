@@ -7,6 +7,11 @@ import org.junit.jupiter.api.AfterEach;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
+import seedu.healthmate.exceptions.BadCalorieException;
+import seedu.healthmate.exceptions.BadPortionException;
+import seedu.healthmate.exceptions.EmptyCalorieException;
+import seedu.healthmate.utils.Parameter;
+
 public class ParametersTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;

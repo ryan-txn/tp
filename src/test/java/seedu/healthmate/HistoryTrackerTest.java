@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.io.File;
 
+import seedu.healthmate.services.HistoryTracker;
+
 public class HistoryTrackerTest {
     
     @Test
