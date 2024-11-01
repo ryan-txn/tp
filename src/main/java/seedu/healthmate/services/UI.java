@@ -1,4 +1,4 @@
-package seedu.healthmate;
+package seedu.healthmate.services;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -7,6 +7,10 @@ import java.util.Optional;
 import java.util.stream.IntStream;
 
 import seedu.healthmate.command.Command;
+import seedu.healthmate.core.MealEntriesList;
+import seedu.healthmate.core.MealEntry;
+import seedu.healthmate.core.MealList;
+import seedu.healthmate.utils.DateTimeUtils;
 
 
 public class UI {

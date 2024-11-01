@@ -1,7 +1,12 @@
-package seedu.healthmate;
+package seedu.healthmate.services;
 
 
 import java.util.Optional;
+
+import seedu.healthmate.core.Meal;
+import seedu.healthmate.core.MealList;
+import seedu.healthmate.exceptions.EmptyCalorieException;
+import seedu.healthmate.utils.DuplicateEntryChecker;
 
 public class MealSaver {
     private HistoryTracker historyTracker;

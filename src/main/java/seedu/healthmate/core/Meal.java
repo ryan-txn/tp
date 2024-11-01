@@ -1,7 +1,11 @@
-package seedu.healthmate;
+package seedu.healthmate.core;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
+
+import seedu.healthmate.exceptions.BadCalorieException;
+import seedu.healthmate.exceptions.EmptyCalorieException;
+import seedu.healthmate.utils.Parameter;
 
 public class Meal {
     private final Optional<String> name;

@@ -1,6 +1,6 @@
 package seedu.healthmate.command;
 
-import seedu.healthmate.Pair;
+import seedu.healthmate.utils.Pair;
 
 public class CommandPair extends Pair<String, String[]> {
 

@@ -1,7 +1,12 @@
-package seedu.healthmate;
+package seedu.healthmate.services;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
+
+import seedu.healthmate.core.MealEntriesList;
+import seedu.healthmate.core.MealEntry;
+import seedu.healthmate.core.User;
+import seedu.healthmate.utils.DateTimeUtils;
 
 public class ConsumptionStatistics {
     

@@ -1,7 +1,7 @@
-package seedu.healthmate;
+package seedu.healthmate.core;
 
 
-import static seedu.healthmate.MealEntry.extractMealEntryFromString;
+import static seedu.healthmate.core.MealEntry.extractMealEntryFromString;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -12,6 +12,16 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
+import seedu.healthmate.services.ConsumptionStatistics;
+import seedu.healthmate.services.UI;
+import seedu.healthmate.exceptions.BadCalorieException;
+import seedu.healthmate.exceptions.BadPortionException;
+import seedu.healthmate.exceptions.BadTimestampException;
+import seedu.healthmate.exceptions.EmptyCalorieException;
+import seedu.healthmate.exceptions.MealNotFoundException;
+import seedu.healthmate.utils.DateTimeUtils;
+import seedu.healthmate.utils.Parameter;
 
 
 public class MealEntriesList extends MealList {

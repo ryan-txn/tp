@@ -1,4 +1,4 @@
-package seedu.healthmate;
+package seedu.healthmate.utils;
 
 import java.io.File;
 import java.io.IOException;
@@ -8,6 +8,8 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
+
+import seedu.healthmate.services.HistoryTracker;
 
 public class Logging {
     public static Logger setupLogger(Logger logger, String nameClassToBeLogged) {

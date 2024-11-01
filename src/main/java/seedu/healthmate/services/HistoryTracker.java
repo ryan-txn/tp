@@ -1,4 +1,4 @@
-package seedu.healthmate;
+package seedu.healthmate.services;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,6 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
+
+import seedu.healthmate.core.Meal;
+import seedu.healthmate.core.MealEntriesList;
+import seedu.healthmate.core.MealEntry;
+import seedu.healthmate.core.MealList;
+import seedu.healthmate.core.User;
 
 public class HistoryTracker {
     private static final String DATA_DIRECTORY = "data";

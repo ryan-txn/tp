@@ -1,9 +1,12 @@
-package seedu.healthmate;
+package seedu.healthmate.core;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.Scanner;
+
+import seedu.healthmate.services.HistoryTracker;
+import seedu.healthmate.services.UI;
 
 public class User {
     private final double idealCalories;
