@@ -110,7 +110,6 @@ public class UI {
     public static void printRecommendation(List<Recipe> recipes) {
         System.out.println(LINE);
         System.out.println(INDENTATION + "Recommended recipes for your health goal");
-        System.out.println(INDENTATION + "Use `add recipe <recipe index>` to save the meal to the meal menu");
         if (recipes.size() == 1) {
             System.out.println(INDENTATION + recipes.get(0).toString());
         } else {
