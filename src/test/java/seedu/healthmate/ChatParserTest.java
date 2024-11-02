@@ -14,10 +14,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
+import seedu.healthmate.core.UserHistoryTracker;
 import seedu.healthmate.core.MealEntry;
 import seedu.healthmate.core.User;
 import seedu.healthmate.services.ChatParser;
 import seedu.healthmate.services.UI;
+
 
 public class ChatParserTest {
     private final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -108,7 +110,8 @@ public class ChatParserTest {
      */
     @Test void trackMealEntryWithCalories_success() {
         ChatParser chatParser = new ChatParser();
-        User user = User.checkForUserData(chatParser.getHistoryTracker());
+        UserHistoryTracker userHistoryTracker = new UserHistoryTracker();
+        User user = userHistoryTracker.checkForUserData(chatParser.getUserHistoryTracker());
         String simulatedInput = "add mealEntry pizza /c300\nbye";
         LocalDate today = LocalDateTime.now().toLocalDate();
         String timeString = "(at: " + today + ")";

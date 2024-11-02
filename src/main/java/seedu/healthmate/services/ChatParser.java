@@ -17,6 +17,7 @@ import seedu.healthmate.core.Meal;
 import seedu.healthmate.core.MealEntriesList;
 import seedu.healthmate.core.MealList;
 import seedu.healthmate.core.User;
+import seedu.healthmate.core.UserHistoryTracker;
 import seedu.healthmate.utils.Logging;
 
 import java.time.LocalDateTime;
@@ -40,6 +41,7 @@ public class ChatParser {
     private MealEntriesList mealEntries;
     private MealList mealOptions;
     private final HistoryTracker historyTracker;
+    private final UserHistoryTracker userHistoryTracker;
 
     public ChatParser(){
         Logging.setupLogger(logger, ChatParser.class.getName());
@@ -50,22 +52,9 @@ public class ChatParser {
         logger.log(Level.INFO, "Loaded MealEntries");
         this.mealOptions = historyTracker.loadMealOptions();
         logger.log(Level.INFO, "Loaded MealOptions");
+        this.userHistoryTracker = new UserHistoryTracker();
+        logger.log(Level.INFO, "Initializing UserHistoryTracker");
         UI.printSeparator();
-    }
-
-    public HistoryTracker getHistoryTracker() {
-        return this.historyTracker;
-    }
-
-    public String getMealOptionsStringWithNewMeal(String newMealString) {
-        return UI.toMealOptionsString(this.mealOptions, newMealString);
-    }
-
-    public void cleanMealLists() {
-        this.mealEntries = this.historyTracker.loadEmptyMealEntries();
-        this.mealOptions = this.historyTracker.loadEmptyMealOptions();
-        historyTracker.saveMealOptions(mealOptions);
-        historyTracker.saveMealEntries(mealEntries);
     }
 
     /**
@@ -75,8 +64,8 @@ public class ChatParser {
     public void run() {
         // check for health goal file existence and create file if none exists
         logger.log(Level.INFO, "Checking if user data exists");
-        User user = User.checkForUserData(this.historyTracker);
-        parseUserInput(user);
+        User userEntry = userHistoryTracker.checkForUserData(this.userHistoryTracker);
+        parseUserInput(userEntry);
     }
 
     /**
@@ -113,10 +102,11 @@ public class ChatParser {
     }
 
     /**
-     * Steers the activation of features offered to the user via two-token commands
-     * @param userInput String user input from the command line
+     * Steers the activation of features offered to the userEntry via two-token commands
+     * @param userInput String userEntry input from the command line
      */
-    private void multiCommandParsing(String userInput, User user) {
+
+    public void multiCommandParsing(String userInput, User user) {
 
         User currentUser = user; //create snapshot in case user is updated
         CommandPair commandPair = getCommandFromInput(userInput);
@@ -160,8 +150,8 @@ public class ChatParser {
             break;
         case UpdateUserDataCommand.COMMAND:
             logger.log(Level.INFO, "Executing command to update user data");
-            user = User.askForUserData();
-            historyTracker.saveUserDataFile(user);
+            User newUser = User.askForUserData();
+            userHistoryTracker.printAllUserEntries();
             break;
         case TodayCalorieProgressCommand.COMMAND:
             logger.log(Level.INFO, "Executing command to print daily progress bar");
@@ -195,6 +185,26 @@ public class ChatParser {
                 .toArray(String[]::new);
 
         return new CommandPair(twoTokenCommand, additionalCommands);
+    }
+
+    public UserHistoryTracker getUserHistoryTracker() {
+        return this.userHistoryTracker;
+    }
+
+    public String getMealOptionsStringWithNewMeal(String newMealString) {
+        return UI.toMealOptionsString(this.mealOptions, newMealString);
+    }
+
+    public void cleanMealLists() {
+        this.mealEntries = this.historyTracker.loadEmptyMealEntries();
+        this.mealOptions = this.historyTracker.loadEmptyMealOptions();
+        historyTracker.saveMealOptions(mealOptions);
+        historyTracker.saveMealEntries(mealEntries);
+    }
+
+    public void printTodayCalorieProgress() {
+        User currentUser = userHistoryTracker.checkForUserData(userHistoryTracker);
+        mealEntries.printDaysConsumptionBar(currentUser, LocalDateTime.now());
     }
 
     /**
