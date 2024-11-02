@@ -1,7 +1,5 @@
 package seedu.healthmate.recommender;
 
-import seedu.healthmate.command.Command;
-import seedu.healthmate.command.commands.*;
 import seedu.healthmate.recommender.recipes.BulkingOatmeal;
 import seedu.healthmate.recommender.recipes.FruitSmoothie;
 import seedu.healthmate.recommender.recipes.HealthySandwich;
