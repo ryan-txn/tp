@@ -24,12 +24,20 @@ public abstract class Recipe {
 
     @Override
     public String toString() {
-        return recipeName + ": " + calories + " calories\n" +
-                INDENTATION + "Protein: " + protein + "g\n" +
-                INDENTATION + "Carbs: " + carbs + "g\n" +
-                INDENTATION + "Fat: " + fat + "g\n" +
-                INDENTATION + "Fiber: " + fiber + "g\n" +
-                INDENTATION + recipe + "\n";
+        StringBuilder sb = new StringBuilder();
+        sb.append(recipeName).append(": ").append(calories).append(" calories\n")
+                .append(INDENTATION).append("Protein: ").append(protein).append("g\n")
+                .append(INDENTATION).append("Carbs: ").append(carbs).append("g\n")
+                .append(INDENTATION).append("Fat: ").append(fat).append("g\n")
+                .append(INDENTATION).append("Fiber: ").append(fiber).append("g\n");
+
+        // Split the recipe string into individual lines for ingredients
+        String[] ingredients = recipe.split("\n");
+        for (String ingredient : ingredients) {
+            sb.append(INDENTATION).append(ingredient).append("\n");
+        }
+
+        return sb.toString();
     }
 
     public String getRecipeName() {

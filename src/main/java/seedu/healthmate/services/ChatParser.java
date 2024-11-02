@@ -12,12 +12,16 @@ import seedu.healthmate.command.commands.MealMenuCommand;
 import seedu.healthmate.command.commands.UpdateUserDataCommand;
 import seedu.healthmate.command.commands.TodayCalorieProgressCommand;
 import seedu.healthmate.command.commands.HistoricCalorieProgressCommand;
+import seedu.healthmate.command.commands.MealRecommendationsCommand;
+
 import seedu.healthmate.command.CommandMap;
 import seedu.healthmate.core.Meal;
 import seedu.healthmate.core.MealEntriesList;
 import seedu.healthmate.core.MealList;
 import seedu.healthmate.core.User;
 import seedu.healthmate.core.UserHistoryTracker;
+import seedu.healthmate.recommender.Recipe;
+import seedu.healthmate.recommender.RecipeMap;
 import seedu.healthmate.utils.Logging;
 
 import java.time.LocalDateTime;
@@ -162,6 +166,12 @@ public class ChatParser {
             Optional<Integer> pastDays = parseDaysFromCommand(commandPair, 0);
             pastDays.ifPresent(days -> mealEntries.printHistoricConsumptionBars(currentUser, days));
             break;
+        case MealRecommendationsCommand.COMMAND:
+            logger.log(Level.INFO, "Executing command to list meal recommendation");
+            List<Recipe> recipes = RecipeMap.getRecipesByGoal(currentUser.getHealthGoal());
+            UI.printRecommendation(recipes);
+            break;
+
         default:
             UI.printReply("Use a valid command", "Retry: ");
             break;

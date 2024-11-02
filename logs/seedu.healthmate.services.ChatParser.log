@@ -1,20 +1,20 @@
-Nov 02, 2024 5:35:41 PM seedu.healthmate.services.ChatParser <init>
+Nov 02, 2024 6:15:46 PM seedu.healthmate.services.ChatParser <init>
 INFO: Initializing HistoryTracker
-Nov 02, 2024 5:35:41 PM seedu.healthmate.services.ChatParser <init>
+Nov 02, 2024 6:15:46 PM seedu.healthmate.services.ChatParser <init>
 INFO: Loaded MealEntries
-Nov 02, 2024 5:35:41 PM seedu.healthmate.services.ChatParser <init>
+Nov 02, 2024 6:15:46 PM seedu.healthmate.services.ChatParser <init>
 INFO: Loaded MealOptions
-Nov 02, 2024 5:35:41 PM seedu.healthmate.services.ChatParser <init>
+Nov 02, 2024 6:15:46 PM seedu.healthmate.services.ChatParser <init>
 INFO: Initializing UserHistoryTracker
-Nov 02, 2024 5:35:41 PM seedu.healthmate.services.ChatParser run
+Nov 02, 2024 6:15:46 PM seedu.healthmate.services.ChatParser run
 INFO: Checking if user data exists
-Nov 02, 2024 5:35:41 PM seedu.healthmate.services.ChatParser parseUserInput
+Nov 02, 2024 6:15:46 PM seedu.healthmate.services.ChatParser parseUserInput
 INFO: Getting next user input line
-Nov 02, 2024 5:35:47 PM seedu.healthmate.services.ChatParser multiCommandParsing
-INFO: User commands are: Pair of list commands, [Ljava.lang.String;@45fe3ee3
-Nov 02, 2024 5:35:47 PM seedu.healthmate.services.ChatParser multiCommandParsing
-INFO: Executing command to show all available commands
-Nov 02, 2024 5:35:47 PM seedu.healthmate.services.ChatParser parseUserInput
+Nov 02, 2024 6:15:54 PM seedu.healthmate.services.ChatParser multiCommandParsing
+INFO: User commands are: Pair of meal recommendations, [Ljava.lang.String;@45fe3ee3
+Nov 02, 2024 6:15:54 PM seedu.healthmate.services.ChatParser multiCommandParsing
+INFO: Executing command to list meal recommendation
+Nov 02, 2024 6:15:54 PM seedu.healthmate.services.ChatParser parseUserInput
 INFO: User input contains more than 1 token
-Nov 02, 2024 5:35:47 PM seedu.healthmate.services.ChatParser parseUserInput
+Nov 02, 2024 6:15:54 PM seedu.healthmate.services.ChatParser parseUserInput
 INFO: Getting next user input line

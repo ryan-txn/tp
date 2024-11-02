@@ -46,4 +46,14 @@ public class RecipeMap {
         // Log the number of commands retrieved
         return new ArrayList<>(RECIPEMAP.values());
     }
+
+    public static List<Recipe> getRecipesByGoal(Goals userGoal) {
+        List<Recipe> filteredRecipes = new ArrayList<>();
+        for (Recipe recipe : RECIPEMAP.values()) {
+            if (recipe.getGoal() == userGoal) {
+                filteredRecipes.add(recipe);
+            }
+        }
+        return filteredRecipes;
+    }
 }
