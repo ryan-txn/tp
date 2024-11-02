@@ -68,7 +68,16 @@ public class ChatParser {
         parseUserInput(userEntry);
     }
 
-    private void parseUserInput(User userEntry) {
+    /**
+     * Function simulating the above run() method with a User stub for testing.
+     */
+    public void simulateRunWithStub(User userStub) {
+        // check for health goal file existence and create file if none exists
+        logger.log(Level.INFO, "Checking if user data exists");
+        parseUserInput(userStub);
+    }
+
+    private void parseUserInput(User user) {
         Scanner scanner = new Scanner(System.in);
         String userInput = "";
 
@@ -82,7 +91,7 @@ public class ChatParser {
                 break;
             default:
                 try {
-                    this.multiCommandParsing(userInput, userEntry);
+                    this.multiCommandParsing(userInput, user);
                     logger.log(Level.INFO, "User input contains more than 1 token");
                 } catch (ArrayIndexOutOfBoundsException a) {
                     logger.log(Level.WARNING, "Invalid command", a);
