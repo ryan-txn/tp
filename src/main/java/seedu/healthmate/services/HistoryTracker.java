@@ -15,7 +15,6 @@ import seedu.healthmate.core.Meal;
 import seedu.healthmate.core.MealEntriesList;
 import seedu.healthmate.core.MealEntry;
 import seedu.healthmate.core.MealList;
-import seedu.healthmate.core.User;
 
 public class HistoryTracker {
     private static final String DATA_DIRECTORY = "data";
