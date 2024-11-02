@@ -97,4 +97,15 @@ public class ChatParserTest {
             + UI.simulateFareWell();
         compareChatParserOutput(chatParser, simulatedInput, expectedOutput);
     }
+
+    @Test void showHistoricCaloriesNoTime_failure() {
+        ChatParser chatParser = new ChatParser();
+        User user = User.checkForUserData(chatParser.getHistoryTracker());
+        String simulatedInput = "show historicCalories \n bye";
+        String expectedOutput = UI.simulateInitOutput()
+                + UI.simulateReply("Specify the number of days you want to look into the past",
+                "Missing input: ")
+                + UI.simulateFareWell();
+        compareChatParserOutput(chatParser, simulatedInput, expectedOutput);
+    }
 }
