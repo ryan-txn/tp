@@ -1,5 +1,6 @@
 package seedu.healthmate.core;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -44,8 +45,8 @@ public class MealEntry extends Meal{
         }
 
         try {
-            LocalDateTime timestamp = Parameter.getTimestamp(input);
-            return new MealEntry(mealDescription, calories, timestamp);
+            LocalDate timestamp = Parameter.getTimestamp(input);
+            return new MealEntry(mealDescription, calories, timestamp.atStartOfDay());
         } catch (EmptyTimestampException e) {
             return new MealEntry(mealDescription, calories);
         } catch (BadTimestampException e) {

@@ -15,12 +15,12 @@ import seedu.healthmate.utils.DateTimeUtils;
 
 public class UI {
     
-    private static final String LINE_SEPARATOR = System.lineSeparator();
+    private static final String NEW_LINE = System.lineSeparator();
     private static final String SEPARATOR =
             "_____________________________________________________________________________";
     private static final String INDENTATION = "      ";
     private static final String LINE = INDENTATION + SEPARATOR;
-    private static final String FRAME_LINE = LINE + LINE_SEPARATOR;
+    private static final String FRAME_LINE = LINE + NEW_LINE;
     private static final String LOGO =
               INDENTATION + " |\n"
             + INDENTATION + "     \\\\|//\n"
@@ -116,10 +116,10 @@ public class UI {
     public static String toMealOptionsString(MealList mealOptions, String newMealString) {
         String mealOptionsString = "";
         for (int i = 0; i < mealOptions.size(); i++) {
-            mealOptionsString += INDENTATION + (i + 1) + ": " + mealOptions.toMealStringByIndex(i) + LINE_SEPARATOR;
+            mealOptionsString += INDENTATION + (i + 1) + ": " + mealOptions.toMealStringByIndex(i) + NEW_LINE;
         }
-        mealOptionsString += INDENTATION + (mealOptions.size() + 1) + ": " + newMealString + LINE_SEPARATOR;
-        return LINE + LINE_SEPARATOR + mealOptionsString + LINE + LINE_SEPARATOR;
+        mealOptionsString += INDENTATION + (mealOptions.size() + 1) + ": " + newMealString + NEW_LINE;
+        return LINE + NEW_LINE + mealOptionsString + LINE + NEW_LINE;
     }
 
     /**
@@ -156,9 +156,9 @@ public class UI {
                                        int actualValue,
                                        LocalDate timestamp) {
 
-        return INDENTATION + message + LINE_SEPARATOR
+        return INDENTATION + message + NEW_LINE
                 + INDENTATION + progressBarStringBuilder(expectedValue, actualValue) + " (" + timestamp + ")"
-                + LINE_SEPARATOR + LINE;
+                + NEW_LINE + LINE;
 
     }
 
@@ -170,7 +170,7 @@ public class UI {
      * @param timestamp     the timestamp of the consumption data
      * @throws IllegalArgumentException if the timestamp is null
      */
-    public static void printHistoricConsumptionBars(double expectedValue, int actualValue, LocalDate timestamp) {
+    public static void printHistoricConsumptionBar(double expectedValue, int actualValue, LocalDate timestamp) {
         assert timestamp != null : "Timestamp cannot be null";
         System.out.println(INDENTATION
                 + progressBarStringBuilder(expectedValue, actualValue)
@@ -194,20 +194,19 @@ public class UI {
                 .map(mealEntry -> mealEntry.toString())
                 .orElse("No maximum meal available");
 
-        double percentOfIdealConsumed = Math.round(100.0 * (float)totalCaloriesConsumed / (float)totalIdealCalories);
-        double percentMaxOfIdeal = Math.round(100.0 * (float)maxCaloriesConsumed / (float)idealCalories);
+        double percentOfIdealConsumed = Math.round(100.0 * (double)totalCaloriesConsumed / (double)totalIdealCalories);
+        double percentMaxOfIdeal = Math.round(100.0 * (double)maxCaloriesConsumed / (double)idealCalories);
         UI.printString("Stats over past " + days + " days");
         UI.printString("Total Calories Consumed: " + totalCaloriesConsumed);
         UI.printString("Total Ideal Calories: " + totalIdealCalories);
         UI.printString("Percentage of Total Ideal Calories : " + percentOfIdealConsumed + "%");
         UI.printString( "Day With Heaviest Meal: " + maxConsumptionDate.toLocalDate());
         UI.printString("Heaviest Meal Consumed: " + maxMealString);
-        UI.printString("Meals Consumption's Percentage of Total Ideal Calories: " + percentMaxOfIdeal + "%");
+        UI.printString("Meals Consumption's Percentage of Daily Ideal Calories: " + percentMaxOfIdeal + "%");
         UI.printSeparator();
-
     }
 
-    private static String progressBarStringBuilder(double expectedValue, int actualValue) {
+    public static String progressBarStringBuilder(double expectedValue, int actualValue) {
         int percentageOfExpected = (int) Math.ceil((actualValue / expectedValue) * 100);
 
         String incomplete = "░"; // U+2591 Unicode Character
@@ -237,13 +236,13 @@ public class UI {
 
     // Functions to simulate UI behaviour for testing
     public static String simulateReply(String input, String actionPerformed) {
-        String line1 = LINE_SEPARATOR;
-        String line2 = INDENTATION + actionPerformed + input + LINE_SEPARATOR;
+        String line1 = FRAME_LINE;
+        String line2 = INDENTATION + actionPerformed + input + NEW_LINE;
         return  line1 + line2 + FRAME_LINE;
     }
 
     public static String simulateString(String input) {
-        return INDENTATION + input + LINE_SEPARATOR;
+        return INDENTATION + input + NEW_LINE;
     }
 
     public static String simulateFrameLine() {
@@ -251,15 +250,20 @@ public class UI {
     }
 
     public static String simulateFareWell() {
-        String line1 = INDENTATION + "Stay healthy!" + LINE_SEPARATOR;;
+        String line1 = INDENTATION + "Stay healthy!" + NEW_LINE;;
         return line1 + FRAME_LINE;
     }
 
     public static String simulateInitOutput() {
-        String line2 = INDENTATION + "Meal Entries Loaded Successfully!" + LINE_SEPARATOR;
-        String line3 = INDENTATION + "Meal Options Loaded Successfully!" + LINE_SEPARATOR;
-        return FRAME_LINE + line2 + line3 + FRAME_LINE + LINE;
+        String line2 = INDENTATION + "Meal Entries Loaded Successfully!" + NEW_LINE;
+        String line3 = INDENTATION + "Meal Options Loaded Successfully!" + NEW_LINE;
+        return FRAME_LINE + line2 + line3 + FRAME_LINE;
 
+    }
+
+    public static String simulateHistoricConsumptionBar(double expectedValue, int actualValue, LocalDate timestamp) {
+        assert timestamp != null : "Timestamp cannot be null";
+        return INDENTATION + progressBarStringBuilder(expectedValue, actualValue) + " (" + timestamp + ")";
     }
 
 }

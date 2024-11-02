@@ -79,6 +79,15 @@ public class ChatParser {
         parseUserInput(user);
     }
 
+    /**
+     * Function simulating the above run() method with a User stub for testing.
+     */
+    public void simulateRunWithStub(User userStub) {
+        // check for health goal file existence and create file if none exists
+        logger.log(Level.INFO, "Checking if user data exists");
+        parseUserInput(userStub);
+    }
+
     private void parseUserInput(User user) {
         Scanner scanner = new Scanner(System.in);
         String userInput = "";
