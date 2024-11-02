@@ -10,6 +10,12 @@ import java.io.PrintStream;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import seedu.healthmate.core.UserHistoryTracker;
+import seedu.healthmate.services.ChatParser;
+import seedu.healthmate.services.UI;
+import seedu.healthmate.core.User;
+
+
 public class ChatParserTest {
     private final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     private final PrintStream originalOutput = System.out;
@@ -28,7 +34,7 @@ public class ChatParserTest {
     /**
      * Mocks the chatParser.run() method
      * @param chatParser
-     * @param simulatedInput UserEntry input for which the behaviour of chatParser.run() is asserted
+     * @param simulatedInput User input for which the behaviour of chatParser.run() is asserted
      * @param expectedOutput Expected output printed to the consule that is to be compared with the actual ouput
      */
     private void compareChatParserOutput(ChatParser chatParser, String simulatedInput, String expectedOutput) {
@@ -83,13 +89,13 @@ public class ChatParserTest {
     @Test void trackMealEntryWithCalories_success() {
         ChatParser chatParser = new ChatParser();
         UserHistoryTracker userHistoryTracker = new UserHistoryTracker();
-        UserEntry userEntry = userHistoryTracker.checkForUserData(chatParser.getUserHistoryTracker());
+        User user = userHistoryTracker.checkForUserData(chatParser.getUserHistoryTracker());
         String simulatedInput = "add mealEntry pizza /c300\nbye";
         LocalDate today = LocalDateTime.now().toLocalDate();
         String timeString = "(at: " + today + ")";
         String expectedOutput = UI.simulateInitOutput()
             + UI.simulateReply("pizza with 300 calories " + timeString, "Tracked: ")
-            + userEntry.simulateUsersConsumptionBar(300, today)
+            + user.simulateUsersConsumptionBar(300, today)
             + System.lineSeparator()
             + UI.simulateFareWell();
         compareChatParserOutput(chatParser, simulatedInput, expectedOutput);

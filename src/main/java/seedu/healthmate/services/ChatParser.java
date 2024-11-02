@@ -1,4 +1,4 @@
-package seedu.healthmate;
+package seedu.healthmate.services;
 
 import seedu.healthmate.command.Command;
 import seedu.healthmate.command.CommandPair;
@@ -13,6 +13,12 @@ import seedu.healthmate.command.commands.UpdateUserDataCommand;
 import seedu.healthmate.command.commands.TodayCalorieProgressCommand;
 import seedu.healthmate.command.commands.HistoricCalorieProgressCommand;
 import seedu.healthmate.command.CommandMap;
+import seedu.healthmate.core.Meal;
+import seedu.healthmate.core.MealEntriesList;
+import seedu.healthmate.core.MealList;
+import seedu.healthmate.core.User;
+import seedu.healthmate.core.UserHistoryTracker;
+import seedu.healthmate.utils.Logging;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -58,11 +64,11 @@ public class ChatParser {
     public void run() {
         // check for health goal file existence and create file if none exists
         logger.log(Level.INFO, "Checking if user data exists");
-        UserEntry userEntry = userHistoryTracker.checkForUserData(this.userHistoryTracker);
+        User userEntry = userHistoryTracker.checkForUserData(this.userHistoryTracker);
         parseUserInput(userEntry);
     }
 
-    private void parseUserInput(UserEntry userEntry) {
+    private void parseUserInput(User userEntry) {
         Scanner scanner = new Scanner(System.in);
         String userInput = "";
 
@@ -71,13 +77,13 @@ public class ChatParser {
             userInput = scanner.nextLine().strip();
             switch (userInput) {
             case "bye":
-                logger.log(Level.INFO, "UserEntry closes application");
+                logger.log(Level.INFO, "User closes application");
                 UI.printFarewell();
                 break;
             default:
                 try {
                     this.multiCommandParsing(userInput, userEntry);
-                    logger.log(Level.INFO, "UserEntry input contains more than 1 token");
+                    logger.log(Level.INFO, "User input contains more than 1 token");
                 } catch (ArrayIndexOutOfBoundsException a) {
                     logger.log(Level.WARNING, "Invalid command", a);
                     UI.printReply("Invalid command", "Retry: ");
@@ -91,9 +97,9 @@ public class ChatParser {
      * @param userInput String userEntry input from the command line
      */
 
-    public void multiCommandParsing(String userInput, UserEntry userEntry) {
+    public void multiCommandParsing(String userInput, User userEntry) {
 
-        UserEntry currentUser = userEntry; //create snapshot in case user is updated
+        User currentUser = userEntry; //create snapshot in case user is updated
         CommandPair commandPair = getCommandFromInput(userInput);
         String command = commandPair.getMainCommand();
         logger.log(Level.INFO, "User commands are: " + commandPair);
@@ -135,7 +141,7 @@ public class ChatParser {
             break;
         case UpdateUserDataCommand.COMMAND:
             logger.log(Level.INFO, "Executing command to update user data");
-            UserEntry newUserEntry = UserEntry.askForUserData();
+            User newUser = User.askForUserData();
             userHistoryTracker.printAllUserEntries();
             break;
         case TodayCalorieProgressCommand.COMMAND:
@@ -188,8 +194,8 @@ public class ChatParser {
     }
 
     public void printTodayCalorieProgress() {
-        UserEntry currentUserEntry = userHistoryTracker.checkForUserData(userHistoryTracker);
-        mealEntries.printDaysConsumptionBar(currentUserEntry, LocalDateTime.now());
+        User currentUser = userHistoryTracker.checkForUserData(userHistoryTracker);
+        mealEntries.printDaysConsumptionBar(currentUser, LocalDateTime.now());
     }
 
     /**

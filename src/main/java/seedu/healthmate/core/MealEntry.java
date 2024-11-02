@@ -1,7 +1,15 @@
-package seedu.healthmate;
+package seedu.healthmate.core;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
+
+import seedu.healthmate.services.UI;
+import seedu.healthmate.exceptions.BadCalorieException;
+import seedu.healthmate.exceptions.BadTimestampException;
+import seedu.healthmate.exceptions.EmptyCalorieException;
+import seedu.healthmate.exceptions.EmptyTimestampException;
+import seedu.healthmate.exceptions.MealNotFoundException;
+import seedu.healthmate.utils.Parameter;
 
 
 public class MealEntry extends Meal{

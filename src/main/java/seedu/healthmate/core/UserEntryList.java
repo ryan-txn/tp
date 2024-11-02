@@ -1,23 +1,23 @@
-package seedu.healthmate;
+package seedu.healthmate.core;
 
 import java.util.ArrayList;
 
 public class UserEntryList {
-    private ArrayList<UserEntry> userEntryList;
+    private ArrayList<User> userEntryList;
 
     public UserEntryList() {
         this.userEntryList = new ArrayList<>();
     }
 
-    public void addUserEntry(UserEntry userEntry) {
-        userEntryList.add(userEntry);
+    public void addUserEntry(User user) {
+        userEntryList.add(user);
     }
 
-    public ArrayList<UserEntry> getUserEntryList() {
+    public ArrayList<User> getUserEntryList() {
         return this.userEntryList;
     }
 
-    public UserEntry getLastEntry() {
+    public User getLastEntry() {
         return userEntryList.get(userEntryList.size() - 1);
     }
 

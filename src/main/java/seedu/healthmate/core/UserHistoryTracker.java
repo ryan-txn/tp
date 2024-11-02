@@ -1,4 +1,4 @@
-package seedu.healthmate;
+package seedu.healthmate.core;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -18,15 +18,15 @@ public class UserHistoryTracker {
     }
 
     /**
-     * Loads a UserEntry instance if a file with user data exists.
+     * Loads a User instance if a file with user data exists.
      * Creates a new User instance otherwise
      * @param userHistoryTracker
      * @return A newly created or "loaded" user object
      */
-    public UserEntry checkForUserData(UserHistoryTracker userHistoryTracker) {
+    public User checkForUserData(UserHistoryTracker userHistoryTracker) {
         Optional<UserEntryList> optionalUserEntryList = userHistoryTracker.loadUserData();
         return optionalUserEntryList.map(userEntryList -> userEntryList.getLastEntry())
-                .orElseGet(() -> UserEntry.askForUserData());
+                .orElseGet(() -> User.askForUserData());
     }
 
     public void clearSaveFile() {
@@ -50,7 +50,7 @@ public class UserHistoryTracker {
         try (Scanner s = new Scanner(userDataFile)){
             while (s.hasNextLine()) {
                 String line = s.nextLine();
-                UserEntry user = getUserEntryFromFileLine(line);
+                User user = getUserEntryFromFileLine(line);
                 userEntryList.addUserEntry(user);
             }
         } catch (IOException e) {
@@ -78,7 +78,7 @@ public class UserHistoryTracker {
     }
 
 
-    private static UserEntry getUserEntryFromFileLine(String line) {
+    private static User getUserEntryFromFileLine(String line) {
         String[] fields = line.split(",");  // Split the CSV line by commas
 
         // Parse each field from the CSV line
@@ -90,7 +90,7 @@ public class UserHistoryTracker {
         double idealCalories = Double.parseDouble(fields[5]);
         String localDateTime = fields[6];
 
-        UserEntry user = new UserEntry(height, weight, isMale, age, healthGoal, idealCalories, localDateTime);
+        User user = new User(height, weight, isMale, age, healthGoal, idealCalories, localDateTime);
         return user;
     }
 
@@ -103,18 +103,18 @@ public class UserHistoryTracker {
     }
 
     public void saveUserEntryListToFile(UserEntryList userEntryList) {
-        ArrayList<UserEntry> userEntries = userEntryList.getUserEntryList();
-        for (UserEntry userEntry : userEntries) {
+        ArrayList<User> userEntries = userEntryList.getUserEntryList();
+        for (User userEntry : userEntries) {
             saveUserToFile(userEntry);
         }
     }
 
-    public void saveUserToFile(UserEntry userEntry) {
+    public void saveUserToFile(User userEntry) {
         createFileIfNotExists();
         addUserEntry(userEntry);
     }
 
-    public void addUserEntry(UserEntry userEntry) {
+    public void addUserEntry(User userEntry) {
         File userDataFile = new File(DATA_DIRECTORY + File.separator + USER_DATA_FILE);
 
         try {

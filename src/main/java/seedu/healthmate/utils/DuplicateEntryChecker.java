@@ -1,9 +1,11 @@
-package seedu.healthmate;
+package seedu.healthmate.utils;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.HashSet;
+
+import seedu.healthmate.core.Meal;
 
 public class DuplicateEntryChecker {
     

@@ -1,11 +1,14 @@
-package seedu.healthmate;
+package seedu.healthmate.core;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
-public class UserEntry {
+import seedu.healthmate.services.UI;
+
+
+public class User {
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     private final double idealCalories;
@@ -16,8 +19,8 @@ public class UserEntry {
     private final HealthGoal healthGoal;
     private final LocalDateTime localDateTime;
 
-    public UserEntry(double height, double weight, boolean isMale,
-                     int age, String healthGoal) {
+    public User(double height, double weight, boolean isMale,
+                int age, String healthGoal) {
         this.heightEntry = height;
         this.weightEntry = weight;
         this.isMale = isMale;
@@ -27,8 +30,8 @@ public class UserEntry {
         this.localDateTime = LocalDateTime.now();
     }
 
-    public UserEntry(double height, double weight, boolean isMale, int age,
-                     String healthGoal, double idealCalories,  String localDateTime) {
+    public User(double height, double weight, boolean isMale, int age,
+                String healthGoal, double idealCalories, String localDateTime) {
         this.heightEntry = height;
         this.weightEntry = weight;
         this.isMale = isMale;
@@ -42,7 +45,7 @@ public class UserEntry {
      * Asks user to input specifics for creating a new User instance
      * @return A new user instance created with the data inputted by user.
      */
-    public static UserEntry askForUserData() {
+    public static User askForUserData() {
         try {
             Scanner scanner = new Scanner(System.in);
 
@@ -64,14 +67,14 @@ public class UserEntry {
             UI.printString("Health Goal (WEIGHT_LOSS, STEADY_STATE, BULKING):");
             String healthGoal = scanner.nextLine();
 
-            UserEntry userEntry = new UserEntry(height, weight, isMale, age, healthGoal);
+            User user = new User(height, weight, isMale, age, healthGoal);
             UI.printString("Profile creation Successful!");
             UI.printReply("Great! You can now begin to use the app!", "");
 
             UserHistoryTracker userHistoryTracker = new UserHistoryTracker();
-            userHistoryTracker.saveUserToFile(userEntry);
+            userHistoryTracker.saveUserToFile(user);
 
-            return userEntry;
+            return user;
         } catch (Exception exception) {
             UI.printReply("Wrong user input", "Retry: ");
             return askForUserData();
