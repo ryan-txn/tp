@@ -260,13 +260,14 @@ public class ChatParserTest {
      */
     private String getStatsString(LocalDate maxConsumptionDate) {
         return
-                "      Stats over past 10 days\n" +
-                "      Total Calories Consumed: 3000\n" +
-                "      Total Ideal Calories: 28650\n" +
-                "      Percentage of Total Ideal Calories : 10.0%\n" +
-                "      Day With Heaviest Meal: 2024-10-24\n" +
-                "      Heaviest Meal Consumed: burger with 300 calories (at: "+ maxConsumptionDate + ")\n" +
-                "      Meals Consumption's Percentage of Daily Ideal Calories: 10.0%\n" +
+                "      Stats over past 10 days" + System.lineSeparator() +
+                "      Total Calories Consumed: 3000" + System.lineSeparator() +
+                "      Total Ideal Calories: 28650" + System.lineSeparator() +
+                "      Percentage of Total Ideal Calories : 10.0%" + System.lineSeparator() +
+                "      Day With Heaviest Meal: 2024-10-24" + System.lineSeparator() +
+                "      Heaviest Meal Consumed: burger with 300 calories (at: "+ maxConsumptionDate + ")" +
+                System.lineSeparator() +
+                "      Meals Consumption's Percentage of Daily Ideal Calories: 10.0%" + System.lineSeparator() +
                 "      _____________________________________________________________________________";
     }
 }
