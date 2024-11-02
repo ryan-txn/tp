@@ -2,13 +2,15 @@ package seedu.healthmate.core;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Optional;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
-import seedu.healthmate.services.HistoryTracker;
 import seedu.healthmate.services.UI;
 
+
 public class User {
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
     private final double idealCalories;
     private final double heightEntry;
     private final double weightEntry;
@@ -17,7 +19,8 @@ public class User {
     private final HealthGoal healthGoal;
     private final LocalDateTime localDateTime;
 
-    public User(double height, double weight, boolean isMale, int age, String healthGoal) {
+    public User(double height, double weight, boolean isMale,
+                int age, String healthGoal) {
         this.heightEntry = height;
         this.weightEntry = weight;
         this.isMale = isMale;
@@ -27,17 +30,15 @@ public class User {
         this.localDateTime = LocalDateTime.now();
     }
 
-    /**
-     * Loads a User instance if a file with user data exists.
-     * Creates a new User instance otherwise
-     * @param historyTracker
-     * @return A newly created or "loaded" user object
-     */
-    public static User checkForUserData(HistoryTracker historyTracker) {
-        Optional<User> optionalUser = historyTracker.loadUserData();
-        User user = optionalUser.orElseGet(() -> User.askForUserData());
-        historyTracker.saveUserDataFile(user);
-        return user;
+    public User(double height, double weight, boolean isMale, int age,
+                String healthGoal, double idealCalories, String localDateTime) {
+        this.heightEntry = height;
+        this.weightEntry = weight;
+        this.isMale = isMale;
+        this.age = age;
+        this.healthGoal = new HealthGoal(healthGoal);
+        this.idealCalories = idealCalories;
+        this.localDateTime = LocalDateTime.parse(localDateTime, formatter);
     }
 
     /**
@@ -45,7 +46,6 @@ public class User {
      * @return A new user instance created with the data inputted by user.
      */
     public static User askForUserData() {
-
         try {
             Scanner scanner = new Scanner(System.in);
 
@@ -70,6 +70,10 @@ public class User {
             User user = new User(height, weight, isMale, age, healthGoal);
             UI.printString("Profile creation Successful!");
             UI.printReply("Great! You can now begin to use the app!", "");
+
+            UserHistoryTracker userHistoryTracker = new UserHistoryTracker();
+            userHistoryTracker.saveUserToFile(user);
+
             return user;
         } catch (Exception exception) {
             UI.printReply("Wrong user input", "Retry: ");
@@ -141,8 +145,13 @@ public class User {
 
     @Override
     public String toString() {
-        return heightEntry + "\n" + weightEntry + "\n"
-                + isMale + "\n" + age + "\n" + healthGoal.toString();
+        return heightEntry + ","
+                + weightEntry + ","
+                + isMale + ","
+                + age + ","
+                + healthGoal.toString() + ","
+                + idealCalories + ","
+                + localDateTime.format(formatter);
     }
 
 

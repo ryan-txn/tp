@@ -124,7 +124,8 @@ public class MealEntriesList extends MealList {
     /**
      * Computes actual calorie consumption and delegates the construction of the
      * consumption bar to the user instance with the relevant idealCalories consumption data
-     * @param user User profile for which the ideal calorie consumption will be compared with the actual consumption
+     * @param user User profile for which the ideal calorie consumption
+     *                  will be compared with the actual consumption
      * @param dateTime
      */
     public void printDaysConsumptionBar(User user, LocalDateTime dateTime) {
