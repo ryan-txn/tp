@@ -128,11 +128,15 @@ public class User {
         assert currentCalories >= 0 : "Current calories cannot be negative";
         assert timestamp != null : "Timestamp cannot be null";
 
-        UI.printHistoricConsumptionBars(this.idealCalories, currentCalories, timestamp);
+        UI.printHistoricConsumptionBar(this.idealCalories, currentCalories, timestamp);
     }
 
     public double getIdealCalories() {
         return this.idealCalories;
+    }
+
+    public static User createUserStub() {
+        return new User(180, 80.0, true, 20, "BULKING");
     }
 
     @Override

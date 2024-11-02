@@ -1,6 +1,6 @@
 package seedu.healthmate.utils;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.regex.Matcher;
@@ -64,8 +64,8 @@ public enum Parameter {
         return calories;
     }
 
-    public static LocalDateTime getTimestamp(String input) throws EmptyTimestampException, BadTimestampException {
-        String regex = TIMESTAMP_SIGNALLER.getPrefix() + "\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}";
+    public static LocalDate getTimestamp(String input) throws EmptyTimestampException, BadTimestampException {
+        String regex = TIMESTAMP_SIGNALLER.getPrefix() + "\\d{4}-\\d{2}-\\d{2}";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(input);
         boolean containsTimestamp = input.contains(TIMESTAMP_SIGNALLER.getPrefix());
@@ -76,8 +76,8 @@ public enum Parameter {
         
         if (matcher.find()) {
             try {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-                return LocalDateTime.parse(matcher.group(0).replace(TIMESTAMP_SIGNALLER.getPrefix(), ""), formatter);
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                return LocalDate.parse(matcher.group(0).replace(TIMESTAMP_SIGNALLER.getPrefix(), ""), formatter);
             } catch (DateTimeParseException e) {
                 throw new BadTimestampException();
             }
