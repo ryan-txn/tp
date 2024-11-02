@@ -2,24 +2,10 @@ package seedu.healthmate.services;
 
 import seedu.healthmate.command.Command;
 import seedu.healthmate.command.CommandPair;
-import seedu.healthmate.command.commands.LogMealsCommand;
-import seedu.healthmate.command.commands.SaveMealCommand;
-import seedu.healthmate.command.commands.ListCommandsCommand;
-import seedu.healthmate.command.commands.AddMealEntryCommand;
-import seedu.healthmate.command.commands.DeleteMealCommand;
-import seedu.healthmate.command.commands.DeleteMealEntryCommand;
-import seedu.healthmate.command.commands.MealMenuCommand;
-import seedu.healthmate.command.commands.UpdateUserDataCommand;
-import seedu.healthmate.command.commands.TodayCalorieProgressCommand;
-import seedu.healthmate.command.commands.HistoricCalorieProgressCommand;
-import seedu.healthmate.command.commands.MealRecommendationsCommand;
+import seedu.healthmate.command.commands.*;
 
 import seedu.healthmate.command.CommandMap;
-import seedu.healthmate.core.Meal;
-import seedu.healthmate.core.MealEntriesList;
-import seedu.healthmate.core.MealList;
-import seedu.healthmate.core.User;
-import seedu.healthmate.core.UserHistoryTracker;
+import seedu.healthmate.core.*;
 import seedu.healthmate.recommender.Recipe;
 import seedu.healthmate.recommender.RecipeMap;
 import seedu.healthmate.utils.Logging;
@@ -38,8 +24,6 @@ import java.util.stream.IntStream;
  * and storing them respectively.
  */
 public class ChatParser {
-
-    public static final String CALORIE_SIGNALLER = "/c";
 
     private static Logger logger = Logger.getLogger(ChatParser.class.getName());
     private MealEntriesList mealEntries;
@@ -171,7 +155,10 @@ public class ChatParser {
             List<Recipe> recipes = RecipeMap.getRecipesByGoal(currentUser.getHealthGoal());
             UI.printRecommendation(recipes);
             break;
-
+        case WeightTimelineCommand.COMMAND:
+            logger.log(Level.INFO, "Executing command to print weight timeline");
+            WeightEntryDisplay.display(userHistoryTracker.loadUserData());
+            break;
         default:
             UI.printReply("Use a valid command", "Retry: ");
             break;

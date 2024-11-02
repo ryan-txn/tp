@@ -159,4 +159,11 @@ public class User {
         return Goals.valueOf(this.healthGoal.getCurrentHealthGoal());
     }
 
+    public LocalDateTime getLocalDateTime() {
+        return this.localDateTime;
+    }
+
+    public double getWeight() {
+        return this.weightEntry;
+    }
 }
