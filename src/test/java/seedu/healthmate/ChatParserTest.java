@@ -214,7 +214,7 @@ public class ChatParserTest {
                 UI.simulateReply("burger with 300 calories " +
                     "(at: " + date + ")", "Tracked: ")
                     + user.simulateUsersConsumptionBar(300, date))
-            .reduce("", (total, oneOutput) -> total + oneOutput + "\n");
+            .reduce("", (total, oneOutput) -> total + oneOutput + System.lineSeparator());
     }
 
     /**
