@@ -106,9 +106,9 @@ public class ChatParser {
      * @param userInput String userEntry input from the command line
      */
 
-    public void multiCommandParsing(String userInput, User userEntry) {
+    public void multiCommandParsing(String userInput, User user) {
 
-        User currentUser = userEntry; //create snapshot in case user is updated
+        User currentUser = user; //create snapshot in case user is updated
         CommandPair commandPair = getCommandFromInput(userInput);
         String command = commandPair.getMainCommand();
         logger.log(Level.INFO, "User commands are: " + commandPair);
