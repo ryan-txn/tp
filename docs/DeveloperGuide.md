@@ -7,6 +7,14 @@ Calorie consumption bar inspired by
 [this blogpost](https://medium.com/javarevisited/how-to-display-progressbar-on-the-standard-console-using-java-18f01d52b30e)
 
 ## Design & implementation
+The overall project is structured into six packages:
+- Command: Classes used for abstracting user commands
+- Core: Core classes
+- Exceptions: Customized exceptions
+- Recommender: TBD 
+- Services: Key logic and services that make use of core classes
+- Utils: Helper functions
+
 ### High Level Class Design
 The main classes of this implementation are:
 - HealthMate
@@ -206,34 +214,50 @@ getCommandByName()` retrieves the command and the UI displays the results.
 
 The target user profile for HealthMate includes:
 - Health-conscious individuals who want to monitor their daily calorie intake
-- People trying to lose weight or maintain a healthy weight
+- Users comfortable with command lines
+- People trying to lose weight, maintain a healthy weight or increase muscle growth
 - Fitness enthusiasts who want to balance their calorie consumption with their exercise routines
 - Individuals with specific dietary requirements or restrictions
+- Busy individuals who need a quick way to log meals and monitor progress.
+- Data-Oriented Users: Users interested in gathering data about their habits to improve them
 - Anyone interested in developing better eating habits and nutritional awareness
+
+A typical HealthMate user is Martin. 
+He is a 30-year-old software engineer who wants to maintain a healthy lifestyle with the help of technology.
+Additionally, he has the following characteristics:
+* Health-conscious individual: Martin want to pay attention to his diet. He believes in the importance of monitoring calorie intake to achieve optimal health.
+* Command-line expertise: As a software engineer, Tom is extremely comfortable using command-line interfaces and appreciates the simplicity and efficiency they offer. 
+* Fitness enthusiast: Martin regularly engages in workouts. He aims to build muscle mass while maintaining a healthy body weight, which he achieves by balancing his calorie intake with his exercise routine.
+* Data-oriented self-improvement mindset: Martin loves leveraging data to optimize his meal plans. He sets goals, tracks progress, and analyzes trends to continuously improve his habits.
 
 ### Value proposition
 
 HealthMate solves the following problems:
 - Difficulty in tracking daily calorie intake: Users can easily log their meals and snacks
-- Lack of awareness about calorie consumption: The app provides visual representations of daily intake
+- Lack of awareness about ideal calorie consumption: Based on the users health goal and his physical attributes, the app calculates the ideal daily calorie intake for this specific user.
+- Lack of motivation: By visually showing the daily progress towards the users ideal calorie consumption, the app motivates to reach this goal on a daily basis.
 - Inconvenience of manual calorie calculations: Pre-saved meal options make tracking quicker and more efficient
 - Inability to see patterns in eating habits: Historical data allows users to analyze their consumption over time
 - Struggle to maintain consistent healthy eating habits: Regular tracking encourages mindful eating and helps users stay accountable to their health goals
 
 ## User Stories
 
-|Version| As a ... | I want to ... | So that I can ...|
-|--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v1.0|user|save frequently eaten meals|quickly add them in the future without re-entering details|
-|v1.0|user|log my daily meals|track my calorie intake|
-|v1.0|user|see my calorie consumption|know if I'm meeting my daily goals|
-|v1.0|user|set my health goals|have a target to work towards|
-|v2.0|user|see my meal history|analyze my eating patterns over time|
-|v2.0|user|specify custom timestamps for meals|log meals I forgot to enter earlier|
-|v2.0|user|see visual representations of my progress|better understand my eating habits|
-|v2.0|user|export my data|back up my records or analyze them elsewhere|
-|v2.0|user|create custom meal combinations|quickly log common meal combinations|
+| Version | As a ...       | I want to ...                                                                                      | So that I can ...                                                    |
+|---------|----------------|----------------------------------------------------------------------------------------------------|----------------------------------------------------------------------|
+| v1.0    | new user       | see usage instructions                                                                             | refer to them when I forget how to use the application               |
+| v1.0    | user           | save frequently eaten meals                                                                        | quickly add them in the future without re-entering details           |
+| v1.0    | user           | log my daily meals                                                                                 | track my calorie intake                                              |
+| v1.0    | user           | see my calorie consumption                                                                         | know if I'm meeting my daily goals                                   |
+| v1.0    | user           | delete a previously logged consumption                                                             | undo mistakes when tracking my meals                                 |
+| v1.0    | user           | set my health goals                                                                                | have a target to work towards                                        |
+| v2.0    | user           | see my meal history                                                                                | analyze my eating patterns over time                                 |
+| v2.0    | user           | know how much calories I should consume per day based on my health goal and my physical properties | plan my future eating habits accordingly                             |
+| v2.0    | user           | see visual representations of how much of my ideal daily consumption I have eaten                  | better plan the rest of my daily consumption                         |
+| v2.0    | motivated user | get a visual overview on my daily actual vs. ideal calorie intake over a specified timerange       | better track my progress of developing a better eating habit         |
+| v2.0    | user           | specify the amount of portions I eat of a meal                                                     | enter the consumption of a meal only once innstead of multiple times |
+| v2.0    | user           | export my data                                                                                     | back up my records or analyze them elsewhere                         |
+| v2.0    | user           | create custom meal combinations                                                                    | quickly log common meal combinations                                 |
+| v2.0    | forgetful user | add calorie consumptions for past days                                                             | keep track of my consumption even if I forgot to enter it first      |
 
 ## Non-Functional Requirements
 
@@ -242,6 +266,9 @@ HealthMate solves the following problems:
 3. Compatibility: The application should run on common operating systems (Windows, macOS, Linux).
 4. Maintainability: The code should be well-documented and follow clean code principles for easy future enhancements.
 5. Portability: User data should be easily exportable and importable for backup purposes or switching devices.
+6. UX: The application should make use of intuitive visuals to help the user get insights into his eathing habits.
+7. Performance: The application should respond to all user commands without negatively noticable delay.
+7. Scientific: The app should calculate ideal calorie consumption based on evidence from science.
 
 ## Glossary
 
