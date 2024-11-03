@@ -118,29 +118,62 @@ list commands delete meal
 - Allows user to store a meal with its calories to be used with the add mealEntry command
 - Example usage to store a meal of grapes with 400 calories
 ```
-save meal grapes /c400
-      _________________________________________________________________________
-      Added to options: grapes with 400 calories
-      _________________________________________________________________________
+save meal pizza /c300
+      _____________________________________________________________________________
+      Added to options: pizza with 300 calories
+      _____________________________________________________________________________
 ```
 
-#### Add Meal Entry for Tracking: `add mealEntry {meal} /c{Number of calories}` or `add mealEntry {meal from meal menu}`
+#### Add Meal Entry for Tracking:`add mealEntry {meal} /c{Number of calories} /p{portions} /t{YYYY-MM-DD}`or `add mealEntry {meal from meal menu}` or
 - Adds a meal from the saved meal options to your daily caloric intake.
 - After adding the meal, the app will show how the meal affects your progress towards your daily caloric goal.
 
+Log a meal with calories
 ```
-add mealEntry grapes /c400
+add mealEntry grapes /c100
+      _____________________________________________________________________________
+      Tracked: grapes with 100 calories (at: 2024-11-03)
+      _____________________________________________________________________________
+      _____________________________________________________________________________
+      Ideal Daily Caloric Intake: 2865
+      _____________________________________________________________________________
+      Current Calories Consumed: 100
+      % of Expected Calorie Intake Consumed: 
+      █░░░░░░░░░░░░░░░░░░░░░░░░░░░░|   4%|░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ (2024-11-03)
+      _____________________________________________________________________________
+```
 
-      Tracked: grapes with 400 calories (at: 2024-10-06T19:44:21.662257300)
-      _________________________________________________________________________
+Log a meal for a specific day in the past:
+``` 
+add mealEntry pizza /c300 /t2024-10-30
+      _____________________________________________________________________________
+      Tracked: pizza with 300 calories (at: 2024-10-30)
+      _____________________________________________________________________________
+      _____________________________________________________________________________
+      Ideal Daily Caloric Intake: 2865
+      _____________________________________________________________________________
+      Current Calories Consumed: 300
+      % of Expected Calorie Intake Consumed:
+      ███░░░░░░░░░░░░░░░░░░░░░░░░░░|  11%|░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ (2024-10-30)
+      _____________________________________________________________________________
 ```
+
+Shortcut: log a presaved meal from the list of meal options (no calories needed)
 ```
 add mealEntry pizza
 Getting info from meal options...
-      _________________________________________________________________________
-      Tracked: pizza with 400 calories (at: 2024-10-14T18:00)
-      _________________________________________________________________________
+      _____________________________________________________________________________
+      Tracked: pizza with 300 calories (at: 2024-11-03)
+      _____________________________________________________________________________
+      _____________________________________________________________________________
+      Ideal Daily Caloric Intake: 2865
+      _____________________________________________________________________________
+      Current Calories Consumed: 400
+      % of Expected Calorie Intake Consumed: 
+      ████░░░░░░░░░░░░░░░░░░░░░░░░░|  14%|░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ (2024-11-03)
+      _____________________________________________________________________________
 ```
+
 
 #### Delete meal from meal menu: `delete meal {index of meal in meal menu}`
 - Deletes meal option from the meal menu at the specified index
@@ -206,22 +239,30 @@ show todayCalories
 ```
 #### Show Historic Calorie Progress: `show historicCalories {Number of Days inclu. Today}`
 - Prints Calorie Progress Bars & Various Stats to represent Historical Calorie Progress
+- Combines global and local view on eating patterns via the progress bar and details such as the meal with the highest calories.
 - Example Usage:
 ```
-show historicCalories 3
+show historicCalories 10
       _____________________________________________________________________________
       Ideal Daily Caloric Intake: 2865
       _____________________________________________________________________________
-      ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░|   0% |░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ (2024-10-27)
-      ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░|   0% |░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ (2024-10-28)
-      █████████░░░░░░░░░░░░░░░░░░░░|  32% |░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ (2024-10-29)
-      Stats over past 3 days
-      Total Calories Consumed: 900
-      Total Ideal Calories: 8595
-      Percent Target Consumed: 10%
-      Day with Max Calories Consumed: 2024-10-29
-      Calories Consumed: 900
-      Percent Target Consumed: 31%
+      ███░░░░░░░░░░░░░░░░░░░░░░░░░░|  11%|░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ (2024-10-25)
+      ███░░░░░░░░░░░░░░░░░░░░░░░░░░|  11%|░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ (2024-10-26)
+      ███░░░░░░░░░░░░░░░░░░░░░░░░░░|  11%|░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ (2024-10-27)
+      ███░░░░░░░░░░░░░░░░░░░░░░░░░░|  11%|░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ (2024-10-28)
+      ███░░░░░░░░░░░░░░░░░░░░░░░░░░|  11%|░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ (2024-10-29)
+      ███░░░░░░░░░░░░░░░░░░░░░░░░░░|  11%|░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ (2024-10-30)
+      ███░░░░░░░░░░░░░░░░░░░░░░░░░░|  11%|░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ (2024-10-31)
+      ███░░░░░░░░░░░░░░░░░░░░░░░░░░|  11%|░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ (2024-11-01)
+      ███░░░░░░░░░░░░░░░░░░░░░░░░░░|  11%|░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ (2024-11-02)
+      ███░░░░░░░░░░░░░░░░░░░░░░░░░░|  11%|░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ (2024-11-03)
+      Stats over past 10 days
+      Total Calories Consumed: 3000
+      Total Ideal Calories: 28650
+      Percentage of Total Ideal Calories : 10.0%
+      Day With Heaviest Meal: 2024-10-24
+      Heaviest Meal Consumed: burger with 300 calories (at: 2024-10-25)
+      Meals Consumption's Percentage of Daily Ideal Calories: 10.0%
       _____________________________________________________________________________
 ```
 
@@ -236,9 +277,9 @@ show historicCalories 3
 |-------------------------------------|--------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------|
 | List all commmands                  | `list commands` or `list commands [{command}]`                           | Lists all available commands and the proper formatting.                                                         
 | Save meal to meal options           | `save meal {meal} /c{Number of calories}`                                | Prompts for meal name, calories, then confirms saving the meal.                                                |
-| Add meal entry for tracking         | `add mealEntry {meal} [/c{Number of calories}] [/p{Number of portions}] [/t{timestamp in YYYY-MM-DD HH:MM}]` | Adds meal to daily caloric intake and shows progress toward goal.                                              |
+| Add meal entry for tracking         | `add mealEntry {meal} [/c{Number of calories}] [/p{Number of portions}] [/t{timestamp in YYYY-MM-DD}]` | Adds meal to daily caloric intake and shows progress toward goal.                                              |
 | Show list of available meal options | `meal menu`                                                              | Prints all available meals from the saved options list.                                                        |
-| Show meal history                   | `log meals`                                                              | Displays history of meals with timestamp and calories.                                                         |
+| Show past meals                     | `log meals`                                                              | Displays history of meals with timestamp and calories.                                                         |
 | Delete meal from meal menu          | `delete meal {index of meal in meal menu}`                               | Deletes meal option from the meal menu at the specified index.                                                 |
 | Delete meal entry from meal log     | `delete mealEntry {index of meal in the meal log`                        | Deletes meal entry from the meal log at the specified index and shows effect on the days progress toward goal. |
 | Show Calorie Progress for Today     | `show todayCalories`                                                     | Prints a Calorie Progress Bar to represent Today Calorie Progress                                              |

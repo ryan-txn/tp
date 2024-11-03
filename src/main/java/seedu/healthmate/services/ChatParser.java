@@ -65,7 +65,12 @@ public class ChatParser {
         parseUserInput(userStub);
     }
 
-    private void parseUserInput(User user) {
+    /**
+     * Reads in user input via a scanner and maintains the main loop until the user
+     * exists the application with "Bye"
+     * @param user The user profile connected with the current appliciton run
+     */
+    public void parseUserInput(User user) {
         Scanner scanner = new Scanner(System.in);
         String userInput = "";
 
