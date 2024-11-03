@@ -9,18 +9,36 @@ import seedu.healthmate.services.UI;
 import seedu.healthmate.exceptions.BadCalorieException;
 import seedu.healthmate.exceptions.EmptyCalorieException;
 
+/**
+ * Represents a list of meals that can be manipulated.
+ * Provides methods to add, remove, and manage meals in the list.
+ */
 public class MealList {
 
     protected ArrayList<Meal> mealList;
 
+    /**
+     * Constructs an empty MealList.
+     */
     public MealList() {
         this.mealList = new ArrayList<Meal>();
     }
 
+    /**
+     * Constructs a MealList with an existing list of meals.
+     * @param mealList The ArrayList of meals to initialize with
+     */
     public MealList(ArrayList<Meal> mealList) {
         this.mealList = mealList;
     }
 
+    /**
+     * Extracts meal information from user input and adds it to the list.
+     * @param userInput The raw input string from user
+     * @param command The command that triggered this action
+     * @param mealOptions List of available meal options
+     * @param user The current user
+     */
     public void extractAndAppendMeal(String userInput, String command, MealList mealOptions, User user) {
         try {
             Meal meal = extractMealFromString(userInput, command);
@@ -37,6 +55,11 @@ public class MealList {
         }
     }
 
+    /**
+     * Removes a meal from the list based on user input.
+     * @param userInput The raw input string from user
+     * @param command The command that triggered this action
+     */
     public void extractAndRemoveMeal(String userInput, String command) {
         try {
             int mealNumber = Integer.parseInt(userInput.replaceAll(command, "").strip());
@@ -48,15 +71,27 @@ public class MealList {
         }
     }
 
+    /**
+     * Adds a meal to the list without displaying CLI messages.
+     * @param meal The meal to be added
+     */
     public void addMealWithoutCLIMessage(Meal meal) {
         this.mealList.add(meal);
     }
 
+    /**
+     * Adds a meal to the list and displays a confirmation message.
+     * @param meal The meal to be added
+     */
     public void addMeal(Meal meal) {
         this.mealList.add(meal);
         UI.printReply(meal.toString(), "Added to options: ");
     }
 
+    /**
+     * Deletes a meal from the list by its index.
+     * @param mealNumber The 1-based index of the meal to delete
+     */
     public void deleteMeal(int mealNumber) {
         Meal mealToDelete = this.mealList.get(mealNumber - 1);
         this.mealList.remove(mealNumber - 1);
@@ -67,6 +102,11 @@ public class MealList {
         return new ArrayList<>(mealList);
     }
 
+    /**
+     * Retrieves the calories for a meal by its name.
+     * @param mealName The name of the meal to look up
+     * @return Optional containing the calories if found, empty otherwise
+     */
     public Optional<Integer> getCaloriesByMealName(String mealName) {
         for (Meal meal : mealList) {
             if (meal.getName().isPresent() && meal.getName().get().equalsIgnoreCase(mealName)) {
@@ -76,6 +116,11 @@ public class MealList {
         return Optional.empty();
     }
 
+    /**
+     * Returns the string representation of a meal at the given index.
+     * @param mealIndex The index of the meal
+     * @return String representation of the meal
+     */
     public String toMealStringByIndex(int mealIndex) {
         return this.mealList.get(mealIndex).toString();
     }
@@ -84,6 +129,10 @@ public class MealList {
         return this.mealList.size();
     }
 
+    /**
+     * Updates an existing meal in the list with new information.
+     * @param newMeal The meal containing updated information
+     */
     public void updateMeal(Meal newMeal) {
         for (int i = 0; i < mealList.size(); i++) {
             if (mealList.get(i).getName().equals(newMeal.getName())) {
@@ -95,4 +144,3 @@ public class MealList {
     }
 
 }
-

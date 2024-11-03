@@ -2,21 +2,43 @@ package seedu.healthmate.core;
 
 import java.util.ArrayList;
 
+/**
+ * Represents a list of user entries in the HealthMate application.
+ * This class manages a collection of User objects and provides methods to manipulate and access the list.
+ */
 public class UserEntryList {
     private ArrayList<User> userEntryList;
 
+    /**
+     * Constructs an empty UserEntryList.
+     */
     public UserEntryList() {
         this.userEntryList = new ArrayList<>();
     }
 
+    /**
+     * Adds a new user entry to the list.
+     *
+     * @param user The User object to be added to the list
+     */
     public void addUserEntry(User user) {
         userEntryList.add(user);
     }
 
+    /**
+     * Returns the list of all user entries.
+     *
+     * @return ArrayList containing all User objects
+     */
     public ArrayList<User> getUserEntryList() {
         return this.userEntryList;
     }
 
+    /**
+     * Returns the most recently added user entry.
+     *
+     * @return The last User object in the list
+     */
     public User getLastEntry() {
         return userEntryList.get(userEntryList.size() - 1);
     }

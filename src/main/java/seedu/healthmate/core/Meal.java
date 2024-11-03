@@ -16,6 +16,14 @@ public class Meal {
         this.calories = calories;
     }
 
+    /**
+     * Extracts a Meal object from a string input.
+     * @param input The input string containing meal information
+     * @param command The command string to parse from
+     * @return A new Meal object with the extracted description and calories
+     * @throws EmptyCalorieException if no calorie value is specified
+     * @throws BadCalorieException if the calorie format is invalid
+     */
     public static Meal extractMealFromString(String input,
                                              String command) throws EmptyCalorieException, BadCalorieException {
         Optional<String> mealDescription = extractMealDescription(input, command);
@@ -24,6 +32,12 @@ public class Meal {
         return meal;
     }
 
+    /**
+     * Extracts the meal description from the input string.
+     * @param input The input string containing the meal description
+     * @param command The command string to parse from
+     * @return An Optional containing the extracted meal description, or empty if none exists
+     */
     public static Optional<String> extractMealDescription(String input, String command) {
         int mealDescriptionIndex = input.indexOf(command) + command.length();
         int signallerIndex = input.indexOf(Parameter.EMPTY_SIGNALLER.getPrefix());
