@@ -48,6 +48,12 @@ public enum Parameter {
 
         }
     }
+    /**
+     * Extracts the number of portions from the input string.
+     * @param input The input string containing portion information
+     * @return The number of portions specified, or 1 if not specified
+     * @throws BadPortionException if the portion format is invalid
+     */
     public static int getPortions(String input) throws BadPortionException {
         int portions = parseParameter(input, Parameter.PORTIONS_SIGNALLER);
         if (portions == -2) {
@@ -55,6 +61,14 @@ public enum Parameter {
         }
         return parseParameter(input, Parameter.PORTIONS_SIGNALLER);
     }
+
+    /**
+     * Extracts the calorie count from the input string.
+     * @param input The input string containing calorie information
+     * @return The number of calories specified
+     * @throws BadCalorieException if the calorie format is invalid
+     * @throws EmptyCalorieException if no calorie value is specified
+     */
     public static int getCalories(String input) throws BadCalorieException, EmptyCalorieException {
         int calories = parseParameter(input, Parameter.CALORIE_SIGNALLER);
         if (calories == -1) {
@@ -65,6 +79,13 @@ public enum Parameter {
         return calories;
     }
 
+    /**
+     * Extracts and parses the timestamp from the input string.
+     * @param input The input string containing timestamp information in yyyy-MM-dd format
+     * @return The parsed LocalDate object
+     * @throws EmptyTimestampException if no timestamp is specified
+     * @throws BadTimestampException if the timestamp format is invalid
+     */
     public static LocalDate getTimestamp(String input) throws EmptyTimestampException, BadTimestampException {
         String regex = TIMESTAMP_SIGNALLER.getPrefix() + "\\d{4}-\\d{2}-\\d{2}";
         Pattern pattern = Pattern.compile(regex);

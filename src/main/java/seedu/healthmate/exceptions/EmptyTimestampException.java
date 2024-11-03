@@ -1,4 +1,7 @@
 package seedu.healthmate.exceptions;
 
-public class EmptyTimestampException extends Exception{
+/**
+ * Exception thrown when the timestamp in a meal is empty.
+ */
+public class EmptyTimestampException extends Exception {
 }
