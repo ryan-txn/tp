@@ -31,11 +31,11 @@ public class WeightEntryDisplayTest {
     }
 
     @Test
-    public void testDisplay_WithWeightEntries_ShouldPrintGraph() {
+    public void testShouldPrintGraph() {
         // Setup test data
         UserEntryList users = new UserEntryList();
 
-        users.addUserEntry(new User(70.0, 79.0, true, 25, "WEIGHT_LOSS", 2200.0, "2024-10-24 16:34:15"));
+        users.addUserEntry(new User(70.0, 79.0, true, 25,"WEIGHT_LOSS", 2200.0, "2024-10-24 16:34:15"));
         users.addUserEntry(new User(70.0, 78.0, true, 25, "WEIGHT_LOSS", 2200.0, "2024-10-25 16:34:15"));
         users.addUserEntry(new User(70.0, 77.5, true, 25, "WEIGHT_LOSS", 2200.0, "2024-10-26 16:34:15"));
         users.addUserEntry(new User(70.0, 76.0, true, 25, "WEIGHT_LOSS", 2200.0, "2024-10-27 16:34:15"));

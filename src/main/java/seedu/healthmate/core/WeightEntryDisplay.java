@@ -30,8 +30,12 @@ public class WeightEntryDisplay {
         double maxWeight = Double.MIN_VALUE;
         for (Pair<LocalDateTime, Double> entry : weightEntries) {
             double weight = entry.u();
-            if (weight < minWeight) minWeight = weight;
-            if (weight > maxWeight) maxWeight = weight;
+            if (weight < minWeight) {
+                minWeight = weight;
+            }
+            if (weight > maxWeight) {
+                maxWeight = weight;
+            }
         }
 
         final int graphHeight = 10;
