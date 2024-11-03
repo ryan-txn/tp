@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
+import seedu.healthmate.recommender.Goals;
 import seedu.healthmate.services.UI;
 
 
@@ -154,6 +155,8 @@ public class User {
                 + localDateTime.format(formatter);
     }
 
-
+    public Goals getHealthGoal() {
+        return Goals.valueOf(this.healthGoal.getCurrentHealthGoal());
+    }
 
 }

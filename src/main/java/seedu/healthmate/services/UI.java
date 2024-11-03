@@ -10,6 +10,7 @@ import seedu.healthmate.command.Command;
 import seedu.healthmate.core.MealEntriesList;
 import seedu.healthmate.core.MealEntry;
 import seedu.healthmate.core.MealList;
+import seedu.healthmate.recommender.Recipe;
 import seedu.healthmate.utils.DateTimeUtils;
 
 
@@ -102,6 +103,19 @@ public class UI {
             System.out.println(LINE);
             for (Command command : commands) {
                 System.out.println(INDENTATION + command.command);
+                System.out.println(LINE);
+            }
+        }
+    }
+    public static void printRecommendation(List<Recipe> recipes) {
+        System.out.println(LINE);
+        System.out.println(INDENTATION + "Recommended recipes for your health goal");
+        if (recipes.size() == 1) {
+            System.out.println(INDENTATION + recipes.get(0).toString());
+        } else {
+            System.out.println(LINE);
+            for (Recipe recipe : recipes) {
+                System.out.println(INDENTATION + recipe.toString());
                 System.out.println(LINE);
             }
         }
@@ -265,5 +279,6 @@ public class UI {
         assert timestamp != null : "Timestamp cannot be null";
         return INDENTATION + progressBarStringBuilder(expectedValue, actualValue) + " (" + timestamp + ")";
     }
+
 
 }

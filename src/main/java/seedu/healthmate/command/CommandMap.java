@@ -39,16 +39,13 @@ public class CommandMap {
         if(userInput.equals(command)) {
             return  getAllCommands();
         }
-        String commandToFind = userInput.substring(command.length()).trim();  // Get the part after "list commands"
-
-        // If arguments exist, handle them (e.g., return specific commands or additional functionality)
-
+        String commandToFind = userInput.substring(command.length()).trim();
         List<Command> commands = new ArrayList<>();
         if(!COMMANDSMAP.containsKey(commandToFind)) {
             return getAllCommands();
         }
         commands.add(getCommandByName(commandToFind));
-        return commands;  // Handle case like "list commands add mealEntry"
+        return commands;
 
     }
 
@@ -56,13 +53,10 @@ public class CommandMap {
         return COMMANDSMAP.get(commandName);
     }
 
-    // Retrieve all commands with assertions and logging
     private static List<Command> getAllCommands() {
-        // Assert that the command map is not empty
         assert !COMMANDSMAP.isEmpty() : "Command map should not be empty";
         List<Command> commands = new ArrayList<>(COMMANDSMAP.values());
 
-        // Log the number of commands retrieved
         logger.info("Retrieved " + commands.size() + " commands from the CommandMap");
 
         return commands;
