@@ -34,3 +34,4 @@ Nov 03, 2024 1:33:46 PM seedu.healthmate.services.ChatParser parseUserInput
 INFO: User input contains more than 1 token
 Nov 03, 2024 1:33:46 PM seedu.healthmate.services.ChatParser parseUserInput
 INFO: Getting next user input line
+

@@ -13,6 +13,7 @@ import seedu.healthmate.command.commands.UpdateUserDataCommand;
 import seedu.healthmate.command.commands.TodayCalorieProgressCommand;
 import seedu.healthmate.command.commands.HistoricCalorieProgressCommand;
 import seedu.healthmate.command.commands.MealRecommendationsCommand;
+import seedu.healthmate.command.commands.WeightTimelineCommand;
 
 import seedu.healthmate.command.CommandMap;
 import seedu.healthmate.core.Meal;
@@ -20,6 +21,7 @@ import seedu.healthmate.core.MealEntriesList;
 import seedu.healthmate.core.MealList;
 import seedu.healthmate.core.User;
 import seedu.healthmate.core.UserHistoryTracker;
+import seedu.healthmate.core.WeightEntryDisplay;
 import seedu.healthmate.recommender.Recipe;
 import seedu.healthmate.recommender.RecipeMap;
 import seedu.healthmate.utils.Logging;
@@ -38,8 +40,6 @@ import java.util.stream.IntStream;
  * and storing them respectively.
  */
 public class ChatParser {
-
-    public static final String CALORIE_SIGNALLER = "/c";
 
     private static Logger logger = Logger.getLogger(ChatParser.class.getName());
     private MealEntriesList mealEntries;
@@ -176,7 +176,10 @@ public class ChatParser {
             List<Recipe> recipes = RecipeMap.getRecipesByGoal(currentUser.getHealthGoal());
             UI.printRecommendation(recipes);
             break;
-
+        case WeightTimelineCommand.COMMAND:
+            logger.log(Level.INFO, "Executing command to print weight timeline");
+            WeightEntryDisplay.display(userHistoryTracker.loadUserData());
+            break;
         default:
             UI.printReply("Use a valid command", "Retry: ");
             break;
