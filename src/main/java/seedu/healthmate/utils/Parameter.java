@@ -13,6 +13,7 @@ import seedu.healthmate.exceptions.EmptyCalorieException;
 import seedu.healthmate.exceptions.EmptyTimestampException;
 
 public enum Parameter {
+    EMPTY_SIGNALLER("/"),
     CALORIE_SIGNALLER("/c"),
     PORTIONS_SIGNALLER("/p"),
     TIMESTAMP_SIGNALLER("/t");

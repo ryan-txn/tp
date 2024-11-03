@@ -26,11 +26,11 @@ public class Meal {
 
     public static Optional<String> extractMealDescription(String input, String command) {
         int mealDescriptionIndex = input.indexOf(command) + command.length();
-        int calorieIndex = input.indexOf(Parameter.CALORIE_SIGNALLER.getPrefix());
-        if (calorieIndex == -1) {
-            calorieIndex = input.length();
+        int signallerIndex = input.indexOf(Parameter.EMPTY_SIGNALLER.getPrefix());
+        if (signallerIndex == -1) {
+            signallerIndex = input.length();
         }
-        return Optional.ofNullable(input.substring(mealDescriptionIndex, calorieIndex).strip());
+        return Optional.ofNullable(input.substring(mealDescriptionIndex, signallerIndex).strip());
     }
 
     public boolean descriptionIsEmpty() {
