@@ -267,7 +267,7 @@ public class ChatParserTest {
                 "      Total Calories Consumed: 3000" + System.lineSeparator() +
                 "      Total Ideal Calories: 28650" + System.lineSeparator() +
                 "      Percentage of Total Ideal Calories : 10.0%" + System.lineSeparator() +
-                "      Day With Heaviest Meal: 2024-10-24" + System.lineSeparator() +
+                "      Day With Heaviest Meal: " + maxConsumptionDate + System.lineSeparator() +
                 "      Heaviest Meal Consumed: burger with 300 calories (at: "+ maxConsumptionDate + ")" +
                 System.lineSeparator() +
                 "      Meals Consumption's Percentage of Daily Ideal Calories: 10.0%" + System.lineSeparator() +
