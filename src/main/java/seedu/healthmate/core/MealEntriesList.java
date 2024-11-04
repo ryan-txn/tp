@@ -192,7 +192,6 @@ public class MealEntriesList extends MealList {
      */
     private void printHistoricBarPerDay(int days, User user) {
         LocalDate today = DateTimeUtils.currentDate();
-        LocalDate latestConsumptionDate = today;
 
         for (int i = days - 1; i >= 0; i--) {
             LocalDate printDate = today.minusDays(i);
