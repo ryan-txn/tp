@@ -1,6 +1,5 @@
 package seedu.healthmate.command;
 
-import seedu.healthmate.core.MealList;
 
 public abstract class Command {
     private static final String INDENTATION = "      ";

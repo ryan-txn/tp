@@ -23,7 +23,8 @@ public class SaveMealCommand extends Command {
     private static final String FORMAT = "save meal {meal name} /c{number of calories}";
 
     /** Description of the command functionality. */
-    private static final String DESCRIPTION = "Saves a meal to the meal menu for later use with the add mealEntry command";
+    private static final String DESCRIPTION =
+            "Saves a meal to the meal menu for later use with the add mealEntry command";
 
     /**
      * Constructs a {@code SaveMealCommand} object with a predefined command keyword,
@@ -43,7 +44,8 @@ public class SaveMealCommand extends Command {
      * @param userInput The input provided by the user, containing the meal name and calorie count.
      * @param logger The logger used for logging command execution steps.
      */
-    public static void executeCommand(HistoryTracker historyTracker, MealList mealOptions, String userInput, Logger logger) {
+    public static void executeCommand(
+            HistoryTracker historyTracker, MealList mealOptions, String userInput, Logger logger) {
         logger.log(Level.INFO, "Executing save meal command to save meal options");
         assert historyTracker != null : "HistoryTracker should not be null";
 

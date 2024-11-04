@@ -118,49 +118,49 @@ public class ChatParser {
         logger.log(Level.INFO, "User commands are: " + commandPair);
 
         switch (command) {
-            case MealMenuCommand.COMMAND:
-                MealMenuCommand.executeCommand(mealOptions, logger);
-                break;
-            case SaveMealCommand.COMMAND:
-                SaveMealCommand.executeCommand(historyTracker, mealOptions, userInput, logger);
-                break;
-            case DeleteMealCommand.COMMAND:
-                DeleteMealCommand.executeCommand(
-                        historyTracker, mealOptions, userInput, command, logger);
-                break;
-            case DeleteMealEntryCommand.COMMAND:
-                DeleteMealEntryCommand.executeCommand(
-                        historyTracker, mealEntries, user, userInput, command, logger);
-                break;
-            case AddMealEntryCommand.COMMAND:
-                AddMealEntryCommand.executeCommand(
-                        historyTracker, mealOptions, mealEntries, user, userInput, command, logger);
-                break;
-            case LogMealsCommand.COMMAND:
-                LogMealsCommand.executeCommand(mealEntries, logger);
-                break;
-            case ListCommandsCommand.COMMAND:
-                ListCommandsCommand.executeCommand(userInput, command, logger);
-                break;
-            case UpdateUserDataCommand.COMMAND:
-                UpdateUserDataCommand.executeCommand(userHistoryTracker, logger);
-                break;
-            case TodayCalorieProgressCommand.COMMAND:
-                TodayCalorieProgressCommand.executeCommands(mealEntries, user, logger);
-                break;
-            case HistoricCalorieProgressCommand.COMMAND:
-                HistoricCalorieProgressCommand.executeCommand(mealEntries, commandPair, user, logger);
-                break;
-            case MealRecommendationsCommand.COMMAND:
-                MealRecommendationsCommand.executeCommand(user, logger);
-                break;
-            case WeightTimelineCommand.COMMAND:
-                WeightTimelineCommand.executeCommand(userHistoryTracker, logger);
-                break;
-            default:
-                logger.log(Level.WARNING, "Invalid command received");
-                UI.printReply("Use a valid command", "Retry: ");
-                break;
+        case MealMenuCommand.COMMAND:
+            MealMenuCommand.executeCommand(mealOptions, logger);
+            break;
+        case SaveMealCommand.COMMAND:
+            SaveMealCommand.executeCommand(historyTracker, mealOptions, userInput, logger);
+            break;
+        case DeleteMealCommand.COMMAND:
+            DeleteMealCommand.executeCommand(
+                    historyTracker, mealOptions, userInput, command, logger);
+            break;
+        case DeleteMealEntryCommand.COMMAND:
+            DeleteMealEntryCommand.executeCommand(
+                    historyTracker, mealEntries, user, userInput, command, logger);
+            break;
+        case AddMealEntryCommand.COMMAND:
+            AddMealEntryCommand.executeCommand(
+                    historyTracker, mealOptions, mealEntries, user, userInput, command, logger);
+            break;
+        case LogMealsCommand.COMMAND:
+            LogMealsCommand.executeCommand(mealEntries, logger);
+            break;
+        case ListCommandsCommand.COMMAND:
+            ListCommandsCommand.executeCommand(userInput, command, logger);
+            break;
+        case UpdateUserDataCommand.COMMAND:
+            UpdateUserDataCommand.executeCommand(userHistoryTracker, logger);
+            break;
+        case TodayCalorieProgressCommand.COMMAND:
+            TodayCalorieProgressCommand.executeCommands(mealEntries, user, logger);
+            break;
+        case HistoricCalorieProgressCommand.COMMAND:
+            HistoricCalorieProgressCommand.executeCommand(mealEntries, commandPair, user, logger);
+            break;
+        case MealRecommendationsCommand.COMMAND:
+            MealRecommendationsCommand.executeCommand(user, logger);
+            break;
+        case WeightTimelineCommand.COMMAND:
+            WeightTimelineCommand.executeCommand(userHistoryTracker, logger);
+            break;
+        default:
+            logger.log(Level.WARNING, "Invalid command received");
+            UI.printReply("Use a valid command", "Retry: ");
+            break;
         }
     }
 

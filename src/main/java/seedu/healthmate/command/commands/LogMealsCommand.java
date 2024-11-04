@@ -20,7 +20,8 @@ public class LogMealsCommand extends Command {
     private static final String FORMAT = "log meals";
 
     /** Description of the command functionality. */
-    private static final String DESCRIPTION = "Displays the log of all meal entries along with their Timestamp in Date Time format";
+    private static final String DESCRIPTION =
+            "Displays the log of all meal entries along with their Timestamp in Date Time format";
 
     /**
      * Constructs a {@code LogMealsCommand} object with a predefined command keyword,
