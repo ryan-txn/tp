@@ -1,6 +1,5 @@
 package seedu.healthmate.services;
 
-import seedu.healthmate.command.Command;
 import seedu.healthmate.command.CommandPair;
 import seedu.healthmate.command.commands.LogMealsCommand;
 import seedu.healthmate.command.commands.SaveMealCommand;
@@ -15,21 +14,13 @@ import seedu.healthmate.command.commands.HistoricCalorieProgressCommand;
 import seedu.healthmate.command.commands.MealRecommendationsCommand;
 import seedu.healthmate.command.commands.WeightTimelineCommand;
 
-import seedu.healthmate.command.CommandMap;
-import seedu.healthmate.core.Meal;
 import seedu.healthmate.core.MealEntriesList;
 import seedu.healthmate.core.MealList;
 import seedu.healthmate.core.User;
-import seedu.healthmate.core.UserEntryList;
 import seedu.healthmate.core.UserHistoryTracker;
-import seedu.healthmate.core.WeightEntryDisplay;
-import seedu.healthmate.recommender.Recipe;
-import seedu.healthmate.recommender.RecipeMap;
 import seedu.healthmate.utils.Logging;
 
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -128,90 +119,44 @@ public class ChatParser {
 
         switch (command) {
             case MealMenuCommand.COMMAND:
-                assert mealOptions != null : "Meal options list should not be null";
-                logger.log(Level.INFO, "Executing meal menu command to show meal options");
-                UI.printMealOptions(this.mealOptions);
+                MealMenuCommand.executeCommand(mealOptions, logger);
                 break;
-
             case SaveMealCommand.COMMAND:
-                assert historyTracker != null : "HistoryTracker should not be null";
-                MealSaver mealSaver = new MealSaver(historyTracker);
-                Optional<Meal> mealToSave = mealSaver.extractMealFromUserInput(userInput);
-                assert mealToSave.isPresent() : "Meal to save should be present";
-                mealToSave.ifPresent(meal -> mealSaver.saveMeal(meal, mealOptions));
+                SaveMealCommand.executeCommand(historyTracker, mealOptions, userInput, logger);
                 break;
-
             case DeleteMealCommand.COMMAND:
-                assert mealOptions != null : "Meal options list should not be null";
-                logger.log(Level.INFO, "Executing command to delete a meal from meal options");
-                mealOptions.extractAndRemoveMeal(userInput, command);
-                historyTracker.saveMealOptions(mealOptions);
+                DeleteMealCommand.executeCommand(
+                        historyTracker, mealOptions, userInput, command, logger);
                 break;
-
             case DeleteMealEntryCommand.COMMAND:
-                assert mealEntries != null : "Meal entries list should not be null";
-                logger.log(Level.INFO, "Executing command to delete a meal from mealEntries");
-                mealEntries.removeMealWithFeedback(userInput, command, user);
-                historyTracker.saveMealEntries(mealEntries);
+                DeleteMealEntryCommand.executeCommand(
+                        historyTracker, mealEntries, user, userInput, command, logger);
                 break;
-
             case AddMealEntryCommand.COMMAND:
-                assert mealOptions != null : "Meal options list should not be null";
-                assert mealEntries != null : "Meal entries list should not be null";
-                logger.log(Level.INFO, "Executing command to add a meal to mealEntries");
-                mealEntries.extractAndAppendMeal(userInput, command, mealOptions, user);
-                historyTracker.saveMealEntries(mealEntries);
+                AddMealEntryCommand.executeCommand(
+                        historyTracker, mealOptions, mealEntries, user, userInput, command, logger);
                 break;
-
             case LogMealsCommand.COMMAND:
-                assert mealEntries != null : "Meal entries list should not be null";
-                logger.log(Level.INFO, "Executing command to show meal history");
-                UI.printMealEntries(this.mealEntries);
+                LogMealsCommand.executeCommand(mealEntries, logger);
                 break;
-
             case ListCommandsCommand.COMMAND:
-                List<Command> commands = CommandMap.getCommands(userInput, command);
-                assert commands != null : "Commands list should not be null";
-                logger.log(Level.INFO, "Executing command to show all available commands");
-                UI.printCommands(commands);
+                ListCommandsCommand.executeCommand(userInput, command, logger);
                 break;
-
             case UpdateUserDataCommand.COMMAND:
-                logger.log(Level.INFO, "Executing command to update user data");
-                User newUser = User.askForUserData();
-                assert newUser != null : "New user data should not be null";
-                userHistoryTracker.printAllUserEntries();
+                UpdateUserDataCommand.executeCommand(userHistoryTracker, logger);
                 break;
-
             case TodayCalorieProgressCommand.COMMAND:
-                assert mealEntries != null : "Meal entries list should not be null";
-                logger.log(Level.INFO, "Executing command to print daily progress bar");
-                mealEntries.printDaysConsumptionBar(user, LocalDateTime.now());
+                TodayCalorieProgressCommand.executeCommands(mealEntries, user, logger);
                 break;
-
             case HistoricCalorieProgressCommand.COMMAND:
-                assert mealEntries != null : "Meal entries list should not be null";
-                logger.log(Level.INFO, "Executing command to print historic calorie bar");
-                Optional<Integer> pastDays = parseDaysFromCommand(commandPair, 0);
-                assert pastDays.isPresent() : "Past days should be specified";
-                pastDays.ifPresent(days -> mealEntries.printHistoricConsumptionBars(user, days));
+                HistoricCalorieProgressCommand.executeCommand(mealEntries, commandPair, user, logger);
                 break;
-
             case MealRecommendationsCommand.COMMAND:
-                assert user.getHealthGoal() != null : "User health goal should not be null";
-                List<Recipe> recipes = RecipeMap.getRecipesByGoal(user.getHealthGoal());
-                assert recipes != null && !recipes.isEmpty() : "Recipes should not be null or empty";
-                logger.log(Level.INFO, "Executing command to list meal recommendation");
-                UI.printRecommendation(recipes);
+                MealRecommendationsCommand.executeCommand(user, logger);
                 break;
-
             case WeightTimelineCommand.COMMAND:
-                logger.log(Level.INFO, "Executing command to print weight timeline");
-                Optional<UserEntryList> userHistoryData = userHistoryTracker.loadUserData();
-                assert userHistoryData != null && userHistoryData.isPresent() : "User history data should not be null or empty";
-                WeightEntryDisplay.display(userHistoryData);
+                WeightTimelineCommand.executeCommand(userHistoryTracker, logger);
                 break;
-
             default:
                 logger.log(Level.WARNING, "Invalid command received");
                 UI.printReply("Use a valid command", "Retry: ");
@@ -263,24 +208,6 @@ public class ChatParser {
         mealEntries.printDaysConsumptionBar(currentUser, LocalDateTime.now());
     }
 
-    /**
-     * Tries to parse a certain command token of the customer into an integer
-     * @param commandPair The considered commands
-     * @param index The index of the command in the additionalCommands Array
-     * @return Number of days (Integer)
-     */
-    private Optional<Integer> parseDaysFromCommand(CommandPair commandPair, int index) {
-        assert commandPair != null : "CommandPair should not be null";
-        assert index >= 0 : "Index should be non-negative";
-        try {
-            int days =  Integer.parseInt(commandPair.getCommandByIndex(index));
-            return Optional.of(days);
-        } catch (NumberFormatException e) {
-            UI.printReply(commandPair.getCommandByIndex(index), "The following is not a valid number: ");
-        } catch (IndexOutOfBoundsException s) {
-            UI.printReply("Specify the number of days you want to look into the past", "Missing input: ");
-        }
-        return Optional.empty();
-    }
+
 
 }
