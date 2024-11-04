@@ -110,12 +110,14 @@ public class MealEntriesList extends MealList {
      * Deletes a mealEntry by its index in the log meals overview
      * @param mealNumber
      */
+    //@@author DarkDragoon2002
     @Override
     public void deleteMeal(int mealNumber) {
         Meal mealToDelete = this.mealList.get(mealNumber - 1);
         super.mealList.remove(mealNumber - 1);
         UI.printReply(mealToDelete.toString(), "Deleted entry: ");
     }
+    //@@author
 
     public List<Meal> getMealEntries() {
         return new ArrayList<>(super.mealList);
@@ -131,10 +133,10 @@ public class MealEntriesList extends MealList {
     public void printDaysConsumptionBar(User user, LocalDateTime dateTime) {
         assert user != null : "User cannot be null";
         assert dateTime != null: "Date needs to be specified to print todays consumption bar";
-        LocalDateTime todayMidnight = dateTime.truncatedTo(ChronoUnit.DAYS);
-        LocalDateTime todayEndOfDay = dateTime.toLocalDate().atTime(LocalTime.MAX);
+        LocalDateTime todayStartOfDay = DateTimeUtils.startOfDayLocalDateTime(DateTimeUtils.currentDate());
+        LocalDateTime todayEndOfDay = DateTimeUtils.endOfDayLocalDateTime(DateTimeUtils.currentDate());
 
-        MealEntriesList mealsConsumedToday = this.getMealEntriesByDate(todayEndOfDay, todayMidnight);
+        MealEntriesList mealsConsumedToday = this.getMealEntriesByDate(todayEndOfDay, todayStartOfDay);
         int caloriesConsumed = mealsConsumedToday.getTotalCaloriesConsumed();
         user.printTargetCalories();
         UI.printString("Current Calories Consumed: " + caloriesConsumed);
@@ -181,6 +183,7 @@ public class MealEntriesList extends MealList {
         return new MealEntriesList(filteredMeals);
     }
 
+    //@@author DarkDragoon2002
     /**
      * Credit: Loop by DarkDragoon2002
      * Iterates daily over this list of mealEntries and prints daily consumption bar
@@ -201,6 +204,7 @@ public class MealEntriesList extends MealList {
             user.printHistoricConsumptionBar(caloriesConsumed, printDate);
         }
     }
+    //@@author
 
     private LocalDateTime getDateOfMealEntry(int mealNumber) {
         MealEntry mealEntry = (MealEntry) this.mealList.get(mealNumber - 1);

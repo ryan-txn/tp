@@ -22,7 +22,7 @@ public class ConsumptionStatistics {
         this.totalCaloriesConsumed = totalCaloriesConsumed;
         this.maxMeal = maxMeal;
     }
-
+//@@author DarkDragoon2002
     /**
      * Computes consumption statistics
      * @param user the user for which the ideal consumption mark is computed
@@ -42,6 +42,7 @@ public class ConsumptionStatistics {
 
         return new ConsumptionStatistics(idealCalories, totalIdealCalories, totalCaloriesConsumed, maxMeal);
     }
+//@@author
 
     public void printStats(int days) {
         UI.printHistoricConsumptionStats(days, this.idealCalories, this.totalCaloriesConsumed,

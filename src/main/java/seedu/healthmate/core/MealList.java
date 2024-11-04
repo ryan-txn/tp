@@ -88,15 +88,18 @@ public class MealList {
         UI.printReply(meal.toString(), "Added to options: ");
     }
 
+
     /**
      * Deletes a meal from the list by its index.
      * @param mealNumber The 1-based index of the meal to delete
      */
+    //@@author DarkDragoon2002
     public void deleteMeal(int mealNumber) {
         Meal mealToDelete = this.mealList.get(mealNumber - 1);
         this.mealList.remove(mealNumber - 1);
         UI.printReply(mealToDelete.toString(), "Deleted option: ");
     }
+    //@@author
 
     public List<Meal> getMealList() {
         return new ArrayList<>(mealList);
