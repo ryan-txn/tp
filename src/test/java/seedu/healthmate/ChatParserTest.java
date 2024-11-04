@@ -355,7 +355,7 @@ public class ChatParserTest {
         String expectedOutput = UI.simulateInitOutput()
                 + UI.simulateReply("pizza with 300 calories (at: " + LocalDate.now() + ")", "Tracked: ")
                 + simulateConsumptionMessageWithBar(2865, 300)
-                + UI.simulateReply("Deleted entry: pizza with 300 calories (at: 2024-11-05)", "")
+                + UI.simulateReply("Deleted entry: pizza with 300 calories (at: " + LocalDate.now() + ")", "")
                 + simulateConsumptionMessageWithBar(2865, 0)
                 + UI.simulateFareWell();
         compareChatParserOutput(chatParser, simulatedInput, expectedOutput);
