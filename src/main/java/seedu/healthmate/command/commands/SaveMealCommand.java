@@ -44,14 +44,12 @@ public class SaveMealCommand extends Command {
      * @param logger The logger used for logging command execution steps.
      */
     public static void executeCommand(HistoryTracker historyTracker, MealList mealOptions, String userInput, Logger logger) {
+        logger.log(Level.INFO, "Executing save meal command to save meal options");
         assert historyTracker != null : "HistoryTracker should not be null";
 
         // Initializes MealSaver and extracts meal details from user input
         MealSaver mealSaver = new MealSaver(historyTracker);
         Optional<Meal> mealToSave = mealSaver.extractMealFromUserInput(userInput);
-        assert mealToSave.isPresent() : "Meal to save should be present";
-
-        logger.log(Level.INFO, "Executing save meal command to save meal options");
 
         // Saves the meal to the meal options list if valid
         mealToSave.ifPresent(meal -> mealSaver.saveMeal(meal, mealOptions));

@@ -1,92 +1,22 @@
-Nov 04, 2024 4:31:22 PM seedu.healthmate.services.ChatParser <init>
+Nov 04, 2024 9:07:39 PM seedu.healthmate.services.ChatParser <init>
 INFO: Initializing HistoryTracker
-Nov 04, 2024 4:31:22 PM seedu.healthmate.services.ChatParser <init>
+Nov 04, 2024 9:07:39 PM seedu.healthmate.services.ChatParser <init>
 INFO: Loaded MealEntries
-Nov 04, 2024 4:31:22 PM seedu.healthmate.services.ChatParser <init>
+Nov 04, 2024 9:07:39 PM seedu.healthmate.services.ChatParser <init>
 INFO: Loaded MealOptions
-Nov 04, 2024 4:31:22 PM seedu.healthmate.services.ChatParser <init>
+Nov 04, 2024 9:07:39 PM seedu.healthmate.services.ChatParser <init>
 INFO: Initializing UserHistoryTracker
-Nov 04, 2024 4:31:22 PM seedu.healthmate.services.ChatParser run
+Nov 04, 2024 9:07:39 PM seedu.healthmate.services.ChatParser run
 INFO: Checking if user data exists
-Nov 04, 2024 4:31:23 PM seedu.healthmate.services.ChatParser parseUserInput
+Nov 04, 2024 9:07:39 PM seedu.healthmate.services.ChatParser parseUserInput
 INFO: Getting next user input line
-Nov 04, 2024 4:31:28 PM seedu.healthmate.services.ChatParser multiCommandParsing
-INFO: User commands are: Pair of list, [Ljava.lang.String;@4cdf35a9
-Nov 04, 2024 4:31:28 PM seedu.healthmate.services.ChatParser multiCommandParsing
-WARNING: Invalid command received
-Nov 04, 2024 4:31:28 PM seedu.healthmate.services.ChatParser parseUserInput
+Nov 04, 2024 9:07:39 PM seedu.healthmate.services.ChatParser multiCommandParsing
+INFO: User commands are: Pair of add mealEntry, [Ljava.lang.String;@1722011b
+Nov 04, 2024 9:07:39 PM seedu.healthmate.command.commands.AddMealEntryCommand executeCommand
+INFO: Executing command to add a meal to mealEntries
+Nov 04, 2024 9:07:39 PM seedu.healthmate.services.ChatParser parseUserInput
 INFO: User input contains more than 1 token
-Nov 04, 2024 4:31:28 PM seedu.healthmate.services.ChatParser parseUserInput
+Nov 04, 2024 9:07:39 PM seedu.healthmate.services.ChatParser parseUserInput
 INFO: Getting next user input line
-Nov 04, 2024 4:31:38 PM seedu.healthmate.services.ChatParser multiCommandParsing
-INFO: User commands are: Pair of help, [Ljava.lang.String;@4c98385c
-Nov 04, 2024 4:31:38 PM seedu.healthmate.services.ChatParser multiCommandParsing
-WARNING: Invalid command received
-Nov 04, 2024 4:31:38 PM seedu.healthmate.services.ChatParser parseUserInput
-INFO: User input contains more than 1 token
-Nov 04, 2024 4:31:38 PM seedu.healthmate.services.ChatParser parseUserInput
-INFO: Getting next user input line
-Nov 04, 2024 4:32:05 PM seedu.healthmate.services.ChatParser multiCommandParsing
-INFO: User commands are: Pair of list commands, [Ljava.lang.String;@5fcfe4b2
-Nov 04, 2024 4:32:05 PM seedu.healthmate.services.ChatParser multiCommandParsing
-INFO: Executing command to show all available commands
-Nov 04, 2024 4:32:05 PM seedu.healthmate.services.ChatParser parseUserInput
-INFO: User input contains more than 1 token
-Nov 04, 2024 4:32:05 PM seedu.healthmate.services.ChatParser parseUserInput
-INFO: Getting next user input line
-Nov 04, 2024 4:32:33 PM seedu.healthmate.services.ChatParser multiCommandParsing
-INFO: User commands are: Pair of list commands, [Ljava.lang.String;@c2e1f26
-Nov 04, 2024 4:32:33 PM seedu.healthmate.services.ChatParser multiCommandParsing
-INFO: Executing command to show all available commands
-Nov 04, 2024 4:32:33 PM seedu.healthmate.services.ChatParser parseUserInput
-INFO: User input contains more than 1 token
-Nov 04, 2024 4:32:33 PM seedu.healthmate.services.ChatParser parseUserInput
-INFO: Getting next user input line
-Nov 04, 2024 4:32:44 PM seedu.healthmate.services.ChatParser multiCommandParsing
-INFO: User commands are: Pair of list command, [Ljava.lang.String;@dcf3e99
-Nov 04, 2024 4:32:44 PM seedu.healthmate.services.ChatParser multiCommandParsing
-WARNING: Invalid command received
-Nov 04, 2024 4:32:44 PM seedu.healthmate.services.ChatParser parseUserInput
-INFO: User input contains more than 1 token
-Nov 04, 2024 4:32:44 PM seedu.healthmate.services.ChatParser parseUserInput
-INFO: Getting next user input line
-Nov 04, 2024 4:32:58 PM seedu.healthmate.services.ChatParser multiCommandParsing
-INFO: User commands are: Pair of list command, [Ljava.lang.String;@6d9c638
-Nov 04, 2024 4:32:58 PM seedu.healthmate.services.ChatParser multiCommandParsing
-WARNING: Invalid command received
-Nov 04, 2024 4:32:58 PM seedu.healthmate.services.ChatParser parseUserInput
-INFO: User input contains more than 1 token
-Nov 04, 2024 4:32:58 PM seedu.healthmate.services.ChatParser parseUserInput
-INFO: Getting next user input line
-Nov 04, 2024 4:33:06 PM seedu.healthmate.services.ChatParser multiCommandParsing
-INFO: User commands are: Pair of list commands, [Ljava.lang.String;@7dc5e7b4
-Nov 04, 2024 4:33:06 PM seedu.healthmate.services.ChatParser multiCommandParsing
-INFO: Executing command to show all available commands
-Nov 04, 2024 4:33:06 PM seedu.healthmate.services.ChatParser parseUserInput
-INFO: User input contains more than 1 token
-Nov 04, 2024 4:33:06 PM seedu.healthmate.services.ChatParser parseUserInput
-INFO: Getting next user input line
-Nov 04, 2024 4:33:18 PM seedu.healthmate.services.ChatParser multiCommandParsing
-INFO: User commands are: Pair of list commands, [Ljava.lang.String;@1ee0005
-Nov 04, 2024 4:33:18 PM seedu.healthmate.services.ChatParser multiCommandParsing
-INFO: Executing command to show all available commands
-Nov 04, 2024 4:33:18 PM seedu.healthmate.services.ChatParser parseUserInput
-INFO: User input contains more than 1 token
-Nov 04, 2024 4:33:18 PM seedu.healthmate.services.ChatParser parseUserInput
-INFO: Getting next user input line
-Nov 04, 2024 4:33:41 PM seedu.healthmate.services.ChatParser multiCommandParsing
-INFO: User commands are: Pair of list commands, [Ljava.lang.String;@75a1cd57
-Nov 04, 2024 4:33:41 PM seedu.healthmate.services.ChatParser multiCommandParsing
-INFO: Executing command to show all available commands
-Nov 04, 2024 4:33:41 PM seedu.healthmate.services.ChatParser parseUserInput
-INFO: User input contains more than 1 token
-Nov 04, 2024 4:33:41 PM seedu.healthmate.services.ChatParser parseUserInput
-INFO: Getting next user input line
-Nov 04, 2024 4:33:57 PM seedu.healthmate.services.ChatParser multiCommandParsing
-INFO: User commands are: Pair of list commands, [Ljava.lang.String;@156643d4
-Nov 04, 2024 4:33:57 PM seedu.healthmate.services.ChatParser multiCommandParsing
-INFO: Executing command to show all available commands
-Nov 04, 2024 4:33:57 PM seedu.healthmate.services.ChatParser parseUserInput
-INFO: User input contains more than 1 token
-Nov 04, 2024 4:33:57 PM seedu.healthmate.services.ChatParser parseUserInput
-INFO: Getting next user input line
+Nov 04, 2024 9:07:39 PM seedu.healthmate.services.ChatParser parseUserInput
+INFO: User closes application

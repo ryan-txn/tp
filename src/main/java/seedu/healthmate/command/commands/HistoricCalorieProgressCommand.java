@@ -52,7 +52,6 @@ public class HistoricCalorieProgressCommand extends Command {
         logger.log(Level.INFO, "Executing command to print historic calorie bar");
 
         Optional<Integer> pastDays = parseDaysFromCommand(commandPair, 0);
-        assert pastDays.isPresent() : "Past days should be specified";
 
         // Displays calorie progress for the specified number of past days
         pastDays.ifPresent(days -> mealEntries.printHistoricConsumptionBars(user, days));

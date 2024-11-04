@@ -74,7 +74,7 @@ public class ChatParserTest {
         ChatParser chatParser = new ChatParser();
         String simulatedInput = "hi\nbye\n";
         String expectedOutput = UI.simulateInitOutput()
-            + UI.simulateReply("Invalid command", "Retry: ")
+            + UI.simulateReply("Use a valid command", "Retry: ")
             + UI.simulateFareWell();
         compareChatParserOutput(chatParser, simulatedInput, expectedOutput);
     }
