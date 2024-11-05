@@ -2,6 +2,10 @@ package seedu.healthmate.core;
 
 import seedu.healthmate.services.UI;
 
+/**
+ * Manages a user's health goal (weight loss, steady state, bulking) and
+ * calculates target calorie intake based on user data and selected goal.
+ */
 public class HealthGoal {
 
     private static final String WEIGHT_LOSS = "WEIGHT_LOSS";

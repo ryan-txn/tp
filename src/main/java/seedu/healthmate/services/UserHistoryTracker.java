@@ -11,6 +11,10 @@ import java.util.Scanner;
 import seedu.healthmate.core.User;
 import seedu.healthmate.core.UserEntryList;
 
+/**
+ * Manages the saving and loading of UserEntry lists, which store user information over time.
+ * Handles adding new user entries, and retrieving stored data for display or further processing.
+ */
 public class UserHistoryTracker {
     private static final String DATA_DIRECTORY = "data";
     private static final String USER_DATA_FILE = "user_data.csv";
@@ -56,11 +60,21 @@ public class UserHistoryTracker {
     //@@author
 
     //@@author ryan-txn
+    /**
+     * Saves the provided User entry to a file. If the file does not exist,
+     * it will be created first, and then the user data will be appended to the save file.
+     *
+     * @param userEntry The User object containing data to be saved.
+     */
     public void saveUserToFile(User userEntry) {
         createFileIfNotExists();
         addUserEntry(userEntry);
     }
 
+    /**
+     * Prints all user entries from the data file to the console.
+     * Displays an error message if the file is not found.
+     */
     public void printAllUserEntries() {
         File userDataFile = new File(DATA_DIRECTORY + File.separator + USER_DATA_FILE);
 
@@ -75,10 +89,15 @@ public class UserHistoryTracker {
         }
     }
 
+    /**
+     * Converts a CSV line from the data file into a User object.
+     *
+     * @param line CSV-formatted string representing a user entry.
+     * @return User object with data from the parsed line.
+     */
     private static User getUserEntryFromFileLine(String line) {
         String[] fields = line.split(",");  // Split the CSV line by commas
 
-        // Parse each field from the CSV line
         double height = Double.parseDouble(fields[0]);
         double weight = Double.parseDouble(fields[1]);
         boolean isMale = Boolean.parseBoolean(fields[2]);
@@ -91,14 +110,12 @@ public class UserHistoryTracker {
         return user;
     }
 
-    private static void createDirectoryIfNotExists(String folderName) {
-        File directory = new File(folderName);
-        if (!directory.exists()) {
-            directory.mkdir();
-        }
-        assert directory.exists() : "Data directory should exist after creation";
-    }
-
+    /**
+     * Appends the given User entry to the data file. Creates a new line with
+     * the user's information in CSV format. If an error occurs, an error message is displayed.
+     *
+     * @param userEntry The User object to add to the data file.
+     */
     private void addUserEntry(User userEntry) {
         File userDataFile = new File(DATA_DIRECTORY + File.separator + USER_DATA_FILE);
 
@@ -111,6 +128,24 @@ public class UserHistoryTracker {
         }
     }
 
+    /**
+     * Creates a directory if it does not already exist.
+     * Verifies that the directory exists after attempting to create it.
+     *
+     * @param folderName Name of the directory to create.
+     */
+    private static void createDirectoryIfNotExists(String folderName) {
+        File directory = new File(folderName);
+        if (!directory.exists()) {
+            directory.mkdir();
+        }
+        assert directory.exists() : "Data directory should exist after creation";
+    }
+
+    /**
+     * Creates the user data file if it does not already exist.
+     * If the file is created successfully, a confirmation message is displayed.
+     */
     private void createFileIfNotExists() {
         try {
             File userDataFile = new File(DATA_DIRECTORY + File.separator + USER_DATA_FILE);

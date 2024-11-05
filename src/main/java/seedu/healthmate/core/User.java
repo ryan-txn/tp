@@ -9,7 +9,9 @@ import seedu.healthmate.recommender.Goals;
 import seedu.healthmate.services.UI;
 import seedu.healthmate.services.UserHistoryTracker;
 
-
+/**
+ * Represents a user record captured at a specific date and time.
+ */
 public class User {
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
@@ -21,6 +23,16 @@ public class User {
     private final HealthGoal healthGoal;
     private final LocalDateTime localDateTime;
 
+    /**
+     * Constructs a new User object with the specified details. This constructor
+     * is used when collecting data directly from the user.
+     *
+     * @param height      User's height in centimeters.
+     * @param weight      User's weight in kilograms.
+     * @param isMale      True if the user is male, false otherwise.
+     * @param age         User's age in years.
+     * @param healthGoal  The health goal for the user (e.g., weight loss, muscle gain).
+     */
     public User(double height, double weight, boolean isMale,
                 int age, String healthGoal) {
         this.heightEntry = height;
@@ -32,6 +44,18 @@ public class User {
         this.localDateTime = LocalDateTime.now();
     }
 
+    /**
+     * Constructs a User object from previously saved data. This constructor
+     * is used when loading user information from storage.
+     *
+     * @param height         User's height in centimeters.
+     * @param weight         User's weight in kilograms.
+     * @param isMale         True if the user is male, false otherwise.
+     * @param age            User's age in years.
+     * @param healthGoal     The health goal for the user (e.g., weight loss, muscle gain).
+     * @param idealCalories  The previously calculated ideal calorie intake for the user.
+     * @param localDateTime  The timestamp of the last user data entry in ISO-8601 format.
+     */
     public User(double height, double weight, boolean isMale, int age,
                 String healthGoal, double idealCalories, String localDateTime) {
         this.heightEntry = height;
