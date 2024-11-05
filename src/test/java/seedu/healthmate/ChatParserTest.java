@@ -41,12 +41,17 @@ public class ChatParserTest {
      * Tests full integration with no stubs
      * @param chatParser
      * @param simulatedInput User input for which the behaviour of chatParser.run() is asserted
-     * @param expectedOutput Expected output printed to the consule that is to be compared with the actual ouput
+     * @param expectedOutput Expected output printed to the console that is to be compared with the actual output
      */
     private void compareChatParserOutput(ChatParser chatParser, String simulatedInput, String expectedOutput) {
         System.setIn(new ByteArrayInputStream(simulatedInput.getBytes()));
         chatParser.run();
-        assertEquals(outputStream.toString(), expectedOutput);
+
+        // Normalize both actual and expected outputs by trimming and standardizing line breaks
+        String actualOutput = outputStream.toString().trim().replace("\r\n", "\n").replaceAll("\\s+$", "");
+        String normalizedExpectedOutput = expectedOutput.trim().replace("\r\n", "\n").replaceAll("\\s+$", "");
+
+        assertEquals(normalizedExpectedOutput, actualOutput);
         chatParser.cleanMealLists();
     }
 
@@ -74,7 +79,7 @@ public class ChatParserTest {
         ChatParser chatParser = new ChatParser();
         String simulatedInput = "hi\nbye\n";
         String expectedOutput = UI.simulateInitOutput()
-            + UI.simulateReply("Invalid command", "Retry: ")
+            + UI.simulateReply("Use a valid command", "Retry: ")
             + UI.simulateFareWell();
         compareChatParserOutput(chatParser, simulatedInput, expectedOutput);
     }
@@ -273,4 +278,148 @@ public class ChatParserTest {
                 "      Meals Consumption's Percentage of Daily Ideal Calories: 10.0%" + System.lineSeparator() +
                 "      _____________________________________________________________________________";
     }
+
+    /**
+     * Tests if deleting a meal option by its index is successful.
+     */
+    @Test
+    void deleteMeal_existingMealByIndex_success() {
+        ChatParser chatParser = new ChatParser();
+        String simulatedInput = "save meal burger /c300\n"
+                + "delete meal 1\n"
+                + "meal menu\nbye\n";
+        String expectedOutput = UI.simulateInitOutput()
+                + UI.simulateReply("burger with 300 calories", "Added to options: ")
+                + UI.simulateReply("Deleted option: burger with 300 calories", "")
+                + "      _____________________________________________________________________________\n"
+                + "      _____________________________________________________________________________\n"
+                + "      No meal options added yet\n"
+                + "      _____________________________________________________________________________\n"
+                + "      _____________________________________________________________________________\n"
+                + UI.simulateFareWell();
+        compareChatParserOutput(chatParser, simulatedInput, expectedOutput);
+    }
+
+    /**
+     * Tests if attempting to delete a non-existent meal option by index returns an error.
+     */
+    @Test
+    void deleteMeal_nonExistentIndex_failure() {
+        ChatParser chatParser = new ChatParser();
+        String simulatedInput = "delete meal 1\nbye\n";
+        String expectedOutput = UI.simulateInitOutput()
+                + UI.simulateReply("Meal index needs to be within range", "Error: ")
+                + UI.simulateFareWell();
+        compareChatParserOutput(chatParser, simulatedInput, expectedOutput);
+    }
+
+    /**
+     * Tests if trying to delete a meal option without specifying an index returns an error.
+     */
+    @Test
+    void deleteMeal_noIndex_failure() {
+        ChatParser chatParser = new ChatParser();
+        String simulatedInput = "delete meal\nbye\n";
+        String expectedOutput = UI.simulateInitOutput()
+                + UI.simulateReply("Meal index needs to be an integer", "Error: ")
+                + UI.simulateFareWell();
+        compareChatParserOutput(chatParser, simulatedInput, expectedOutput);
+    }
+
+    private static String simulateIdealCalories(int idealCalories) {
+        return UI.simulateString("Ideal Daily Caloric Intake: " + idealCalories);
+    }
+
+    private static String simulateConsumedCalories(int consumedCalories) {
+        return UI.simulateString("Current Calories Consumed: " + consumedCalories);
+    }
+
+    private static String simulateConsumptionMessageWithBar(int idealCalories, int consumedCalories) {
+        return UI.simulateFrameLine()
+                + simulateIdealCalories(idealCalories)
+                + UI.simulateFrameLine()
+                + simulateConsumedCalories(consumedCalories)
+                + UI.buildConsumptionBar("% of Expected Calorie Intake Consumed: ", idealCalories,
+                        consumedCalories, LocalDate.now())
+                + "\n";
+    }
+
+    /**
+     * Tests if deleting a meal entry by index in the meal log is successful.
+     */
+    @Test
+    void deleteMealEntry_existingEntryByIndex_success() {
+        ChatParser chatParser = new ChatParser();
+        String simulatedInput = "add mealEntry pizza /c300\n"
+                + "delete mealEntry 1\nbye\n";
+        String expectedOutput = UI.simulateInitOutput()
+                + UI.simulateReply("pizza with 300 calories (at: " + LocalDate.now() + ")", "Tracked: ")
+                + simulateConsumptionMessageWithBar(2865, 300)
+                + UI.simulateReply("Deleted entry: pizza with 300 calories (at: " + LocalDate.now() + ")", "")
+                + simulateConsumptionMessageWithBar(2865, 0)
+                + UI.simulateFareWell();
+        compareChatParserOutput(chatParser, simulatedInput, expectedOutput);
+    }
+
+    /**
+     * Tests if attempting to delete a non-existent meal entry by index returns an error.
+     */
+    @Test
+    void deleteMealEntry_nonExistentIndex_failure() {
+        ChatParser chatParser = new ChatParser();
+        String simulatedInput = "delete mealEntry 1\nbye\n";
+        String expectedOutput = UI.simulateInitOutput()
+                + UI.simulateReply("Meal Entry index needs to be within range", "Error: ")
+                + UI.simulateFareWell();
+        compareChatParserOutput(chatParser, simulatedInput, expectedOutput);
+    }
+
+    /**
+     * Tests if trying to delete a meal entry without specifying an index returns an error.
+     */
+    @Test
+    void deleteMealEntry_noIndex_failure() {
+        ChatParser chatParser = new ChatParser();
+        String simulatedInput = "delete mealEntry\nbye\n";
+        String expectedOutput = UI.simulateInitOutput()
+                + UI.simulateReply("Meal Entry index needs to be an integer", "Error: ")
+                + UI.simulateFareWell();
+        compareChatParserOutput(chatParser, simulatedInput, expectedOutput);
+    }
+
+    /**
+     * Tests the scenario where todayCalories command is executed successfully with meals added.
+     */
+    @Test
+    void todayCalorieProgress_withMeals_success() {
+        ChatParser chatParser = new ChatParser();
+        String simulatedInput = "add mealEntry pizza /c500\nshow todayCalories\nbye\n";
+
+        LocalDate today = LocalDate.now();
+        String expectedOutput = UI.simulateInitOutput()
+                + UI.simulateReply("pizza with 500 calories (at: " + today + ")", "Tracked: ")
+                + simulateConsumptionMessageWithBar(2865, 500)
+                + simulateConsumptionMessageWithBar(2865, 500)
+                + UI.simulateFareWell();
+
+        compareChatParserOutput(chatParser, simulatedInput, expectedOutput);
+    }
+
+    /**
+     * Tests the scenario where todayCalories command is executed with no meals added.
+     */
+    @Test
+    void todayCalorieProgress_noMeals_success() {
+        ChatParser chatParser = new ChatParser();
+        String simulatedInput = "show todayCalories\nbye\n";
+
+        LocalDate today = LocalDate.now();
+        String expectedOutput = UI.simulateInitOutput()
+                + simulateConsumptionMessageWithBar(2865, 0)
+                + UI.simulateFareWell();
+
+        compareChatParserOutput(chatParser, simulatedInput, expectedOutput);
+    }
+
+
 }
