@@ -55,6 +55,12 @@ public class UserHistoryTracker {
     }
     //@@author
 
+    //@@author ryan-txn
+    public void saveUserToFile(User userEntry) {
+        createFileIfNotExists();
+        addUserEntry(userEntry);
+    }
+
     public void printAllUserEntries() {
         File userDataFile = new File(DATA_DIRECTORY + File.separator + USER_DATA_FILE);
 
@@ -68,7 +74,6 @@ public class UserHistoryTracker {
             System.out.println("Error: User data file not found. " + e.getMessage());
         }
     }
-
 
     private static User getUserEntryFromFileLine(String line) {
         String[] fields = line.split(",");  // Split the CSV line by commas
@@ -94,12 +99,7 @@ public class UserHistoryTracker {
         assert directory.exists() : "Data directory should exist after creation";
     }
 
-    public void saveUserToFile(User userEntry) {
-        createFileIfNotExists();
-        addUserEntry(userEntry);
-    }
-
-    public void addUserEntry(User userEntry) {
+    private void addUserEntry(User userEntry) {
         File userDataFile = new File(DATA_DIRECTORY + File.separator + USER_DATA_FILE);
 
         try {
@@ -111,7 +111,7 @@ public class UserHistoryTracker {
         }
     }
 
-    public void createFileIfNotExists() {
+    private void createFileIfNotExists() {
         try {
             File userDataFile = new File(DATA_DIRECTORY + File.separator + USER_DATA_FILE);
             if (!userDataFile.exists()) {
@@ -122,4 +122,5 @@ public class UserHistoryTracker {
             System.out.println("Error creating user data file: " + e.getMessage());
         }
     }
+    //@@author
 }
