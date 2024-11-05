@@ -1,15 +1,18 @@
 package seedu.healthmate;
+import static org.junit.jupiter.api.Assertions.*;
+
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.AfterEach;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.time.LocalDate;
 
 import seedu.healthmate.exceptions.BadCalorieException;
 import seedu.healthmate.exceptions.BadPortionException;
+import seedu.healthmate.exceptions.BadTimestampException;
 import seedu.healthmate.exceptions.EmptyCalorieException;
+import seedu.healthmate.exceptions.EmptyTimestampException;
 import seedu.healthmate.utils.Parameter;
 
 public class ParametersTest {
@@ -108,4 +111,44 @@ public class ParametersTest {
             // Shouldn't throw exception for missing portion, default to 1
         }
     }
+
+        /**
+         * Test cases for getTimestamp method
+         */
+    @Test
+    public void testGetTimestamp() {
+        // valid case
+        try {
+            LocalDate date = Parameter.getTimestamp("add mealEntry grapes /c400 /t2024-11-05");
+            assertEquals(LocalDate.of(2024, 11, 5), date);
+        } catch (Exception e) {
+            // Shouldn't throw an exception for valid input
+            fail("Exception thrown for valid input: " + e.getMessage());
+        }
+
+        // missing timestamp (throws EmptyTimestampException)
+        assertThrows(EmptyTimestampException.class, () -> {
+            Parameter.getTimestamp("add mealEntry grapes /c400");
+        });
+
+        // invalid date format (throws BadTimestampException)
+        assertThrows(BadTimestampException.class, () -> {
+            Parameter.getTimestamp("add mealEntry grapes /c400 /t05-11-2024");
+        });
+
+        // invalid date format with characters (throws BadTimestampException)
+        assertThrows(BadTimestampException.class, () -> {
+            Parameter.getTimestamp("add mealEntry grapes /c400 /t2024-11-aa");
+        });
+
+        // valid case with spaces after timestamp
+        try {
+            LocalDate date = Parameter.getTimestamp(" add mealEntry grapes /c400 /t2024-11-05 ");
+            assertEquals(LocalDate.of(2024, 11, 5), date); // Leading and trailing spaces ignored
+        } catch (Exception e) {
+            // Shouldn't throw an exception for valid input with spaces
+            fail("Exception thrown for valid input with spaces: " + e.getMessage());
+        }
+    }
+
 }
