@@ -162,28 +162,6 @@ public class ChatParser {
             break;
         }
     }
-
-    /**
-     * Takes in user input and structures it into a preprocessed pair of a main command and additional commands.
-     * @param userInput The user input from the command line.
-     * @return CommandPair containing the main command and any additional commands.
-     */
-    private CommandPair getCommandFromInput(String userInput) {
-        assert userInput != null && !userInput.isEmpty() : "User input should not be null or empty";
-
-        String[] inputTokens = userInput.split(" ");
-        assert inputTokens.length > 0 : "Input tokens should not be empty";
-
-        String commandToken1 = inputTokens[0].strip();
-        String commandToken2 = (inputTokens.length > 1) ? inputTokens[1].strip() : "";
-        String twoTokenCommand = commandToken1 + (commandToken2.isEmpty() ? "" : " " + commandToken2);
-
-        String[] additionalCommands = IntStream.range(2, inputTokens.length)
-                .mapToObj(i -> inputTokens[i].strip())
-                .toArray(String[]::new);
-
-        return new CommandPair(twoTokenCommand, additionalCommands);
-    }
     
 
     public UserHistoryTracker getUserHistoryTracker() {
@@ -200,6 +178,31 @@ public class ChatParser {
         historyTracker.saveMealOptions(mealOptions);
         historyTracker.saveMealEntries(mealEntries);
     }
+
+    //@@author kennethSty
+    /**
+     * Takes in user input and structures it into a preprocessed pair of a main command and additional commands.
+     * @param userInput The user input from the command line.
+     * @return CommandPair containing the main command and any additional commands.
+     */
+    private CommandPair getCommandFromInput(String userInput) {
+        assert userInput != null && !userInput.isEmpty() : "User input should not be null or empty";
+
+        String[] inputTokens = userInput.split(" ");
+        assert inputTokens.length > 0 : "Input tokens should not be empty";
+
+        String commandToken1 = inputTokens[0].strip();
+        String commandToken2 = (inputTokens.length > 1) ? inputTokens[1].strip() : "";
+        String twoTokenCommand = commandToken1 + (commandToken2.isEmpty() ? "" : " " + commandToken2);
+
+        String[] additionalCommands = IntStream.range(2, inputTokens.length)
+                .boxed()
+                .map(i -> inputTokens[i].strip())
+                .toArray(String[]::new);
+
+        return new CommandPair(twoTokenCommand, additionalCommands);
+    }
+    //@@author
 
     public void printTodayCalorieProgress() {
         User currentUser = userHistoryTracker.checkForUserData(userHistoryTracker);
