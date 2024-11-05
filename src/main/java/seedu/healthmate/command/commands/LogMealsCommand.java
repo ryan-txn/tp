@@ -42,8 +42,7 @@ public class LogMealsCommand extends Command {
         assert mealEntries != null : "Meal entries list should not be null";
 
         logger.log(Level.INFO, "Executing command to show meal history");
-
-        // Displays the log of all meal entries
-        UI.printMealEntries(mealEntries);
+        UI.printMealEntries(mealEntries); // Displays the log of all meal entries
+        logger.log(Level.INFO, "Finish executing command to show meal history");
     }
 }

@@ -44,8 +44,7 @@ public class TodayCalorieProgressCommand extends Command {
         assert mealEntries != null : "Meal entries list should not be null";
 
         logger.log(Level.INFO, "Executing command to print daily progress bar");
-
-        // Displays the calorie progress bar for today
         mealEntries.printDaysConsumptionBar(user, LocalDateTime.now());
+        logger.log(Level.INFO, "Finish executing command to print daily progress bar");
     }
 }

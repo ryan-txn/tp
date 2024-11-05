@@ -60,9 +60,9 @@ public class ChatParser {
      */
     public void run() {
         logger.log(Level.INFO, "Checking if user data exists");
-        User userEntry = userHistoryTracker.checkForUserData(this.userHistoryTracker);
-        assert userEntry != null : "User entry should not be null";
-        parseUserInput(userEntry);
+        User user = userHistoryTracker.checkForUserData(this.userHistoryTracker);
+        assert user != null : "User entry should not be null";
+        parseUserInput(user);
     }
 
     /**
@@ -75,8 +75,7 @@ public class ChatParser {
     }
 
     /**
-     * Reads in user input via a scanner and maintains the main loop until the user
-     * exits the application with "Bye".
+     * Reads in user input via a scanner and maintains the main loop until the user enters "bye"
      * @param user The user profile connected with the current application run.
      */
     public void parseUserInput(User user) {
@@ -87,6 +86,7 @@ public class ChatParser {
         while (!userInput.equals("bye")) {
             logger.log(Level.INFO, "Getting next user input line");
             userInput = scanner.nextLine().strip();
+            logger.log(Level.INFO, "User input is: " + userInput);
             if (userInput.equals("bye")) {
                 logger.log(Level.INFO, "User closes application");
                 UI.printFarewell();
@@ -103,8 +103,8 @@ public class ChatParser {
     }
 
     /**
-     * Steers the activation of features offered to the userEntry via two-token commands.
-     * @param userInput String userEntry input from the command line.
+     * Steers the execution of features activated by the user via multi-token commands.
+     * @param userInput String the user's input from the command line.
      * @param user The user profile connected with the current application run.
      */
     public void multiCommandParsing(String userInput, User user) {

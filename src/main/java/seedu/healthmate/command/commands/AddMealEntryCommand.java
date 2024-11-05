@@ -56,10 +56,14 @@ public class AddMealEntryCommand extends Command {
         assert mealOptions != null : "Meal options list should not be null";
         assert mealEntries != null : "Meal entries list should not be null";
 
-        logger.log(Level.INFO, "Executing command to add a meal to mealEntries");
+        logger.log(Level.INFO, "Executing command to add a meal to mealEntries" + System.lineSeparator() +
+                "Number of tracked meals is: " + mealEntries.size());
 
         // Adds the meal entry and updates history
         mealEntries.extractAndAppendMeal(userInput, command, mealOptions, user);
         historyTracker.saveMealEntries(mealEntries);
+
+        logger.log(Level.INFO, "Finish executing command to add a meal to mealEntries" + System.lineSeparator() +
+                "Number of tracked meals is: " + mealEntries.size());
     }
 }

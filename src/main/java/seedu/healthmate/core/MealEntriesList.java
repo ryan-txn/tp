@@ -181,6 +181,15 @@ public class MealEntriesList extends MealList {
         return new MealEntriesList(filteredMeals);
     }
 
+    /**
+     * Returns the number of mealEntries tracked in this MealEntriesList
+     * @return Integer the size of the List of meals stored in this instance
+     */
+    @Override
+    public int size() {
+        return super.size();
+    }
+
     //@@author DarkDragoon2002
     /**
      * Credit: Loop by DarkDragoon2002

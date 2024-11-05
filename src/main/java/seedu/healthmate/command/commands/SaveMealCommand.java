@@ -46,8 +46,10 @@ public class SaveMealCommand extends Command {
      */
     public static void executeCommand(
             HistoryTracker historyTracker, MealList mealOptions, String userInput, Logger logger) {
-        logger.log(Level.INFO, "Executing save meal command to save meal options");
+
         assert historyTracker != null : "HistoryTracker should not be null";
+        logger.log(Level.INFO, "Executing command to save a meal to meal options." + System.lineSeparator() +
+                "Number of meal options is: " + mealOptions.size());
 
         // Initializes MealSaver and extracts meal details from user input
         MealSaver mealSaver = new MealSaver(historyTracker);
@@ -55,5 +57,7 @@ public class SaveMealCommand extends Command {
 
         // Saves the meal to the meal options list if valid
         mealToSave.ifPresent(meal -> mealSaver.saveMeal(meal, mealOptions));
+        logger.log(Level.INFO, "Finished executing save meal command to save the (optional) meal: " + mealToSave +
+                System.lineSeparator() + "Number of meal options is: " + mealOptions.size());
     }
 }

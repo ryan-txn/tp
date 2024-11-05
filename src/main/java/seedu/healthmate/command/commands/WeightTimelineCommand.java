@@ -40,13 +40,14 @@ public class WeightTimelineCommand extends Command {
      * @param logger The logger used for logging command execution steps.
      */
     public static void executeCommand(UserHistoryTracker userHistoryTracker, Logger logger) {
-        logger.log(Level.INFO, "Executing command to print weight timeline");
 
         // Retrieves and verifies user weight history data
         Optional<UserEntryList> userHistoryData = userHistoryTracker.loadUserData();
         assert userHistoryData != null && userHistoryData.isPresent() : "User history data should not be null or empty";
 
         // Displays the weight timeline if data is available
+        logger.log(Level.INFO, "Executing command to print weight timeline");
         WeightEntryDisplay.display(userHistoryData);
+        logger.log(Level.INFO, "Finish executing command to print weight timeline.");
     }
 }
