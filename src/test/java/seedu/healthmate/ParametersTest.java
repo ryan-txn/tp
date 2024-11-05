@@ -75,6 +75,7 @@ public class ParametersTest {
             assertEquals(3, portions);
         } catch (Exception e) {
             // Shouldn't throw exception for valid input
+            fail("Exception thrown for valid input: " + e.getMessage());
         }
 
         // missing portions, default to 1
@@ -83,6 +84,7 @@ public class ParametersTest {
             assertEquals(1, portions); // Default to 1 when portions are not specified
         } catch (Exception e) {
             // Shouldn't throw exception for missing portion, default to 1
+            fail("Exception thrown for valid input: " + e.getMessage());
         }
 
         // bad format (throws BadPortionException)
@@ -101,6 +103,7 @@ public class ParametersTest {
             assertEquals(2, portions); // Spaces should be ignored
         } catch (Exception e) {
             // Shouldn't throw exception for valid input with spaces
+            fail("Exception thrown for valid input: " + e.getMessage());
         }
 
         // no portion signaller, default to 1
@@ -109,12 +112,13 @@ public class ParametersTest {
             assertEquals(1, portions); // Default to 1 when portions are not specified
         } catch (Exception e) {
             // Shouldn't throw exception for missing portion, default to 1
+            fail("Exception thrown for valid input: " + e.getMessage());
         }
     }
 
-        /**
-         * Test cases for getTimestamp method
-         */
+    /**
+     * Test cases for getTimestamp method.
+     */
     @Test
     public void testGetTimestamp() {
         // valid case
