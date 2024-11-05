@@ -25,4 +25,3 @@ INFORMATION: Getting next user input line
 Nov. 05, 2024 12:15:09 PM seedu.healthmate.services.ChatParser parseUserInput
 INFORMATION: User input is: bye
 Nov. 05, 2024 12:15:09 PM seedu.healthmate.services.ChatParser parseUserInput
-INFORMATION: User closes application

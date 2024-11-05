@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 import seedu.healthmate.recommender.Goals;
 import seedu.healthmate.services.UI;
+import seedu.healthmate.services.UserHistoryTracker;
 
 
 public class User {
