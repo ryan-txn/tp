@@ -48,8 +48,7 @@ public class MealRecommendationsCommand extends Command {
         assert recipes != null && !recipes.isEmpty() : "Recipes should not be null or empty";
 
         logger.log(Level.INFO, "Executing command to list meal recommendation");
-
-        // Displays the list of recommended meals
         UI.printRecommendation(recipes);
+        logger.log(Level.INFO, "Finish executing command to list meal recommendation");
     }
 }

@@ -159,7 +159,7 @@ public class ChatParserTest {
         String simulatedInput = buildInputHistoricCaloriesTest(pastTenDays, user);
         String expectedOutput = buildExpectedOutputHistoricCaloriesTest(testMeal, user, pastTenDays);
 
-        compareChatParserOutput(chatParser, simulatedInput, expectedOutput);
+        compareChatParserOutputWithStub(chatParser, user, simulatedInput, expectedOutput);
     }
 
     /**

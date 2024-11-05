@@ -46,10 +46,13 @@ public class DeleteMealCommand extends Command {
 
         assert mealOptions != null : "Meal options list should not be null";
 
-        logger.log(Level.INFO, "Executing command to delete a meal from meal options");
+        logger.log(Level.INFO, "Executing command to delete a meal from meal options." + System.lineSeparator() +
+                "Number of meal options is: " + mealOptions.size());
 
         // Removes the specified meal from the meal options and updates history
         mealOptions.extractAndRemoveMeal(userInput, command);
         historyTracker.saveMealOptions(mealOptions);
+        logger.log(Level.INFO, "Finished executing command to delete a meal." + System.lineSeparator() +
+                "Number of meal options is: " + mealOptions.size());
     }
 }

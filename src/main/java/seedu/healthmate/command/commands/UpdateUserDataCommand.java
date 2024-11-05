@@ -47,5 +47,6 @@ public class UpdateUserDataCommand extends Command {
 
         // Displays all user entries after update
         userHistoryTracker.printAllUserEntries();
+        logger.log(Level.INFO, "Finish executing command to update user data");
     }
 }

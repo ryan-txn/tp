@@ -43,8 +43,7 @@ public class ListCommandsCommand extends Command {
         assert commands != null : "Commands list should not be null";
 
         logger.log(Level.INFO, "Executing command to show all available commands");
-
-        // Displays the list of all available commands
         UI.printCommands(commands);
+        logger.log(Level.INFO, "Finish executing command to show all available commands");
     }
 }

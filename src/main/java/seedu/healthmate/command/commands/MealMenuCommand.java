@@ -39,9 +39,8 @@ public class MealMenuCommand extends Command {
     public static void executeCommand(MealList mealOptions, Logger logger) {
         assert mealOptions != null : "Meal options list should not be null";
 
-        logger.log(Level.INFO, "Executing meal menu command to show meal options");
-
-        // Displays the list of meal options
+        logger.log(Level.INFO, "Executing meal menu command to show meal options. ");
         UI.printMealOptions(mealOptions);
+        logger.log(Level.INFO, "Executing meal menu command to show meal options");
     }
 }
