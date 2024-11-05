@@ -17,7 +17,6 @@ import seedu.healthmate.command.commands.WeightTimelineCommand;
 import seedu.healthmate.core.MealEntriesList;
 import seedu.healthmate.core.MealList;
 import seedu.healthmate.core.User;
-import seedu.healthmate.core.UserHistoryTracker;
 import seedu.healthmate.utils.Logging;
 
 import java.time.LocalDateTime;

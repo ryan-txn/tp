@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
-import seedu.healthmate.core.UserHistoryTracker;
+import seedu.healthmate.services.UserHistoryTracker;
 import seedu.healthmate.core.MealEntry;
 import seedu.healthmate.core.User;
 import seedu.healthmate.services.ChatParser;

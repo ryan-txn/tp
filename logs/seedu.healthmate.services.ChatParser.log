@@ -1,22 +1,22 @@
-Nov 05, 2024 2:31:25 AM seedu.healthmate.services.ChatParser <init>
-INFO: Initializing HistoryTracker
-Nov 05, 2024 2:31:25 AM seedu.healthmate.services.ChatParser <init>
-INFO: Loaded MealEntries
-Nov 05, 2024 2:31:25 AM seedu.healthmate.services.ChatParser <init>
-INFO: Loaded MealOptions
-Nov 05, 2024 2:31:25 AM seedu.healthmate.services.ChatParser <init>
-INFO: Initializing UserHistoryTracker
-Nov 05, 2024 2:31:25 AM seedu.healthmate.services.ChatParser run
-INFO: Checking if user data exists
-Nov 05, 2024 2:31:25 AM seedu.healthmate.services.ChatParser parseUserInput
-INFO: Getting next user input line
-Nov 05, 2024 2:31:25 AM seedu.healthmate.services.ChatParser multiCommandParsing
-INFO: User commands are: Pair of show todayCalories, [Ljava.lang.String;@78aa1f72
-Nov 05, 2024 2:31:25 AM seedu.healthmate.command.commands.TodayCalorieProgressCommand executeCommands
-INFO: Executing command to print daily progress bar
-Nov 05, 2024 2:31:25 AM seedu.healthmate.services.ChatParser parseUserInput
-INFO: User input contains more than 1 token
-Nov 05, 2024 2:31:25 AM seedu.healthmate.services.ChatParser parseUserInput
-INFO: Getting next user input line
-Nov 05, 2024 2:31:25 AM seedu.healthmate.services.ChatParser parseUserInput
-INFO: User closes application
+Nov. 05, 2024 6:33:01 PM seedu.healthmate.services.ChatParser <init>
+INFORMATION: Initializing HistoryTracker
+Nov. 05, 2024 6:33:01 PM seedu.healthmate.services.ChatParser <init>
+INFORMATION: Loaded MealEntries
+Nov. 05, 2024 6:33:01 PM seedu.healthmate.services.ChatParser <init>
+INFORMATION: Loaded MealOptions
+Nov. 05, 2024 6:33:01 PM seedu.healthmate.services.ChatParser <init>
+INFORMATION: Initializing UserHistoryTracker
+Nov. 05, 2024 6:33:01 PM seedu.healthmate.services.ChatParser run
+INFORMATION: Checking if user data exists
+Nov. 05, 2024 6:33:01 PM seedu.healthmate.services.ChatParser parseUserInput
+INFORMATION: Getting next user input line
+Nov. 05, 2024 6:33:01 PM seedu.healthmate.services.ChatParser multiCommandParsing
+INFORMATION: User commands are: Pair of show todayCalories, [Ljava.lang.String;@1ea9f6af
+Nov. 05, 2024 6:33:01 PM seedu.healthmate.command.commands.TodayCalorieProgressCommand executeCommands
+INFORMATION: Executing command to print daily progress bar
+Nov. 05, 2024 6:33:01 PM seedu.healthmate.services.ChatParser parseUserInput
+INFORMATION: User input contains more than 1 token
+Nov. 05, 2024 6:33:01 PM seedu.healthmate.services.ChatParser parseUserInput
+INFORMATION: Getting next user input line
+Nov. 05, 2024 6:33:01 PM seedu.healthmate.services.ChatParser parseUserInput
+INFORMATION: User closes application

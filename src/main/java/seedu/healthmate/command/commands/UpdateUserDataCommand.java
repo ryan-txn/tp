@@ -2,7 +2,7 @@ package seedu.healthmate.command.commands;
 
 import seedu.healthmate.command.Command;
 import seedu.healthmate.core.User;
-import seedu.healthmate.core.UserHistoryTracker;
+import seedu.healthmate.services.UserHistoryTracker;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
