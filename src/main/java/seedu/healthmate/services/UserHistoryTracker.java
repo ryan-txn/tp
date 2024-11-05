@@ -1,13 +1,15 @@
-package seedu.healthmate.core;
+package seedu.healthmate.services;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.Scanner;
+
+import seedu.healthmate.core.User;
+import seedu.healthmate.core.UserEntryList;
 
 public class UserHistoryTracker {
     private static final String DATA_DIRECTORY = "data";
@@ -17,6 +19,7 @@ public class UserHistoryTracker {
         createDirectoryIfNotExists(DATA_DIRECTORY);
     }
 
+    //@@author kennethSty
     /**
      * Loads a User instance if a file with user data exists.
      * Creates a new User instance otherwise
@@ -28,18 +31,6 @@ public class UserHistoryTracker {
         return optionalUserEntryList.map(userEntryList -> userEntryList.getLastEntry())
                 .orElseGet(() -> User.askForUserData());
     }
-
-    public void clearSaveFile() {
-        try {
-            FileWriter fw = new FileWriter(DATA_DIRECTORY + File.separator + USER_DATA_FILE, false);
-            fw.write("");  // Overwrite with an empty string
-            fw.close();
-            System.out.println("Save file cleared successfully.");
-        } catch (IOException e) {
-            System.out.println("Error clearing save file: " + e.getMessage());
-        }
-    }
-
 
     public Optional<UserEntryList> loadUserData() {
         createFileIfNotExists();
@@ -62,6 +53,7 @@ public class UserHistoryTracker {
         }
         return userEntryList.getUserEntryList().isEmpty() ? Optional.empty() : Optional.of(userEntryList);
     }
+    //@@author
 
     public void printAllUserEntries() {
         File userDataFile = new File(DATA_DIRECTORY + File.separator + USER_DATA_FILE);
@@ -94,19 +86,12 @@ public class UserHistoryTracker {
         return user;
     }
 
-    public static void createDirectoryIfNotExists(String folderName) {
+    private static void createDirectoryIfNotExists(String folderName) {
         File directory = new File(folderName);
         if (!directory.exists()) {
             directory.mkdir();
         }
         assert directory.exists() : "Data directory should exist after creation";
-    }
-
-    public void saveUserEntryListToFile(UserEntryList userEntryList) {
-        ArrayList<User> userEntries = userEntryList.getUserEntryList();
-        for (User userEntry : userEntries) {
-            saveUserToFile(userEntry);
-        }
     }
 
     public void saveUserToFile(User userEntry) {

@@ -20,7 +20,6 @@ import seedu.healthmate.core.Meal;
 import seedu.healthmate.core.MealEntriesList;
 import seedu.healthmate.core.MealList;
 import seedu.healthmate.core.User;
-import seedu.healthmate.core.UserHistoryTracker;
 import seedu.healthmate.core.WeightEntryDisplay;
 import seedu.healthmate.recommender.Recipe;
 import seedu.healthmate.recommender.RecipeMap;
