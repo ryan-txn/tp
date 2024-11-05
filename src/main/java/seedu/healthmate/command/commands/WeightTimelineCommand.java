@@ -2,7 +2,7 @@ package seedu.healthmate.command.commands;
 
 import seedu.healthmate.command.Command;
 import seedu.healthmate.core.UserEntryList;
-import seedu.healthmate.core.UserHistoryTracker;
+import seedu.healthmate.services.UserHistoryTracker;
 import seedu.healthmate.core.WeightEntryDisplay;
 
 import java.util.Optional;
