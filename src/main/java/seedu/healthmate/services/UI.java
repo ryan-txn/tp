@@ -10,6 +10,7 @@ import seedu.healthmate.command.Command;
 import seedu.healthmate.core.MealEntriesList;
 import seedu.healthmate.core.MealEntry;
 import seedu.healthmate.core.MealList;
+import seedu.healthmate.core.User;
 import seedu.healthmate.recommender.Recipe;
 import seedu.healthmate.utils.DateTimeUtils;
 
@@ -357,6 +358,25 @@ public class UI {
     public static String simulateHistoricConsumptionBar(double targetValue, int actualValue, LocalDate timestamp) {
         assert timestamp != null : "Timestamp cannot be null";
         return INDENTATION + progressBarStringBuilder(targetValue, actualValue) + " (" + timestamp + ")";
+    }
+
+    /**
+     * Simulates the construction of a user-specific consumption bar for testing.
+     *
+     * @param caloriesConsumed The actual calories consumed by the user.
+     * @param timestamp        The date for which the consumption is being simulated.
+     * @return A string representation of the simulated consumption bar, including
+     *         target calories, current calories consumed, and the percentage of
+     *         expected calorie intake consumed.
+     */
+    public static String simulateUsersConsumptionBar(int caloriesConsumed, LocalDate timestamp, User user) {
+        Integer targetCalories = user.getTargetCalories();
+        return UI.simulateReply("Ideal Daily Caloric Intake: " + targetCalories, "")
+                + UI.simulateString("Current Calories Consumed: " + caloriesConsumed)
+                + UI.buildConsumptionBar("% of Expected Calorie Intake Consumed: ",
+                targetCalories,
+                caloriesConsumed,
+                timestamp);
     }
 
 

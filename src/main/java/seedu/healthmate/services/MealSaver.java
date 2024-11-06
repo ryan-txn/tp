@@ -46,7 +46,7 @@ public class MealSaver {
         } catch (Exception n) {
             UI.printReply("A calorie entry needs to be an integer", "Error: ");
         }
-        return null;
+        return Optional.empty();
     }
 
     /**

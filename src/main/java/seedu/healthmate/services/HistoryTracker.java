@@ -21,7 +21,7 @@ import seedu.healthmate.core.MealList;
  * Uses CSV files to store the data in a data directory.
  */
 public class HistoryTracker {
-    private static final String DATA_DIRECTORY = "data";
+    protected static final String DATA_DIRECTORY = "data";
     private static final String MEAL_ENTRIES_FILE = "meal_entries.csv";
     private static final String MEAL_OPTIONS_FILE = "meal_options.csv";
 
