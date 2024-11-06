@@ -135,7 +135,7 @@ saved user information if available from an existing file or prompts the user
 to input new information for creating a new profile as shown in the sequence diagram below.
 ![User SD](images/userSequenceDiagram.jpg)
 Reference diagrams used
-![User SD](images/askForUserDataSD.png)
+![User SD](images/askForUserData.drawio.svg)
 ![Read User SD](images/readUserDataFromFileSD.png)
 
 
