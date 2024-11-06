@@ -27,11 +27,10 @@ public class UserHistoryTracker {
     /**
      * Loads a User instance if a file with user data exists.
      * Creates a new User instance otherwise
-     * @param userHistoryTracker
      * @return A newly created or "loaded" user object
      */
-    public User checkForUserData(UserHistoryTracker userHistoryTracker) {
-        Optional<UserEntryList> optionalUserEntryList = userHistoryTracker.loadUserData();
+    public User checkForUserData() {
+        Optional<UserEntryList> optionalUserEntryList = this.loadUserData();
         return optionalUserEntryList.map(userEntryList -> userEntryList.getLastEntry())
                 .orElseGet(() -> User.askForUserData());
     }

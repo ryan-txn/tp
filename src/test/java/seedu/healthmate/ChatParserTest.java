@@ -115,8 +115,8 @@ public class ChatParserTest {
      */
     @Test void trackMealEntryWithCalories_success() {
         ChatParser chatParser = new ChatParser();
-        UserHistoryTracker userHistoryTracker = new UserHistoryTracker();
-        User user = userHistoryTracker.checkForUserData(chatParser.getUserHistoryTracker());
+        UserHistoryTracker userHistoryTracker = chatParser.getUserHistoryTracker();
+        User user = userHistoryTracker.checkForUserData();
         String simulatedInput = "add mealEntry pizza /c300\nbye";
         LocalDate today = LocalDateTime.now().toLocalDate();
         String timeString = "(at: " + today + ")";

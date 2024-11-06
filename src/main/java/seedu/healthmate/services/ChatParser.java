@@ -59,7 +59,7 @@ public class ChatParser {
      */
     public void run() {
         logger.log(Level.INFO, "Checking if user data exists");
-        User user = userHistoryTracker.checkForUserData(this.userHistoryTracker);
+        User user = this.userHistoryTracker.checkForUserData();
         assert user != null : "User entry should not be null";
         parseUserInput(user);
     }
@@ -205,7 +205,7 @@ public class ChatParser {
     //@@author
 
     public void printTodayCalorieProgress() {
-        User currentUser = userHistoryTracker.checkForUserData(userHistoryTracker);
+        User currentUser = this.userHistoryTracker.checkForUserData();
         assert currentUser != null : "User should not be null";
         mealEntries.printDaysConsumptionBar(currentUser, LocalDateTime.now());
     }
