@@ -3,8 +3,6 @@ package seedu.healthmate.services;
 
 import java.util.Optional;
 
-import javax.swing.text.html.Option;
-
 import seedu.healthmate.core.Meal;
 import seedu.healthmate.core.MealList;
 import seedu.healthmate.exceptions.EmptyCalorieException;
