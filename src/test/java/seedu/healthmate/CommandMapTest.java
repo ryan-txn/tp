@@ -29,7 +29,7 @@ class CommandMapTest {
         List<Command> commands = CommandMap.getCommands(userInput, command);
 
         // Expect that all commands are returned
-        assertEquals(13, commands.size());
+        assertEquals(14, commands.size());
     }
 
     @Test
@@ -41,7 +41,7 @@ class CommandMapTest {
         List<Command> commands = CommandMap.getCommands(userInput, command);
 
         // Expect that all commands are returned
-        assertEquals(13, commands.size());
+        assertEquals(14, commands.size());
     }
 
     @Test
