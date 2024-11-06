@@ -57,7 +57,6 @@ public class UserHistoryTracker {
         }
         return userEntryList.isEmpty() ? Optional.empty() : Optional.of(userEntryList);
     }
-    //@@author
 
     /**
      * Saves the provided User entry to a file. If the file does not exist,
@@ -73,6 +72,7 @@ public class UserHistoryTracker {
             UI.printReply("Saving to the user file was unsuccessful", "Error: ");
         }
     }
+    //@@author
 
     /**
      * Prints all user entries from the data file to the console.
