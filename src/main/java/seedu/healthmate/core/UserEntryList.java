@@ -51,4 +51,13 @@ public class UserEntryList {
         return this.userEntryList.isEmpty();
     }
 
+    @Override
+    public String toString() {
+        return this.userEntryList.stream()
+                .map(user -> user.toString()) // Convert each User to its String representation
+                .reduce((user1, user2) -> user1 + "\n" + user2) // Concatenate with newlines
+                .orElse(""); // Return empty string if the list is empty
+    }
+
+
 }
