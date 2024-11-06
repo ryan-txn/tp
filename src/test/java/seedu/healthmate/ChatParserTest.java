@@ -292,9 +292,7 @@ public class ChatParserTest {
                 + UI.simulateReply("burger with 300 calories", "Added to options: ")
                 + UI.simulateReply("Deleted option: burger with 300 calories", "")
                 + "      _____________________________________________________________________________\n"
-                + "      _____________________________________________________________________________\n"
                 + "      No meal options added yet\n"
-                + "      _____________________________________________________________________________\n"
                 + "      _____________________________________________________________________________\n"
                 + UI.simulateFareWell();
         compareChatParserOutput(chatParser, simulatedInput, expectedOutput);

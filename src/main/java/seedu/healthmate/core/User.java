@@ -70,7 +70,7 @@ public class User {
      * Asks user to input specifics for creating a new User instance
      * @return A new user instance created with the data inputted by user.
      */
-    public static User askForUserData() {
+    public static User  askForUserData() {
         try {
             Scanner scanner = new Scanner(System.in);
 
@@ -78,19 +78,26 @@ public class User {
 
             UI.printString("Height in cm (e.g. 180):");
             double height = Double.parseDouble(scanner.nextLine());
-
+            if (height <= 0){
+                throw new NumberFormatException();
+            }
             UI.printString("Weight in kg (e.g. 80):");
             double weight = Double.parseDouble(scanner.nextLine());
-
+            if (weight <= 0){
+                throw new NumberFormatException();
+            }
             UI.printString("Gender (male or female):");
             String gender = scanner.nextLine();
             boolean isMale = (gender.equalsIgnoreCase("male"));
 
             UI.printString("Age (e.g. 20):");
             int age = Integer.parseInt(scanner.nextLine());
-
+            if (age <= 0){
+                throw new NumberFormatException();
+            }
             UI.printString("Health Goal (WEIGHT_LOSS, STEADY_STATE, BULKING):");
             String healthGoal = scanner.nextLine();
+            validateHealthGoal(healthGoal);
 
             User user = new User(height, weight, isMale, age, healthGoal);
             UI.printString("Profile creation Successful!");
@@ -149,4 +156,14 @@ public class User {
     public double getWeight() {
         return this.weightEntry;
     }
+
+    private static void validateHealthGoal(String healthGoal) {
+        // Check if the input matches any valid formats
+        if (!healthGoal.equals("WEIGHT_LOSS") && !healthGoal.equals("STEADY_STATE") && !healthGoal.equals("BULKING")) {
+            // Throw an exception if invalid
+            throw new IllegalArgumentException();
+        }
+    }
+
 }
+

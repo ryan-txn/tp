@@ -79,16 +79,16 @@ public class UI {
      * @param mealOptions The list of meal options to display.
      */
     public static void printMealOptions(MealList mealOptions) {
-        printSeparator();
         if (mealOptions.size() > 0) {
+            printSeparator();
             for (int i = 0; i < mealOptions.size(); i++) {
                 System.out.println(INDENTATION + (i + 1)
                         + ": " + mealOptions.toMealStringByIndex(i));
             }
+            printSeparator();
         } else {
             printReply("No meal options added yet", "");
         }
-        printSeparator();
     }
 
     /**

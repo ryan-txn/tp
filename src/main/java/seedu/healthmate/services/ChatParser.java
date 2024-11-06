@@ -13,6 +13,7 @@ import seedu.healthmate.command.commands.TodayCalorieProgressCommand;
 import seedu.healthmate.command.commands.HistoricCalorieProgressCommand;
 import seedu.healthmate.command.commands.MealRecommendationsCommand;
 import seedu.healthmate.command.commands.WeightTimelineCommand;
+import seedu.healthmate.command.commands.ByeCommand;
 
 import seedu.healthmate.core.MealEntriesList;
 import seedu.healthmate.core.MealList;
@@ -89,11 +90,11 @@ public class ChatParser {
         Scanner scanner = new Scanner(System.in);
         String userInput = "";
 
-        while (!userInput.equals("bye")) {
+        while (!userInput.equals(ByeCommand.COMMAND)) {
             logger.log(Level.INFO, "Getting next user input line");
             userInput = scanner.nextLine().strip();
             logger.log(Level.INFO, "User input is: " + userInput);
-            if (userInput.equals("bye")) {
+            if (userInput.equals(ByeCommand.COMMAND)) {
                 logger.log(Level.INFO, "User closes application");
                 UI.printFarewell();
             } else {

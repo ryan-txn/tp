@@ -12,12 +12,14 @@ import seedu.healthmate.command.commands.TodayCalorieProgressCommand;
 import seedu.healthmate.command.commands.UpdateUserDataCommand;
 import seedu.healthmate.command.commands.MealRecommendationsCommand;
 import seedu.healthmate.command.commands.WeightTimelineCommand;
+import seedu.healthmate.command.commands.ByeCommand;
 
 import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.logging.Logger;
+
 
 public class CommandMap {
     private static final Logger logger = Logger.getLogger(CommandMap.class.getName());
@@ -36,8 +38,19 @@ public class CommandMap {
         COMMANDSMAP.put(HistoricCalorieProgressCommand.COMMAND, new HistoricCalorieProgressCommand());
         COMMANDSMAP.put(MealRecommendationsCommand.COMMAND, new MealRecommendationsCommand());
         COMMANDSMAP.put(WeightTimelineCommand.COMMAND, new WeightTimelineCommand());
+        COMMANDSMAP.put(ByeCommand.COMMAND, new ByeCommand());
     }
 
+    /**
+     * Retrieves a list of commands based on user input and specified command.
+     * If the user input matches the command exactly, returns all commands.
+     * Otherwise, returns a list with a single command matching the user input,
+     * or all commands if no specific command is found.
+     *
+     * @param userInput The input provided by the user.
+     * @param command The command to check against.
+     * @return A list of matching commands.
+     */
     // Retrieve a command by its name
     public static List<Command> getCommands(String userInput, String command) {
         if(userInput.equals(command)) {
