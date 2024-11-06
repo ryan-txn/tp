@@ -147,8 +147,8 @@ public class User {
      * @return String
      */
     public String simulateTargetCalories() {
-        return UI.simulateFrameLine() + UI.simulateString("Ideal Daily Caloric Intake: "
-                + (int) this.idealCalories) + UI.simulateFrameLine();
+        return UI.simulateReply("Ideal Daily Caloric Intake: "
+                + (int) this.idealCalories, "");
     }
 
     /**
