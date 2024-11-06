@@ -68,10 +68,10 @@ public class MealEntriesList extends MealList {
      * Prints out visual feedback to highlight the
      * resulting change interms of today's calorie consumption bar
      * @param userInput The user input causing the this remove process
-     * @param command The identified command instance
+     * @param command The identified command
      * @param user The user's profile
      */
-    public void removeMealWithFeedback(String userInput, String command, User user) {
+    public void extractAndRemoveMeal(String userInput, String command, User user) {
         try {
             int mealNumber = Integer.parseInt(userInput.replaceAll(command, "").strip());
             LocalDateTime mealEntryDate = this.getDateOfMealEntry(mealNumber);
@@ -86,8 +86,8 @@ public class MealEntriesList extends MealList {
 
     /**
      * Given portions `p`, adds the mealEntry p times to the list of mealEntries
-     * @param mealEntry the meal to be added
-     * @param portion the portions consumed of the meal
+     * @param mealEntry the meal to be added to the {@code MealEntriesList}
+     * @param portion the portions consumed of the {@code mealEntry}
      */
     public void addPortionsOfMeal(Meal mealEntry, int portion) {
         IntStream.range(0, Math.max(1, portion))
@@ -96,7 +96,7 @@ public class MealEntriesList extends MealList {
 
     /**
      * Adds a mealEntry to the mealEntriesList
-     * @param mealEntry
+     * @param mealEntry the mealEntry to be added to the {@code MealEntriesList}
      */
     @Override
     public void addMeal(Meal mealEntry) {
@@ -106,7 +106,7 @@ public class MealEntriesList extends MealList {
 
     /**
      * Deletes a mealEntry by its index in the log meals overview
-     * @param mealNumber
+     * @param mealNumber Index of the meal to be deleted
      */
     //@@author DarkDragoon2002
     @Override
@@ -126,7 +126,7 @@ public class MealEntriesList extends MealList {
      * consumption bar to the user instance which forwards it to the UI class
      * @param user User profile for which the ideal calorie consumption
      *                  will be compared with the actual consumption
-     * @param dateTime
+     * @param dateTime The date for which actual consumption is calculated and compared to the target.
      */
     public void printDaysConsumptionBar(User user, LocalDateTime dateTime) {
         assert user != null : "User cannot be null";
@@ -166,18 +166,33 @@ public class MealEntriesList extends MealList {
         consumptionStats.printStats(days);
     }
 
+    /**
+     * Computes the total calories consumed from all meals in the list.
+     * @return The sum of calories for all meals in {@code MealEntriesList}.
+     */
     public int getTotalCaloriesConsumed() {
         return this.mealList.stream()
                 .map(meal -> meal.getCalories())
                 .reduce(0, (accumulator, calorie) -> accumulator + calorie);
     }
 
+    /**
+     * Retrieves the meal entry with the maximum calories in {@code MealEntriesList}.
+     * @return An {@code Optional} containing the {@code MealEntry} with the highest calorie count,
+     *         or an empty {@code Optional} if {@code mealList} is empty.
+     */
     public Optional<MealEntry> getMaxCaloriesConsumed() {
         return this.mealList.stream()
                 .map(meal -> (MealEntry) meal)
                 .reduce((meal1, meal2) -> meal1.getCalories() > meal2.getCalories() ? meal1 : meal2);
     }
 
+    /**
+     * Collects a list of meal entries within a specified date range into a new MealEntriesList.
+     * @param lowerDateBound The inclusive lower bound of the date range.
+     * @param upperDateBound The inclusive upper bound of the date range.
+     * @return A {@code MealEntriesList} containing meals that fall within the specified date range.
+     */
     public MealEntriesList getMealEntriesByDate(LocalDateTime lowerDateBound, LocalDateTime upperDateBound) {
         ArrayList<Meal> filteredMeals = super.mealList.stream()
                 .filter(meal -> meal.isBeforeEqualDate(upperDateBound))
@@ -197,10 +212,9 @@ public class MealEntriesList extends MealList {
 
     //@@author DarkDragoon2002
     /**
-     * Credit: Loop by DarkDragoon2002
      * Iterates daily over this list of mealEntries and prints daily consumption bar
      * @param days number of days to go back in time
-     * @param user user profile who's the progress bar is built
+     * @param user user profile for which the progress bar is built
      */
     private void printHistoricBarPerDay(int days, User user) {
         LocalDate today = DateTimeUtils.currentDate();
