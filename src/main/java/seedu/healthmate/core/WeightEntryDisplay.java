@@ -19,7 +19,8 @@ public class WeightEntryDisplay {
      * The graph is printed in the console, with the most recent weight entries shown.
      * If there are no entries or if all weight entries are identical, an appropriate message is displayed.
      *
-     * @param userEntryList An {@link Optional} containing the user entry list. If empty, no weight entries are displayed.
+     * @param userEntryList An {@link Optional} containing the user entry list. If empty, no weight entries are
+     *                      displayed.
      */
     public static void display(Optional<UserEntryList> userEntryList) {
         if (userEntryList.isEmpty()) {

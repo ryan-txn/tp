@@ -11,7 +11,8 @@ public class RecipeTest {
     // A concrete subclass of Recipe to test its functionality
     private static class TestRecipe extends Recipe {
 
-        public TestRecipe(String name, int calories, int protein, int carbs, int fat, int fiber, String recipe, Goals goal) {
+        public TestRecipe(String name, int calories, int protein, int carbs, int fat, int fiber, String recipe,
+                          Goals goal) {
             super(name, calories, protein, carbs, fat, fiber, recipe, goal);
         }
     }
@@ -30,8 +31,18 @@ public class RecipeTest {
 
     @Test
     public void testToString() {
-        Recipe recipe = new TestRecipe("Test Recipe", 300, 20, 40, 10, 5, "Ingredient 1\nIngredient 2", Goals.BULKING);
-        String expectedString = "Test Recipe: 300 calories\n      Protein: 20g\n      Carbs: 40g\n      Fat: 10g\n      Fiber: 5g\n      Ingredient 1\n      Ingredient 2\n";
+        Recipe recipe = new TestRecipe("Test Recipe", 300, 20, 40, 10, 5,
+                "Ingredient 1\nIngredient 2", Goals.BULKING);
+        String expectedString = """
+                Test Recipe: 300 calories
+                      Protein: 20g
+                      Carbs: 40g
+                      Fat: 10g
+                   \
+                   Fiber: 5g
+                      Ingredient 1
+                      Ingredient 2
+                """;
         assertEquals(expectedString, recipe.toString(), "The toString method should return the expected formatted string.");
     }
 

@@ -27,13 +27,16 @@ public class CommandTest {
     public void testToString() {
         Command command = new TestCommand("add", "add <meal>", "Adds a meal to the system");
         String expectedString = "Command: add\n      Format: add <meal>\n      Description: Adds a meal to the system";
-        assertEquals(expectedString, command.toString(), "The toString method should return the expected formatted string.");
+        assertEquals(expectedString, command.toString(), "The toString method should return the expected " +
+                "formatted string.");
     }
 
     @Test
     public void testToStringWithDifferentValues() {
         Command command = new TestCommand("remove", "remove <meal>", "Removes a meal from the system");
-        String expectedString = "Command: remove\n      Format: remove <meal>\n      Description: Removes a meal from the system";
-        assertEquals(expectedString, command.toString(), "The toString method should return the expected formatted string for different values.");
+        String expectedString = "Command: remove\n      Format: remove <meal>\n      Description: Removes a meal " +
+                "from the system";
+        assertEquals(expectedString, command.toString(), "The toString method should return the expected formatted " +
+                "string for different values.");
     }
 }

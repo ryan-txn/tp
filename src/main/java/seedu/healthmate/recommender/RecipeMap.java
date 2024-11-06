@@ -24,7 +24,7 @@ public class RecipeMap {
         RECIPEMAP.put(VeggieWrap.RECIPE_NAME, new VeggieWrap());
     }
 
- /**
+    /**
      * Retrieves all recipes that match a specific fitness goal.
      *
      * @param userGoal The fitness goal to filter recipes by

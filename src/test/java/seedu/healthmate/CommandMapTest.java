@@ -21,7 +21,7 @@ class CommandMapTest {
     }
 
     @Test
-    void testGetCommands_regularUsage() {
+    void testGetCommandsRegularUsage() {
         // Test when userInput matches the command exactly
         String userInput = "list commands";
         String command = "list commands";
@@ -33,7 +33,7 @@ class CommandMapTest {
     }
 
     @Test
-    void testGetCommands_invalidCommand() {
+    void testGetCommandsInvalidCommand() {
         // Test when userInput is not in the command map
         String userInput = "list commands asdas";
         String command = "list commands";
@@ -45,7 +45,7 @@ class CommandMapTest {
     }
 
     @Test
-    void testGetCommands_ValidCommand() {
+    void testGetCommandsValidCommand() {
         // Test when userInput is not in the command map
         String userInput = "list commands log meals";
         String command = "list commands";
