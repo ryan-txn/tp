@@ -31,8 +31,7 @@ In each class we focused on maintaining a tight abstraction barrier between clas
 This specifically includes adherance to the "Tell Don't Ask" principle which was enforced by
 making most attributes of all classes above private and avoiding getter methods if possible.
 The following diagram illustrates the resulting associations, methods and attributes.
-For the sake of clarity, UI class is omitted since it is used across most classes to systematize any form of
-printing output to the user.
+For the sake of clarity, classes which are not central corner stones for a high-level overview are ommitted.
 
 ![High Level CD](images/highLevelClassDiagram.jpg)
 
@@ -131,8 +130,8 @@ This section will document the contributions made by each team member regarding 
 
 ---
 ### Creating a User Profile
-To create or load a user profile the `User` class provides the method `checkForUserData` which loads 
-saved user information if available from an existing file usingn the `HistoryTracker` or prompts the user
+To create or load a user profile the `UserHistoryTracker` class provides the method `checkForUserData` which loads 
+saved user information if available from an existing file or prompts the user
 to input new information for creating a new profile as shown in the sequence diagram below.
 ![User SD](images/userSequenceDiagram.jpg)
 Reference diagrams used
