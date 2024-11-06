@@ -370,7 +370,7 @@ public class UI {
      *         expected calorie intake consumed.
      */
     public static String simulateUsersConsumptionBar(int caloriesConsumed, LocalDate timestamp, User user) {
-        Integer targetCalories = (int) user.getIdealCalories();
+        Integer targetCalories = user.getTargetCalories();
         return UI.simulateReply("Ideal Daily Caloric Intake: " + targetCalories, "")
                 + UI.simulateString("Current Calories Consumed: " + caloriesConsumed)
                 + UI.buildConsumptionBar("% of Expected Calorie Intake Consumed: ",

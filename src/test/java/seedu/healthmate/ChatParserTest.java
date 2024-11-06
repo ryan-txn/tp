@@ -233,7 +233,7 @@ public class ChatParserTest {
      */
     private String simulateHistoricCalories(MealEntry testMealEntry, List<LocalDate> pastDays) {
         User userStub = User.createUserStub();
-        double idealCalories = userStub.getIdealCalories();
+        double idealCalories = userStub.getTargetCalories();
         int testMealCalories = testMealEntry.getCalories();
         assert (int)idealCalories == 2865 : "Test assumes ideal daily calories of 2865";
         assert pastDays.size() == 10 : "Test expects an input of 10";

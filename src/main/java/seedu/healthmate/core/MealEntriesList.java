@@ -138,7 +138,7 @@ public class MealEntriesList extends MealList {
 
         MealEntriesList mealsConsumedToday = this.getMealEntriesByDate(todayStartOfDay, todayEndOfDay);
         int caloriesConsumed = mealsConsumedToday.getTotalCaloriesConsumed();
-        Integer targetCalories = (int) user.getIdealCalories();
+        Integer targetCalories = user.getTargetCalories();
 
         UI.printReply(targetCalories.toString(), "Ideal Daily Caloric Intake: ");
         UI.printString("Current Calories Consumed: " + caloriesConsumed);
@@ -160,7 +160,8 @@ public class MealEntriesList extends MealList {
         assert user != null : "User cannot be null";
         assert days >= 0 : "Days cannot be negative";
 
-        user.printTargetCalories();
+        Integer targetCalories = user.getTargetCalories();
+        UI.printReply(targetCalories.toString(), "Ideal Daily Caloric Intake: ");
         ConsumptionStatistics consumptionStats = ConsumptionStatistics.computeStats(user, days, this);
         this.printHistoricBarPerDay(days, user);
         consumptionStats.printStats(days);
@@ -226,7 +227,7 @@ public class MealEntriesList extends MealList {
 
             MealEntriesList mealsConsumed = this.getMealEntriesByDate(lowerDateBound, upperDateBound);
             int caloriesConsumed = mealsConsumed.getTotalCaloriesConsumed();
-            int targetCalories = (int) user.getIdealCalories();
+            int targetCalories = user.getTargetCalories();
 
             UI.printHistoricConsumptionBar(targetCalories, caloriesConsumed, printDate);
 

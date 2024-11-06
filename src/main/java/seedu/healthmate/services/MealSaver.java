@@ -3,6 +3,8 @@ package seedu.healthmate.services;
 
 import java.util.Optional;
 
+import javax.swing.text.html.Option;
+
 import seedu.healthmate.core.Meal;
 import seedu.healthmate.core.MealList;
 import seedu.healthmate.exceptions.EmptyCalorieException;
@@ -46,7 +48,7 @@ public class MealSaver {
         } catch (Exception n) {
             UI.printReply("A calorie entry needs to be an integer", "Error: ");
         }
-        return null;
+        return Optional.empty();
     }
 
     /**

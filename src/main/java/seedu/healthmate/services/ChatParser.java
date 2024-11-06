@@ -19,7 +19,6 @@ import seedu.healthmate.core.MealList;
 import seedu.healthmate.core.User;
 import seedu.healthmate.utils.Logging;
 
-import java.time.LocalDateTime;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -212,11 +211,6 @@ public class ChatParser {
     }
     //@@author
 
-    public void printTodayCalorieProgress() {
-        User currentUser = this.userHistoryTracker.checkForUserData();
-        assert currentUser != null : "User should not be null";
-        mealEntries.printDaysConsumptionBar(currentUser, LocalDateTime.now());
-    }
 
     private void assertCheckParserInit() {
         assert this.historyTracker != null: "History Tracker should not be null";

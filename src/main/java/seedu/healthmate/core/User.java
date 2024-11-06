@@ -1,6 +1,5 @@
 package seedu.healthmate.core;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
@@ -108,18 +107,11 @@ public class User {
     }
 
     /**
-     * Prints the ideal caloric intake.
-     */
-    public void printTargetCalories() {
-        UI.printReply(String.valueOf((int) this.idealCalories), "Ideal Daily Caloric Intake: ");
-    }
-
-    /**
      * Returns ideal calories to be consumed by this user instance
      * @return double Ideal calorie consumption
      */
-    public double getIdealCalories() {
-        return this.idealCalories;
+    public int getTargetCalories() {
+        return (int) this.idealCalories;
     }
 
     /**
