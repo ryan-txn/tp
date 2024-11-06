@@ -115,8 +115,8 @@ public class ChatParserTest {
      */
     @Test void trackMealEntryWithCalories_success() {
         ChatParser chatParser = new ChatParser();
-        UserHistoryTracker userHistoryTracker = new UserHistoryTracker();
-        User user = userHistoryTracker.checkForUserData(chatParser.getUserHistoryTracker());
+        UserHistoryTracker userHistoryTracker = chatParser.getUserHistoryTracker();
+        User user = userHistoryTracker.checkForUserData();
         String simulatedInput = "add mealEntry pizza /c300\nbye";
         LocalDate today = LocalDateTime.now().toLocalDate();
         String timeString = "(at: " + today + ")";
@@ -326,19 +326,10 @@ public class ChatParserTest {
         compareChatParserOutput(chatParser, simulatedInput, expectedOutput);
     }
 
-    private static String simulateIdealCalories(int idealCalories) {
-        return UI.simulateString("Ideal Daily Caloric Intake: " + idealCalories);
-    }
-
-    private static String simulateConsumedCalories(int consumedCalories) {
-        return UI.simulateString("Current Calories Consumed: " + consumedCalories);
-    }
 
     private static String simulateConsumptionMessageWithBar(int idealCalories, int consumedCalories) {
-        return UI.simulateFrameLine()
-                + simulateIdealCalories(idealCalories)
-                + UI.simulateFrameLine()
-                + simulateConsumedCalories(consumedCalories)
+        return UI.simulateReply("Ideal Daily Caloric Intake: " + idealCalories, "")
+                + UI.simulateString("Current Calories Consumed: " + consumedCalories)
                 + UI.buildConsumptionBar("% of Expected Calorie Intake Consumed: ", idealCalories,
                         consumedCalories, LocalDate.now())
                 + "\n";

@@ -28,27 +28,27 @@ public class UserHistoryTracker {
     /**
      * Loads a User instance if a file with user data exists.
      * Creates a new User instance otherwise
-     * @param userHistoryTracker
      * @return A newly created or "loaded" user object
      */
-    public User checkForUserData(UserHistoryTracker userHistoryTracker) {
-        Optional<UserEntryList> optionalUserEntryList = userHistoryTracker.loadUserData();
+    public User checkForUserData() {
+        Optional<UserEntryList> optionalUserEntryList = this.loadUserEntries();
         return optionalUserEntryList.map(userEntryList -> userEntryList.getLastEntry())
                 .orElseGet(() -> User.askForUserData());
     }
 
-    public Optional<UserEntryList> loadUserData() {
-        createFileIfNotExists();
-        File userDataFile = new File(DATA_DIRECTORY + File.separator + USER_DATA_FILE);
+    public Optional<UserEntryList> loadUserEntries() {
 
         UserEntryList userEntryList = new UserEntryList();
 
-        try (Scanner s = new Scanner(userDataFile)){
+        try {
+            File userDataFile = createFileIfNotExists();
+            Scanner s = new Scanner(userDataFile);
             while (s.hasNextLine()) {
                 String line = s.nextLine();
                 User user = getUserEntryFromFileLine(line);
                 userEntryList.addUserEntry(user);
             }
+
         } catch (IOException e) {
             System.out.println("Error creating user data file: " + e.getMessage());
         } catch (NumberFormatException e) {
@@ -56,11 +56,9 @@ public class UserHistoryTracker {
         } catch (NoSuchElementException e) {
             // silent catch if existing user file contains no content
         }
-        return userEntryList.getUserEntryList().isEmpty() ? Optional.empty() : Optional.of(userEntryList);
+        return userEntryList.isEmpty() ? Optional.empty() : Optional.of(userEntryList);
     }
-    //@@author
 
-    //@@author ryan-txn
     /**
      * Saves the provided User entry to a file. If the file does not exist,
      * it will be created first, and then the user data will be appended to the save file.
@@ -68,9 +66,14 @@ public class UserHistoryTracker {
      * @param userEntry The User object containing data to be saved.
      */
     public void saveUserToFile(User userEntry) {
-        createFileIfNotExists();
-        addUserEntry(userEntry);
+        try {
+            createFileIfNotExists();
+            addUserEntry(userEntry);
+        } catch (IOException e) {
+            UI.printReply("Saving to the user file was unsuccessful", "Error: ");
+        }
     }
+    //@@author
 
     /**
      * Prints all user entries from the data file to the console.
@@ -143,20 +146,19 @@ public class UserHistoryTracker {
         assert directory.exists() : "Data directory should exist after creation";
     }
 
+
+    //@@author kennethSty
     /**
      * Creates the user data file if it does not already exist.
      * If the file is created successfully, a confirmation message is displayed.
      */
-    private void createFileIfNotExists() {
-        try {
-            File userDataFile = new File(DATA_DIRECTORY + File.separator + USER_DATA_FILE);
-            if (!userDataFile.exists()) {
-                userDataFile.createNewFile();
-                System.out.println("Creating new save file");
-            }
-        } catch (IOException e) {
-            System.out.println("Error creating user data file: " + e.getMessage());
+    private File createFileIfNotExists() throws IOException{
+        File userDataFile = new File(DATA_DIRECTORY + File.separator + USER_DATA_FILE);
+        if (!userDataFile.exists()) {
+            userDataFile.createNewFile();
+            System.out.println("Creating new save file");
         }
+        return userDataFile;
     }
 
     public void clearSaveFile() {
@@ -195,4 +197,5 @@ public class UserHistoryTracker {
         }
     }
     //@@author
+
 }

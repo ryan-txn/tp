@@ -39,17 +39,24 @@ public class ChatParser {
 
     public ChatParser(){
         Logging.setupLogger(logger, ChatParser.class.getName());
-        this.historyTracker = new HistoryTracker();
-        logger.log(Level.INFO, "Initializing HistoryTracker");
+
         UI.printSeparator();
+
+        this.historyTracker = new HistoryTracker();
+        logger.log(Level.INFO, "Initialized HistoryTracker");
+
         this.mealEntries = historyTracker.loadMealEntries();
-        assert mealEntries != null : "Meal entries list should not be null";
         logger.log(Level.INFO, "Loaded MealEntries");
+
         this.mealOptions = historyTracker.loadMealOptions();
-        assert mealOptions != null : "Meal options list should not be null";
         logger.log(Level.INFO, "Loaded MealOptions");
+
         this.userHistoryTracker = new UserHistoryTracker();
         logger.log(Level.INFO, "Initializing UserHistoryTracker");
+
+        this.assertCheckParserInit();
+        logger.log(Level.INFO, "ChatParser correctly initialized.");
+
         UI.printSeparator();
     }
 
@@ -58,9 +65,12 @@ public class ChatParser {
      * and initiates the parsing process steered by one-token and two-token-based user prompts.
      */
     public void run() {
+
         logger.log(Level.INFO, "Checking if user data exists");
-        User user = userHistoryTracker.checkForUserData(this.userHistoryTracker);
+        User user = this.userHistoryTracker.checkForUserData();
         assert user != null : "User entry should not be null";
+        logger.log(Level.INFO, "User is: " + user);
+
         parseUserInput(user);
     }
 
@@ -69,7 +79,6 @@ public class ChatParser {
      */
     public void simulateRunWithStub(User userStub) {
         assert userStub != null : "User stub should not be null";
-        logger.log(Level.INFO, "Checking if user data exists");
         parseUserInput(userStub);
     }
 
@@ -78,7 +87,6 @@ public class ChatParser {
      * @param user The user profile connected with the current application run.
      */
     public void parseUserInput(User user) {
-        assert user != null : "User should not be null in parseUserInput";
         Scanner scanner = new Scanner(System.in);
         String userInput = "";
 
@@ -91,8 +99,8 @@ public class ChatParser {
                 UI.printFarewell();
             } else {
                 try {
+                    logger.log(Level.INFO, "Start multicCommandParsing");
                     this.multiCommandParsing(userInput, user);
-                    logger.log(Level.INFO, "User input contains more than 1 token");
                 } catch (ArrayIndexOutOfBoundsException a) {
                     logger.log(Level.WARNING, "Invalid command", a);
                     UI.printReply("Invalid command", "Retry: ");
@@ -112,9 +120,9 @@ public class ChatParser {
 
         CommandPair commandPair = getCommandFromInput(userInput);
         assert commandPair != null : "CommandPair should not be null";
+        logger.log(Level.INFO, "User commands are: " + commandPair);
 
         String command = commandPair.getMainCommand();
-        logger.log(Level.INFO, "User commands are: " + commandPair);
 
         switch (command) {
         case MealMenuCommand.COMMAND:
@@ -205,10 +213,18 @@ public class ChatParser {
     //@@author
 
     public void printTodayCalorieProgress() {
-        User currentUser = userHistoryTracker.checkForUserData(userHistoryTracker);
+        User currentUser = this.userHistoryTracker.checkForUserData();
         assert currentUser != null : "User should not be null";
         mealEntries.printDaysConsumptionBar(currentUser, LocalDateTime.now());
     }
+
+    private void assertCheckParserInit() {
+        assert this.historyTracker != null: "History Tracker should not be null";
+        assert this.userHistoryTracker != null: "User History Tracker should not be null";
+        assert this.mealEntries != null : "Meal entries list should not be null";
+        assert this.mealOptions != null : "Meal options list should not be null";
+    }
+
 
 
 

@@ -43,4 +43,12 @@ public class UserEntryList {
         return userEntryList.get(userEntryList.size() - 1);
     }
 
+    /**
+     * Checks if the list of user entries is empty.
+     * @return {@code true} if the user entry list contains no elements, {@code false} otherwise.
+     */
+    public boolean isEmpty() {
+        return this.userEntryList.isEmpty();
+    }
+
 }
