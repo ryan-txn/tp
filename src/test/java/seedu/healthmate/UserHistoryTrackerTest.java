@@ -21,7 +21,7 @@ public class UserHistoryTrackerTest {
      * Checks if the last saved user entry matches the expected User data.
      */
     @Test
-    public void shouldSaveUser_WhenEntryIsAdded() {
+    public void shouldSaveUserWhenEntryIsAdded() {
         User user = User.createAlternativeUserStub();
         userHistoryTracker.addUserEntry(user);
         String expectedUser = user.toString();
@@ -37,7 +37,7 @@ public class UserHistoryTrackerTest {
      * Loads the UserEntryList and verifies it matches the expected result.
      */
     @Test
-    public void shouldLoadUserEntryList_WhenSaveFileExists() {
+    public void shouldLoadUserEntryListWhenSaveFileExists() {
         userHistoryTracker.clearSaveFile();
         User altUser = User.createAlternativeUserStub();
         User user = User.createUserStub();
