@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.Scanner;
+import java.io.RandomAccessFile;
 
 import seedu.healthmate.core.User;
 import seedu.healthmate.core.UserEntryList;
@@ -104,7 +105,7 @@ public class UserHistoryTracker {
         int age = Integer.parseInt(fields[3]);
         String healthGoal = fields[4];
         double idealCalories = Double.parseDouble(fields[5]);
-        String localDateTime = fields[6];
+        String localDateTime = fields[6].trim();
 
         User user = new User(height, weight, isMale, age, healthGoal, idealCalories, localDateTime);
         return user;
@@ -116,7 +117,7 @@ public class UserHistoryTracker {
      *
      * @param userEntry The User object to add to the data file.
      */
-    private void addUserEntry(User userEntry) {
+    public void addUserEntry(User userEntry) {
         File userDataFile = new File(DATA_DIRECTORY + File.separator + USER_DATA_FILE);
 
         try {
@@ -155,6 +156,42 @@ public class UserHistoryTracker {
             }
         } catch (IOException e) {
             System.out.println("Error creating user data file: " + e.getMessage());
+        }
+    }
+
+    public void clearSaveFile() {
+        try {
+            FileWriter fw = new FileWriter(DATA_DIRECTORY + File.separator + USER_DATA_FILE, false);
+            fw.write("");  // Overwrite with an empty string
+            fw.close();
+        } catch (IOException e) {
+            System.out.println("Error clearing save file: " + e.getMessage());
+        }
+    }
+
+    public Optional<User> getLastUser() {
+        File userDataFile = new File(DATA_DIRECTORY + File.separator + USER_DATA_FILE);
+        try (RandomAccessFile raf = new RandomAccessFile(userDataFile, "r")) {
+            long fileLength = userDataFile.length() - 1;
+            StringBuilder lastLine = new StringBuilder();
+
+            // Move pointer to end of file
+            raf.seek(fileLength);
+
+            for (long pointer = fileLength; pointer >= 0; pointer--) {
+                raf.seek(pointer);
+                char c = (char) raf.read();
+                if (c == '\n' && lastLine.length() > 0) {
+                    break;
+                }
+
+                lastLine.insert(0, c);
+            }
+
+            return Optional.of(getUserEntryFromFileLine(lastLine.toString()));
+        } catch (IOException e) {
+            System.out.println("Error retrieving last user data" + e);
+            return Optional.empty();
         }
     }
     //@@author
