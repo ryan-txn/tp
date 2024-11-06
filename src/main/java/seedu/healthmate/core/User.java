@@ -142,6 +142,10 @@ public class User {
         UI.printReply(String.valueOf((int) this.idealCalories), "Ideal Daily Caloric Intake: ");
     }
 
+    /**
+     * Returns target calorie consumption with additional formatting as a String for testing.
+     * @return String
+     */
     public String simulateTargetCalories() {
         return UI.simulateFrameLine() + UI.simulateString("Ideal Daily Caloric Intake: "
                 + (int) this.idealCalories) + UI.simulateFrameLine();
@@ -161,10 +165,18 @@ public class User {
         UI.printHistoricConsumptionBar(this.idealCalories, currentCalories, timestamp);
     }
 
+    /**
+     * Returns ideal calories to be consumed by this user instance
+     * @return double Ideal calorie consumption
+     */
     public double getIdealCalories() {
         return this.idealCalories;
     }
 
+    /**
+     * Creates a specific user profile for isolated testing.
+     * @return User profile
+     */
     public static User createUserStub() {
         return new User(180, 80.0, true, 20, "BULKING");
     }
