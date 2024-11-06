@@ -293,7 +293,7 @@ public class UI {
      * Used for testing.
      * @param mealOptions List of meal options to which a meal should be added
      * @param newMealString The string representing the meal that should be added to the mealOptions.
-     * @return String representing the output the user would see if this meal would be correclty added to the mealOptions.
+     * @return String representing the output the user would see if this meal would be correclty added to mealOptions.
      */
     public static String toMealOptionsString(MealList mealOptions, String newMealString) {
         String mealOptionsString = "";
