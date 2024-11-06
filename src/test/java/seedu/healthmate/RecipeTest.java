@@ -43,7 +43,8 @@ public class RecipeTest {
                       Ingredient 1
                       Ingredient 2
                 """;
-        assertEquals(expectedString, recipe.toString(), "The toString method should return the expected formatted string.");
+        assertEquals(expectedString, recipe.toString(), "The toString method should return the expected " +
+                "formatted string.");
     }
 
     @Test
