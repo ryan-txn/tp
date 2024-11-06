@@ -122,6 +122,11 @@ public class User {
         return new User(180, 80.0, true, 20, "BULKING");
     }
 
+    public static User createAlternativeUserStub() {
+        return new User(200, 200, false, 82, "STEADY_STATE");
+    }
+
+
     @Override
     public String toString() {
         return heightEntry + ","
