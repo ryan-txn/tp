@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import seedu.healthmate.core.Meal;
 import seedu.healthmate.core.MealList;
+import seedu.healthmate.exceptions.BadCalorieException;
 import seedu.healthmate.exceptions.EmptyCalorieException;
 import seedu.healthmate.utils.DuplicateEntryChecker;
 
@@ -39,8 +40,8 @@ public class MealSaver {
                 return Optional.empty();
             }
             return Optional.of(meal);
-        } catch (EmptyCalorieException e) {
-            UI.printReply("Every meal needs a calorie integer. (e.g. 120)", "");
+        } catch (EmptyCalorieException | BadCalorieException e) {
+            UI.printReply("Every meal needs a calorie integer. (e.g. /c120)", "");
         } catch (StringIndexOutOfBoundsException s) {
             UI.printReply("Do not forget to use /c to mark the following integer as calories", "Retry: ");
         } catch (Exception n) {
