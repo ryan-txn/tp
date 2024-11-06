@@ -75,6 +75,7 @@ public class UserHistoryTracker {
     }
     //@@author
 
+    //@@author ryan-txn
     /**
      * Prints all user entries from the data file to the console.
      * Displays an error message if the file is not found.
@@ -110,8 +111,7 @@ public class UserHistoryTracker {
         double idealCalories = Double.parseDouble(fields[5]);
         String localDateTime = fields[6].trim();
 
-        User user = new User(height, weight, isMale, age, healthGoal, idealCalories, localDateTime);
-        return user;
+        return new User(height, weight, isMale, age, healthGoal, idealCalories, localDateTime);
     }
 
     /**
@@ -145,6 +145,7 @@ public class UserHistoryTracker {
         }
         assert directory.exists() : "Data directory should exist after creation";
     }
+    //@@author
 
 
     //@@author kennethSty
@@ -160,7 +161,13 @@ public class UserHistoryTracker {
         }
         return userDataFile;
     }
+    //@@author
 
+    //@@author ryan-txn
+    /**
+     * Clears the save file by overwriting it with an empty string.
+     * If an error occurs during file access, an error message is printed to the console.
+     */
     public void clearSaveFile() {
         try {
             FileWriter fw = new FileWriter(DATA_DIRECTORY + File.separator + USER_DATA_FILE, false);
@@ -171,6 +178,12 @@ public class UserHistoryTracker {
         }
     }
 
+    /**
+     * Retrieves the last user entry from the save file.
+     * This method reads from the end of the file to find the last line and parses it into a User object.
+     *
+     * @return an Optional containing the last User entry if found; otherwise, an empty Optional.
+     */
     public Optional<User> getLastUser() {
         File userDataFile = new File(DATA_DIRECTORY + File.separator + USER_DATA_FILE);
         try (RandomAccessFile raf = new RandomAccessFile(userDataFile, "r")) {
@@ -196,6 +209,5 @@ public class UserHistoryTracker {
             return Optional.empty();
         }
     }
-    //@@author
-
+    //@@ author
 }
