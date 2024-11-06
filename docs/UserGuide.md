@@ -84,6 +84,8 @@ list commands
       _____________________________________________________________________________
       list commands
       _____________________________________________________________________________
+      weight timeline
+      _____________________________________________________________________________
       show todayCalories
       _____________________________________________________________________________
       update userdata
@@ -94,6 +96,10 @@ list commands
       _____________________________________________________________________________
       log meals
       _____________________________________________________________________________
+      meal recommendations
+      _____________________________________________________________________________
+      current userdata
+      _____________________________________________________________________________
       meal menu
       _____________________________________________________________________________
       delete mealEntry
@@ -101,6 +107,8 @@ list commands
       add mealEntry
       _____________________________________________________________________________
       delete meal
+      _____________________________________________________________________________
+      bye
       _____________________________________________________________________________
 ```
 List Commands with command parameter
@@ -273,16 +281,17 @@ show historicCalories 10
 [] = optional parameter
 {} = parameter
 
-| Command                             | Syntax                                                                   | Description                                                                                                    |
-|-------------------------------------|--------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------|
-| List all commmands                  | `list commands` or `list commands [{command}]`                           | Lists all available commands and the proper formatting.                                                         
-| Save meal to meal options           | `save meal {meal} /c{Number of calories}`                                | Prompts for meal name, calories, then confirms saving the meal.                                                |
-| Add meal entry for tracking         | `add mealEntry {meal} [/c{Number of calories}] [/p{Number of portions}] [/t{timestamp in YYYY-MM-DD}]` | Adds meal to daily caloric intake and shows progress toward goal.                                              |
-| Show list of available meal options | `meal menu`                                                              | Prints all available meals from the saved options list.                                                        |
-| Show past meals                     | `log meals`                                                              | Displays history of meals with timestamp and calories.                                                         |
-| Delete meal from meal menu          | `delete meal {index of meal in meal menu}`                               | Deletes meal option from the meal menu at the specified index.                                                 |
-| Delete meal entry from meal log     | `delete mealEntry {index of meal in the meal log`                        | Deletes meal entry from the meal log at the specified index and shows effect on the days progress toward goal. |
-| Show Calorie Progress for Today     | `show todayCalories`                                                     | Prints a Calorie Progress Bar to represent Today Calorie Progress                                              |
-| Show Historic Calorie Progress      | `show historicCalories {Number of Days inclu. Today}`                    | Prints Calorie Progress Bars & Various Stats to represent Historical Calorie Progress                          |
-
+| Command                                    | Syntax                                                                                                 | Description                                                                                                    |
+|--------------------------------------------|--------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------|
+| List all commmands                         | `list commands` or `list commands [{command}]`                                                         | Lists all available commands and the proper formatting.                                                        
+| Save meal to meal options                  | `save meal {meal} /c{Number of calories}`                                                              | Prompts for meal name, calories, then confirms saving the meal.                                                |
+| Add meal entry for tracking                | `add mealEntry {meal} [/c{Number of calories}] [/p{Number of portions}] [/t{timestamp in YYYY-MM-DD}]` | Adds meal to daily caloric intake and shows progress toward goal.                                              |
+| Show list of available meal options        | `meal menu`                                                                                            | Prints all available meals from the saved options list.                                                        |
+| Show past meals                            | `log meals`                                                                                            | Displays history of meals with timestamp and calories.                                                         |
+| Delete meal from meal menu                 | `delete meal {index of meal in meal menu}`                                                             | Deletes meal option from the meal menu at the specified index.                                                 |
+| Delete meal entry from meal log            | `delete mealEntry {index of meal in the meal log`                                                      | Deletes meal entry from the meal log at the specified index and shows effect on the days progress toward goal. |
+| Show Calorie Progress for Today            | `show todayCalories`                                                                                   | Prints a Calorie Progress Bar to represent Today Calorie Progress                                              |
+| Show Historic Calorie Progress             | `show historicCalories {Number of Days inclu. Today}`                                                  | Prints Calorie Progress Bars & Various Stats to represent Historical Calorie Progress                          |
+| Add and Update new User Entry to Save File | `update userdata`                                                                                      | Asks user for new User data to update in save file.                                                            |
+| Show Most Recent User Data Entry           | `current userdata`                                                                                     | Prints the most recent User Data from the save file. Prints an error if none found.                            |
 

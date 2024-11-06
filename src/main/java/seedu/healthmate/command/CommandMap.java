@@ -10,6 +10,7 @@ import seedu.healthmate.command.commands.MealMenuCommand;
 import seedu.healthmate.command.commands.SaveMealCommand;
 import seedu.healthmate.command.commands.TodayCalorieProgressCommand;
 import seedu.healthmate.command.commands.UpdateUserDataCommand;
+import seedu.healthmate.command.commands.CurrentUserDataCommand;
 import seedu.healthmate.command.commands.MealRecommendationsCommand;
 import seedu.healthmate.command.commands.WeightTimelineCommand;
 import seedu.healthmate.command.commands.ByeCommand;
@@ -34,6 +35,7 @@ public class CommandMap {
         COMMANDSMAP.put(MealMenuCommand.COMMAND, new MealMenuCommand());
         COMMANDSMAP.put(SaveMealCommand.COMMAND, new SaveMealCommand());
         COMMANDSMAP.put(UpdateUserDataCommand.COMMAND, new UpdateUserDataCommand());
+        COMMANDSMAP.put(CurrentUserDataCommand.COMMAND, new CurrentUserDataCommand());
         COMMANDSMAP.put(TodayCalorieProgressCommand.COMMAND, new TodayCalorieProgressCommand());
         COMMANDSMAP.put(HistoricCalorieProgressCommand.COMMAND, new HistoricCalorieProgressCommand());
         COMMANDSMAP.put(MealRecommendationsCommand.COMMAND, new MealRecommendationsCommand());

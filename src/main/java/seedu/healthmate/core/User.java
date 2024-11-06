@@ -145,6 +145,16 @@ public class User {
                 + localDateTime.format(formatter);
     }
 
+    public void printUIString() {
+        UI.printString("Height: " + heightEntry + "cm");
+        UI.printString("Weight: " + weightEntry + "kg");
+        UI.printString("Gender: " + (isMale ? "male" : "female"));
+        UI.printString("Age: " + age);
+        UI.printString("Health Goal: " + healthGoal.toString());
+        UI.printString("Ideal Daily Caloric Intake: " + idealCalories);
+        UI.printString("Recorded at: " + localDateTime.format(formatter));
+    }
+
     public Goals getHealthGoal() {
         return Goals.valueOf(this.healthGoal.getCurrentHealthGoal());
     }
