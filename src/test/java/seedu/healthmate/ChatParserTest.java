@@ -122,7 +122,7 @@ public class ChatParserTest {
         String timeString = "(at: " + today + ")";
         String expectedOutput = UI.simulateInitOutput()
             + UI.simulateReply("pizza with 300 calories " + timeString, "Tracked: ")
-            + user.simulateUsersConsumptionBar(300, today)
+            + UI.simulateUsersConsumptionBar(300, today, user)
             + System.lineSeparator()
             + UI.simulateFareWell();
         compareChatParserOutput(chatParser, simulatedInput, expectedOutput);
@@ -221,7 +221,7 @@ public class ChatParserTest {
             .map(date ->
                 UI.simulateReply("burger with 300 calories " +
                     "(at: " + date + ")", "Tracked: ")
-                    + user.simulateUsersConsumptionBar(300, date))
+                    + UI.simulateUsersConsumptionBar(300, date, user))
             .reduce("", (total, oneOutput) -> total + oneOutput + System.lineSeparator());
     }
 
@@ -233,7 +233,7 @@ public class ChatParserTest {
      */
     private String simulateHistoricCalories(MealEntry testMealEntry, List<LocalDate> pastDays) {
         User userStub = User.createUserStub();
-        double idealCalories = userStub.getIdealCalories();
+        double idealCalories = userStub.getTargetCalories();
         int testMealCalories = testMealEntry.getCalories();
         assert (int)idealCalories == 2865 : "Test assumes ideal daily calories of 2865";
         assert pastDays.size() == 10 : "Test expects an input of 10";

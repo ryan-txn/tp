@@ -15,12 +15,12 @@ import seedu.healthmate.core.UserEntryList;
  * Manages the saving and loading of UserEntry lists, which store user information over time.
  * Handles adding new user entries, and retrieving stored data for display or further processing.
  */
-public class UserHistoryTracker {
-    private static final String DATA_DIRECTORY = "data";
+public class UserHistoryTracker extends HistoryTracker {
+
     private static final String USER_DATA_FILE = "user_data.csv";
 
     public UserHistoryTracker() {
-        createDirectoryIfNotExists(DATA_DIRECTORY);
+        super();
     }
 
     //@@author kennethSty
@@ -79,7 +79,7 @@ public class UserHistoryTracker {
      * Displays an error message if the file is not found.
      */
     public void printAllUserEntries() {
-        File userDataFile = new File(DATA_DIRECTORY + File.separator + USER_DATA_FILE);
+        File userDataFile = new File(super.DATA_DIRECTORY + File.separator + USER_DATA_FILE);
 
         try (Scanner scanner = new Scanner(userDataFile)) {
             while (scanner.hasNextLine()) {
@@ -129,20 +129,6 @@ public class UserHistoryTracker {
         } catch (IOException e) {
             System.out.println("Error adding userEntry to data file: " + e.getMessage());
         }
-    }
-
-    /**
-     * Creates a directory if it does not already exist.
-     * Verifies that the directory exists after attempting to create it.
-     *
-     * @param folderName Name of the directory to create.
-     */
-    private static void createDirectoryIfNotExists(String folderName) {
-        File directory = new File(folderName);
-        if (!directory.exists()) {
-            directory.mkdir();
-        }
-        assert directory.exists() : "Data directory should exist after creation";
     }
 
 

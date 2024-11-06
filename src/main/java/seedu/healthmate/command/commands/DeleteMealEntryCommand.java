@@ -52,7 +52,7 @@ public class DeleteMealEntryCommand extends Command {
                 "Number of meals tracked is: " + mealEntries.size());
 
         // Removes the specified meal entry from the meal log and updates history
-        mealEntries.removeMealWithFeedback(userInput, command, user);
+        mealEntries.extractAndRemoveMeal(userInput, command, user);
         historyTracker.saveMealEntries(mealEntries);
 
         logger.log(Level.INFO, "Finish executing command to delete a tracked meal." + System.lineSeparator() +

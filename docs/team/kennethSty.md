@@ -9,12 +9,13 @@ The app enables users to log meals, track calories, and observe their progress t
 
 ### Code Contributed
 [Link to code contributions](https://nus-cs2113-ay2425s1.github.io/tp-dashboard/?search=Kenneth&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2024-09-20&tabOpen=true&tabType=authorship&tabAuthor=kennethSty&tabRepo=AY2425S1-CS2113-W12-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
-*Created the foundational design of the application and implemented the following classes:*
+*Created the foundational design (including the packaging) of the application and implemented the following classes:*
 - the Meal and MealEntry classes
 - the MealList and MealEntriesList classes
 - the main logic of the ChatParser class
 - the UI class
 - the Logging class
+- the User class
 
 ### Enhancements Implemented
 1. **Implementing the Meal and MealEntry classes**
@@ -24,11 +25,11 @@ The app enables users to log meals, track calories, and observe their progress t
 
 2. **Implementing the MealList and MealEntriesList class**
 * Created the MealList and MealEntriesList class and their inheritance relationship.
-* Implemented low-level functionality to add and delete meals and mealEntries to the lists.
+* Implemented low-level functionality to extract meals and mealEntries from text and add them to the respective lists.
 
-3. **Enhancing the User class**
+3. **Enhancing the User and UserHistoryTracker class**
 * Created basic structure of the User class.
-* Added logic of loading a user class, if a user file exists (`checkForUserData`). 
+* Added `checkForUserData` method and implemented the logic of `loadUserEntries`.  
 * Refactored the creation of a new user instance (`askForUserData`), if no user file exists so far.
 
 4. **Contributions to the ChatParser class**
@@ -67,10 +68,15 @@ The following exemplifies these elements:
 6. **Unit Testing**
 * Implemented the ChatParserTest class and the foundational methods setOutputStream, restoreStream, compareChatParserOutput.
 * Added the following tests:
-- randomInput_printsError and the respective simulation methods simulateInitOutput, simulateReply and simulateFareWell
-- addMealToOptionsWithName_success and the simulation method getMealOptionsStringWithNewMeal
-- addMealToOptionsNoName_failure
-- trackMealEntryWithCalories_success 
+- randomInput_printsError: Validates handling of invalid inputs.
+- addMealToOptionsWithName_success: Tests adding a named meal to options.
+- addMealToOptionsNoName_failure: Confirms proper error handling when saving a meal without a name.
+- trackMealEntryWithCalories_success: Tests successful tracking of a meal entry with calories.
+- showHistoricCaloriesNoTime_failure: Validates response when no time is provided in a history command.
+- addPastMealsAndShowHistory_success: Simulates adding meal entries over past dates 
+and tests history retrieval, using a user stub.
+* Additionally, I implemented the testGetTimestamp() unit test, 
+  which asserts proper responses for several positive and negative inputs.
 
 ### Contributions to the User Guide
 Added the sections:
@@ -92,16 +98,18 @@ Overall proofreading.
 - `User`
 
 * In the `Features` section the subsections I added are:
-- `Creating a User Profile` and the sequence diagram userSequenceDiagram.jpg. 
+- `Creating a User Profile` and the sequence diagram userSequenceDiagram.jpg
 - `ChatParser Input Handling` including the subsections
 
 ### Contributions to Team Tasks
-* Took over responsibility for managing and creating issues for steering team progress
+* Took over responsibility for managing and creating issues for steering team progress.
 * Created the first POC application for tracking mealEntries and mealOptions to kickstart the project. 
-* Fixed IO Testing issues
+* Fixed IO Testing issues.
 * Left feedback in my PR reviews, resulting in follow-up issues.
 
 ### Review/Mentoring Contributions
 * Reviewed, approved or if necessary requested changes to multiple PRs
-* Helped to finish the User profile creation procedure when the previous approach got stuck
-
+* Helped to finish the User profile creation procedure when the previous approach got stuck.
+* Helped to reduce repetitive code via polymorphism (e.g. UserHistoryTracker extends HistoryTracker).
+* Helped to SLAP code (e.g. the Feature to print historic consumption bars).
+* Handled most of the issue tracking and tested code help peers find bugs.
