@@ -42,7 +42,7 @@ public class WeightTimelineCommand extends Command {
     public static void executeCommand(UserHistoryTracker userHistoryTracker, Logger logger) {
 
         // Retrieves and verifies user weight history data
-        Optional<UserEntryList> userHistoryData = userHistoryTracker.loadUserData();
+        Optional<UserEntryList> userHistoryData = userHistoryTracker.loadUserEntries();
         assert userHistoryData != null && userHistoryData.isPresent() : "User history data should not be null or empty";
 
         // Displays the weight timeline if data is available

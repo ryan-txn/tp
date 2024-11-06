@@ -175,9 +175,16 @@ public class UI {
                                        int actualValue,
                                        LocalDate timestamp) {
 
-        return INDENTATION + message + NEW_LINE
-                + INDENTATION + progressBarStringBuilder(expectedValue, actualValue) + " (" + timestamp + ")"
-                + NEW_LINE + LINE;
+        String header = INDENTATION + message + NEW_LINE;
+
+        String progressBarBody = INDENTATION
+                + progressBarStringBuilder(expectedValue, actualValue)
+                + " (" + timestamp + ")"
+                + NEW_LINE;
+
+        String end = LINE;
+
+        return header + progressBarBody + end;
 
     }
 
@@ -221,9 +228,11 @@ public class UI {
         String maxMealString = maxMeal
                 .map(mealEntry -> mealEntry.toString())
                 .orElse("No maximum meal available");
+        double percentOfIdealConsumed = Math.round(100.0 * (double)totalCaloriesConsumed
+                / (double)totalIdealCalories);
+        double percentMaxOfIdeal = Math.round(100.0 * (double)maxCaloriesConsumed
+                / (double)idealCalories);
 
-        double percentOfIdealConsumed = Math.round(100.0 * (double)totalCaloriesConsumed / (double)totalIdealCalories);
-        double percentMaxOfIdeal = Math.round(100.0 * (double)maxCaloriesConsumed / (double)idealCalories);
         UI.printString("Stats over past " + days + " days");
         UI.printString("Total Calories Consumed: " + totalCaloriesConsumed);
         UI.printString("Total Ideal Calories: " + totalIdealCalories);
