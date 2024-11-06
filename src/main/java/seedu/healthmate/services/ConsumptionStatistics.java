@@ -34,7 +34,7 @@ public class ConsumptionStatistics {
 
         LocalDateTime today = DateTimeUtils.currentDate().atTime(23, 59);
         LocalDateTime lastDate = today.minusDays(days);
-        MealEntriesList mealsConsumed = mealEntries.getMealEntriesByDate(today, lastDate);
+        MealEntriesList mealsConsumed = mealEntries.getMealEntriesByDate(lastDate, today);
         int totalCaloriesConsumed = mealsConsumed.getTotalCaloriesConsumed();
         int idealCalories = (int) user.getIdealCalories();
         int totalIdealCalories = days * idealCalories;

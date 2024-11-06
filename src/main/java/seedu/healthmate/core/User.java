@@ -108,61 +108,10 @@ public class User {
     }
 
     /**
-     * Prints a user's consumption bar 
-     * @param message Print message to the user
-     * @param currentCalories Actual calorie consumption
-     * @param timestamp The time for which ideal and actual consumption is compared
-     */
-    public void printUsersConsumptionBar(String message, int currentCalories, LocalDate timestamp) {
-        UI.printConsumptionBar(message, this.idealCalories, currentCalories, timestamp);
-    }
-
-    /**
-     * Simulates the construction of a user-specific consumption bar for testing.
-     *
-     * @param caloriesConsumed The actual calories consumed by the user.
-     * @param timestamp        The date for which the consumption is being simulated.
-     * @return A string representation of the simulated consumption bar, including
-     *         target calories, current calories consumed, and the percentage of
-     *         expected calorie intake consumed.
-     */
-    public String simulateUsersConsumptionBar(int caloriesConsumed, LocalDate timestamp) {
-        return simulateTargetCalories()
-                + UI.simulateString("Current Calories Consumed: " + caloriesConsumed)
-                + UI.buildConsumptionBar("% of Expected Calorie Intake Consumed: ",
-                this.idealCalories,
-                caloriesConsumed,
-                timestamp);
-    }
-
-    /**
      * Prints the ideal caloric intake.
      */
     public void printTargetCalories() {
         UI.printReply(String.valueOf((int) this.idealCalories), "Ideal Daily Caloric Intake: ");
-    }
-
-    /**
-     * Returns target calorie consumption with additional formatting as a String for testing.
-     * @return String
-     */
-    public String simulateTargetCalories() {
-        return UI.simulateReply("Ideal Daily Caloric Intake: "
-                + (int) this.idealCalories, "");
-    }
-
-    /**
-     * Prints the historic consumption bar for the current calories and timestamp.
-     *
-     * @param currentCalories the current caloric intake
-     * @param timestamp       the timestamp of the consumption record
-     * @throws IllegalArgumentException if currentCalories is negative or timestamp is null
-     */
-    public void printHistoricConsumptionBar(int currentCalories, LocalDate timestamp) {
-        assert currentCalories >= 0 : "Current calories cannot be negative";
-        assert timestamp != null : "Timestamp cannot be null";
-
-        UI.printHistoricConsumptionBar(this.idealCalories, currentCalories, timestamp);
     }
 
     /**

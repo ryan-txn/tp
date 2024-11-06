@@ -122,8 +122,8 @@ public class MealEntriesList extends MealList {
     }
 
     /**
-     * Computes actual calorie consumption and delegates the construction of the
-     * consumption bar to the user instance with the relevant idealCalories consumption data
+     * Computes actual calorie consumption and delegates the construction and actual printing of the
+     * consumption bar to the user instance which forwards it to the UI class
      * @param user User profile for which the ideal calorie consumption
      *                  will be compared with the actual consumption
      * @param dateTime
@@ -131,16 +131,21 @@ public class MealEntriesList extends MealList {
     public void printDaysConsumptionBar(User user, LocalDateTime dateTime) {
         assert user != null : "User cannot be null";
         assert dateTime != null: "Date needs to be specified to print todays consumption bar";
-        LocalDateTime todayStartOfDay = DateTimeUtils.startOfDayLocalDateTime(DateTimeUtils.currentDate());
-        LocalDateTime todayEndOfDay = DateTimeUtils.endOfDayLocalDateTime(DateTimeUtils.currentDate());
 
-        MealEntriesList mealsConsumedToday = this.getMealEntriesByDate(todayEndOfDay, todayStartOfDay);
+        LocalDate date = dateTime.toLocalDate();
+        LocalDateTime todayStartOfDay = DateTimeUtils.startOfDayLocalDateTime(date);
+        LocalDateTime todayEndOfDay = DateTimeUtils.endOfDayLocalDateTime(date);
+
+        MealEntriesList mealsConsumedToday = this.getMealEntriesByDate(todayStartOfDay, todayEndOfDay);
         int caloriesConsumed = mealsConsumedToday.getTotalCaloriesConsumed();
-        user.printTargetCalories();
+        Integer targetCalories = (int) user.getIdealCalories();
+
+        UI.printReply(targetCalories.toString(), "Ideal Daily Caloric Intake: ");
         UI.printString("Current Calories Consumed: " + caloriesConsumed);
-        user.printUsersConsumptionBar("% of Expected Calorie Intake Consumed: ",
+        UI.printConsumptionBar("% of Expected Calorie Intake Consumed: ",
+                targetCalories,
                 caloriesConsumed,
-                dateTime.toLocalDate());
+                date);
     }
 
 
@@ -173,7 +178,7 @@ public class MealEntriesList extends MealList {
                 .reduce((meal1, meal2) -> meal1.getCalories() > meal2.getCalories() ? meal1 : meal2);
     }
 
-    public MealEntriesList getMealEntriesByDate(LocalDateTime upperDateBound, LocalDateTime lowerDateBound) {
+    public MealEntriesList getMealEntriesByDate(LocalDateTime lowerDateBound, LocalDateTime upperDateBound) {
         ArrayList<Meal> filteredMeals = super.mealList.stream()
                 .filter(meal -> meal.isBeforeEqualDate(upperDateBound))
                 .filter(meal -> meal.isAfterEqualDate(lowerDateBound))
@@ -205,9 +210,12 @@ public class MealEntriesList extends MealList {
             LocalDateTime upperDateBound = DateTimeUtils.endOfDayLocalDateTime(printDate);
             LocalDateTime lowerDateBound = DateTimeUtils.startOfDayLocalDateTime(printDate);
 
-            MealEntriesList mealsConsumed = this.getMealEntriesByDate(upperDateBound, lowerDateBound);
+            MealEntriesList mealsConsumed = this.getMealEntriesByDate(lowerDateBound, upperDateBound);
             int caloriesConsumed = mealsConsumed.getTotalCaloriesConsumed();
-            user.printHistoricConsumptionBar(caloriesConsumed, printDate);
+            int targetCalories = (int) user.getIdealCalories();
+
+            UI.printHistoricConsumptionBar(targetCalories, caloriesConsumed, printDate);
+
         }
     }
     //@@author
