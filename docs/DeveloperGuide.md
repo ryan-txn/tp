@@ -205,7 +205,7 @@ mealEntry commands of their regular breakfast as well as triggering the updateUs
 
 1. **Command Lookup Process**: Illustrate the flow from when a user enters a command to when `CommandMap.
 getCommandByName()` retrieves the command and the UI displays the results.
-   - Components: `UI`, `ChatParser`, `CommandMap`, `Command`.
+   - Components: `UI`, `ChatParser`, `CommandMap`.
    - Highlight how `CommandMap` retrieves the appropriate command based on user input.
 
 ---
