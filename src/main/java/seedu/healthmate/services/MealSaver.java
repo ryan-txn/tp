@@ -33,6 +33,10 @@ public class MealSaver {
      */
     public Optional<Meal> extractMealFromUserInput(String userInput) {
         try {
+            if (userInput.contains(",")) {
+                UI.printReply("No Commas Allowed", "Retry: ");
+                return Optional.empty();
+            }
             String command = "save meal";
             Meal meal = Meal.extractMealFromString(userInput, command);
             if (meal.descriptionIsEmpty()) {

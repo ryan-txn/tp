@@ -4,6 +4,7 @@ import seedu.healthmate.command.Command;
 import seedu.healthmate.core.MealEntriesList;
 import seedu.healthmate.core.User;
 import seedu.healthmate.services.HistoryTracker;
+import seedu.healthmate.services.UI;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -50,6 +51,11 @@ public class DeleteMealEntryCommand extends Command {
 
         logger.log(Level.INFO, "Executing command to delete a tracked meal." + System.lineSeparator() +
                 "Number of meals tracked is: " + mealEntries.size());
+
+        if (mealEntries.size() <= 0) {
+            UI.printReply("No Meal Entries", "Error: ");
+            return;
+        }
 
         // Removes the specified meal entry from the meal log and updates history
         mealEntries.extractAndRemoveMeal(userInput, command, user);

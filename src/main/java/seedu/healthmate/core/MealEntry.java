@@ -63,7 +63,8 @@ public class MealEntry extends Meal{
         try {
             calories = Parameter.getCalories(input);
         } catch (EmptyCalorieException e) {
-            System.out.println("Getting info from meal options...");
+            UI.printSeparator();
+            UI.printString("Getting info from meal options...");
             Optional<Integer> optionalCalories = mealOptions.getCaloriesByMealName(mealDescription.orElse(""));
             if (!optionalCalories.isPresent() && !(mealDescription.orElse("").equals(""))) {
                 UI.printMealNotFound();

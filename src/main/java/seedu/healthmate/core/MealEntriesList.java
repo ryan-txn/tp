@@ -42,8 +42,16 @@ public class MealEntriesList extends MealList {
     @Override
     public void extractAndAppendMeal(String userInput, String command, MealList mealOptions, User user) {
         try {
+            if (userInput.contains(",")) {
+                UI.printReply("No Commas Allowed", "Retry: ");
+                return;
+            }
             int portions = Parameter.getPortions(userInput);
             MealEntry meal = extractMealEntryFromString(userInput, command, mealOptions);
+            if (meal.descriptionIsEmpty()) {
+                UI.printReply("Meal entry requires a name", "Retry: ");
+                return;
+            }
             addPortionsOfMeal(meal, portions);
             printDaysConsumptionBar(user, meal.getTimestamp());
         } catch (EmptyCalorieException | BadCalorieException e) {
