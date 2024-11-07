@@ -11,7 +11,7 @@ Welcome to HealthMate! Follow these steps to get started quickly:
 **Entering the App**
 - Open CLI and Navigate to location of `HealthMate.jar`
 - Run the following Command: `java -jar HealthMate.jar`
-- 
+
 **Create your user profile**
 Input data about yourself needed to compute your ideal daily calorie intake. 
 This includes:
@@ -28,7 +28,8 @@ This includes:
 
 **Get an overview on your calorie consumption**
 - Use the "Log Meals" feature to view your meal entries and track your daily caloric intake.
-- Example: Add your first mealEntry and then use `log meals` to assess the meals tracked so far. 
+- Example: Add your first mealEntry and then use `log meals` to assess the meals tracked so far.
+
   ```
   add mealEntry burger /c300
   _____________________________________________________________________________
@@ -50,6 +51,7 @@ This includes:
   - The percentage in the middle shows how much percent of your ideal calorie consumption you have consumed so far.
   - The date on the right shows you the date for which this percentage is calculated.
 - Example: On the 29th of October 2024 you have consumed 11% of your ideal calorie intake. 
+
 ```
   % of Expected Calorie Intake Consumed:
   ███░░░░░░░░░░░░░░░░░░░░░░░░░░|  11% |░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ (2024-10-29)
@@ -212,6 +214,7 @@ meal menu
 
 #### Weight Timeline: `weight timeline`
 - Returns a graph of weight changes
+
 ```
 weight timeline
 Weight Timeline
@@ -230,6 +233,7 @@ Weight Timeline
        11-06 11-06 11-06 11-06 11-06 11-06 11-06 11-06 11-06 11-06 
 
 ```
+
 #### Update User Command: `update userdata`
 - Updates user data after retrieving inputs from user
 ```
