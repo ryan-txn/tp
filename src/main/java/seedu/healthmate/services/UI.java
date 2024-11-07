@@ -110,7 +110,7 @@ public class UI {
     }
 
     public static void printMealNotFound() {
-        System.out.println("The meal was not found in the meal menu!");
+        System.out.println(INDENTATION +  "The meal was not found in the meal menu!");
     }
 
     /**

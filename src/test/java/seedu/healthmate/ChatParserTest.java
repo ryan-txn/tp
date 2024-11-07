@@ -306,7 +306,7 @@ public class ChatParserTest {
         ChatParser chatParser = new ChatParser();
         String simulatedInput = "delete meal 1\nbye\n";
         String expectedOutput = UI.simulateInitOutput()
-                + UI.simulateReply("Meal index needs to be within range", "Error: ")
+                + UI.simulateReply("No Meal Options", "Error: ")
                 + UI.simulateFareWell();
         compareChatParserOutput(chatParser, simulatedInput, expectedOutput);
     }
@@ -317,8 +317,9 @@ public class ChatParserTest {
     @Test
     void deleteMeal_noIndex_failure() {
         ChatParser chatParser = new ChatParser();
-        String simulatedInput = "delete meal\nbye\n";
+        String simulatedInput = "save meal potato /c30\ndelete meal\nbye\n";
         String expectedOutput = UI.simulateInitOutput()
+                + UI.simulateReply("potato with 30 calories", "Added to options: ")
                 + UI.simulateReply("Meal index needs to be an integer", "Error: ")
                 + UI.simulateFareWell();
         compareChatParserOutput(chatParser, simulatedInput, expectedOutput);
@@ -358,7 +359,7 @@ public class ChatParserTest {
         ChatParser chatParser = new ChatParser();
         String simulatedInput = "delete mealEntry 1\nbye\n";
         String expectedOutput = UI.simulateInitOutput()
-                + UI.simulateReply("Meal Entry index needs to be within range", "Error: ")
+                + UI.simulateReply("No Meal Entries", "Error: ")
                 + UI.simulateFareWell();
         compareChatParserOutput(chatParser, simulatedInput, expectedOutput);
     }
@@ -369,8 +370,12 @@ public class ChatParserTest {
     @Test
     void deleteMealEntry_noIndex_failure() {
         ChatParser chatParser = new ChatParser();
-        String simulatedInput = "delete mealEntry\nbye\n";
+        String simulatedInput = "add mealEntry potato /c30\ndelete mealEntry\nbye\n";
+
+        LocalDate today = LocalDate.now();
         String expectedOutput = UI.simulateInitOutput()
+                + UI.simulateReply("potato with 30 calories (at: " + today + ")", "Tracked: ")
+                + simulateConsumptionMessageWithBar(2865, 30)
                 + UI.simulateReply("Meal Entry index needs to be an integer", "Error: ")
                 + UI.simulateFareWell();
         compareChatParserOutput(chatParser, simulatedInput, expectedOutput);
