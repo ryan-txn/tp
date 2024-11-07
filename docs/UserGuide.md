@@ -295,6 +295,8 @@ delete mealEntry 1
 #### Show Calorie Progress for Today: `show todayCalories`
 - Prints a Calorie Progress Bar to represent Today Calorie Progress
 - Example Usage:
+
+
 ```
 show todayCalories
       _____________________________________________________________________________
@@ -306,10 +308,13 @@ show todayCalories
       _____________________________________________________________________________
 
 ```
+
 #### Show Historic Calorie Progress: `show historicCalories {Number of Days inclu. Today}`
 - Prints Calorie Progress Bars & Various Stats to represent Historical Calorie Progress
 - Combines global and local view on eating patterns via the progress bar and details such as the meal with the highest calories.
 - Example Usage:
+
+
 ```
 show historicCalories 10
       _____________________________________________________________________________
@@ -334,8 +339,11 @@ show historicCalories 10
       Meals Consumption's Percentage of Daily Ideal Calories: 10.0%
       _____________________________________________________________________________
 ```
+
+
 ### Update your data
 Your goal or your body weight changed? By running the `update userdata` you can update the specifics of your profile. 
+
 ```
 _____________________________________________________________________________
 update userdata
@@ -345,6 +353,7 @@ update userdata
 
 If you want to see the specifics for which your ideal calorie consumption is calculated 
 run the `current userdata` command. 
+
 ```
 current userdata
       _____________________________________________________________________________
