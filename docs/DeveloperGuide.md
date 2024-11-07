@@ -167,7 +167,7 @@ Direct command handling in the main loop. Reduces the depth of the application,
 but comes at the cost of reduced readability and higher cohesion. 
 
 #### Extensions for v.2.1
-Seperating the responsibilities of reading and preprocessing user input from the responsibility 
+Separating the responsibilities of reading and preprocessing user input from the responsibility 
 to steer command routing. This could improve the maintainability of the ChatParser class in the future. 
 
 ### Command Handling with CommandMap Class
@@ -194,17 +194,18 @@ commands are added.
 An alternative was storing commands in a list and iterating through them sequentially to find the matching command.
 However, this approach was less efficient for frequent lookups compared to the `HashMap`.
 
-#### Proposed additions for v2.1
+#### Proposed additions for future
 
 The `CommandMap` can be built upon to support saving and usage of user created scripts as commands. For example
 using a user could possibly create an add morningRoutine command by creating a command that runs multiple add
 mealEntry commands of their regular breakfast as well as triggering the updateUser data command.
 
-#### Sequence Diagram TBD
+#### Sequence Diagram
+![loadUserEntries SD](images/listCommands.svg)
 
 1. **Command Lookup Process**: Illustrate the flow from when a user enters a command to when `CommandMap.
 getCommandByName()` retrieves the command and the UI displays the results.
-   - Components: `UI`, `ChatParser`, `CommandMap`, `Command`.
+   - Components: `UI`, `ChatParser`, `CommandMap`.
    - Highlight how `CommandMap` retrieves the appropriate command based on user input.
 
 ---
@@ -293,15 +294,16 @@ HealthMate solves the following problems:
    - Verify that the application starts and displays a welcome message.
 
 3. Testing Basic Commands:
-   - Try entering the command `help` and verify that usage instructions are displayed.
+   - Try entering the command `list commands` and verify that usage instructions are displayed.
    - Test the `bye` command to ensure the application exits properly.
 
-4. Adding a Meal:
-   - Use the command `add mealEntry [name] [calories]` (e.g., `add meal "Chicken Salad" 350`)
-   - Verify that the meal is added successfully and displayed in the meal list.
+4. Saving a Meal:
+   - Use the command `save meal [name] [calories]` (e.g., `save meal Chicken Salad /c350`)
+   - Verify that the meal is added successfully and displayed in the meal list using `meal menu`
 
-5. Logging a Meal Entry:
-   - Use the command `log meal [name/index] [portion]` (e.g., `log meal "Chicken Salad" 1`)
+5. Adding a Meal Entry:
+   - Use the command `add mealEntry [meal from menu/ standalone meal name] [calories if standalone meal] [portion]` 
+   (e.g., `add mealEntry Chicken Salad /p3`) or (`add mealEntry newmeal /c300 /p1`)
    - Check that the meal entry is recorded with the current timestamp.
 
 6. Show Historic Caloric Trend:
