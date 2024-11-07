@@ -15,14 +15,14 @@ public class VeggieWrap extends Recipe {
 
     private static final String RECIPE = """
             1 teaspoon extra-virgin olive oil
-            ½ small zucchini, sliced
-            ½ medium red bell pepper, sliced
-            ¼ small red onion, sliced
-            ½ teaspoon dried oregano
+            1/2 small zucchini, sliced
+            1/2 medium red bell pepper, sliced
+            1/4 small red onion, sliced
+            1/2 teaspoon dried oregano
             Pinch of salt
             2 whole-grain wraps
-            ¼ cup hummus
-            ½ cup baby spinach
+            1/4 cup hummus
+            1/2 cup baby spinach
             2 tablespoons crumbled feta cheese
             4 black olives, sliced
             """;
