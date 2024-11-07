@@ -11,7 +11,7 @@ Welcome to HealthMate! Follow these steps to get started quickly:
 **Entering the App**
 - Open CLI and Navigate to location of `HealthMate.jar`
 - Run the following Command: `java -jar HealthMate.jar`
-- 
+
 **Create your user profile**
 Input data about yourself needed to compute your ideal daily calorie intake. 
 This includes:
@@ -25,8 +25,10 @@ This includes:
 - Enter the meal name and calories.
 - Example: `add mealEntry burger /c300`
 - The printed consumption bar shows you how much more (or less) you should consume to reach your health goal.
+
 ```
 add mealEntry burger /c300
+
   _____________________________________________________________________________
   Tracked: burger with 300 calories (at: 2024-10-29T22:00)
   _____________________________________________________________________________
@@ -51,6 +53,7 @@ add mealEntry burger /c300
   - The percentage in the middle shows how much percent of your ideal calorie consumption you have consumed so far.
   - The date on the right shows you the date for which this percentage is calculated.
 - Example: On the 29th of October 2024 you have consumed 11% of your ideal calorie intake. 
+
 ```
   % of Expected Calorie Intake Consumed:
   ███░░░░░░░░░░░░░░░░░░░░░░░░░░|  11% |░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ (2024-10-29)
@@ -213,6 +216,7 @@ meal menu
 
 #### Weight Timeline: `weight timeline`
 - Returns a graph of weight changes
+
 ```
 weight timeline
 Weight Timeline
@@ -231,26 +235,7 @@ Weight Timeline
        11-06 11-06 11-06 11-06 11-06 11-06 11-06 11-06 11-06 11-06 
 
 ```
-#### Update User Command: `update userdata`
-- Updates user data after retrieving inputs from user
-```
-update userdata
-      Create your profile: please enter...
-      Height in cm (e.g. 180):
-180
-      Weight in kg (e.g. 80):
-80
-      Gender (male or female):
-male
-      Age (e.g. 20):
-20
-      Health Goal (WEIGHT_LOSS, STEADY_STATE, BULKING):
-WEIGHT_LOSS
-      Profile creation Successful!
-      _____________________________________________________________________________
-      Great! You can now begin to use the app!
-      _____________________________________________________________________________
-```
+
 
 #### Meal Recommender: `meal recommendations`
 - Returns recipes that suit your health goal
