@@ -93,6 +93,10 @@ The class supports setting, storing, and retrieving the health goal.
 Additionally, it provides a method to compute target calories using the Harris-Benedict Equation, modified by the current health goal. 
 This allows the class to adapt the calorie calculations according to the user's health objectives, making it versatile for various fitness plans.
 
+The implementation of setting of a healthGoal for example is shown below:
+
+![Set Health Goal SD](images/setHealthGoalSD.png)
+
 #### User
 The user class encapsulates all necessary information for computing an ideal daily calorie consumption. 
 This includes:
@@ -206,6 +210,54 @@ mealEntry commands of their regular breakfast as well as triggering the updateUs
 getCommandByName()` retrieves the command and the UI displays the results.
    - Components: `UI`, `ChatParser`, `CommandMap`, `Command`.
    - Highlight how `CommandMap` retrieves the appropriate command based on user input.
+
+
+
+### Delete Meal & MealEntry Commands
+
+#### Overview
+
+The `delete` commands allow users to be able to delete any `meal` or `mealEntry` they may have put in.
+It allows users to be able to delete any erroneous entry they may have put in.
+
+#### Feature Implementation
+
+The `delete meal` and `delete mealEntry` Commands are classes in the `seedu.healthmate.command` package.
+When called by the user from ChatParser the `executeCommand` method will be called 
+executing the command as necessary.
+This is also how all other commands are executed.
+
+To delete a `meal` or `mealEntry` the respective index of it must be included after the command.
+
+#### Why It Is implemented This Way
+
+Inline with the `Single-Responsibility Principle (SRP)` the execution commands were abstracted 
+and were put into the respective Commands. This allowed for neater and more readable code while also
+allowing for less nesting inline with the `SLAP Principle`.
+
+The index of `meal` or `mealEntry` was used to delete it as it had less edge cases while also being
+more consistent from the user's point of view.
+
+#### Alternatives Considered
+
+Initially the code to execute the commands were in the `ChatParser` class but this made it messy and 
+caused a lot of unnecessary nesting. Debugging the `ChatParser` class was also much harder due to this.
+Therefore, the execution code and it's helper functions were shifted to the various command classes.
+
+The deletion of a `meal` option by using it's name was also considered. However this was found to be
+less intuitive from a user point of view. Some larger `meal` names (eg. `Hawaiian Pizza with Mushrooms`)
+may be harder for the user to input correctly in order to delete. From a usability perspective, 
+just requiring the index makes it simpler for the user.
+
+#### Proposed additions for v2.1
+
+A find command could be implemented that could help users find the index and details of 
+the `meal` or `mealEntry` that they would like to delete. Would be helpful for the user as
+too many entries may make it hard for the user to find the one they would like to delete.
+
+#### Sequence Diagram TBD
+1. **Delete Meal `executeCommand` Sequence Diagram**
+2. **Delete MealEntry `executeCommand` Sequence Diagram**
 
 ---
 

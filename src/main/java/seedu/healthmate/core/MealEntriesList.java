@@ -42,6 +42,10 @@ public class MealEntriesList extends MealList {
     @Override
     public void extractAndAppendMeal(String userInput, String command, MealList mealOptions, User user) {
         try {
+            if (userInput.contains(",")) {
+                UI.printReply("No Commas Allowed", "Retry: ");
+                return;
+            }
             int portions = Parameter.getPortions(userInput);
             MealEntry meal = extractMealEntryFromString(userInput, command, mealOptions);
             if (meal.descriptionIsEmpty()) {

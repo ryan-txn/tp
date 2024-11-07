@@ -41,6 +41,11 @@ public class MealList {
      */
     public void extractAndAppendMeal(String userInput, String command, MealList mealOptions, User user) {
         try {
+            if (userInput.contains(",")) {
+                UI.printReply("Meal entry should not include commas", "Retry: ");
+                return;
+            }
+            System.out.println(userInput);
             Meal meal = extractMealFromString(userInput, command);
             if (!meal.descriptionIsEmpty()) {
                 this.addMeal(meal);
