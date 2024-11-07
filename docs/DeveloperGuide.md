@@ -249,7 +249,7 @@ less intuitive from a user point of view. Some larger `meal` names (eg. `Hawaiia
 may be harder for the user to input correctly in order to delete. From a usability perspective, 
 just requiring the index makes it simpler for the user.
 
-#### Proposed additions for v2.1
+#### Future Additions
 
 A find command could be implemented that could help users find the index and details of 
 the `meal` or `mealEntry` that they would like to delete. Would be helpful for the user as
