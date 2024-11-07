@@ -44,6 +44,10 @@ public class MealEntriesList extends MealList {
         try {
             int portions = Parameter.getPortions(userInput);
             MealEntry meal = extractMealEntryFromString(userInput, command, mealOptions);
+            if (meal.descriptionIsEmpty()) {
+                UI.printReply("Meal entry requires a name", "Retry: ");
+                return;
+            }
             addPortionsOfMeal(meal, portions);
             printDaysConsumptionBar(user, meal.getTimestamp());
         } catch (EmptyCalorieException | BadCalorieException e) {
