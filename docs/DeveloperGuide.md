@@ -213,7 +213,7 @@ getCommandByName()` retrieves the command and the UI displays the results.
 
 
 
-### Delete Meal & MealEntry Commands
+### Delete Meal and MealEntry Commands
 
 #### Overview
 
