@@ -134,10 +134,10 @@ To create or load a user profile the `UserHistoryTracker` class provides the met
 saved user information if available from an existing file or prompts the user
 to input new information for creating a new profile as shown in the sequence diagram below.
 ![User SD](images/userSequenceDiagram.jpg)
-Reference diagrams used
+Reference diagrams used:
 ![loadUserEntries SD]()
 ![askForUserData SD](images/askForUserData.drawio.svg)
-![createFileIfNotExists]()
+![createFileIfNotExists](images/createFileIfNotExists.drawio.png)
 
 
 ### ChatParser Input Handling
