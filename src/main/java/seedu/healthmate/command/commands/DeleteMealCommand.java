@@ -3,6 +3,7 @@ package seedu.healthmate.command.commands;
 import seedu.healthmate.command.Command;
 import seedu.healthmate.core.MealList;
 import seedu.healthmate.services.HistoryTracker;
+import seedu.healthmate.services.UI;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -48,6 +49,11 @@ public class DeleteMealCommand extends Command {
 
         logger.log(Level.INFO, "Executing command to delete a meal from meal options." + System.lineSeparator() +
                 "Number of meal options is: " + mealOptions.size());
+
+        if (mealOptions.size() <= 0) {
+            UI.printReply("No Meal Options", "Error: ");
+            return;
+        }
 
         // Removes the specified meal from the meal options and updates history
         mealOptions.extractAndRemoveMeal(userInput, command);
