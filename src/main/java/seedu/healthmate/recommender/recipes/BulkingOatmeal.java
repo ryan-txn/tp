@@ -21,7 +21,7 @@ public class BulkingOatmeal extends Recipe {
             1 scoop protein powder (e.g., whey isolate)
             A pinch of salt
             1 tsp cinnamon
-            ¼ tsp vanilla
+            1/4 tsp vanilla
             1 tsp ashwagandha powder (optional)
             """;
 
