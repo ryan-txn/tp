@@ -84,10 +84,23 @@ public class UserHistoryTracker extends HistoryTracker {
         File userDataFile = new File(super.DATA_DIRECTORY + File.separator + USER_DATA_FILE);
 
         try (Scanner scanner = new Scanner(userDataFile)) {
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-                String[] fields = line.split(",");  // Split line into components by commas
-                System.out.println(String.join(", ", fields));  // Join components with a comma and space
+            System.out.println("Last few records...");
+            Optional<UserEntryList> userListOpt = loadUserEntries();
+
+            if (userListOpt.isEmpty()) {
+                System.out.println("No user entries found.");
+                return;
+            }
+
+            UserEntryList userList = userListOpt.get();
+            int start = userList.getUserEntryList().size() - 1; // Calculate starting index for last 5 entries
+            int end = Math.max(userList.getUserEntryList().size() - 6, 0);
+
+            for (int i = start; i > end; i--) {
+                User user = userList.getUserEntryList().get(i);
+                System.out.println();
+                user.printUIString();
+                System.out.println();
             }
         } catch (FileNotFoundException e) {
             System.out.println("Error: User data file not found. " + e.getMessage());

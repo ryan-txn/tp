@@ -74,6 +74,14 @@ Enjoy your journey towards a healthier lifestyle with HealthMate!
 ### Legend
 [] = optional parameter
 {} = parameter
+### Exit: `bye`
+- Exits program
+```
+bye
+      Stay healthy!
+      _____________________________________________________________________________
+```
+
 ### List Commands
 Use the `list commands [{command}]` command to view all valid commands and their formats.
 - Example usage to list all commands
@@ -202,6 +210,73 @@ meal menu
       _________________________________________________________________________
 ```
 
+#### Weight Timeline: `weight timeline`
+- Returns a graph of weight changes
+```
+weight timeline
+Weight Timeline
+ 90.0 |                                                        *    
+ 88.5 |                          *                       *     *    
+ 87.0 |                    *     *                       *     *    
+ 85.5 |              *     *     *                       *     *    
+ 84.0 |              *     *     *                 *     *     *    
+ 82.5 |              *     *     *                 *     *     *    
+ 81.0 |        *     *     *     *           *     *     *     *    
+ 79.5 |  *     *     *     *     *           *     *     *     *    
+ 78.0 |  *     *     *     *     *           *     *     *     *    
+ 76.5 |  *     *     *     *     *           *     *     *     *    
+ 75.0 |  *     *     *     *     *     *     *     *     *     *    
+       ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- 
+       11-06 11-06 11-06 11-06 11-06 11-06 11-06 11-06 11-06 11-06 
+
+```
+#### Update User Command: `update userdata`
+- Updates user data after retrieving inputs from user
+```
+update userdata
+      Create your profile: please enter...
+      Height in cm (e.g. 180):
+180
+      Weight in kg (e.g. 80):
+80
+      Gender (male or female):
+male
+      Age (e.g. 20):
+20
+      Health Goal (WEIGHT_LOSS, STEADY_STATE, BULKING):
+WEIGHT_LOSS
+      Profile creation Successful!
+      _____________________________________________________________________________
+      Great! You can now begin to use the app!
+      _____________________________________________________________________________
+```
+
+#### Meal Recommender: `meal recommendations`
+- Returns recipes that suit your health goal
+
+```
+meal recommendations
+      _____________________________________________________________________________
+      Recommended recipes for your health goal
+      Veggie Wrap with Hummus: 361 calories
+      Protein: 12g
+      Carbs: 50g
+      Fat: 14g
+      Fiber: 8g
+      1 teaspoon extra-virgin olive oil
+      ½ small zucchini, sliced
+      ½ medium red bell pepper, sliced
+      ¼ small red onion, sliced
+      ½ teaspoon dried oregano
+      Pinch of salt
+      2 whole-grain wraps
+      ¼ cup hummus
+      ½ cup baby spinach
+      2 tablespoons crumbled feta cheese
+      4 black olives, sliced
+
+```
+
 ### Log Commands:
 #### Show Meal History: `log meals`
 - Displays the history of the meals you've eaten over the chosen timespan.
@@ -281,17 +356,19 @@ show historicCalories 10
 [] = optional parameter
 {} = parameter
 
-| Command                                    | Syntax                                                                                                 | Description                                                                                                    |
-|--------------------------------------------|--------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------|
-| List all commmands                         | `list commands` or `list commands [{command}]`                                                         | Lists all available commands and the proper formatting.                                                        
-| Save meal to meal options                  | `save meal {meal} /c{Number of calories}`                                                              | Prompts for meal name, calories, then confirms saving the meal.                                                |
-| Add meal entry for tracking                | `add mealEntry {meal} [/c{Number of calories}] [/p{Number of portions}] [/t{timestamp in YYYY-MM-DD}]` | Adds meal to daily caloric intake and shows progress toward goal.                                              |
-| Show list of available meal options        | `meal menu`                                                                                            | Prints all available meals from the saved options list.                                                        |
-| Show past meals                            | `log meals`                                                                                            | Displays history of meals with timestamp and calories.                                                         |
-| Delete meal from meal menu                 | `delete meal {index of meal in meal menu}`                                                             | Deletes meal option from the meal menu at the specified index.                                                 |
+| Command                                    | Syntax                                                                                                 | Description                                                                                                   |
+|--------------------------------------------|--------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
+| List all commmands                         | `list commands` or `list commands [{command}]`                                                         | Lists all available commands and the proper formatting.                                                       
+| Save meal to meal options                  | `save meal {meal} /c{Number of calories}`                                                              | Prompts for meal name, calories, then confirms saving the meal.                                               |
+| Add meal entry for tracking                | `add mealEntry {meal} [/c{Number of calories}] [/p{Number of portions}] [/t{timestamp in YYYY-MM-DD}]` | Adds meal to daily caloric intake and shows progress toward goal.                                             |
+| Show list of available meal options        | `meal menu`                                                                                            | Prints all available meals from the saved options list.                                                       |
+| Show past meals                            | `log meals`                                                                                            | Displays history of meals with timestamp and calories.                                                        |
+| Delete meal from meal menu                 | `delete meal {index of meal in meal menu}`                                                             | Deletes meal option from the meal menu at the specified index.                                                |
 | Delete meal entry from meal log            | `delete mealEntry {index of meal in the meal log`                                                      | Deletes meal entry from the meal log at the specified index and shows effect on the days progress toward goal. |
-| Show Calorie Progress for Today            | `show todayCalories`                                                                                   | Prints a Calorie Progress Bar to represent Today Calorie Progress                                              |
-| Show Historic Calorie Progress             | `show historicCalories {Number of Days inclu. Today}`                                                  | Prints Calorie Progress Bars & Various Stats to represent Historical Calorie Progress                          |
-| Add and Update new User Entry to Save File | `update userdata`                                                                                      | Asks user for new User data to update in save file.                                                            |
-| Show Most Recent User Data Entry           | `current userdata`                                                                                     | Prints the most recent User Data from the save file. Prints an error if none found.                            |
-
+| Show Calorie Progress for Today            | `show todayCalories`                                                                                   | Prints a Calorie Progress Bar to represent Today Calorie Progress                                             |
+| Show Historic Calorie Progress             | `show historicCalories {Number of Days inclu. Today}`                                                  | Prints Calorie Progress Bars & Various Stats to represent Historical Calorie Progress                         |
+| Add and Update new User Entry to Save File | `update userdata`                                                                                      | Asks user for new User data to update in save file.                                                           |
+| Show Most Recent User Data Entry           | `current userdata`                                                                                     | Prints the most recent User Data from the save file. Prints an error if none found.                           |
+| Exit                                       | `bye`                                                                                                  | Closes program after saving data                                                                              |
+| Display weight timeline                    | `weight timeline`                                                                                      | Creates a graph of up to the last  10 weight entries over time if there is significant changes.               |
+| Meal recommendation command                | `meal recommendations`                                                                                 | Returns a list of ready recipes for a user based on their HealthGoal                                          |
