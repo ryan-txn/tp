@@ -1,32 +1,40 @@
-Nov 07, 2024 12:06:46 PM seedu.healthmate.services.ChatParser <init>
-INFO: Initialized HistoryTracker
-Nov 07, 2024 12:06:46 PM seedu.healthmate.services.ChatParser <init>
-INFO: Loaded MealEntries
-Nov 07, 2024 12:06:46 PM seedu.healthmate.services.ChatParser <init>
-INFO: Loaded MealOptions
-Nov 07, 2024 12:06:46 PM seedu.healthmate.services.ChatParser <init>
-INFO: Initializing UserHistoryTracker
-Nov 07, 2024 12:06:46 PM seedu.healthmate.services.ChatParser <init>
-INFO: ChatParser correctly initialized.
-Nov 07, 2024 12:06:46 PM seedu.healthmate.services.ChatParser run
-INFO: Checking if user data exists
-Nov 07, 2024 12:06:46 PM seedu.healthmate.services.ChatParser run
-INFO: User is: 180.0,80.0,true,20,BULKING,2865.603,2024-11-07 12:04:47
-Nov 07, 2024 12:06:46 PM seedu.healthmate.services.ChatParser parseUserInput
-INFO: Getting next user input line
-Nov 07, 2024 12:06:46 PM seedu.healthmate.services.ChatParser parseUserInput
-INFO: User input is: show todayCalories
-Nov 07, 2024 12:06:46 PM seedu.healthmate.services.ChatParser parseUserInput
-INFO: Start multicCommandParsing
-Nov 07, 2024 12:06:46 PM seedu.healthmate.services.ChatParser multiCommandParsing
-INFO: User commands are: Main Command: show todayCalories Other: [Ljava.lang.String;@13c9d689
-Nov 07, 2024 12:06:46 PM seedu.healthmate.command.commands.TodayCalorieProgressCommand executeCommands
-INFO: Executing command to print daily progress bar
-Nov 07, 2024 12:06:46 PM seedu.healthmate.command.commands.TodayCalorieProgressCommand executeCommands
-INFO: Finish executing command to print daily progress bar
-Nov 07, 2024 12:06:46 PM seedu.healthmate.services.ChatParser parseUserInput
-INFO: Getting next user input line
-Nov 07, 2024 12:06:46 PM seedu.healthmate.services.ChatParser parseUserInput
-INFO: User input is: bye
-Nov 07, 2024 12:06:46 PM seedu.healthmate.services.ChatParser parseUserInput
-INFO: User closes application
+Nov. 07, 2024 12:32:01 PM seedu.healthmate.services.ChatParser <init>
+INFORMATION: Initialized HistoryTracker
+Nov. 07, 2024 12:32:01 PM seedu.healthmate.services.ChatParser <init>
+INFORMATION: Loaded MealEntries
+Nov. 07, 2024 12:32:01 PM seedu.healthmate.services.ChatParser <init>
+INFORMATION: Loaded MealOptions
+Nov. 07, 2024 12:32:01 PM seedu.healthmate.services.ChatParser <init>
+INFORMATION: Initializing UserHistoryTracker
+Nov. 07, 2024 12:32:01 PM seedu.healthmate.services.ChatParser <init>
+INFORMATION: ChatParser correctly initialized.
+Nov. 07, 2024 12:32:01 PM seedu.healthmate.services.ChatParser run
+INFORMATION: Checking if user data exists
+Nov. 07, 2024 12:32:01 PM seedu.healthmate.services.ChatParser run
+INFORMATION: User is: 180.0,80.0,true,20,BULKING,2865.603,2024-11-07 12:06:46
+Nov. 07, 2024 12:32:01 PM seedu.healthmate.services.ChatParser parseUserInput
+INFORMATION: Getting next user input line
+Nov. 07, 2024 12:32:08 PM seedu.healthmate.services.ChatParser parseUserInput
+INFORMATION: User input is: update userdata
+Nov. 07, 2024 12:32:08 PM seedu.healthmate.services.ChatParser parseUserInput
+INFORMATION: Start multicCommandParsing
+Nov. 07, 2024 12:32:08 PM seedu.healthmate.services.ChatParser multiCommandParsing
+INFORMATION: User commands are: Main Command: update userdata Other: [Ljava.lang.String;@439f5b3d
+Nov. 07, 2024 12:32:08 PM seedu.healthmate.command.commands.UpdateUserDataCommand executeCommand
+INFORMATION: Executing command to update user data
+Nov. 07, 2024 12:35:26 PM seedu.healthmate.command.commands.UpdateUserDataCommand executeCommand
+INFORMATION: Finish executing command to update user data
+Nov. 07, 2024 12:35:26 PM seedu.healthmate.services.ChatParser parseUserInput
+INFORMATION: Getting next user input line
+Nov. 07, 2024 12:35:32 PM seedu.healthmate.services.ChatParser parseUserInput
+INFORMATION: User input is: current userdata
+Nov. 07, 2024 12:35:32 PM seedu.healthmate.services.ChatParser parseUserInput
+INFORMATION: Start multicCommandParsing
+Nov. 07, 2024 12:35:32 PM seedu.healthmate.services.ChatParser multiCommandParsing
+INFORMATION: User commands are: Main Command: current userdata Other: [Ljava.lang.String;@728938a9
+Nov. 07, 2024 12:35:32 PM seedu.healthmate.command.commands.CurrentUserDataCommand executeCommand
+INFORMATION: Executing command to return current user data
+Nov. 07, 2024 12:35:32 PM seedu.healthmate.command.commands.CurrentUserDataCommand executeCommand
+INFORMATION: Finish executing command to return current user data
+Nov. 07, 2024 12:35:32 PM seedu.healthmate.services.ChatParser parseUserInput
+INFORMATION: Getting next user input line
