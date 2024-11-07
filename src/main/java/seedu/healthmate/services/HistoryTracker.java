@@ -128,6 +128,7 @@ public class HistoryTracker {
                 writer.newLine();
             }
         } catch (IOException ignored) {
+            System.out.println("Loading...");
         }
     }
 
@@ -148,6 +149,7 @@ public class HistoryTracker {
                 meals = parseAndAddMeal(meals, parts, isEntry);
             }
         } catch (IOException ignored) {
+            System.out.println("Loading...");
         }
         return meals;
     }
