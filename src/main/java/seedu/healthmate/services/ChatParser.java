@@ -11,6 +11,7 @@ import seedu.healthmate.command.commands.MealMenuCommand;
 import seedu.healthmate.command.commands.UpdateUserDataCommand;
 import seedu.healthmate.command.commands.TodayCalorieProgressCommand;
 import seedu.healthmate.command.commands.HistoricCalorieProgressCommand;
+import seedu.healthmate.command.commands.CurrentUserDataCommand;
 import seedu.healthmate.command.commands.MealRecommendationsCommand;
 import seedu.healthmate.command.commands.WeightTimelineCommand;
 import seedu.healthmate.command.commands.ByeCommand;
@@ -151,6 +152,9 @@ public class ChatParser {
             break;
         case UpdateUserDataCommand.COMMAND:
             UpdateUserDataCommand.executeCommand(userHistoryTracker, logger);
+            break;
+        case CurrentUserDataCommand.COMMAND:
+            CurrentUserDataCommand.executeCommand(userHistoryTracker, logger);
             break;
         case TodayCalorieProgressCommand.COMMAND:
             TodayCalorieProgressCommand.executeCommands(mealEntries, user, logger);

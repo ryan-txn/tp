@@ -277,7 +277,8 @@ HealthMate solves the following problems:
 * *MealList* - A collection of pre-saved meals that users can quickly select from when logging their food intake.
 * *MealEntriesList* - A chronological list of all meals consumed by the user.
 * *ChatParser* - The component responsible for interpreting user commands and executing the appropriate actions.
-* *HistoryTracker* - The component that manages the storage and retrieval of user data, meal entries, and meal options.
+* *HistoryTracker* - The component that manages the storage and retrieval of meal entries, and meal options.
+* *UserHistoryTracker* - The component that manages the storage and retrieval of user data.
 * *HealthGoal* - The class that manages functions pertaining to setting of user health goal as well calculating ideal caloric intake based on various factors.
 
 ## Instructions for manual testing
