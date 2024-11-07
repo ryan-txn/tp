@@ -79,16 +79,16 @@ public class User {
             UI.printString("Height in cm (e.g. 180):");
             double height = Double.parseDouble(scanner.nextLine());
             if (height <= 0){
-                throw new NumberFormatException();
+                throw new NumberFormatException("INVALID HEIGHT");
             }
             UI.printString("Weight in kg (e.g. 80):");
             double weight = Double.parseDouble(scanner.nextLine());
             if (weight <= 0){
-                throw new NumberFormatException();
+                throw new NumberFormatException("INVALID WEIGHT");
             }
             UI.printString("Gender (male or female):");
             String gender = scanner.nextLine();
-            boolean isMale = (gender.equalsIgnoreCase("male"));
+            boolean isMale = setGender(gender);
 
             UI.printString("Age (e.g. 20):");
             int age = Integer.parseInt(scanner.nextLine());
@@ -108,7 +108,7 @@ public class User {
 
             return user;
         } catch (Exception exception) {
-            UI.printReply("Wrong user input", "Retry: ");
+            UI.printReply("Wrong user input: " + exception.getMessage(), "Retry: ");
             return askForUserData();
         }
     }
@@ -167,13 +167,25 @@ public class User {
         return this.weightEntry;
     }
 
+    private static boolean setGender(String gender) {
+        if (gender.equals("male")) {
+            return true;
+        } else if (gender.equals("female")) {
+            return false;
+        } else {
+            throw new IllegalArgumentException("INVALID GENDER");
+        }
+    }
+
     private static void validateHealthGoal(String healthGoal) {
         // Check if the input matches any valid formats
         if (!healthGoal.equals("WEIGHT_LOSS") && !healthGoal.equals("STEADY_STATE") && !healthGoal.equals("BULKING")) {
             // Throw an exception if invalid
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("INVALID HEALTH GOAL");
         }
     }
+
+
 
 }
 

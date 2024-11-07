@@ -1,32 +1,32 @@
-Nov 06, 2024 9:49:39 PM seedu.healthmate.services.ChatParser <init>
+Nov 07, 2024 6:29:08 PM seedu.healthmate.services.ChatParser <init>
 INFO: Initialized HistoryTracker
-Nov 06, 2024 9:49:39 PM seedu.healthmate.services.ChatParser <init>
+Nov 07, 2024 6:29:08 PM seedu.healthmate.services.ChatParser <init>
 INFO: Loaded MealEntries
-Nov 06, 2024 9:49:39 PM seedu.healthmate.services.ChatParser <init>
+Nov 07, 2024 6:29:08 PM seedu.healthmate.services.ChatParser <init>
 INFO: Loaded MealOptions
-Nov 06, 2024 9:49:39 PM seedu.healthmate.services.ChatParser <init>
+Nov 07, 2024 6:29:08 PM seedu.healthmate.services.ChatParser <init>
 INFO: Initializing UserHistoryTracker
-Nov 06, 2024 9:49:39 PM seedu.healthmate.services.ChatParser <init>
+Nov 07, 2024 6:29:08 PM seedu.healthmate.services.ChatParser <init>
 INFO: ChatParser correctly initialized.
-Nov 06, 2024 9:49:39 PM seedu.healthmate.services.ChatParser run
+Nov 07, 2024 6:29:08 PM seedu.healthmate.services.ChatParser run
 INFO: Checking if user data exists
-Nov 06, 2024 9:49:39 PM seedu.healthmate.services.ChatParser run
-INFO: User is: 180.0,80.0,true,20,BULKING,2865.603,2024-11-06 21:22:59
-Nov 06, 2024 9:49:39 PM seedu.healthmate.services.ChatParser parseUserInput
+Nov 07, 2024 6:29:08 PM seedu.healthmate.services.ChatParser run
+INFO: User is: 180.0,80.0,true,20,BULKING,2865.603,2024-11-07 13:44:57
+Nov 07, 2024 6:29:08 PM seedu.healthmate.services.ChatParser parseUserInput
 INFO: Getting next user input line
-Nov 06, 2024 9:49:39 PM seedu.healthmate.services.ChatParser parseUserInput
+Nov 07, 2024 6:29:08 PM seedu.healthmate.services.ChatParser parseUserInput
 INFO: User input is: show todayCalories
-Nov 06, 2024 9:49:39 PM seedu.healthmate.services.ChatParser parseUserInput
+Nov 07, 2024 6:29:08 PM seedu.healthmate.services.ChatParser parseUserInput
 INFO: Start multicCommandParsing
-Nov 06, 2024 9:49:39 PM seedu.healthmate.services.ChatParser multiCommandParsing
-INFO: User commands are: Main Command: show todayCalories Other: [Ljava.lang.String;@158da8e
-Nov 06, 2024 9:49:39 PM seedu.healthmate.command.commands.TodayCalorieProgressCommand executeCommands
+Nov 07, 2024 6:29:08 PM seedu.healthmate.services.ChatParser multiCommandParsing
+INFO: User commands are: Main Command: show todayCalories Other: [Ljava.lang.String;@85c3522
+Nov 07, 2024 6:29:08 PM seedu.healthmate.command.commands.TodayCalorieProgressCommand executeCommands
 INFO: Executing command to print daily progress bar
-Nov 06, 2024 9:49:39 PM seedu.healthmate.command.commands.TodayCalorieProgressCommand executeCommands
+Nov 07, 2024 6:29:08 PM seedu.healthmate.command.commands.TodayCalorieProgressCommand executeCommands
 INFO: Finish executing command to print daily progress bar
-Nov 06, 2024 9:49:39 PM seedu.healthmate.services.ChatParser parseUserInput
+Nov 07, 2024 6:29:08 PM seedu.healthmate.services.ChatParser parseUserInput
 INFO: Getting next user input line
-Nov 06, 2024 9:49:39 PM seedu.healthmate.services.ChatParser parseUserInput
+Nov 07, 2024 6:29:08 PM seedu.healthmate.services.ChatParser parseUserInput
 INFO: User input is: bye
-Nov 06, 2024 9:49:39 PM seedu.healthmate.services.ChatParser parseUserInput
+Nov 07, 2024 6:29:08 PM seedu.healthmate.services.ChatParser parseUserInput
 INFO: User closes application
