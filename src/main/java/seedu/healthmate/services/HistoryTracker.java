@@ -127,8 +127,7 @@ public class HistoryTracker {
                 writer.write(meal.toSaveString());
                 writer.newLine();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ignored) {
         }
     }
 
@@ -148,8 +147,7 @@ public class HistoryTracker {
                 String[] parts = line.split(",");
                 meals = parseAndAddMeal(meals, parts, isEntry);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ignored) {
         }
         return meals;
     }
