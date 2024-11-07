@@ -19,25 +19,27 @@ This includes:
 - Your weight in kg (e.g. 80)
 - Your gender (either male or female)
 - Your age in years (e.g. 20)
-- Your personal ealth goal (either WEIGHT_LOSS, STEADY_STATE, BULKING)
+- Your personal health goal (either WEIGHT_LOSS, STEADY_STATE, BULKING)
 
 **Log Your First Meal**
 - Enter the meal name and calories.
-- Example: `add mealEntry grapes /c400`
+- Example: `add mealEntry burger /c300`
 - The printed consumption bar shows you how much more (or less) you should consume to reach your health goal.
 
-**Get an overview on your calorie consumption**
-- Use the "Log Meals" feature to view your meal entries and track your daily caloric intake.
-- Example: Add your first mealEntry and then use `log meals` to assess the meals tracked so far.
+```
+add mealEntry burger /c300
 
-  ```
-  add mealEntry burger /c300
   _____________________________________________________________________________
   Tracked: burger with 300 calories (at: 2024-10-29T22:00)
   _____________________________________________________________________________
   % of Expected Calorie Intake Consumed:
   ███░░░░░░░░░░░░░░░░░░░░░░░░░░|  11% |░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ (2024-10-29)
   _____________________________________________________________________________
+```
+**Get an overview on your calorie consumption**
+- Use the "Log Meals" feature to view your meal entries and track your daily caloric intake.
+- Example: Add your first mealEntry and then use `log meals` to assess the meals tracked so far. 
+  ```
   log meals
   _____________________________________________________________________________
   1: burger with 300 calories (at: 2024-10-29T22:00)
@@ -57,8 +59,7 @@ This includes:
   ███░░░░░░░░░░░░░░░░░░░░░░░░░░|  11% |░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ (2024-10-29)
 ```
   
-  
-  
+
 **Store Common Meals**
 - Save frequently eaten meals to your meal menu for quick access
 - Example: `save meal pizza /c800` saves pizza with 800 calories to your meal menu
@@ -195,6 +196,7 @@ Getting info from meal options...
 
 #### Delete meal from meal menu: `delete meal {index of meal in meal menu}`
 - Deletes meal option from the meal menu at the specified index
+- To identify the right index consider running `meal menu` beforehand
 - Example usage
 ```
 delete meal 1
@@ -234,26 +236,6 @@ Weight Timeline
 
 ```
 
-#### Update User Command: `update userdata`
-- Updates user data after retrieving inputs from user
-```
-update userdata
-      Create your profile: please enter...
-      Height in cm (e.g. 180):
-180
-      Weight in kg (e.g. 80):
-80
-      Gender (male or female):
-male
-      Age (e.g. 20):
-20
-      Health Goal (WEIGHT_LOSS, STEADY_STATE, BULKING):
-WEIGHT_LOSS
-      Profile creation Successful!
-      _____________________________________________________________________________
-      Great! You can now begin to use the app!
-      _____________________________________________________________________________
-```
 
 #### Meal Recommender: `meal recommendations`
 - Returns recipes that suit your health goal
@@ -351,6 +333,31 @@ show historicCalories 10
       Heaviest Meal Consumed: burger with 300 calories (at: 2024-10-25)
       Meals Consumption's Percentage of Daily Ideal Calories: 10.0%
       _____________________________________________________________________________
+```
+### Update your data
+Your goal or your body weight changed? By running the `update userdata` you can update the specifics of your profile. 
+```
+_____________________________________________________________________________
+update userdata
+      Create your profile: please enter...
+      Height in cm (e.g. 180):
+```
+
+If you want to see the specifics for which your ideal calorie consumption is calculated 
+run the `current userdata` command. 
+```
+current userdata
+      _____________________________________________________________________________
+      Here is your current user data:
+      Height: 180.0cm
+      Weight: 80.0kg
+      Gender: male
+      Age: 20
+      Health Goal: BULKING
+      Ideal Daily Caloric Intake: 2865.603
+      Recorded at: 2024-11-07 12:35:26
+      _____________________________________________________________________________
+
 ```
 
 ## FAQ

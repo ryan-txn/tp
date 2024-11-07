@@ -37,6 +37,10 @@ public class WeightEntryDisplay {
         double minWeight = calculateMinWeight();
         double maxWeight = calculateMaxWeight();
 
+        if(minWeight == maxWeight) {
+            UI.printReply("Not enough weight entries of different variance.","");
+            return;
+        }
         double scale = calculateScale(minWeight, maxWeight);
         printGraph(minWeight, maxWeight, scale);
     }
