@@ -77,11 +77,7 @@ public class HistoryTracker {
      * @return A MealEntriesList containing all saved meal entries
      */
     public MealEntriesList loadMealEntries() {
-        List<Meal> meals = loadMealFromFile(MEAL_ENTRIES_FILE, true);
-        MealEntriesList mealEntriesList = new MealEntriesList();
-        for (Meal meal : meals) {
-            mealEntriesList.addMealWithoutCLIMessage(meal);
-        }
+        MealEntriesList mealEntriesList = silentLoadMealEntries();
         UI.printString("Meal Entries Loaded Successfully!");
         return mealEntriesList;
     }
@@ -91,12 +87,34 @@ public class HistoryTracker {
      * @return A MealList containing all saved meal options
      */
     public MealList loadMealOptions() {
+        MealList mealList = silentLoadMealOptions();
+        UI.printString("Meal Options Loaded Successfully!");
+        return mealList;
+    }
+
+    /**
+     * Loads meal entries from the CSV file.
+     * @return A MealEntriesList containing all saved meal entries
+     */
+    public MealEntriesList silentLoadMealEntries() {
+        List<Meal> meals = loadMealFromFile(MEAL_ENTRIES_FILE, true);
+        MealEntriesList mealEntriesList = new MealEntriesList();
+        for (Meal meal : meals) {
+            mealEntriesList.addMealWithoutCLIMessage(meal);
+        }
+        return mealEntriesList;
+    }
+
+    /**
+     * Loads meal options from the CSV file.
+     * @return A MealList containing all saved meal options
+     */
+    public MealList silentLoadMealOptions() {
         List<Meal> meals = loadMealFromFile(MEAL_OPTIONS_FILE, false);
         MealList mealList = new MealList();
         for (Meal meal : meals) {
             mealList.addMealWithoutCLIMessage(meal);
         }
-        UI.printString("Meal Options Loaded Successfully!");
         return mealList;
     }
 

@@ -387,6 +387,7 @@ public class ChatParserTest {
     @Test
     void todayCalorieProgress_withMeals_success() {
         ChatParser chatParser = new ChatParser();
+        chatParser.cleanMealLists();
         String simulatedInput = "add mealEntry pizza /c500\nshow todayCalories\nbye\n";
 
         LocalDate today = LocalDate.now();
