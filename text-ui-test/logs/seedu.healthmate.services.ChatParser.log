@@ -1,0 +1,16 @@
+Nov. 09, 2024 8:41:37 PM seedu.healthmate.services.ChatParser <init>
+INFORMATION: Initialized HistoryTracker
+Nov. 09, 2024 8:41:37 PM seedu.healthmate.services.ChatParser <init>
+INFORMATION: Loaded MealEntries
+Nov. 09, 2024 8:41:37 PM seedu.healthmate.services.ChatParser <init>
+INFORMATION: Loaded MealOptions
+Nov. 09, 2024 8:41:37 PM seedu.healthmate.services.ChatParser <init>
+INFORMATION: Initializing UserHistoryTracker
+Nov. 09, 2024 8:41:37 PM seedu.healthmate.services.ChatParser <init>
+INFORMATION: ChatParser correctly initialized.
+Nov. 09, 2024 8:41:37 PM seedu.healthmate.services.ChatParser run
+INFORMATION: Checking if user data exists
+Nov. 09, 2024 8:41:37 PM seedu.healthmate.services.ChatParser run
+INFORMATION: User is: 180.0,80.0,true,20,BULKING,2865.603,2024-11-09 20:41:37,true
+Nov. 09, 2024 8:41:37 PM seedu.healthmate.services.ChatParser parseUserInput
+INFORMATION: Getting next user input line

@@ -1,1 +1,7 @@
+180
+80
+male
+20
+bulking
+y
 bye
