@@ -285,14 +285,16 @@ meal recommendations
 ### Log Commands:
 #### Show Meal History: `log meals`
 - Displays the history of the meals you've eaten over the chosen timespan.
-  log meals
 - Example Usage
 ```
 log meals
-      _________________________________________________________________________
-      1: burger with 300 calories (at: 2024-10-14T15:00)
-      2: pizza with 400 calories (at: 2024-10-14T15:00)
-      _________________________________________________________________________
+      _____________________________________________________________________________
+      1: pizza with 300 calories (at: 2024-11-01)
+      2: late dinner with 300 calories (at: 2024-11-02)
+      3: salad with 200 calories (at: 2024-11-03)
+      4: supper with 100 calories (at: 2024-11-04)
+      _____________________________________________________________________________
+
 ```
 #### Delete meal from meal log: `delete mealEntry {index of meal in the meal log}`
 - Deletes meal entry from the meal log at the specified index
