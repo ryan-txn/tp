@@ -127,8 +127,8 @@ public class HistoryTracker {
                 writer.write(meal.toSaveString());
                 writer.newLine();
             }
-        } catch (IOException ignored) {
-            System.out.println("Loading...");
+        } catch (IOException e) {
+            UI.printString("Error saving to file: " + fileName + ". " + e.getMessage());
         }
     }
 
@@ -141,9 +141,17 @@ public class HistoryTracker {
     private List<Meal> loadMealFromFile(String fileName, boolean isEntry, boolean loadSilent) {
         List<Meal> meals = new ArrayList<>();
         int totalCorruptedMeals = 0;
-        try (BufferedReader reader = new BufferedReader(
-                new FileReader(DATA_DIRECTORY + File.separator + fileName))
-            ) {
+        File file = new File(DATA_DIRECTORY + File.separator + fileName);
+        
+        if (!file.exists()) {
+            if (!loadSilent) {
+                String mealTypeString = isEntry ? "Meal Entries" : "Meal Options";
+                UI.printString("No locally saved " + mealTypeString + " found.");
+            }
+            return meals;
+        }
+        
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
@@ -151,8 +159,8 @@ public class HistoryTracker {
                 meals = parseResult.t();
                 totalCorruptedMeals += parseResult.u();
             }
-        } catch (IOException ignored) {
-            System.out.println("Loading...");
+        } catch (IOException e) {
+            UI.printString("Error loading from file: " + fileName + ". " + e.getMessage());
         }
         if (totalCorruptedMeals > 0 && !loadSilent) {
             String mealTypeString = isEntry ? "Meal Entries" : "Meal Options";
