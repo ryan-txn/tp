@@ -275,6 +275,13 @@ public class UI {
 
         String incomplete = "░"; // U+2591 Unicode Character
         String complete = "█"; // U+2588 Unicode Character
+        String testString = incomplete + complete;
+
+        //Fallback if Unicode characters not available by the system.
+        if (testString.contains("?")) {
+            incomplete = "-";
+            complete = "*";
+        }
 
         int numberOfBoxes = 60;
         double totalPercent = 100.0;
