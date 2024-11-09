@@ -44,7 +44,7 @@ public class Meal {
         if (signallerIndex == -1) {
             signallerIndex = input.length();
         }
-        return Optional.ofNullable(input.substring(mealDescriptionIndex, signallerIndex).trim());
+        return Optional.ofNullable(input.substring(mealDescriptionIndex, signallerIndex).trim().toLowerCase());
     }
 
     public boolean descriptionIsEmpty() {

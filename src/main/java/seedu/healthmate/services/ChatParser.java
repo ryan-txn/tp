@@ -47,10 +47,10 @@ public class ChatParser {
         this.historyTracker = new HistoryTracker();
         logger.log(Level.INFO, "Initialized HistoryTracker");
 
-        this.mealEntries = historyTracker.loadMealEntries();
+        this.mealEntries = historyTracker.loadMealEntries(false);
         logger.log(Level.INFO, "Loaded MealEntries");
 
-        this.mealOptions = historyTracker.loadMealOptions();
+        this.mealOptions = historyTracker.loadMealOptions(false);
         logger.log(Level.INFO, "Loaded MealOptions");
 
         this.userHistoryTracker = new UserHistoryTracker();
@@ -228,8 +228,8 @@ public class ChatParser {
      * synchronized between multiple running instances of the app
      */
     private void updateMealLists() {
-        this.mealOptions = historyTracker.silentLoadMealOptions();
-        this.mealEntries = historyTracker.silentLoadMealEntries();
+        this.mealOptions = historyTracker.loadMealOptions(true);
+        this.mealEntries = historyTracker.loadMealEntries(true);
     }
 
     private void assertCheckParserInit() {

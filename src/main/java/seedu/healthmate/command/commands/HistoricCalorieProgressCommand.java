@@ -72,9 +72,12 @@ public class HistoricCalorieProgressCommand extends Command {
 
         try {
             int days = Integer.parseInt(commandPair.getCommandByIndex(index));
+            if (days <= 0) {
+                throw new NumberFormatException();
+            }
             return Optional.of(days);
         } catch (NumberFormatException e) {
-            UI.printReply(commandPair.getCommandByIndex(index), "The following is not a valid number: ");
+            UI.printReply(commandPair.getCommandByIndex(index), "The following is not a valid day count: ");
         } catch (IndexOutOfBoundsException s) {
             UI.printReply("Specify the number of days you want to look into the past", "Missing input: ");
         }
