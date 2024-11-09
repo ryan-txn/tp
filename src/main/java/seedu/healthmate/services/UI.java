@@ -2,6 +2,7 @@ package seedu.healthmate.services;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
@@ -46,6 +47,16 @@ public class UI {
     public static void printReply(String message, String signaller) {
         System.out.println(LINE);
         System.out.println(INDENTATION + signaller + message);
+        System.out.println(LINE);
+    }
+
+    /**
+     * Prints an array of strings in the standard format of the UI
+     * @param messages the strings to print to the user
+     */
+    public static void printMultiLineReply(List<String> messages) {
+        System.out.println(LINE);
+        messages.stream().forEach(message -> System.out.println(INDENTATION + message));
         System.out.println(LINE);
     }
 
