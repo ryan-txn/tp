@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.AfterEach;
+
+import seedu.healthmate.core.HealthGoal;
 import seedu.healthmate.core.User;
 import seedu.healthmate.core.UserEntryList;
 import seedu.healthmate.services.UserHistoryTracker;
@@ -58,8 +60,8 @@ public class UserHistoryTrackerTest {
     @AfterEach
     public void userHistoryTracker_cleanup() {
         userHistoryTracker.clearSaveFile();
-
-        User testUser = new User(180, 80, true, 20, "BULKING");
+        HealthGoal healthGoal = new HealthGoal("BULKING");
+        User testUser = new User(180, 80, true, 20, healthGoal);
 
         userHistoryTracker.addUserEntry(testUser);
     }

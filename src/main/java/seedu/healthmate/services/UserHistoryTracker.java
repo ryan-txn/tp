@@ -154,7 +154,6 @@ public class UserHistoryTracker extends HistoryTracker {
         File userDataFile = new File(DATA_DIRECTORY + File.separator + USER_DATA_FILE);
         if (!userDataFile.exists()) {
             userDataFile.createNewFile();
-            UI.printReply("Creating new save file", "");
         }
         return userDataFile;
     }
