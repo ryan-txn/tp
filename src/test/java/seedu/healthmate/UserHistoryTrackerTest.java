@@ -8,7 +8,6 @@ import org.junit.jupiter.api.AfterEach;
 import seedu.healthmate.core.HealthGoal;
 import seedu.healthmate.core.User;
 import seedu.healthmate.core.UserEntryList;
-import seedu.healthmate.services.HistoryTracker;
 import seedu.healthmate.services.UserHistoryTracker;
 
 public class UserHistoryTrackerTest {
