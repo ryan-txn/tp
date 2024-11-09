@@ -1,6 +1,7 @@
 package seedu.healthmate.services;
 
 
+import java.util.List;
 import java.util.Optional;
 
 import seedu.healthmate.core.Meal;
@@ -62,7 +63,9 @@ public class MealSaver {
      */
     public void saveMeal(Meal meal, MealList mealList) {
         if (DuplicateEntryChecker.isDuplicate(meal.getName(), mealList.getMealList())) {
-            System.out.println("Duplicate meal found: " + meal.getName());
+            List<String> messages = List.of("Duplicate meal found: " + meal.getName().orElse(""),
+                    "Updated existing meal with new meal specifics!");
+            UI.printMultiLineReply(messages);
             if (shouldOverwrite(meal)) {
                 overwriteMeal(meal, mealList);
             }

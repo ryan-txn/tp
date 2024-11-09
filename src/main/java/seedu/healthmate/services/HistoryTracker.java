@@ -15,6 +15,7 @@ import seedu.healthmate.core.Meal;
 import seedu.healthmate.core.MealEntriesList;
 import seedu.healthmate.core.MealEntry;
 import seedu.healthmate.core.MealList;
+import seedu.healthmate.utils.Pair;
 
 /**
  * Handles saving and loading of meal entries and meal options to/from persistent storage.
@@ -60,7 +61,7 @@ public class HistoryTracker {
     public void saveMealOptions(MealList mealOptions) {
         //only saves meals which are new/details change
         List<Meal> mealList = mealOptions.getMealList();
-        List<Meal> existingMeals = loadMealFromFile(MEAL_OPTIONS_FILE, false);
+        List<Meal> existingMeals = loadMealFromFile(MEAL_OPTIONS_FILE, false, true);
         List<Meal> newMeals = new ArrayList<>();
         
         for (Meal meal : mealList) {
@@ -72,32 +73,13 @@ public class HistoryTracker {
         saveMealToFile(newMeals, MEAL_OPTIONS_FILE);
     }
 
-    /**
-     * Loads meal entries from the CSV file.
-     * @return A MealEntriesList containing all saved meal entries
-     */
-    public MealEntriesList loadMealEntries() {
-        MealEntriesList mealEntriesList = silentLoadMealEntries();
-        UI.printString("Meal Entries Loaded Successfully!");
-        return mealEntriesList;
-    }
-
-    /**
-     * Loads meal options from the CSV file.
-     * @return A MealList containing all saved meal options
-     */
-    public MealList loadMealOptions() {
-        MealList mealList = silentLoadMealOptions();
-        UI.printString("Meal Options Loaded Successfully!");
-        return mealList;
-    }
 
     /**
      * Loads meal entries from the CSV file.
      * @return A MealEntriesList containing all saved meal entries
      */
-    public MealEntriesList silentLoadMealEntries() {
-        List<Meal> meals = loadMealFromFile(MEAL_ENTRIES_FILE, true);
+    public MealEntriesList loadMealEntries(boolean loadSilent) {
+        List<Meal> meals = loadMealFromFile(MEAL_ENTRIES_FILE, true, loadSilent);
         MealEntriesList mealEntriesList = new MealEntriesList();
         for (Meal meal : meals) {
             mealEntriesList.addMealWithoutCLIMessage(meal);
@@ -109,8 +91,8 @@ public class HistoryTracker {
      * Loads meal options from the CSV file.
      * @return A MealList containing all saved meal options
      */
-    public MealList silentLoadMealOptions() {
-        List<Meal> meals = loadMealFromFile(MEAL_OPTIONS_FILE, false);
+    public MealList loadMealOptions(boolean loadSilent) {
+        List<Meal> meals = loadMealFromFile(MEAL_OPTIONS_FILE, false, loadSilent);
         MealList mealList = new MealList();
         for (Meal meal : meals) {
             mealList.addMealWithoutCLIMessage(meal);
@@ -145,8 +127,8 @@ public class HistoryTracker {
                 writer.write(meal.toSaveString());
                 writer.newLine();
             }
-        } catch (IOException ignored) {
-            System.out.println("Loading...");
+        } catch (IOException e) {
+            UI.printString("Error saving to file: " + fileName + ". " + e.getMessage());
         }
     }
 
@@ -156,18 +138,39 @@ public class HistoryTracker {
      * @param isEntry Whether the meals being loaded are meal entries (true) or meal options (false)
      * @return A list of meals loaded from the file
      */
-    private List<Meal> loadMealFromFile(String fileName, boolean isEntry) {
+    private List<Meal> loadMealFromFile(String fileName, boolean isEntry, boolean loadSilent) {
         List<Meal> meals = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(
-                new FileReader(DATA_DIRECTORY + File.separator + fileName))
-            ) {
+        int totalCorruptedMeals = 0;
+        File file = new File(DATA_DIRECTORY + File.separator + fileName);
+        
+        if (!file.exists()) {
+            if (!loadSilent) {
+                String mealTypeString = isEntry ? "Meal Entries" : "Meal Options";
+                UI.printString("No locally saved " + mealTypeString + " found.");
+            }
+            return meals;
+        }
+        
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
-                meals = parseAndAddMeal(meals, parts, isEntry);
+                Pair<List<Meal>, Integer> parseResult = parseAndAddMeal(meals, parts, isEntry);
+                meals = parseResult.t();
+                totalCorruptedMeals += parseResult.u();
             }
-        } catch (IOException ignored) {
-            System.out.println("Loading...");
+        } catch (IOException e) {
+            UI.printString("Error loading from file: " + fileName + ". " + e.getMessage());
+        }
+        if (totalCorruptedMeals > 0 && !loadSilent) {
+            String mealTypeString = isEntry ? "Meal Entries" : "Meal Options";
+            UI.printString("We found " + totalCorruptedMeals + " manually corrupted line(s) in: " + mealTypeString);
+            UI.printString("If you want to keep your data close the app now and manually undo your modifications.");
+            UI.printString("Otherwise, if you proceed using the app a new clean data file will overwrite this one.");
+            UI.printString("To not loose your data in the future, please do not modify your files.");
+        } else if (totalCorruptedMeals == 0 && !loadSilent) {
+            String mealTypeString = isEntry ? "Meal Entries" : "Meal Options";
+            UI.printString(mealTypeString + " Loaded Successfully!");
         }
         return meals;
     }
@@ -179,9 +182,10 @@ public class HistoryTracker {
      * @param isEntry Whether the meal being parsed is a meal entry (true) or meal option (false)
      * @return The updated list of meals
      */
-    private List<Meal> parseAndAddMeal(List<Meal> meals, String[] parts, boolean isEntry) {
+    private Pair<List<Meal>, Integer> parseAndAddMeal(List<Meal> meals, String[] parts, boolean isEntry) {
         boolean isCorrectMealEntry = isEntry && (parts.length == 3);
         boolean isCorrectMeal = !isEntry && (parts.length == 2);
+        int corruptedMealsDetected = 0;
         if (isCorrectMealEntry) {
             String name = parts[0].isEmpty() ? null : parts[0];
             int calories = Integer.parseInt(parts[1]);
@@ -191,7 +195,9 @@ public class HistoryTracker {
             String name = parts[0].isEmpty() ? null : parts[0];
             int calories = Integer.parseInt(parts[1]);
             meals.add(new Meal(Optional.ofNullable(name), calories));
+        } else {
+            corruptedMealsDetected++;
         }
-        return meals;
+        return new Pair<List<Meal>, Integer>(meals, corruptedMealsDetected);
     }
 }

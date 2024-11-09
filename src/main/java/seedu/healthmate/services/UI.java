@@ -49,6 +49,16 @@ public class UI {
         System.out.println(LINE);
     }
 
+    /**
+     * Prints an array of strings in the standard format of the UI
+     * @param messages the strings to print to the user
+     */
+    public static void printMultiLineReply(List<String> messages) {
+        System.out.println(LINE);
+        messages.stream().forEach(message -> System.out.println(INDENTATION + message));
+        System.out.println(LINE);
+    }
+
     /** Prints a greeting message with a welcome logo. */
     public static void printGreeting() {
         System.out.println(INDENTATION + LOGO);

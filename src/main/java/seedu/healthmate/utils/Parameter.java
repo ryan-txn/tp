@@ -17,7 +17,7 @@ public enum Parameter {
     CALORIE_SIGNALLER("/c"),
     PORTIONS_SIGNALLER("/p"),
     TIMESTAMP_SIGNALLER("/t");
-
+    private static int maxCalories = 100000;
     private String prefix;
 
     // Enum constructor
@@ -40,7 +40,11 @@ public enum Parameter {
         boolean containsParam = input.contains(param.getPrefix());
 
         if (matcher.find()) {
-            return Integer.parseInt(matcher.group(1));
+            try {
+                return Integer.parseInt(matcher.group(1));
+            } catch (NumberFormatException e) {
+                return -2;
+            }
         } else {
             // Contains param but bad format response is -2
             // If param is missing return 1 for portions for default and -1 for Calories
@@ -56,7 +60,7 @@ public enum Parameter {
      */
     public static int getPortions(String input) throws BadPortionException {
         int portions = parseParameter(input, Parameter.PORTIONS_SIGNALLER);
-        if (portions == -2) {
+        if (portions <= 0) {
             throw new BadPortionException();
         }
         return parseParameter(input, Parameter.PORTIONS_SIGNALLER);
