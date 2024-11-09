@@ -61,7 +61,7 @@ public class CommandMap {
         String commandToFind = userInput.substring(command.length()).trim();
         List<Command> commands = new ArrayList<>();
         if(!COMMANDSMAP.containsKey(commandToFind)) {
-            return getAllCommands();
+            return commands;
         }
         commands.add(getCommandByName(commandToFind));
         return commands;
