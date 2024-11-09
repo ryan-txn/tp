@@ -56,7 +56,7 @@ public enum Parameter {
      */
     public static int getPortions(String input) throws BadPortionException {
         int portions = parseParameter(input, Parameter.PORTIONS_SIGNALLER);
-        if (portions == -2) {
+        if (portions <= 0) {
             throw new BadPortionException();
         }
         return parseParameter(input, Parameter.PORTIONS_SIGNALLER);

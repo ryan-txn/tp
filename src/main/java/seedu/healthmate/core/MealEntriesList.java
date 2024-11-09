@@ -60,11 +60,13 @@ public class MealEntriesList extends MealList {
             UI.printReply("Do not forget to use /c{Integer} mark the following integer as calories",
                     "Retry: ");
         } catch (MealNotFoundException e) {
-            UI.printReply("Please save this meal to the meal menu first, or use /c and /p to include calories and"
-                    + " portion sizes", "");
+            List<String> messages = List.of("Please save this meal to the meal menu first,",
+                    "or use /c and /p to include calories and portion sizes");
+            UI.printMultiLineReply(messages);
         } catch (BadPortionException e) {
-            UI.printReply("Please reformat your portion size properly (e.g for 2 portions {/p2}).",
-                    "Retry: ");
+            List<String> messages = List.of("Retry: Please use a rightly formatted nonzero integer " +
+                            "to specify portion size.", "E.g for 2 portions {/p2}).");
+            UI.printMultiLineReply(messages);
         } catch (BadTimestampException e) {
             UI.printReply("Please include a timestamp for your meal (e.g for 2024-10-30 {/t2024-10-30}).",
                     "Retry: ");
