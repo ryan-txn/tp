@@ -279,8 +279,9 @@ public class UI {
     public static String progressBarStringBuilder(double targetValue, int actualValue) {
         int percentageOfExpected = (int) Math.ceil((actualValue / targetValue) * 100);
 
-        String incomplete = "░"; // U+2591 Unicode Character
-        String complete = "█"; // U+2588 Unicode Character
+        String incomplete = "-"; // U+2591 Unicode Character
+        String complete = "*"; // U+2588 Unicode Character
+
 
         int numberOfBoxes = 60;
         double totalPercent = 100.0;
