@@ -136,6 +136,7 @@ public class UI {
         System.out.println(INDENTATION + "Recommended recipes for your health goal");
         if (recipes.size() == 1) {
             System.out.println(INDENTATION + recipes.get(0).toString());
+            System.out.println(LINE);
         } else {
             System.out.println(LINE);
             for (Recipe recipe : recipes) {
