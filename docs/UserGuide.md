@@ -143,6 +143,8 @@ save meal pizza /c300
       _____________________________________________________________________________
 ```
 
+#### Overwrite Saved Meal in Meal Menu: `save meal {Name of existing Meal} /c{Number of calories}`
+
 #### Add Meal Entry for Tracking:`add mealEntry {meal} /c{Number of calories} /p{portions} /t{YYYY-MM-DD}`or `add mealEntry {meal from meal menu}` or
 - Adds a meal from the saved meal options to your daily caloric intake.
 - After adding the meal, the app will show how the meal affects your progress towards your daily caloric goal.
