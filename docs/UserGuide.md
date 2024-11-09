@@ -215,8 +215,11 @@ meal menu
 ```
 
 #### Weight Timeline: `weight timeline`
-- Returns a graph of weight changes
-
+- Returns a graph of weight changes over time 
+- Requires users to have saved sufficient weight entries of different values using the `update userdata` command
+before being able to display a graph of weight in kilograms over time. Graph is normalized to the Max and minimum 
+  weight values hence resolution of graph decreases if the gap between minimum and maximum weight is unrealistically 
+  large
 ```
 weight timeline
 Weight Timeline
