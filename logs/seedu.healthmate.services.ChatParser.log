@@ -1,68 +1,84 @@
-Nov. 09, 2024 3:47:32 PM seedu.healthmate.services.ChatParser <init>
+Nov. 09, 2024 4:24:52 PM seedu.healthmate.services.ChatParser <init>
 INFORMATION: Initialized HistoryTracker
-Nov. 09, 2024 3:47:32 PM seedu.healthmate.services.ChatParser <init>
+Nov. 09, 2024 4:24:52 PM seedu.healthmate.services.ChatParser <init>
 INFORMATION: Loaded MealEntries
-Nov. 09, 2024 3:47:32 PM seedu.healthmate.services.ChatParser <init>
+Nov. 09, 2024 4:24:52 PM seedu.healthmate.services.ChatParser <init>
 INFORMATION: Loaded MealOptions
-Nov. 09, 2024 3:47:32 PM seedu.healthmate.services.ChatParser <init>
+Nov. 09, 2024 4:24:52 PM seedu.healthmate.services.ChatParser <init>
 INFORMATION: Initializing UserHistoryTracker
-Nov. 09, 2024 3:47:32 PM seedu.healthmate.services.ChatParser <init>
+Nov. 09, 2024 4:24:52 PM seedu.healthmate.services.ChatParser <init>
 INFORMATION: ChatParser correctly initialized.
-Nov. 09, 2024 3:47:32 PM seedu.healthmate.services.ChatParser run
+Nov. 09, 2024 4:24:52 PM seedu.healthmate.services.ChatParser run
 INFORMATION: Checking if user data exists
-Nov. 09, 2024 3:47:32 PM seedu.healthmate.services.ChatParser run
-INFORMATION: User is: 180.0,80.0,true,20,BULKING,2865.603,2024-11-09 15:46:28
-Nov. 09, 2024 3:47:33 PM seedu.healthmate.services.ChatParser parseUserInput
+Nov. 09, 2024 4:24:52 PM seedu.healthmate.services.ChatParser run
+INFORMATION: User is: 180.0,80.0,true,20,BULKING,2865.603,2024-11-09 16:24:33
+Nov. 09, 2024 4:24:52 PM seedu.healthmate.services.ChatParser parseUserInput
 INFORMATION: Getting next user input line
-Nov. 09, 2024 3:47:47 PM seedu.healthmate.services.ChatParser parseUserInput
-INFORMATION: User input is: meal menu
-Nov. 09, 2024 3:47:47 PM seedu.healthmate.services.ChatParser parseUserInput
+Nov. 09, 2024 4:25:09 PM seedu.healthmate.services.ChatParser parseUserInput
+INFORMATION: User input is: add mealEntry pizza /c300
+Nov. 09, 2024 4:25:09 PM seedu.healthmate.services.ChatParser parseUserInput
 INFORMATION: Start multicCommandParsing
-Nov. 09, 2024 3:47:47 PM seedu.healthmate.services.ChatParser multiCommandParsing
-INFORMATION: User commands are: Main Command: meal menu Other: [Ljava.lang.String;@31cefde0
-Nov. 09, 2024 3:47:47 PM seedu.healthmate.command.commands.MealMenuCommand executeCommand
-INFORMATION: Executing meal menu command to show meal options. 
-Nov. 09, 2024 3:47:47 PM seedu.healthmate.command.commands.MealMenuCommand executeCommand
-INFORMATION: Executing meal menu command to show meal options
-Nov. 09, 2024 3:47:47 PM seedu.healthmate.services.ChatParser parseUserInput
+Nov. 09, 2024 4:25:09 PM seedu.healthmate.services.ChatParser multiCommandParsing
+INFORMATION: User commands are: Main Command: add mealEntry Other: [Ljava.lang.String;@31cefde0
+Nov. 09, 2024 4:25:09 PM seedu.healthmate.command.commands.AddMealEntryCommand executeCommand
+INFORMATION: Executing command to add a meal to mealEntries
+Number of tracked meals is: 0
+Nov. 09, 2024 4:25:09 PM seedu.healthmate.command.commands.AddMealEntryCommand executeCommand
+INFORMATION: Finish executing command to add a meal to mealEntries
+Number of tracked meals is: 1
+Nov. 09, 2024 4:25:09 PM seedu.healthmate.services.ChatParser parseUserInput
 INFORMATION: Getting next user input line
-Nov. 09, 2024 3:47:58 PM seedu.healthmate.services.ChatParser parseUserInput
-INFORMATION: User input is: save meal soup /c300
-Nov. 09, 2024 3:47:58 PM seedu.healthmate.services.ChatParser parseUserInput
+Nov. 09, 2024 4:25:30 PM seedu.healthmate.services.ChatParser parseUserInput
+INFORMATION: User input is: add mealEntry late dinner /c300 /d2024-11-09
+Nov. 09, 2024 4:25:30 PM seedu.healthmate.services.ChatParser parseUserInput
 INFORMATION: Start multicCommandParsing
-Nov. 09, 2024 3:47:58 PM seedu.healthmate.services.ChatParser multiCommandParsing
-INFORMATION: User commands are: Main Command: save meal Other: [Ljava.lang.String;@246b179d
-Nov. 09, 2024 3:47:58 PM seedu.healthmate.command.commands.SaveMealCommand executeCommand
-INFORMATION: Executing command to save a meal to meal options.
-Number of meal options is: 1
-Nov. 09, 2024 3:47:58 PM seedu.healthmate.command.commands.SaveMealCommand executeCommand
-INFORMATION: Finished executing save meal command to save the (optional) meal: Optional[soup with 300 calories]
-Number of meal options is: 2
-Nov. 09, 2024 3:47:58 PM seedu.healthmate.services.ChatParser parseUserInput
+Nov. 09, 2024 4:25:30 PM seedu.healthmate.services.ChatParser multiCommandParsing
+INFORMATION: User commands are: Main Command: add mealEntry Other: [Ljava.lang.String;@255316f2
+Nov. 09, 2024 4:25:30 PM seedu.healthmate.command.commands.AddMealEntryCommand executeCommand
+INFORMATION: Executing command to add a meal to mealEntries
+Number of tracked meals is: 1
+Nov. 09, 2024 4:25:30 PM seedu.healthmate.command.commands.AddMealEntryCommand executeCommand
+INFORMATION: Finish executing command to add a meal to mealEntries
+Number of tracked meals is: 2
+Nov. 09, 2024 4:25:30 PM seedu.healthmate.services.ChatParser parseUserInput
 INFORMATION: Getting next user input line
-Nov. 09, 2024 3:48:06 PM seedu.healthmate.services.ChatParser parseUserInput
-INFORMATION: User input is: save meal soup /c200
-Nov. 09, 2024 3:48:06 PM seedu.healthmate.services.ChatParser parseUserInput
+Nov. 09, 2024 4:26:11 PM seedu.healthmate.services.ChatParser parseUserInput
+INFORMATION: User input is: add mealEntry salad /c200 /d2024-11-03
+Nov. 09, 2024 4:26:11 PM seedu.healthmate.services.ChatParser parseUserInput
 INFORMATION: Start multicCommandParsing
-Nov. 09, 2024 3:48:06 PM seedu.healthmate.services.ChatParser multiCommandParsing
-INFORMATION: User commands are: Main Command: save meal Other: [Ljava.lang.String;@799f7e29
-Nov. 09, 2024 3:48:06 PM seedu.healthmate.command.commands.SaveMealCommand executeCommand
-INFORMATION: Executing command to save a meal to meal options.
-Number of meal options is: 2
-Nov. 09, 2024 3:48:06 PM seedu.healthmate.command.commands.SaveMealCommand executeCommand
-INFORMATION: Finished executing save meal command to save the (optional) meal: Optional[soup with 200 calories]
-Number of meal options is: 2
-Nov. 09, 2024 3:48:06 PM seedu.healthmate.services.ChatParser parseUserInput
+Nov. 09, 2024 4:26:11 PM seedu.healthmate.services.ChatParser multiCommandParsing
+INFORMATION: User commands are: Main Command: add mealEntry Other: [Ljava.lang.String;@41906a77
+Nov. 09, 2024 4:26:11 PM seedu.healthmate.command.commands.AddMealEntryCommand executeCommand
+INFORMATION: Executing command to add a meal to mealEntries
+Number of tracked meals is: 2
+Nov. 09, 2024 4:26:11 PM seedu.healthmate.command.commands.AddMealEntryCommand executeCommand
+INFORMATION: Finish executing command to add a meal to mealEntries
+Number of tracked meals is: 3
+Nov. 09, 2024 4:26:11 PM seedu.healthmate.services.ChatParser parseUserInput
 INFORMATION: Getting next user input line
-Nov. 09, 2024 3:48:14 PM seedu.healthmate.services.ChatParser parseUserInput
-INFORMATION: User input is: meal menu
-Nov. 09, 2024 3:48:14 PM seedu.healthmate.services.ChatParser parseUserInput
+Nov. 09, 2024 4:26:36 PM seedu.healthmate.services.ChatParser parseUserInput
+INFORMATION: User input is: add mealEntry supper /c100 /d2024-11-02
+Nov. 09, 2024 4:26:36 PM seedu.healthmate.services.ChatParser parseUserInput
 INFORMATION: Start multicCommandParsing
-Nov. 09, 2024 3:48:14 PM seedu.healthmate.services.ChatParser multiCommandParsing
-INFORMATION: User commands are: Main Command: meal menu Other: [Ljava.lang.String;@5c29bfd
-Nov. 09, 2024 3:48:14 PM seedu.healthmate.command.commands.MealMenuCommand executeCommand
-INFORMATION: Executing meal menu command to show meal options. 
-Nov. 09, 2024 3:48:14 PM seedu.healthmate.command.commands.MealMenuCommand executeCommand
-INFORMATION: Executing meal menu command to show meal options
-Nov. 09, 2024 3:48:14 PM seedu.healthmate.services.ChatParser parseUserInput
+Nov. 09, 2024 4:26:36 PM seedu.healthmate.services.ChatParser multiCommandParsing
+INFORMATION: User commands are: Main Command: add mealEntry Other: [Ljava.lang.String;@4b9af9a9
+Nov. 09, 2024 4:26:36 PM seedu.healthmate.command.commands.AddMealEntryCommand executeCommand
+INFORMATION: Executing command to add a meal to mealEntries
+Number of tracked meals is: 3
+Nov. 09, 2024 4:26:36 PM seedu.healthmate.command.commands.AddMealEntryCommand executeCommand
+INFORMATION: Finish executing command to add a meal to mealEntries
+Number of tracked meals is: 4
+Nov. 09, 2024 4:26:36 PM seedu.healthmate.services.ChatParser parseUserInput
+INFORMATION: Getting next user input line
+Nov. 09, 2024 4:26:43 PM seedu.healthmate.services.ChatParser parseUserInput
+INFORMATION: User input is: log meals
+Nov. 09, 2024 4:26:43 PM seedu.healthmate.services.ChatParser parseUserInput
+INFORMATION: Start multicCommandParsing
+Nov. 09, 2024 4:26:43 PM seedu.healthmate.services.ChatParser multiCommandParsing
+INFORMATION: User commands are: Main Command: log meals Other: [Ljava.lang.String;@5387f9e0
+Nov. 09, 2024 4:26:43 PM seedu.healthmate.command.commands.LogMealsCommand executeCommand
+INFORMATION: Executing command to show meal history
+Nov. 09, 2024 4:26:43 PM seedu.healthmate.command.commands.LogMealsCommand executeCommand
+INFORMATION: Finish executing command to show meal history
+Nov. 09, 2024 4:26:43 PM seedu.healthmate.services.ChatParser parseUserInput
 INFORMATION: Getting next user input line
