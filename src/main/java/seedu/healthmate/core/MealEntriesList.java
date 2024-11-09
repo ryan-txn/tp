@@ -64,8 +64,8 @@ public class MealEntriesList extends MealList {
                     "or use /c and /p to include calories and portion sizes");
             UI.printMultiLineReply(messages);
         } catch (BadPortionException e) {
-            List<String> messages = List.of("Retry: Please use a rightly formatted nonzero integer to specify portion size. ",
-                "E.g for 2 portions {/p2}).");
+            List<String> messages = List.of("Retry: Please use a rightly formatted nonzero integer " +
+                            "to specify portion size.", "E.g for 2 portions {/p2}).");
             UI.printMultiLineReply(messages);
         } catch (BadTimestampException e) {
             UI.printReply("Please include a timestamp for your meal (e.g for 2024-10-30 {/t2024-10-30}).",
