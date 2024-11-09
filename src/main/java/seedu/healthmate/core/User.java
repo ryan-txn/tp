@@ -79,12 +79,16 @@ public class User {
             UI.printString("Height in cm (e.g. 180):");
             double height = Double.parseDouble(scanner.nextLine());
             if (height <= 0){
-                throw new NumberFormatException("INVALID HEIGHT");
+                throw new NumberFormatException("INVALID HEIGHT DETECTED - HEIGHT LESS THAN MINIMUM");
+            } else if (height >= 270) {
+                throw new NumberFormatException("INVALID HEIGHT DETECTED - HEIGHT EXCEEDS MAXIMUM");
             }
             UI.printString("Weight in kg (e.g. 80):");
             double weight = Double.parseDouble(scanner.nextLine());
             if (weight <= 0){
-                throw new NumberFormatException("INVALID WEIGHT");
+                throw new NumberFormatException("INVALID WEIGHT DETECTED - WEIGHT LESS THAN MINIMUM");
+            } else if (weight >= 650) {
+                throw new NumberFormatException("INVALID WEIGHT DETECTED - WEIGHT EXCEEDS MAXIMUM");
             }
             UI.printString("Gender (male or female):");
             String gender = scanner.nextLine();
@@ -93,7 +97,9 @@ public class User {
             UI.printString("Age (e.g. 20):");
             int age = Integer.parseInt(scanner.nextLine());
             if (age <= 0){
-                throw new NumberFormatException();
+                throw new NumberFormatException("INVALID AGE DETECTED - AGE LESS THAN MINIMUM");
+            } else if (age >= 600) {
+                throw new NumberFormatException("INVALID AGE DETECTED - AGE EXCEEDS MAXIMUM");
             }
             UI.printString("Health Goal (WEIGHT_LOSS, STEADY_STATE, BULKING):");
             String healthGoal = scanner.nextLine();
