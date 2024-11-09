@@ -21,7 +21,6 @@ import seedu.healthmate.core.MealList;
 import seedu.healthmate.core.User;
 import seedu.healthmate.utils.Logging;
 
-import java.util.Optional;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -119,10 +118,7 @@ public class ChatParser {
     public void multiCommandParsing(String userInput, User user) {
         assert userInput != null && !userInput.isEmpty() : "User input should not be null or empty";
         assert user != null : "User should not be null in multiCommandParsing";
-        Optional<User> lastUser = userHistoryTracker.getLastUser();
-        if(lastUser.isPresent()) {
-            user = lastUser.get();
-        }
+        user = this.userHistoryTracker.checkForUserData();
 
         this.updateMealLists();
         CommandPair commandPair = getCommandFromInput(userInput);

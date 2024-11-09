@@ -41,7 +41,7 @@ public class CurrentUserDataCommand extends Command {
      * @param logger The logger used for logging command execution steps.
      */
     public static void executeCommand(UserHistoryTracker userHistoryTracker, Logger logger) {
-        Optional<User> lastUser = userHistoryTracker.getLastUser();
+        Optional<User> lastUser = userHistoryTracker.getLatestUser();
         logger.log(Level.INFO, "Executing command to return current user data");
 
         // Prompts the user to enter new data

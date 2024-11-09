@@ -151,13 +151,15 @@ public class MealEntriesList extends MealList {
         MealEntriesList mealsConsumedToday = this.getMealEntriesByDate(todayStartOfDay, todayEndOfDay);
         int caloriesConsumed = mealsConsumedToday.getTotalCaloriesConsumed();
         Integer targetCalories = user.getTargetCalories();
+        boolean useSpecialChars = user.isAbleToSeeSpecialChars();
 
         UI.printReply(targetCalories.toString(), "Ideal Daily Caloric Intake: ");
         UI.printString("Current Calories Consumed: " + caloriesConsumed);
         UI.printConsumptionBar("% of Expected Calorie Intake Consumed: ",
                 targetCalories,
                 caloriesConsumed,
-                date);
+                date,
+                useSpecialChars);
     }
 
 
@@ -240,8 +242,9 @@ public class MealEntriesList extends MealList {
             MealEntriesList mealsConsumed = this.getMealEntriesByDate(lowerDateBound, upperDateBound);
             int caloriesConsumed = mealsConsumed.getTotalCaloriesConsumed();
             int targetCalories = user.getTargetCalories();
+            boolean useSpecialChars = user.isAbleToSeeSpecialChars();
 
-            UI.printHistoricConsumptionBar(targetCalories, caloriesConsumed, printDate);
+            UI.printHistoricConsumptionBar(targetCalories, caloriesConsumed, printDate, useSpecialChars);
 
         }
     }

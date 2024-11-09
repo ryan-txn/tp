@@ -27,7 +27,7 @@ public class UserHistoryTrackerTest {
         User user = User.createAlternativeUserStub();
         userHistoryTracker.addUserEntry(user);
         String expectedUser = user.toString();
-        String savedUser = userHistoryTracker.getLastUser()
+        String savedUser = userHistoryTracker.getLatestUser()
                 .map(x -> x.toString())
                 .orElseThrow(() -> new AssertionError("Expected a saved user entry, but none was found"));
         assertEquals(expectedUser, savedUser);
@@ -61,7 +61,7 @@ public class UserHistoryTrackerTest {
     public void userHistoryTracker_cleanup() {
         userHistoryTracker.clearSaveFile();
         HealthGoal healthGoal = new HealthGoal("BULKING");
-        User testUser = new User(180, 80, true, 20, healthGoal);
+        User testUser = new User(180, 80, true, 20, healthGoal, true);
 
         userHistoryTracker.addUserEntry(testUser);
     }
