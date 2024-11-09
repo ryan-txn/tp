@@ -55,6 +55,7 @@ public class UI {
         System.out.println(LINE);
         System.out.println(INDENTATION + "Welcome to HealthMate");
         System.out.println(INDENTATION + "Let's get healthy!");
+        System.out.println(INDENTATION + "Use the `list commands` command to have a look at all commands.");
         System.out.println(LINE);
     }
 
