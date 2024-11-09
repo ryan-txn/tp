@@ -144,7 +144,24 @@ save meal pizza /c300
 ```
 
 #### Overwrite Saved Meal in Meal Menu: `save meal {Name of existing Meal} /c{Number of calories}`
+- Allows user to update an existing meal option with a new calorie number
+```dtd
+save meal soup /c300
+      _____________________________________________________________________________
+      Added to options: soup with 300 calories
+      _____________________________________________________________________________
+save meal soup /c200
+      _____________________________________________________________________________
+      Duplicate meal found: soup
+      Updated existing meal with new meal specifics!
+      _____________________________________________________________________________
+meal menu
+      _____________________________________________________________________________
+      1: pizza with 400 calories
+      2: soup with 200 calories
+      _____________________________________________________________________________
 
+```
 #### Add Meal Entry for Tracking:`add mealEntry {meal} /c{Number of calories} /p{portions} /t{YYYY-MM-DD}`or `add mealEntry {meal from meal menu}` or
 - Adds a meal from the saved meal options to your daily caloric intake.
 - After adding the meal, the app will show how the meal affects your progress towards your daily caloric goal.
