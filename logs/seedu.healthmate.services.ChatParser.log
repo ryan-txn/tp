@@ -82,3 +82,4 @@ Nov. 09, 2024 4:26:43 PM seedu.healthmate.command.commands.LogMealsCommand execu
 INFORMATION: Finish executing command to show meal history
 Nov. 09, 2024 4:26:43 PM seedu.healthmate.services.ChatParser parseUserInput
 INFORMATION: Getting next user input line
+
