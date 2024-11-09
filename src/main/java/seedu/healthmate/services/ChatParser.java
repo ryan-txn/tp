@@ -119,10 +119,7 @@ public class ChatParser {
     public void multiCommandParsing(String userInput, User user) {
         assert userInput != null && !userInput.isEmpty() : "User input should not be null or empty";
         assert user != null : "User should not be null in multiCommandParsing";
-        Optional<User> lastUser = userHistoryTracker.getLastUser();
-        if(lastUser.isPresent()) {
-            user = lastUser.get();
-        }
+        user = this.userHistoryTracker.checkForUserData();
 
         this.updateMealLists();
         CommandPair commandPair = getCommandFromInput(userInput);

@@ -173,9 +173,10 @@ public class UI {
     public static void printConsumptionBar(String message,
                                            double expectedValue,
                                            int actualValue,
-                                           LocalDate timestamp) {
+                                           LocalDate timestamp,
+                                           boolean useSpecialChars) {
         assert timestamp != null : "Timestamp cannot be null";
-        String consumptionBar = buildConsumptionBar(message, expectedValue, actualValue, timestamp);
+        String consumptionBar = buildConsumptionBar(message, expectedValue, actualValue, timestamp, useSpecialChars);
         System.out.println(consumptionBar);
     }
 
@@ -192,12 +193,13 @@ public class UI {
     public static String buildConsumptionBar(String message,
                                        double expectedValue,
                                        int actualValue,
-                                       LocalDate timestamp) {
+                                       LocalDate timestamp,
+                                       boolean useSpecialChars) {
 
         String header = INDENTATION + message + NEW_LINE;
 
         String progressBarBody = INDENTATION
-                + progressBarStringBuilder(expectedValue, actualValue)
+                + progressBarStringBuilder(expectedValue, actualValue, useSpecialChars)
                 + " (" + timestamp + ")"
                 + NEW_LINE;
 
@@ -215,10 +217,11 @@ public class UI {
      * @param timestamp     the timestamp of the consumption data
      * @throws IllegalArgumentException if the timestamp is null
      */
-    public static void printHistoricConsumptionBar(double expectedValue, int actualValue, LocalDate timestamp) {
+    public static void printHistoricConsumptionBar(double expectedValue, int actualValue,
+                                                   LocalDate timestamp, boolean useSpecialChars) {
         assert timestamp != null : "Timestamp cannot be null";
         System.out.println(INDENTATION
-                + progressBarStringBuilder(expectedValue, actualValue)
+                + progressBarStringBuilder(expectedValue, actualValue, useSpecialChars)
                 + " (" + timestamp + ")");
     }
 
@@ -276,11 +279,11 @@ public class UI {
      * @param actualValue The actual value achieved, which is used to determine progress percentage.
      * @return A string representing the progress bar.
      */
-    public static String progressBarStringBuilder(double targetValue, int actualValue) {
+    public static String progressBarStringBuilder(double targetValue, int actualValue, boolean useSpecialChars) {
         int percentageOfExpected = (int) Math.ceil((actualValue / targetValue) * 100);
 
-        String incomplete = "-"; // U+2591 Unicode Character
-        String complete = "*"; // U+2588 Unicode Character
+        String incomplete = useSpecialChars ? "░" : "-"; // U+2591 Unicode Character
+        String complete = useSpecialChars ? "█" : "*"; // U+2588 Unicode Character
 
 
         int numberOfBoxes = 60;
@@ -376,7 +379,7 @@ public class UI {
      */
     public static String simulateHistoricConsumptionBar(double targetValue, int actualValue, LocalDate timestamp) {
         assert timestamp != null : "Timestamp cannot be null";
-        return INDENTATION + progressBarStringBuilder(targetValue, actualValue) + " (" + timestamp + ")";
+        return INDENTATION + progressBarStringBuilder(targetValue, actualValue, true) + " (" + timestamp + ")";
     }
 
     /**
@@ -395,7 +398,8 @@ public class UI {
                 + UI.buildConsumptionBar("% of Expected Calorie Intake Consumed: ",
                 targetCalories,
                 caloriesConsumed,
-                timestamp);
+                timestamp,
+                true);
     }
 
 

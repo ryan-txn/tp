@@ -22,6 +22,7 @@ public class User {
     private final int age;
     private final HealthGoal healthGoal;
     private final LocalDateTime localDateTime;
+    private final boolean isAbleToSeeSpecialChars;
 
     /**
      * Constructs a new User object with the specified details. This constructor
@@ -34,7 +35,7 @@ public class User {
      * @param healthGoal  The health goal for the user (e.g., weight loss, muscle gain).
      */
     public User(double height, double weight, boolean isMale,
-                int age, HealthGoal healthGoal) {
+                int age, HealthGoal healthGoal, boolean isAbleToSeeSpecialChars) {
         this.heightEntry = height;
         this.weightEntry = weight;
         this.isMale = isMale;
@@ -42,6 +43,7 @@ public class User {
         this.healthGoal = healthGoal;
         this.idealCalories = this.healthGoal.getTargetCalories(height, weight, isMale, age);
         this.localDateTime = LocalDateTime.now();
+        this.isAbleToSeeSpecialChars = isAbleToSeeSpecialChars;
     }
 
     /**
@@ -57,7 +59,7 @@ public class User {
      * @param localDateTime  The timestamp of the last user data entry in ISO-8601 format.
      */
     public User(double height, double weight, boolean isMale, int age,
-                String healthGoal, double idealCalories, String localDateTime) {
+                String healthGoal, double idealCalories, String localDateTime, boolean isAbleToSeeSpecialChars) {
         this.heightEntry = height;
         this.weightEntry = weight;
         this.isMale = isMale;
@@ -65,6 +67,7 @@ public class User {
         this.healthGoal = new HealthGoal(healthGoal);
         this.idealCalories = idealCalories;
         this.localDateTime = LocalDateTime.parse(localDateTime, formatter);
+        this.isAbleToSeeSpecialChars = isAbleToSeeSpecialChars;
     }
 
     /**
@@ -82,8 +85,9 @@ public class User {
             boolean isMale = askForGender(scanner);
             int age = askForAge(scanner);
             HealthGoal healthGoal = askForHealthGoal(scanner);
+            boolean isAbleToSeeSpecialChars = askForSpecialChars(scanner);
 
-            User user = new User(height, weight, isMale, age, healthGoal);
+            User user = new User(height, weight, isMale, age, healthGoal, isAbleToSeeSpecialChars);
             UI.printString("Profile creation Successful!");
             UI.printReply("Great! You can now begin to use the app!", "");
 
@@ -105,18 +109,22 @@ public class User {
         return (int) this.idealCalories;
     }
 
+    public boolean isAbleToSeeSpecialChars() {
+        return this.isAbleToSeeSpecialChars;
+    }
+
     /**
      * Creates a specific user profile for isolated testing.
      * @return User profile
      */
     public static User createUserStub() {
         HealthGoal bulkGoal = new HealthGoal("BULKING");
-        return new User(180, 80.0, true, 20, bulkGoal);
+        return new User(180, 80.0, true, 20, bulkGoal, true);
     }
 
     public static User createAlternativeUserStub() {
         HealthGoal steadyGoal = new HealthGoal("STEADY_STATE");
-        return new User(200, 200, false, 82, steadyGoal);
+        return new User(200, 200, false, 82, steadyGoal, true);
     }
 
 
@@ -128,7 +136,8 @@ public class User {
                 + age + ","
                 + healthGoal.toString() + ","
                 + idealCalories + ","
-                + localDateTime.format(formatter);
+                + localDateTime.format(formatter) + ","
+                + isAbleToSeeSpecialChars;
     }
 
     public void printUIString() {
@@ -139,6 +148,7 @@ public class User {
         UI.printString("Health Goal: " + healthGoal.toString());
         UI.printString("Ideal Daily Caloric Intake: " + idealCalories);
         UI.printString("Recorded at: " + localDateTime.format(formatter));
+        UI.printString("Is able to see special chars: " + isAbleToSeeSpecialChars);
     }
 
     public Goals getHealthGoal() {
@@ -247,6 +257,22 @@ public class User {
             return askForHealthGoal(scanner);
         } else {
             return new HealthGoal(healthGoal);
+        }
+    }
+
+    private static boolean askForSpecialChars(Scanner scanner) {
+        List<String> initMessages = List.of("Does progressbar below look well formatted as a questionmark? ",
+                "Enter: {y} if it looks good. Enter: {n} if it contains weird characters such as '?'.");
+        UI.printMultiLineReply(initMessages);
+        UI.printString(UI.progressBarStringBuilder(100, 25, true));
+        String input = scanner.nextLine().strip().toLowerCase();
+        boolean inputIsInvalid = !input.equals("y") && !input.equals("n");
+        if (inputIsInvalid) {
+            List<String> messages = List.of("Invalid Input. Please enter 'y' or 'n'", "Retry");
+            UI.printMultiLineReply(messages);
+            return askForSpecialChars(scanner);
+        } else {
+            return input.equals("y") ? true : false;
         }
     }
 }

@@ -330,7 +330,7 @@ public class ChatParserTest {
         return UI.simulateReply("Ideal Daily Caloric Intake: " + idealCalories, "")
                 + UI.simulateString("Current Calories Consumed: " + consumedCalories)
                 + UI.buildConsumptionBar("% of Expected Calorie Intake Consumed: ", idealCalories,
-                        consumedCalories, LocalDate.now())
+                        consumedCalories, LocalDate.now(), true)
                 + "\n";
     }
 

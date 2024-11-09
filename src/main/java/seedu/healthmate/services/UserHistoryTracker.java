@@ -31,9 +31,12 @@ public class UserHistoryTracker extends HistoryTracker {
      * @return A newly created or "loaded" user object
      */
     public User checkForUserData() {
+        return getLatestUser().orElseGet(() -> User.askForUserData());
+    }
+
+    public Optional<User> getLatestUser() {
         Optional<UserEntryList> optionalUserEntryList = this.loadUserEntries();
-        return optionalUserEntryList.map(userEntryList -> userEntryList.getLastEntry())
-                .orElseGet(() -> User.askForUserData());
+        return optionalUserEntryList.map(userEntryList -> userEntryList.getLastEntry());
     }
 
     public Optional<UserEntryList> loadUserEntries() {
@@ -50,9 +53,11 @@ public class UserHistoryTracker extends HistoryTracker {
             }
 
         } catch (IOException e) {
-            System.out.println("Error creating user data file: " + e.getMessage());
+            UI.printString("Error loading user data file. A new profile needs to be created");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            UI.printString("It seems your user data file is incomplete. A new profile needs to be created");
         } catch (NumberFormatException e) {
-            System.out.println("Error parsing a number." + e.getMessage());
+            UI.printString("Error parsing a number.");
         } catch (NoSuchElementException e) {
             // silent catch if existing user file contains no content
         }
@@ -114,8 +119,8 @@ public class UserHistoryTracker extends HistoryTracker {
      * @return User object with data from the parsed line.
      */
     private static User getUserEntryFromFileLine(String line) {
-        String[] fields = line.split(",");  // Split the CSV line by commas
 
+        String[] fields = line.split(",");  // Split the CSV line by commas
         double height = Double.parseDouble(fields[0]);
         double weight = Double.parseDouble(fields[1]);
         boolean isMale = Boolean.parseBoolean(fields[2]);
@@ -123,8 +128,9 @@ public class UserHistoryTracker extends HistoryTracker {
         String healthGoal = fields[4];
         double idealCalories = Double.parseDouble(fields[5]);
         String localDateTime = fields[6].trim();
+        boolean isAbleToSeeSpecialChars = Boolean.parseBoolean(fields[7]);
 
-        return new User(height, weight, isMale, age, healthGoal, idealCalories, localDateTime);
+        return new User(height, weight, isMale, age, healthGoal, idealCalories, localDateTime, isAbleToSeeSpecialChars);
     }
 
     /**
@@ -171,38 +177,6 @@ public class UserHistoryTracker extends HistoryTracker {
             fw.close();
         } catch (IOException e) {
             System.out.println("Error clearing save file: " + e.getMessage());
-        }
-    }
-
-    /**
-     * Retrieves the last user entry from the save file.
-     * This method reads from the end of the file to find the last line and parses it into a User object.
-     *
-     * @return an Optional containing the last User entry if found; otherwise, an empty Optional.
-     */
-    public Optional<User> getLastUser() {
-        File userDataFile = new File(DATA_DIRECTORY + File.separator + USER_DATA_FILE);
-        try (RandomAccessFile raf = new RandomAccessFile(userDataFile, "r")) {
-            long fileLength = userDataFile.length() - 1;
-            StringBuilder lastLine = new StringBuilder();
-
-            // Move pointer to end of file
-            raf.seek(fileLength);
-
-            for (long pointer = fileLength; pointer >= 0; pointer--) {
-                raf.seek(pointer);
-                char c = (char) raf.read();
-                if (c == '\n' && lastLine.length() > 0) {
-                    break;
-                }
-
-                lastLine.insert(0, c);
-            }
-
-            return Optional.of(getUserEntryFromFileLine(lastLine.toString()));
-        } catch (IOException e) {
-            System.out.println("Error retrieving last user data" + e);
-            return Optional.empty();
         }
     }
     //@@ author
