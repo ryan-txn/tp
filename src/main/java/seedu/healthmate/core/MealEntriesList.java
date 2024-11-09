@@ -55,7 +55,9 @@ public class MealEntriesList extends MealList {
             addPortionsOfMeal(meal, portions);
             printDaysConsumptionBar(user, meal.getTimestamp());
         } catch (EmptyCalorieException | BadCalorieException e) {
-            UI.printReply("Every meal needs a calorie integer (e.g. /c120).", "");
+            List<String> messages = List.of("Every meal needs a calorie integer (e.g. /c120).",
+                    "Note: The integer has to be within the range of 0 and 2147483647");
+            UI.printMultiLineReply(messages);
         } catch (StringIndexOutOfBoundsException s) {
             UI.printReply("Do not forget to use /c{Integer} mark the following integer as calories",
                     "Retry: ");

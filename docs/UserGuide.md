@@ -392,3 +392,15 @@ current userdata
 | Exit                                       | `bye`                                                                                                  | Closes program after saving data                                                                              |
 | Display weight timeline                    | `weight timeline`                                                                                      | Creates a graph of up to the last  10 weight entries over time if there is significant changes.               |
 | Meal recommendation command                | `meal recommendations`                                                                                 | Returns a list of ready recipes for a user based on their HealthGoal                                          |
+
+## Data Storage and Persistence
+HealthMate stores your meal logs, meal options, and user profile data in CSV files located in a folder named `data` within the application directory. 
+This allows your data to persist between sessions, so you won’t lose your progress when you close the application. 
+
+Here’s how HealthMate manages your data in detail:
+1. Meal Entries and Options: Your logged meals and saved meal options are stored in meal_entries.csv and meal_options.csv. 
+2. User Profile: Your profile data, including height, weight, age, gender, and health goal, is saved in user_data.csv. 
+
+### Data Security
+To ensure no data is lost DO NOT manually modify these files or move them out of the directory.
+In case you need to transfer your data, we recommend making a copy instead.
