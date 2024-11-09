@@ -65,6 +65,7 @@ public class UI {
         System.out.println(LINE);
         System.out.println(INDENTATION + "Welcome to HealthMate");
         System.out.println(INDENTATION + "Let's get healthy!");
+        System.out.println(INDENTATION + "Use the `list commands` command to have a look at all commands.");
         System.out.println(LINE);
     }
 
@@ -129,7 +130,12 @@ public class UI {
      */
     public static void printCommands(List<Command> commands) {
         System.out.println(LINE);
-        if (commands.size() == 1) {
+        if(commands.isEmpty()) {
+            System.out.println(INDENTATION + "Command queried does not exist. Please use `command list` to view all " +
+                    "searchable commands");
+            System.out.println(LINE);
+        }
+        else if (commands.size() == 1) {
             System.out.println(INDENTATION + commands.get(0).toString());
             System.out.println(LINE);
         } else {
