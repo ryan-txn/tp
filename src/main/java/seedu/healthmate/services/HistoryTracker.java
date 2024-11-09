@@ -127,8 +127,8 @@ public class HistoryTracker {
                 writer.write(meal.toSaveString());
                 writer.newLine();
             }
-        } catch (IOException ignored) {
-            System.out.println("Loading...");
+        } catch (IOException e) {
+            UI.printString("Error saving to file: " + fileName + ". " + e.getMessage());
         }
     }
 
@@ -151,8 +151,8 @@ public class HistoryTracker {
                 meals = parseResult.t();
                 totalCorruptedMeals += parseResult.u();
             }
-        } catch (IOException ignored) {
-            System.out.println("Loading...");
+        } catch (IOException e) {
+            UI.printString("Error loading from file: " + fileName + ". " + e.getMessage());
         }
         if (totalCorruptedMeals > 0 && !loadSilent) {
             String mealTypeString = isEntry ? "Meal Entries" : "Meal Options";
