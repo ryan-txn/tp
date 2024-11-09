@@ -2,6 +2,8 @@ package seedu.healthmate.core;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 import seedu.healthmate.recommender.Goals;
@@ -33,12 +35,12 @@ public class User {
      * @param healthGoal  The health goal for the user (e.g., weight loss, muscle gain).
      */
     public User(double height, double weight, boolean isMale,
-                int age, String healthGoal) {
+                int age, HealthGoal healthGoal) {
         this.heightEntry = height;
         this.weightEntry = weight;
         this.isMale = isMale;
         this.age = age;
-        this.healthGoal = new HealthGoal(healthGoal);
+        this.healthGoal = healthGoal;
         this.idealCalories = this.healthGoal.getTargetCalories(height, weight, isMale, age);
         this.localDateTime = LocalDateTime.now();
     }
@@ -76,34 +78,11 @@ public class User {
 
             UI.printString("Create your profile: please enter...");
 
-            UI.printString("Height in cm (e.g. 180):");
-            double height = Double.parseDouble(scanner.nextLine());
-            if (height <= 0){
-                throw new NumberFormatException("INVALID HEIGHT DETECTED - HEIGHT LESS THAN MINIMUM");
-            } else if (height >= 270) {
-                throw new NumberFormatException("INVALID HEIGHT DETECTED - HEIGHT EXCEEDS MAXIMUM");
-            }
-            UI.printString("Weight in kg (e.g. 80):");
-            double weight = Double.parseDouble(scanner.nextLine());
-            if (weight <= 0){
-                throw new NumberFormatException("INVALID WEIGHT DETECTED - WEIGHT LESS THAN MINIMUM");
-            } else if (weight >= 650) {
-                throw new NumberFormatException("INVALID WEIGHT DETECTED - WEIGHT EXCEEDS MAXIMUM");
-            }
-            UI.printString("Gender (male or female):");
-            String gender = scanner.nextLine();
-            boolean isMale = setGender(gender);
-
-            UI.printString("Age (e.g. 20):");
-            int age = Integer.parseInt(scanner.nextLine());
-            if (age <= 0){
-                throw new NumberFormatException("INVALID AGE DETECTED - AGE LESS THAN MINIMUM");
-            } else if (age >= 600) {
-                throw new NumberFormatException("INVALID AGE DETECTED - AGE EXCEEDS MAXIMUM");
-            }
-            UI.printString("Health Goal (WEIGHT_LOSS, STEADY_STATE, BULKING):");
-            String healthGoal = scanner.nextLine();
-            validateHealthGoal(healthGoal);
+            double height = askForHeight(scanner);
+            double weight = askForWeight(scanner);
+            boolean isMale = askForGender(scanner);
+            int age = askForAge(scanner);
+            HealthGoal healthGoal = askForHealthGoal(scanner);
 
             User user = new User(height, weight, isMale, age, healthGoal);
             UI.printString("Profile creation Successful!");
@@ -132,11 +111,13 @@ public class User {
      * @return User profile
      */
     public static User createUserStub() {
-        return new User(180, 80.0, true, 20, "BULKING");
+        HealthGoal bulkGoal = new HealthGoal("BULKING");
+        return new User(180, 80.0, true, 20, bulkGoal);
     }
 
     public static User createAlternativeUserStub() {
-        return new User(200, 200, false, 82, "STEADY_STATE");
+        HealthGoal steadyGoal = new HealthGoal("STEADY_STATE");
+        return new User(200, 200, false, 82, steadyGoal);
     }
 
 
@@ -173,25 +154,101 @@ public class User {
         return this.weightEntry;
     }
 
-    private static boolean setGender(String gender) {
+    private static Double askForHeight(Scanner scanner) {
+        UI.printString("Height in cm (e.g. 180):");
+        try {
+            double height = Double.parseDouble(scanner.nextLine());
+            if (height <= 0){
+                List<String> messages = List.of("Invalid height detected - entered height <= 0", "Retry:");
+                UI.printMultiLineReply(messages);
+                return askForHeight(scanner);
+            } else if (height >= 270) {
+                List<String> messages = List.of("Invalid height detected - entered height <= 270", "Retry:");
+                UI.printMultiLineReply(messages);
+                return askForHeight(scanner);
+            } else {
+                return height;
+            }
+        } catch (NumberFormatException n) {
+            List<String> messages = List.of("Enter a valid height such that 0 < height < 270", "Retry:");
+            UI.printMultiLineReply(messages);
+            return askForHeight(scanner);
+        }
+    }
+
+    private static Double askForWeight(Scanner scanner) {
+        UI.printString("Weight in kg (e.g. 80):");
+        try {
+            double weight = Double.parseDouble(scanner.nextLine());
+            if (weight <= 0){
+                List<String> messages = List.of("Invalid weight detected. Entered weight <= 0", "Retry: ");
+                UI.printMultiLineReply(messages);
+                return askForWeight(scanner);
+            } else if (weight >= 650) {
+                List<String> messages = List.of("Invalid weight detected. Entered weight >= 650", "Retry: ");
+                UI.printMultiLineReply(messages);
+                return askForWeight(scanner);
+            } else {
+                return weight;
+            }
+        } catch (NumberFormatException n) {
+            List<String> messages = List.of("Invalid weight detected. Enter a weight s.t. 0 < weight < 650", "Retry: ");
+            UI.printMultiLineReply(messages);
+            return askForWeight(scanner);
+        }
+    }
+
+    private static boolean askForGender(Scanner scanner) {
+        UI.printString("Gender (male or female):");
+        String gender = scanner.nextLine();
         if (gender.equals("male")) {
             return true;
         } else if (gender.equals("female")) {
             return false;
         } else {
-            throw new IllegalArgumentException("INVALID GENDER");
+            List<String> messages = List.of("Gender does not fit the biological categories. " +
+                            "Please select from: male, female", "Retry: ");
+            UI.printMultiLineReply(messages);
+            return askForGender(scanner);
         }
     }
 
-    private static void validateHealthGoal(String healthGoal) {
-        // Check if the input matches any valid formats
-        if (!healthGoal.equals("WEIGHT_LOSS") && !healthGoal.equals("STEADY_STATE") && !healthGoal.equals("BULKING")) {
-            // Throw an exception if invalid
-            throw new IllegalArgumentException("INVALID HEALTH GOAL");
+    private static int askForAge(Scanner scanner) {
+        UI.printString("Age (e.g. 20):");
+        try {
+            int age = Integer.parseInt(scanner.nextLine());
+            if (age <= 0){
+                List<String> messages = List.of("Invalid age detected. Age is <= 0.", "Retry: ");
+                UI.printMultiLineReply(messages);
+                return askForAge(scanner);
+            } else if (age >= 600) {
+                List<String> messages = List.of("Invalid age detected. Age is >= 600.", "Retry: ");
+                UI.printMultiLineReply(messages);
+                return askForAge(scanner);
+            } else {
+                return age;
+            }
+        } catch (NumberFormatException n) {
+            List<String> messages = List.of("Invalid age detected. Has to be an integer between 0 and 600.", "Retry: ");
+            UI.printMultiLineReply(messages);
+            return askForAge(scanner);
         }
     }
 
-
-
+    private static HealthGoal askForHealthGoal(Scanner scanner) {
+        UI.printString("Health Goal (WEIGHT_LOSS, STEADY_STATE, BULKING):");
+        String healthGoal = scanner.nextLine().strip().toUpperCase();
+        boolean inputIsInvalid = !healthGoal.equals("WEIGHT_LOSS")
+                && !healthGoal.equals("STEADY_STATE")
+                && !healthGoal.equals("BULKING");
+        if (inputIsInvalid) {
+            List<String> messages = List.of("Enter a valid health goal.",
+                    "Choose one of the following: WEIGHT_LOSS, STEADY_STATE, BULKING");
+            UI.printMultiLineReply(messages);
+            return askForHealthGoal(scanner);
+        } else {
+            return new HealthGoal(healthGoal);
+        }
+    }
 }
 

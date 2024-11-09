@@ -38,13 +38,13 @@ public class HealthGoal {
 
         switch (healthGoalInput) {
         case WEIGHT_LOSS:
-            currentHealthGoal = WEIGHT_LOSS;
+            this.currentHealthGoal = WEIGHT_LOSS;
             break;
         case STEADY_STATE:
-            currentHealthGoal = STEADY_STATE;
+            this.currentHealthGoal = STEADY_STATE;
             break;
         case BULKING:
-            currentHealthGoal = BULKING;
+            this.currentHealthGoal = BULKING;
             break;
         default:
             UI.printReply("Invalid Health Goal", "Save Health Goal Error: ");
