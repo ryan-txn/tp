@@ -119,6 +119,7 @@ public class ChatParser {
         assert userInput != null && !userInput.isEmpty() : "User input should not be null or empty";
         assert user != null : "User should not be null in multiCommandParsing";
 
+        this.updateMealLists();
         CommandPair commandPair = getCommandFromInput(userInput);
         assert commandPair != null : "CommandPair should not be null";
         logger.log(Level.INFO, "User commands are: " + commandPair);
@@ -216,6 +217,15 @@ public class ChatParser {
     }
     //@@author
 
+
+    /**
+     * Loads the most recent mealList from the file, to ensure that data is
+     * synchronized between multiple running instances of the app
+     */
+    private void updateMealLists() {
+        this.mealOptions = historyTracker.silentLoadMealOptions();
+        this.mealEntries = historyTracker.silentLoadMealEntries();
+    }
 
     private void assertCheckParserInit() {
         assert this.historyTracker != null: "History Tracker should not be null";
