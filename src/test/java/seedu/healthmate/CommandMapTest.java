@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.healthmate.command.Command;
 import seedu.healthmate.command.CommandMap;
-import seedu.healthmate.command.commands.LogMealsCommand;
+import seedu.healthmate.command.commands.MealLogCommand;
 
 import java.util.List;
 
@@ -54,7 +54,7 @@ class CommandMapTest {
 
         // Expect that all commands are returned
         assertEquals(1, commands.size());
-        assertInstanceOf(LogMealsCommand.class, commands.get(0));
+        assertInstanceOf(MealLogCommand.class, commands.get(0));
     }
 }
 
