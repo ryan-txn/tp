@@ -4,6 +4,33 @@
 
 **HealthMate** is a meal and calorie tracking application designed to help users manage their dietary intake, monitor their weight, and track their overall health goals. The app enables users to log meals, track calories, and observe their progress towards a healthier lifestyle.
 
+## Contents
+
+- [Quick Start Guide](#quick-start-guide)
+- [Features](#features)
+  - [Exit](#exit-bye)
+  - [List Commands](#list-commands)
+  - [Meal Management Commands](#meal-management-commands)
+    - [Save Meal to Meal Menu](#save-meal-to-meal-menu-save-meal-name-of-meal-cnumber-of-calories)
+    - [Overwrite Saved Meal in Meal Menu](#overwrite-saved-meal-in-meal-menu-save-meal-name-of-existing-meal-cnumber-of-calories)
+    - [Add Meal Entry for Tracking](#add-meal-entry-for-trackingadd-mealentry-meal-cnumber-of-calories-pportions-tyyyy-mm-ddor-add-mealentry-meal-from-meal-menu-or)
+    - [Delete meal from meal menu](#delete-meal-from-meal-menu-delete-meal-index-of-meal-in-meal-menu)
+    - [Show List of Available Meal Options](#show-list-of-available-meal-options-meal-menu)
+    - [Weight Timeline](#weight-timeline-weight-timeline)
+    - [Meal Recommender](#meal-recommender-meal-recommendations)
+- [Log Commands](#log-commands)
+  - [Show Meal History](#show-meal-history-log-meals)
+  - [Delete meal from meal log](#delete-meal-from-meal-log-delete-mealentry-index-of-meal-in-the-meal-log)
+- [Calorie Progress Commands](#calorie-progress-commands)
+  - [Show Calorie Progress for Today](#show-calorie-progress-for-today-show-todaycalories)
+  - [Show Historic Calorie Progress](#show-historic-calorie-progress-show-historiccalories-number-of-days-inclu-today)
+- [Update your data](#update-your-data)
+- [FAQ](#faq)
+- [Command Summary](#command-summary)
+- [Data Storage and Persistence](#data-storage-and-persistence)
+  - [Data Security](#data-security)
+
+
 ## Quick Start Guide
 
 Welcome to HealthMate! Follow these steps to get started quickly:
@@ -387,7 +414,7 @@ current userdata
       Gender: male
       Age: 20
       Health Goal: BULKING
-      Ideal Daily Caloric Intake: 2865.603
+          Ideal Daily Caloric Intake: 2865.603
       Recorded at: 2024-11-07 12:35:26
       _____________________________________________________________________________
 
