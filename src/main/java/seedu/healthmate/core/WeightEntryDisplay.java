@@ -96,7 +96,7 @@ public class WeightEntryDisplay {
      * @return The scale factor.
      */
     private static double calculateScale(double minWeight, double maxWeight) {
-        final int graphHeight = 10;
+        final int graphHeight = 20;
         return graphHeight / (maxWeight - minWeight);
     }
 
@@ -108,7 +108,7 @@ public class WeightEntryDisplay {
      * @param scale     The scale factor for the graph.
      */
     private static void printGraph(double minWeight, double maxWeight, double scale) {
-        final int graphHeight = 10;
+        final int graphHeight = 20;
         System.out.println("Weight Timeline");
 
         for (int y = graphHeight; y >= 0; y--) {
