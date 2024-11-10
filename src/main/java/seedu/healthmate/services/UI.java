@@ -108,16 +108,18 @@ public class UI {
      * @param mealEntries The list of meal entries to display.
      */
     public static void printMealEntries(MealEntriesList mealEntries) {
-        printSeparator();
+
         if (mealEntries.size() > 0) {
+            printSeparator();
             for (int i = 0; i < mealEntries.size(); i++) {
                 System.out.println(INDENTATION + (i + 1)
                         + ": " + mealEntries.toMealStringByIndex(i));
             }
+            printSeparator();
         } else {
             printReply("No meal entries added yet", "");
         }
-        printSeparator();
+
     }
 
     public static void printMealNotFound() {

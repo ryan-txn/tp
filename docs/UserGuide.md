@@ -18,7 +18,7 @@
     - [Show List of Available Meal Options](#show-list-of-available-meal-options-meal-menu)
     - [Weight Timeline](#weight-timeline-weight-timeline)
     - [Meal Recommender](#meal-recommender-meal-recommendations)
-- [Log Commands](#log-commands)
+- [Meal Log Commands](#meal-log-commands)
   - [Show Meal History](#show-meal-history-log-meals)
   - [Delete meal from meal log](#delete-meal-from-meal-log-delete-mealentry-index-of-meal-in-the-meal-log)
 - [Calorie Progress Commands](#calorie-progress-commands)
@@ -312,9 +312,12 @@ meal recommendations
 
 ```
 
-### Log Commands:
+### Meal Log Commands:
+
+- Meal entries are managed in the meal log. With it user's can view their tracked meals.
+
 #### Show Meal History: `log meals`
-- Displays the history of the meals you've eaten over the chosen timespan.
+- Displays the log of all meal entries along with their Timestamp in Date Time format.
 - Example Usage
 ```
 log meals
@@ -326,6 +329,7 @@ log meals
       _____________________________________________________________________________
 
 ```
+
 #### Delete meal from meal log: `delete mealEntry {index of meal in the meal log}`
 - Deletes meal entry from the meal log at the specified index
 - Example Usage
