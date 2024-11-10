@@ -136,8 +136,7 @@ public class UI {
             System.out.println(INDENTATION + "Command queried does not exist. Please use `command list` to view all " +
                     "searchable commands");
             System.out.println(LINE);
-        }
-        else if (commands.size() == 1) {
+        } else if (commands.size() == 1) {
             System.out.println(INDENTATION + commands.get(0).toString());
             System.out.println(LINE);
         } else {

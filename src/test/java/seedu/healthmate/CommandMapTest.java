@@ -47,7 +47,7 @@ class CommandMapTest {
     @Test
     void testGetCommandsValidCommand() {
         // Test when userInput is not in the command map
-        String userInput = "list commands log meals";
+        String userInput = "list commands meal log";
         String command = "list commands";
 
         List<Command> commands = CommandMap.getCommands(userInput, command);
