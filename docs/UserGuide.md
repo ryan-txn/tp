@@ -162,7 +162,7 @@ list commands delete meal
 
 #### Save Meal to Meal Menu: `save meal {Name of Meal} /c{Number of calories}`
 - Allows user to store a meal with its calories to be used with the add mealEntry command
-- Example usage to store a meal of grapes with 400 calories
+- Example usage to store a meal of pizza with 300 calories
 ```
 save meal pizza /c300
       _____________________________________________________________________________
