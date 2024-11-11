@@ -48,6 +48,12 @@ public class MealEntriesList extends MealList {
             }
             int portions = Parameter.getPortions(userInput);
             MealEntry meal = extractMealEntryFromString(userInput, command, mealOptions);
+            if (meal.descriptionWithinMaxLength()) {
+                UI.printReply(
+                        "Keep description to less than " + Meal.MAX_DESCRIPTION_LENGTH + " characters",
+                        "Retry: ");
+                return;
+            }
             addPortionsOfMeal(meal, portions);
             printDaysConsumptionBar(user, meal.getTimestamp());
         } catch (EmptyCalorieException | BadCalorieException e) {

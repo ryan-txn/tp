@@ -45,12 +45,16 @@ public class MealList {
                 UI.printReply("Meal entry should not include commas", "Retry: ");
                 return;
             }
-            System.out.println(userInput);
             Meal meal = extractMealFromString(userInput, command);
-            if (!meal.descriptionIsEmpty()) {
-                this.addMeal(meal);
-            } else {
+
+            if (meal.descriptionIsEmpty()) {
                 UI.printReply("Meal options require a name", "Retry: ");
+            } else if (meal.descriptionWithinMaxLength()) {
+                UI.printReply(
+                        "Keep description to less than " + Meal.MAX_DESCRIPTION_LENGTH + " characters",
+                        "Retry: ");
+            } else {
+                this.addMeal(meal);
             }
         } catch (EmptyCalorieException | BadCalorieException e) {
             UI.printReply("Every meal needs a calorie integer. (e.g. 120)", "");

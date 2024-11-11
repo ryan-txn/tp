@@ -11,6 +11,8 @@ public class Meal {
     private final Optional<String> name;
     private final int calories;
 
+    public static final int MAX_DESCRIPTION_LENGTH = 50;
+
     public Meal(Optional<String> name, int calories) {
         this.name = name;
         this.calories = calories;
@@ -54,6 +56,10 @@ public class Meal {
 
     public boolean descriptionIsEmpty() {
         return this.name.orElse("").length() == 0;
+    }
+
+    public boolean descriptionWithinMaxLength() {
+        return this.name.orElse("").length() <= MAX_DESCRIPTION_LENGTH;
     }
 
     public boolean isBeforeEqualDate(LocalDateTime timestamp) {
