@@ -140,7 +140,7 @@ list commands
        meal log
       _____________________________________________________________________________
       add mealEntry 
-       add mealEntry {meal name from menu} | or | add mealEntry {meal name} /c{number of calories}
+       add mealEntry {meal name from menu} OR add mealEntry [{name}] /c{calories} [/p{portions}] [/t{Date in YYYY-MM-DD}]
       _____________________________________________________________________________
       delete mealEntry 
        delete mealEntry {index of meal in the meal log}

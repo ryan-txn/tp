@@ -21,12 +21,14 @@ public class AddMealEntryCommand extends Command {
     public static final String COMMAND_LOWER = "add mealentry";
     /** Command format for adding a meal entry with proper parameters. */
     private static final String FORMAT =
-            "add mealEntry {meal name from menu} | or | add mealEntry {meal name} /c{number of calories}";
+            "add mealEntry {meal name from menu} OR add mealEntry [{name}] /c{calories} [/p{portions}] [/t{Date in " +
+                    "YYYY-MM-DD}]";
 
     /** Description of the command functionality. */
     private static final String DESCRIPTION =
-            "Adds a meal entry to the meal log either from a pre-existing meal in the "
-                    + "meal menu or a new meal with a specified amount of calories";
+            "Adds a meal entry to the meal log either from a pre-existing meal in the meal menu \n" +
+                    INDENTATION + "or a new meal with a specified amount of calories, portions and date.\n" +
+                    INDENTATION + "Optional parameters (name, portions, date) are indicated by []";
 
     /**
      * Constructs an {@code AddMealEntryCommand} object with a predefined command keyword,
