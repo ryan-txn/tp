@@ -27,26 +27,26 @@ public class CommandMap {
     private static final Map<String, Command> COMMANDSMAP = new LinkedHashMap<>();
 
     static {
-        COMMANDSMAP.put(UpdateUserDataCommand.COMMAND, new UpdateUserDataCommand());
-        COMMANDSMAP.put(CurrentUserDataCommand.COMMAND, new CurrentUserDataCommand());
+        COMMANDSMAP.put(UpdateUserDataCommand.COMMAND_LOWER, new UpdateUserDataCommand());
+        COMMANDSMAP.put(CurrentUserDataCommand.COMMAND_LOWER, new CurrentUserDataCommand());
 
-        COMMANDSMAP.put(ListCommandsCommand.COMMAND, new ListCommandsCommand());
+        COMMANDSMAP.put(ListCommandsCommand.COMMAND_LOWER, new ListCommandsCommand());
 
-        COMMANDSMAP.put(MealLogCommand.COMMAND, new MealLogCommand());
-        COMMANDSMAP.put(AddMealEntryCommand.COMMAND, new AddMealEntryCommand());
-        COMMANDSMAP.put(DeleteMealEntryCommand.COMMAND, new DeleteMealEntryCommand());
+        COMMANDSMAP.put(MealLogCommand.COMMAND_LOWER, new MealLogCommand());
+        COMMANDSMAP.put(AddMealEntryCommand.COMMAND_LOWER, new AddMealEntryCommand());
+        COMMANDSMAP.put(DeleteMealEntryCommand.COMMAND_LOWER, new DeleteMealEntryCommand());
 
-        COMMANDSMAP.put(MealMenuCommand.COMMAND, new MealMenuCommand());
-        COMMANDSMAP.put(SaveMealCommand.COMMAND, new SaveMealCommand());
-        COMMANDSMAP.put(DeleteMealCommand.COMMAND, new DeleteMealCommand());
+        COMMANDSMAP.put(MealMenuCommand.COMMAND_LOWER, new MealMenuCommand());
+        COMMANDSMAP.put(SaveMealCommand.COMMAND_LOWER, new SaveMealCommand());
+        COMMANDSMAP.put(DeleteMealCommand.COMMAND_LOWER, new DeleteMealCommand());
 
-        COMMANDSMAP.put(TodayCalorieProgressCommand.COMMAND, new TodayCalorieProgressCommand());
-        COMMANDSMAP.put(HistoricCalorieProgressCommand.COMMAND, new HistoricCalorieProgressCommand());
+        COMMANDSMAP.put(TodayCalorieProgressCommand.COMMAND_LOWER, new TodayCalorieProgressCommand());
+        COMMANDSMAP.put(HistoricCalorieProgressCommand.COMMAND_LOWER, new HistoricCalorieProgressCommand());
 
-        COMMANDSMAP.put(MealRecommendationsCommand.COMMAND, new MealRecommendationsCommand());
-        COMMANDSMAP.put(WeightTimelineCommand.COMMAND, new WeightTimelineCommand());
+        COMMANDSMAP.put(MealRecommendationsCommand.COMMAND_LOWER, new MealRecommendationsCommand());
+        COMMANDSMAP.put(WeightTimelineCommand.COMMAND_LOWER, new WeightTimelineCommand());
 
-        COMMANDSMAP.put(ByeCommand.COMMAND, new ByeCommand());
+        COMMANDSMAP.put(ByeCommand.COMMAND_LOWER, new ByeCommand());
     }
 
     /**
@@ -61,15 +61,15 @@ public class CommandMap {
      */
     // Retrieve a command by its name
     public static List<Command> getCommands(String userInput, String command) {
-        if(userInput.equals(command)) {
+        if(userInput.equalsIgnoreCase(command)) {
             return  getAllCommands();
         }
         String commandToFind = userInput.substring(command.length()).trim();
         List<Command> commands = new ArrayList<>();
-        if(!COMMANDSMAP.containsKey(commandToFind)) {
+        if(!COMMANDSMAP.containsKey(commandToFind.toLowerCase())) {
             return commands;
         }
-        commands.add(getCommandByName(commandToFind));
+        commands.add(getCommandByName(commandToFind.toLowerCase()));
         return commands;
 
     }

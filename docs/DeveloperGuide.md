@@ -346,6 +346,7 @@ HealthMate solves the following problems:
    - Verify that the application starts and displays a welcome message.
 
 3. Testing Basic Commands:
+   - Do note our commands are not case-sensitive except for our special parameters (/c,/p,/t)
    - Try entering the command `list commands` and verify that usage instructions are displayed.
    - Test the `bye` command to ensure the application exits properly.
 

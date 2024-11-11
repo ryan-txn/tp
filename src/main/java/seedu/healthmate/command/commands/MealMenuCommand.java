@@ -14,7 +14,7 @@ public class MealMenuCommand extends Command {
 
     /** Command keyword to invoke this action. */
     public static final String COMMAND = "meal menu";
-
+    public static final String COMMAND_LOWER = "meal menu";
     /** Command format for displaying the meal menu. */
     private static final String FORMAT = "meal menu";
 
