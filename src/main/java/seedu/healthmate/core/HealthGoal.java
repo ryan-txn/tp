@@ -12,11 +12,13 @@ public class HealthGoal {
     private static final String STEADY_STATE = "STEADY_STATE";
     private static final String BULKING = "BULKING";
 
-    private static final double WEIGHT_LOSS_MODIFIER = 0.7;
-    private static final double STEADY_STATE_MODIFIER = 1.1;
-    private static final double BULKING_MODIFIER = 1.5;
+    public static final double WEIGHT_LOSS_MODIFIER = 0.9;
+    public static final double STEADY_STATE_MODIFIER = 1.1;
+    public static final double BULKING_MODIFIER = 1.4;
 
     private String currentHealthGoal;
+
+    private static final String[] healthGoals = {WEIGHT_LOSS, STEADY_STATE, BULKING};
 
     /**
      * Constructor for HealthGoal.
@@ -24,18 +26,33 @@ public class HealthGoal {
      *
      * @param healthGoalInput the desired health goal.
      */
-    public HealthGoal(String healthGoalInput) {
+    public HealthGoal(int healthGoalInput) {
         saveHealthGoal(healthGoalInput);
     }
+
+    public HealthGoal(String healthGoalInput) { saveHealthGoal(healthGoalInput);}
 
     /**
      * Saves the current health goal based on input.
      *
      * @param healthGoalInput the input health goal (e.g., WEIGHT_LOSS).
      */
-    public void saveHealthGoal(String healthGoalInput) {
-        assert healthGoalInput != null : "Health goal input cannot be null";
+    public void saveHealthGoal(int healthGoalInput) {
 
+        if (1 > healthGoalInput | healthGoalInput > 3) {
+            UI.printReply("Invalid Health Goal", "Save Health Goal Error: ");
+            return;
+        }
+
+        currentHealthGoal = healthGoals[healthGoalInput - 1];
+
+    }
+
+    public void saveHealthGoal(String healthGoalInput) {
+        if (healthGoalInput.equals("")) {
+            UI.printReply("Empty Health Goal", "Save Health Goal Error: ");
+        }
+        assert healthGoalInput != null : "Health goal input cannot be null";
         switch (healthGoalInput) {
         case WEIGHT_LOSS:
             this.currentHealthGoal = WEIGHT_LOSS;
@@ -69,7 +86,7 @@ public class HealthGoal {
      * @param age     the user's age.
      * @return the target calories based on the health goal and user data.
      */
-    public double getTargetCalories(double height, double weight, boolean isMale, int age) {
+    public int getTargetCalories(double height, double weight, boolean isMale, int age) {
         assert height > 0 : "Height must be positive";
         assert weight > 0 : "Weight must be positive";
         assert age > 0 : "Age must be positive";
@@ -85,11 +102,11 @@ public class HealthGoal {
 
         switch (currentHealthGoal) {
         case WEIGHT_LOSS:
-            return rawCaloriesTarget * WEIGHT_LOSS_MODIFIER;
+            return (int)(rawCaloriesTarget * WEIGHT_LOSS_MODIFIER);
         case STEADY_STATE:
-            return rawCaloriesTarget * STEADY_STATE_MODIFIER;
+            return (int)(rawCaloriesTarget * STEADY_STATE_MODIFIER);
         case BULKING:
-            return rawCaloriesTarget * BULKING_MODIFIER;
+            return (int)(rawCaloriesTarget * BULKING_MODIFIER);
         default:
             return -1;
         }

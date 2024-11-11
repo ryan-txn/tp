@@ -60,7 +60,7 @@ public class UserHistoryTrackerTest {
     @AfterEach
     public void userHistoryTracker_cleanup() {
         userHistoryTracker.clearSaveFile();
-        HealthGoal healthGoal = new HealthGoal("BULKING");
+        HealthGoal healthGoal = new HealthGoal(3);
         User testUser = new User(180, 80, true, 20, healthGoal, true);
 
         userHistoryTracker.addUserEntry(testUser);

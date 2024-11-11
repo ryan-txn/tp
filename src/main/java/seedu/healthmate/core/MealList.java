@@ -49,7 +49,7 @@ public class MealList {
 
             if (meal.descriptionIsEmpty()) {
                 UI.printReply("Meal options require a name", "Retry: ");
-            } else if (meal.descriptionWithinMaxLength()) {
+            } else if (!meal.descriptionWithinMaxLength()) {
                 UI.printReply(
                         "Keep description to less than " + Meal.MAX_DESCRIPTION_LENGTH + " characters",
                         "Retry: ");

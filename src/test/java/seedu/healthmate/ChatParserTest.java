@@ -235,12 +235,12 @@ public class ChatParserTest {
         User userStub = User.createUserStub();
         double idealCalories = userStub.getTargetCalories();
         int testMealCalories = testMealEntry.getCalories();
-        assert (int)idealCalories == 2865 : "Test assumes ideal daily calories of 2865";
+        assert (int)idealCalories == 2674 : "Test assumes ideal daily calories of 2674";
         assert pastDays.size() == 10 : "Test expects an input of 10";
         assert testMealCalories == 300 : "Test expects a calorie intake of 300";
         assert testMealEntry.getName().orElse("") == "burger" : "Tests expects a burger as test meal";
 
-        String idealIntakeString = UI.simulateReply("2865", "Ideal Daily Caloric Intake: ");
+        String idealIntakeString = UI.simulateReply("2674", "Ideal Daily Caloric Intake: ");
         String historyBarsString = simulateHistoryConsumptionBars(pastDays, idealCalories, 300);
         String statsString = getStatsString(pastDays.get(9));
 
@@ -270,12 +270,12 @@ public class ChatParserTest {
         return
                 "      Stats over past 10 days" + System.lineSeparator() +
                 "      Total Calories Consumed: 3000" + System.lineSeparator() +
-                "      Total Ideal Calories: 28650" + System.lineSeparator() +
-                "      Percentage of Total Ideal Calories : 10.0%" + System.lineSeparator() +
+                "      Total Ideal Calories: 26740" + System.lineSeparator() +
+                "      Percentage of Total Ideal Calories : 11.0%" + System.lineSeparator() +
                 "      Day With Heaviest Meal: " + maxConsumptionDate + System.lineSeparator() +
                 "      Heaviest Meal Consumed: burger with 300 calories (at: "+ maxConsumptionDate + ")" +
                 System.lineSeparator() +
-                "      Meals Consumption's Percentage of Daily Ideal Calories: 10.0%" + System.lineSeparator() +
+                "      Meals Consumption's Percentage of Daily Ideal Calories: 11.0%" + System.lineSeparator() +
                 "      _____________________________________________________________________________";
     }
 
@@ -342,11 +342,12 @@ public class ChatParserTest {
         ChatParser chatParser = new ChatParser();
         String simulatedInput = "add mealEntry pizza /c300\n"
                 + "delete mealEntry 1\nbye\n";
+        int idealCalories = 2674;
         String expectedOutput = UI.simulateInitOutput()
                 + UI.simulateReply("pizza with 300 calories (at: " + LocalDate.now() + ")", "Tracked: ")
-                + simulateConsumptionMessageWithBar(2865, 300)
+                + simulateConsumptionMessageWithBar(idealCalories, 300)
                 + UI.simulateReply("Deleted entry: pizza with 300 calories (at: " + LocalDate.now() + ")", "")
-                + simulateConsumptionMessageWithBar(2865, 0)
+                + simulateConsumptionMessageWithBar(idealCalories, 0)
                 + UI.simulateFareWell();
         compareChatParserOutput(chatParser, simulatedInput, expectedOutput);
     }
@@ -371,11 +372,11 @@ public class ChatParserTest {
     void deleteMealEntry_noIndex_failure() {
         ChatParser chatParser = new ChatParser();
         String simulatedInput = "add mealEntry potato /c30\ndelete mealEntry\nbye\n";
-
+        int idealCalories = 2674;
         LocalDate today = LocalDate.now();
         String expectedOutput = UI.simulateInitOutput()
                 + UI.simulateReply("potato with 30 calories (at: " + today + ")", "Tracked: ")
-                + simulateConsumptionMessageWithBar(2865, 30)
+                + simulateConsumptionMessageWithBar(idealCalories, 30)
                 + UI.simulateReply("Meal Entry index needs to be an integer", "Error: ")
                 + UI.simulateFareWell();
         compareChatParserOutput(chatParser, simulatedInput, expectedOutput);
@@ -389,12 +390,12 @@ public class ChatParserTest {
         ChatParser chatParser = new ChatParser();
         chatParser.cleanMealLists();
         String simulatedInput = "add mealEntry pizza /c500\nshow todayCalories\nbye\n";
-
+        int idealCalories = 2674;
         LocalDate today = LocalDate.now();
         String expectedOutput = UI.simulateInitOutput()
                 + UI.simulateReply("pizza with 500 calories (at: " + today + ")", "Tracked: ")
-                + simulateConsumptionMessageWithBar(2865, 500)
-                + simulateConsumptionMessageWithBar(2865, 500)
+                + simulateConsumptionMessageWithBar(idealCalories, 500)
+                + simulateConsumptionMessageWithBar(idealCalories, 500)
                 + UI.simulateFareWell();
 
         compareChatParserOutput(chatParser, simulatedInput, expectedOutput);
@@ -407,10 +408,10 @@ public class ChatParserTest {
     void todayCalorieProgress_noMeals_success() {
         ChatParser chatParser = new ChatParser();
         String simulatedInput = "show todayCalories\nbye\n";
-
+        int idealCalories = 2674;
         LocalDate today = LocalDate.now();
         String expectedOutput = UI.simulateInitOutput()
-                + simulateConsumptionMessageWithBar(2865, 0)
+                + simulateConsumptionMessageWithBar(idealCalories, 0)
                 + UI.simulateFareWell();
 
         compareChatParserOutput(chatParser, simulatedInput, expectedOutput);
