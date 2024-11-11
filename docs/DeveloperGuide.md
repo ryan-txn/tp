@@ -93,7 +93,10 @@ The class supports setting, storing, and retrieving the health goal.
 Additionally, it provides a method to compute target calories using the Harris-Benedict Equation, modified by the current health goal. 
 This allows the class to adapt the calorie calculations according to the user's health objectives, making it versatile for various fitness plans.
 
-The implementation of setting of a healthGoal for example is shown below:
+This is a condensed diagram on how the HealthGoal class interacts with other Classes:
+![HealtGoal CD](images/HealthGoalClassDiagram.png)
+
+The implementation of setting of a healthGoal with a String input for example is shown below:
 
 ![Set Health Goal SD](images/setHealthGoalSD.png)
 
@@ -256,9 +259,6 @@ A find command could be implemented that could help users find the index and det
 the `meal` or `mealEntry` that they would like to delete. Would be helpful for the user as
 too many entries may make it hard for the user to find the one they would like to delete.
 
-#### Sequence Diagram TBD
-1. **Delete Meal `executeCommand` Sequence Diagram**
-2. **Delete MealEntry `executeCommand` Sequence Diagram**
 
 ---
 
