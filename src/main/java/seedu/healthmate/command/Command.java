@@ -6,7 +6,7 @@ package seedu.healthmate.command;
  * and description for user interaction.
  */
 public abstract class Command {
-    private static final String INDENTATION = "      ";
+    public static final String INDENTATION = "      ";
 
     public final String command;
     private String commandLower;
