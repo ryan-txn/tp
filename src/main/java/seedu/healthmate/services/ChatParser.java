@@ -128,50 +128,50 @@ public class ChatParser {
 
         String command = commandPair.getMainCommand();
 
-        switch (command) {
-        case MealMenuCommand.COMMAND:
+        switch (command.toLowerCase()) {
+        case MealMenuCommand.COMMAND_LOWER:
             MealMenuCommand.executeCommand(mealOptions, logger);
             break;
-        case SaveMealCommand.COMMAND:
+        case SaveMealCommand.COMMAND_LOWER:
             SaveMealCommand.executeCommand(historyTracker, mealOptions, userInput, logger);
             break;
-        case DeleteMealCommand.COMMAND:
+        case DeleteMealCommand.COMMAND_LOWER:
             DeleteMealCommand.executeCommand(
                     historyTracker, mealOptions, userInput, command, logger);
             break;
-        case DeleteMealEntryCommand.COMMAND:
+        case DeleteMealEntryCommand.COMMAND_LOWER:
             DeleteMealEntryCommand.executeCommand(
                     historyTracker, mealEntries, user, userInput, command, logger);
             break;
-        case AddMealEntryCommand.COMMAND:
+        case AddMealEntryCommand.COMMAND_LOWER:
             AddMealEntryCommand.executeCommand(
                     historyTracker, mealOptions, mealEntries, user, userInput, command, logger);
             break;
-        case MealLogCommand.COMMAND:
+        case MealLogCommand.COMMAND_LOWER:
             MealLogCommand.executeCommand(mealEntries, logger);
             break;
-        case ListCommandsCommand.COMMAND:
+        case ListCommandsCommand.COMMAND_LOWER:
             ListCommandsCommand.executeCommand(userInput, command, logger);
             break;
-        case UpdateUserDataCommand.COMMAND:
+        case UpdateUserDataCommand.COMMAND_LOWER:
             UpdateUserDataCommand.executeCommand(userHistoryTracker, logger);
             break;
-        case ClearUserDataCommand.COMMAND:
+        case ClearUserDataCommand.COMMAND_LOWER:
             ClearUserDataCommand.executeCommand(userHistoryTracker, logger);
             break;
-        case CurrentUserDataCommand.COMMAND:
+        case CurrentUserDataCommand.COMMAND_LOWER:
             CurrentUserDataCommand.executeCommand(userHistoryTracker, logger);
             break;
-        case TodayCalorieProgressCommand.COMMAND:
+        case TodayCalorieProgressCommand.COMMAND_LOWER:
             TodayCalorieProgressCommand.executeCommands(mealEntries, user, logger);
             break;
-        case HistoricCalorieProgressCommand.COMMAND:
+        case HistoricCalorieProgressCommand.COMMAND_LOWER:
             HistoricCalorieProgressCommand.executeCommand(mealEntries, commandPair, user, logger);
             break;
-        case MealRecommendationsCommand.COMMAND:
+        case MealRecommendationsCommand.COMMAND_LOWER:
             MealRecommendationsCommand.executeCommand(user, logger);
             break;
-        case WeightTimelineCommand.COMMAND:
+        case WeightTimelineCommand.COMMAND_LOWER:
             WeightTimelineCommand.executeCommand(userHistoryTracker, logger);
             break;
         default:

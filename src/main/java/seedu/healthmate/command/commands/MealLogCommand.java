@@ -15,7 +15,7 @@ public class MealLogCommand extends Command {
 
     /** Command keyword to invoke this action. */
     public static final String COMMAND = "meal log";
-
+    public static final String COMMAND_LOWER = "meal log";
     /** Command format for displaying the meal log. */
     private static final String FORMAT = "meal log";
 

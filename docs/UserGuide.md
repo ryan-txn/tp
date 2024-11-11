@@ -33,7 +33,8 @@
 
 ## Quick Start Guide
 
-Welcome to HealthMate! Follow these steps to get started quickly:
+- Welcome to HealthMate! Follow these steps to get started quickly:
+- Do note all commands are not case-sensitive, except for special parameters (/c, /p, /t)
 
 **Entering the App**
 - Open CLI and Navigate to location of `HealthMate.jar`

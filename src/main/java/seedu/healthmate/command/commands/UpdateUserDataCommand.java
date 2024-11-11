@@ -15,7 +15,7 @@ public class UpdateUserDataCommand extends Command {
 
     /** Command keyword to invoke this action. */
     public static final String COMMAND = "update userdata";
-
+    public static final String COMMAND_LOWER = "update userdata";
     /** Command format for updating user data. */
     private static final String FORMAT = "update userdata";
 

@@ -18,6 +18,9 @@ public class ClearUserDataCommand extends Command {
     /** Command keyword to invoke this action. */
     public static final String COMMAND = "clear userdata";
 
+    public static final String COMMAND_LOWER = "clear userdata";
+
+
     /** Command format for clearing user data. */
     private static final String FORMAT = "clear userdata";
 

@@ -17,7 +17,7 @@ public class MealRecommendationsCommand extends Command {
 
     /** Command keyword to invoke this action. */
     public static final String COMMAND = "meal recommendations";
-
+    public static final String COMMAND_LOWER = "meal recommendations";
     /** Command format for displaying meal recommendations. */
     private static final String FORMAT = "meal recommendations";
 
