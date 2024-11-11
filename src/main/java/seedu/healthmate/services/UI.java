@@ -143,7 +143,7 @@ public class UI {
             System.out.println(INDENTATION + "Use `list commands <command>` to view a command's syntax");
             System.out.println(LINE);
             for (Command command : commands) {
-                System.out.println(INDENTATION + command.command);
+                System.out.println(INDENTATION + command.shortDescription());
                 System.out.println(LINE);
             }
         }

@@ -37,6 +37,10 @@ public abstract class Command {
                 INDENTATION + "Description: " + description;
     }
 
+    public String shortDescription() {
+        return command + " \n " + INDENTATION + format;
+    }
+
     /**
      * Returns the command string.
      *
