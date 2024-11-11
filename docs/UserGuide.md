@@ -47,6 +47,8 @@ This includes:
 - Your gender (either male or female)
 - Your age in years (e.g. 20)
 - Your personal health goal (either WEIGHT_LOSS, STEADY_STATE, BULKING)
+- Whether you your system can print the special characters "░" and "█" 
+(The UI of the consumption bar feature will be customized based on your answer).
 
 **Log Your First Meal**
 - Enter the meal name and calories.
@@ -172,7 +174,7 @@ save meal pizza /c300
 
 #### Overwrite Saved Meal in Meal Menu: `save meal {Name of existing Meal} /c{Number of calories}`
 - Allows user to update an existing meal option with a new calorie number
-```dtd
+```
 save meal soup /c300
       _____________________________________________________________________________
       Added to options: soup with 300 calories
@@ -221,6 +223,21 @@ add mealEntry pizza /c300 /t2024-10-30
       % of Expected Calorie Intake Consumed:
       ███░░░░░░░░░░░░░░░░░░░░░░░░░░|  11%|░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ (2024-10-30)
       _____________________________________________________________________________
+```
+Shorcut: log a meal without a name and only calories. 
+```
+add mealEntry /c200
+      _____________________________________________________________________________
+      Tracked: Meal with 200 calories (at: 2024-11-11)
+      _____________________________________________________________________________
+      _____________________________________________________________________________
+      Ideal Daily Caloric Intake: 2865
+      _____________________________________________________________________________
+      Current Calories Consumed: 1300
+      % of Expected Calorie Intake Consumed: 
+      █████████████░░░░░░░░░░░░░░░░|  46%|░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ (2024-11-11)
+      _____________________________________________________________________________
+
 ```
 
 Shortcut: log a presaved meal from the list of meal options (no calories needed)
@@ -328,6 +345,7 @@ log meals
 ```
 #### Delete meal from meal log: `delete mealEntry {index of meal in the meal log}`
 - Deletes meal entry from the meal log at the specified index
+- Note: depending on your system the bars might look different
 - Example Usage
 ```
 delete mealEntry 1
@@ -345,6 +363,7 @@ delete mealEntry 1
 ### Calorie Progress Commands:
 #### Show Calorie Progress for Today: `show todayCalories`
 - Prints a Calorie Progress Bar to represent Today Calorie Progress
+- Note: depending on your system the bars might look different
 - Example Usage:
 
 
@@ -363,9 +382,7 @@ show todayCalories
 #### Show Historic Calorie Progress: `show historicCalories {Number of Days inclu. Today}`
 - Prints Calorie Progress Bars & Various Stats to represent Historical Calorie Progress
 - Combines global and local view on eating patterns via the progress bar and details such as the meal with the highest calories.
-- Example Usage:
-
-
+- Example Usage (Note: depending on your system the bars might look different):
 ```
 show historicCalories 10
       _____________________________________________________________________________

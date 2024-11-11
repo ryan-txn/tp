@@ -44,7 +44,12 @@ public class Meal {
         if (signallerIndex == -1) {
             signallerIndex = input.length();
         }
-        return Optional.ofNullable(input.substring(mealDescriptionIndex, signallerIndex).trim().toLowerCase());
+        String mealDescrition = input.substring(mealDescriptionIndex, signallerIndex).trim().toLowerCase();
+        if (mealDescrition.strip().length() > 0) {
+            return Optional.of(mealDescrition);
+        } else {
+            return Optional.empty();
+        }
     }
 
     public boolean descriptionIsEmpty() {
@@ -60,7 +65,7 @@ public class Meal {
     }
 
     public String toSaveString() {
-        return this.name.orElse("") + "," + this.getCalories();
+        return this.name.orElse("Meal") + "," + this.getCalories();
     }
 
     public Optional<String> getName() {
