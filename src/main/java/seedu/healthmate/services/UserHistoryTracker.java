@@ -73,12 +73,12 @@ public class UserHistoryTracker extends HistoryTracker {
             UI.printMultiLineReply(messages);
         } catch (IllegalArgumentException e) {
             clearSaveFile();
-            List<String> messages = List.of("It seems some boolean(s) / health goal(s) in you user profile are corrupted.",
+            List<String> messages = List.of("It seems some booleans / health goals in you user profile are corrupted.",
                     "A new profile needs to be created.");
             UI.printMultiLineReply(messages);
         } catch (DateTimeParseException e) {
             clearSaveFile();
-            List<String> messages = List.of("It seems some datetime(s) in you user profile are corrupted.",
+            List<String> messages = List.of("It seems some datetime records in you user profile are corrupted.",
                     "A new profile needs to be created.");
             UI.printMultiLineReply(messages);
         } catch (NoSuchElementException e) {
