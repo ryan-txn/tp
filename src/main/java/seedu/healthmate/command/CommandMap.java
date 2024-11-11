@@ -5,7 +5,7 @@ import seedu.healthmate.command.commands.DeleteMealCommand;
 import seedu.healthmate.command.commands.DeleteMealEntryCommand;
 import seedu.healthmate.command.commands.HistoricCalorieProgressCommand;
 import seedu.healthmate.command.commands.ListCommandsCommand;
-import seedu.healthmate.command.commands.LogMealsCommand;
+import seedu.healthmate.command.commands.MealLogCommand;
 import seedu.healthmate.command.commands.MealMenuCommand;
 import seedu.healthmate.command.commands.SaveMealCommand;
 import seedu.healthmate.command.commands.TodayCalorieProgressCommand;
@@ -27,7 +27,7 @@ public class CommandMap {
     private static final Map<String, Command> COMMANDSMAP = new HashMap<>();
 
     static {
-        COMMANDSMAP.put(LogMealsCommand.COMMAND, new LogMealsCommand());
+        COMMANDSMAP.put(MealLogCommand.COMMAND, new MealLogCommand());
         COMMANDSMAP.put(AddMealEntryCommand.COMMAND, new AddMealEntryCommand());
         COMMANDSMAP.put(DeleteMealEntryCommand.COMMAND, new DeleteMealEntryCommand());
         COMMANDSMAP.put(DeleteMealCommand.COMMAND, new DeleteMealCommand());

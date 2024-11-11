@@ -18,7 +18,7 @@
     - [Show List of Available Meal Options](#show-list-of-available-meal-options-meal-menu)
     - [Weight Timeline](#weight-timeline-weight-timeline)
     - [Meal Recommender](#meal-recommender-meal-recommendations)
-- [Log Commands](#log-commands)
+- [Meal Log Commands](#meal-log-commands)
   - [Show Meal History](#show-meal-history-log-meals)
   - [Delete meal from meal log](#delete-meal-from-meal-log-delete-mealentry-index-of-meal-in-the-meal-log)
 - [Calorie Progress Commands](#calorie-progress-commands)
@@ -66,10 +66,10 @@ add mealEntry burger /c300
   _____________________________________________________________________________
 ```
 **Get an overview on your calorie consumption**
-- Use the "Log Meals" feature to view your meal entries and track your daily caloric intake.
-- Example: Add your first mealEntry and then use `log meals` to assess the meals tracked so far. 
+- Use the "meal log" feature to view your meal entries and track your daily caloric intake.
+- Example: Add your first mealEntry and then use `meal log` to assess the meals tracked so far. 
   ```
-  log meals
+  meal log
   _____________________________________________________________________________
   1: burger with 300 calories (at: 2024-10-29T22:00)
   _____________________________________________________________________________
@@ -117,6 +117,7 @@ bye
 ### List Commands
 Use the `list commands [{command}]` command to view all valid commands and their formats.
 - Example usage to list all commands
+
 ```
 list commands
       _____________________________________________________________________________
@@ -126,6 +127,12 @@ list commands
       _____________________________________________________________________________
       weight timeline
       _____________________________________________________________________________
+      meal menu
+      _____________________________________________________________________________
+      delete mealEntry
+      _____________________________________________________________________________
+      bye
+      _____________________________________________________________________________
       show todayCalories
       _____________________________________________________________________________
       update userdata
@@ -134,23 +141,18 @@ list commands
       _____________________________________________________________________________
       save meal
       _____________________________________________________________________________
-      log meals
-      _____________________________________________________________________________
       meal recommendations
       _____________________________________________________________________________
+      meal log
+      _____________________________________________________________________________
       current userdata
-      _____________________________________________________________________________
-      meal menu
-      _____________________________________________________________________________
-      delete mealEntry
       _____________________________________________________________________________
       add mealEntry
       _____________________________________________________________________________
       delete meal
       _____________________________________________________________________________
-      bye
-      _____________________________________________________________________________
 ```
+
 List Commands with command parameter
 ```
 list commands delete meal
@@ -329,12 +331,15 @@ meal recommendations
 
 ```
 
-### Log Commands:
-#### Show Meal History: `log meals`
-- Displays the history of the meals you've eaten over the chosen timespan.
+### Meal Log Commands:
+
+- Meal entries are managed in the meal log. With it user's can view their tracked meals.
+
+#### Show Meal History: `meal log`
+- Displays the log of all meal entries along with their Timestamp in Date Time format.
 - Example Usage
 ```
-log meals
+meal log
       _____________________________________________________________________________
       1: pizza with 300 calories (at: 2024-11-01)
       2: late dinner with 300 calories (at: 2024-11-02)
@@ -343,6 +348,7 @@ log meals
       _____________________________________________________________________________
 
 ```
+
 #### Delete meal from meal log: `delete mealEntry {index of meal in the meal log}`
 - Deletes meal entry from the meal log at the specified index
 - Note: depending on your system the bars might look different
@@ -450,7 +456,7 @@ current userdata
 | Save meal to meal options                  | `save meal {meal} /c{Number of calories}`                                                              | Prompts for meal name, calories, then confirms saving the meal.                                               |
 | Add meal entry for tracking                | `add mealEntry {meal} [/c{Number of calories}] [/p{Number of portions}] [/t{timestamp in YYYY-MM-DD}]` | Adds meal to daily caloric intake and shows progress toward goal.                                             |
 | Show list of available meal options        | `meal menu`                                                                                            | Prints all available meals from the saved options list.                                                       |
-| Show past meals                            | `log meals`                                                                                            | Displays history of meals with timestamp and calories.                                                        |
+| Show past meals                            | `meal log`                                                                                             | Displays history of meals with timestamp and calories.                                                        |
 | Delete meal from meal menu                 | `delete meal {index of meal in meal menu}`                                                             | Deletes meal option from the meal menu at the specified index.                                                |
 | Delete meal entry from meal log            | `delete mealEntry {index of meal in the meal log}`                                                     | Deletes meal entry from the meal log at the specified index and shows effect on the days progress toward goal. |
 | Show Calorie Progress for Today            | `show todayCalories`                                                                                   | Prints a Calorie Progress Bar to represent Today Calorie Progress                                             |

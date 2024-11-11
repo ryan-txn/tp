@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.healthmate.command.Command;
 import seedu.healthmate.command.CommandMap;
-import seedu.healthmate.command.commands.LogMealsCommand;
+import seedu.healthmate.command.commands.MealLogCommand;
 
 import java.util.List;
 
@@ -47,14 +47,14 @@ class CommandMapTest {
     @Test
     void testGetCommandsValidCommand() {
         // Test when userInput is not in the command map
-        String userInput = "list commands log meals";
+        String userInput = "list commands meal log";
         String command = "list commands";
 
         List<Command> commands = CommandMap.getCommands(userInput, command);
 
         // Expect that all commands are returned
         assertEquals(1, commands.size());
-        assertInstanceOf(LogMealsCommand.class, commands.get(0));
+        assertInstanceOf(MealLogCommand.class, commands.get(0));
     }
 }
 

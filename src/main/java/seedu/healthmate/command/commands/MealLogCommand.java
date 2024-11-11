@@ -11,13 +11,13 @@ import java.util.logging.Logger;
  * Represents a command to display the log of all meal entries.
  * Each meal entry is shown with its timestamp in date-time format.
  */
-public class LogMealsCommand extends Command {
+public class MealLogCommand extends Command {
 
     /** Command keyword to invoke this action. */
-    public static final String COMMAND = "log meals";
+    public static final String COMMAND = "meal log";
 
     /** Command format for displaying the meal log. */
-    private static final String FORMAT = "log meals";
+    private static final String FORMAT = "meal log";
 
     /** Description of the command functionality. */
     private static final String DESCRIPTION =
@@ -27,7 +27,7 @@ public class LogMealsCommand extends Command {
      * Constructs a {@code LogMealsCommand} object with a predefined command keyword,
      * format, and description.
      */
-    public LogMealsCommand() {
+    public MealLogCommand() {
         super(COMMAND, FORMAT, DESCRIPTION);
     }
 

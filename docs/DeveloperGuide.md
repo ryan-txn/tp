@@ -79,7 +79,7 @@ of a User class.
 The Meal class encapsulates the concept of a meal. As the purpose of this application 
 is to track calorie consumption, this consists of a mandatory calorie entry. The meal's name attribute, 
 is however an Optional<String> allowing a case, where no meaningful label can be attached to a certain consumption.
-![User SD](images/addMeal.png)
+![User SD](images/addMeal.svg)
 
 #### MealEntry
 The MealEntry class extends the meal class and contains an additional field timestamp. 

@@ -108,16 +108,18 @@ public class UI {
      * @param mealEntries The list of meal entries to display.
      */
     public static void printMealEntries(MealEntriesList mealEntries) {
-        printSeparator();
+
         if (mealEntries.size() > 0) {
+            printSeparator();
             for (int i = 0; i < mealEntries.size(); i++) {
                 System.out.println(INDENTATION + (i + 1)
                         + ": " + mealEntries.toMealStringByIndex(i));
             }
+            printSeparator();
         } else {
             printReply("No meal entries added yet", "");
         }
-        printSeparator();
+
     }
 
     public static void printMealNotFound() {
@@ -134,8 +136,7 @@ public class UI {
             System.out.println(INDENTATION + "Command queried does not exist. Please use `command list` to view all " +
                     "searchable commands");
             System.out.println(LINE);
-        }
-        else if (commands.size() == 1) {
+        } else if (commands.size() == 1) {
             System.out.println(INDENTATION + commands.get(0).toString());
             System.out.println(LINE);
         } else {

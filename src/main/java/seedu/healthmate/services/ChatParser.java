@@ -1,7 +1,7 @@
 package seedu.healthmate.services;
 
 import seedu.healthmate.command.CommandPair;
-import seedu.healthmate.command.commands.LogMealsCommand;
+import seedu.healthmate.command.commands.MealLogCommand;
 import seedu.healthmate.command.commands.SaveMealCommand;
 import seedu.healthmate.command.commands.ListCommandsCommand;
 import seedu.healthmate.command.commands.AddMealEntryCommand;
@@ -146,8 +146,8 @@ public class ChatParser {
             AddMealEntryCommand.executeCommand(
                     historyTracker, mealOptions, mealEntries, user, userInput, command, logger);
             break;
-        case LogMealsCommand.COMMAND:
-            LogMealsCommand.executeCommand(mealEntries, logger);
+        case MealLogCommand.COMMAND:
+            MealLogCommand.executeCommand(mealEntries, logger);
             break;
         case ListCommandsCommand.COMMAND:
             ListCommandsCommand.executeCommand(userInput, command, logger);
