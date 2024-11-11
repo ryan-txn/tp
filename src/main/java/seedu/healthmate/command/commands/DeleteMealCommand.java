@@ -16,7 +16,7 @@ public class DeleteMealCommand extends Command {
 
     /** Command keyword to invoke this action. */
     public static final String COMMAND = "delete meal";
-
+    public static final String COMMAND_LOWER = "delete meal";
     /** Command format for deleting a meal option by specifying its index. */
     private static final String FORMAT = COMMAND + " {index of meal in meal menu}";
 

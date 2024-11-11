@@ -17,7 +17,7 @@ public class WeightTimelineCommand extends Command {
 
     /** Command keyword to invoke this action. */
     public static final String COMMAND = "weight timeline";
-
+    public static final String COMMAND_LOWER = "weight timeline";
     /** Command format for displaying the weight timeline. */
     private static final String FORMAT = "weight timeline";
 

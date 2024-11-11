@@ -15,7 +15,7 @@ public class ListCommandsCommand extends Command {
 
     /** Command keyword to invoke this action. */
     public static final String COMMAND = "list commands";
-
+    public static final String COMMAND_LOWER = "list commands";
     /** Command format for listing all available commands. */
     private static final String FORMAT = "list commands";
 

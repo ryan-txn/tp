@@ -17,7 +17,7 @@ public class CurrentUserDataCommand extends Command {
 
     /** Command keyword to invoke this action. */
     public static final String COMMAND = "current userdata";
-
+    public static final String COMMAND_LOWER = "current userdata";
     /** Command format for updating user data. */
     private static final String FORMAT = "current userdata";
 
