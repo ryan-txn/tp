@@ -8,6 +8,9 @@ import seedu.healthmate.exceptions.EmptyCalorieException;
 import seedu.healthmate.utils.Parameter;
 
 public class Meal {
+    
+    public static final int MAX_DESCRIPTION_LENGTH = 50;
+
     private final Optional<String> name;
     private final int calories;
 
@@ -54,6 +57,10 @@ public class Meal {
 
     public boolean descriptionIsEmpty() {
         return this.name.orElse("").length() == 0;
+    }
+
+    public boolean descriptionWithinMaxLength() {
+        return this.name.orElse("").length() <= MAX_DESCRIPTION_LENGTH;
     }
 
     public boolean isBeforeEqualDate(LocalDateTime timestamp) {

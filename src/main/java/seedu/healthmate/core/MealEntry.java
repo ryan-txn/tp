@@ -10,6 +10,7 @@ import seedu.healthmate.exceptions.BadTimestampException;
 import seedu.healthmate.exceptions.EmptyCalorieException;
 import seedu.healthmate.exceptions.EmptyTimestampException;
 import seedu.healthmate.exceptions.MealNotFoundException;
+import seedu.healthmate.utils.DateTimeUtils;
 import seedu.healthmate.utils.Parameter;
 
 /**
@@ -75,6 +76,10 @@ public class MealEntry extends Meal{
 
         try {
             LocalDate timestamp = Parameter.getTimestamp(input);
+            if (timestamp.isAfter(DateTimeUtils.currentDate())) {
+                UI.printString("DATE ERROR: NO FUTURE DATES");
+                throw new BadTimestampException();
+            }
             return new MealEntry(mealDescription, calories, timestamp.atStartOfDay());
         } catch (EmptyTimestampException e) {
             return new MealEntry(mealDescription, calories);

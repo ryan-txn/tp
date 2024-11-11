@@ -47,7 +47,10 @@ This includes:
 - Your weight in kg (e.g. 80)
 - Your gender (either male or female)
 - Your age in years (e.g. 20)
-- Your personal health goal (either WEIGHT_LOSS, STEADY_STATE, BULKING)
+- Your personal health goal: 
+  - `1` WEIGHT_LOSS
+  - `2` STEADY_STATE
+  - `3` BULKING
 - Whether you your system can print the special characters "░" and "█" 
 (The UI of the consumption bar feature will be customized based on your answer).
 
@@ -124,33 +127,47 @@ list commands
       _____________________________________________________________________________
       Use `list commands <command>` to view a command's syntax
       _____________________________________________________________________________
-      list commands
+      update userdata 
+       update userdata
       _____________________________________________________________________________
-      weight timeline
+      current userdata 
+       current userdata
       _____________________________________________________________________________
-      meal menu
+      list commands 
+       list commands
       _____________________________________________________________________________
-      delete mealEntry
+      meal log 
+       meal log
       _____________________________________________________________________________
-      bye
+      add mealEntry 
+       add mealEntry {meal name from menu} | or | add mealEntry {meal name} /c{number of calories}
       _____________________________________________________________________________
-      show todayCalories
+      delete mealEntry 
+       delete mealEntry {index of meal in the meal log}
       _____________________________________________________________________________
-      update userdata
+      meal menu 
+       meal menu
       _____________________________________________________________________________
-      show historicCalories
+      save meal 
+       save meal {meal name} /c{number of calories}
       _____________________________________________________________________________
-      save meal
+      delete meal 
+       delete meal {index of meal in meal menu}
       _____________________________________________________________________________
-      meal recommendations
+      show todayCalories 
+       show todayCalories
       _____________________________________________________________________________
-      meal log
+      show historicCalories 
+       show historicCalories {Number of Days inclu. Today}
       _____________________________________________________________________________
-      current userdata
+      meal recommendations 
+       meal recommendations
       _____________________________________________________________________________
-      add mealEntry
+      weight timeline 
+       weight timeline
       _____________________________________________________________________________
-      delete meal
+      bye 
+       bye
       _____________________________________________________________________________
 ```
 
@@ -447,7 +464,7 @@ current userdata
       Gender: male
       Age: 20
       Health Goal: BULKING
-          Ideal Daily Caloric Intake: 2865.603
+          Ideal Daily Caloric Intake: 2865.0
       Recorded at: 2024-11-07 12:35:26
       _____________________________________________________________________________
 

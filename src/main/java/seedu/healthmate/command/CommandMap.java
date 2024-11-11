@@ -15,31 +15,37 @@ import seedu.healthmate.command.commands.MealRecommendationsCommand;
 import seedu.healthmate.command.commands.WeightTimelineCommand;
 import seedu.healthmate.command.commands.ByeCommand;
 
-import java.util.Map;
-import java.util.HashMap;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
 
 public class CommandMap {
     private static final Logger logger = Logger.getLogger(CommandMap.class.getName());
-    private static final Map<String, Command> COMMANDSMAP = new HashMap<>();
+    private static final Map<String, Command> COMMANDSMAP = new LinkedHashMap<>();
 
     static {
+        COMMANDSMAP.put(UpdateUserDataCommand.COMMAND_LOWER, new UpdateUserDataCommand());
+        COMMANDSMAP.put(CurrentUserDataCommand.COMMAND_LOWER, new CurrentUserDataCommand());
+
+        COMMANDSMAP.put(ListCommandsCommand.COMMAND_LOWER, new ListCommandsCommand());
+
         COMMANDSMAP.put(MealLogCommand.COMMAND_LOWER, new MealLogCommand());
         COMMANDSMAP.put(AddMealEntryCommand.COMMAND_LOWER, new AddMealEntryCommand());
         COMMANDSMAP.put(DeleteMealEntryCommand.COMMAND_LOWER, new DeleteMealEntryCommand());
-        COMMANDSMAP.put(DeleteMealCommand.COMMAND_LOWER, new DeleteMealCommand());
-        COMMANDSMAP.put(ListCommandsCommand.COMMAND_LOWER, new ListCommandsCommand());
+
         COMMANDSMAP.put(MealMenuCommand.COMMAND_LOWER, new MealMenuCommand());
         COMMANDSMAP.put(SaveMealCommand.COMMAND_LOWER, new SaveMealCommand());
-        COMMANDSMAP.put(UpdateUserDataCommand.COMMAND_LOWER, new UpdateUserDataCommand());
-        COMMANDSMAP.put(CurrentUserDataCommand.COMMAND_LOWER, new CurrentUserDataCommand());
+        COMMANDSMAP.put(DeleteMealCommand.COMMAND_LOWER, new DeleteMealCommand());
+
         COMMANDSMAP.put(TodayCalorieProgressCommand.COMMAND_LOWER, new TodayCalorieProgressCommand());
         COMMANDSMAP.put(HistoricCalorieProgressCommand.COMMAND_LOWER, new HistoricCalorieProgressCommand());
+
         COMMANDSMAP.put(MealRecommendationsCommand.COMMAND_LOWER, new MealRecommendationsCommand());
         COMMANDSMAP.put(WeightTimelineCommand.COMMAND_LOWER, new WeightTimelineCommand());
+
         COMMANDSMAP.put(ByeCommand.COMMAND_LOWER, new ByeCommand());
     }
 

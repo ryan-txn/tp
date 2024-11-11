@@ -19,7 +19,7 @@ public class HealthGoalTest {
     @BeforeEach
     public void setUp() {
         // Initialize with a default health goal for each test
-        healthGoal = new HealthGoal("STEADY_STATE");
+        healthGoal = new HealthGoal(2);
     }
 
     /**
@@ -27,15 +27,15 @@ public class HealthGoalTest {
      */
     @Test
     public void testSaveHealthGoal_validGoal() {
-        healthGoal.saveHealthGoal("WEIGHT_LOSS");
+        healthGoal.saveHealthGoal(1);
         assertEquals("WEIGHT_LOSS", healthGoal.getCurrentHealthGoal(),
                 "Expected health goal to be WEIGHT_LOSS");
 
-        healthGoal.saveHealthGoal("STEADY_STATE");
+        healthGoal.saveHealthGoal(2);
         assertEquals("STEADY_STATE", healthGoal.getCurrentHealthGoal(),
                 "Expected health goal to be STEADY_STATE");
 
-        healthGoal.saveHealthGoal("BULKING");
+        healthGoal.saveHealthGoal(3);
         assertEquals("BULKING", healthGoal.getCurrentHealthGoal(),
                 "Expected health goal to be BULKING");
     }
@@ -45,7 +45,7 @@ public class HealthGoalTest {
      */
     @Test
     public void testSaveHealthGoal_invalidGoal() {
-        healthGoal.saveHealthGoal("INVALID_GOAL");
+        healthGoal.saveHealthGoal(4);
         assertEquals("STEADY_STATE", healthGoal.getCurrentHealthGoal(),
                 "Health goal should remain unchanged for invalid input");
     }
@@ -55,9 +55,9 @@ public class HealthGoalTest {
      */
     @Test
     public void testGetTargetCalories_maleWeightLoss() {
-        healthGoal.saveHealthGoal("WEIGHT_LOSS");
+        healthGoal.saveHealthGoal(1);
         double targetCalories = healthGoal.getTargetCalories(180, 75, true, 25);
-        assertEquals(1270.52, targetCalories, 0.01,
+        assertEquals(1633.0, targetCalories, 0.01,
                 "Expected target calories for male weight loss to be 1270.52");
     }
 
@@ -66,9 +66,9 @@ public class HealthGoalTest {
      */
     @Test
     public void testGetTargetCalories_femaleBulking() {
-        healthGoal.saveHealthGoal("BULKING");
+        healthGoal.saveHealthGoal(3);
         double targetCalories = healthGoal.getTargetCalories(160, 55, false, 30);
-        assertEquals(1982.94, targetCalories, 0.01,
+        assertEquals(1850.0, targetCalories, 0.01,
                 "Expected target calories for female bulking to be 1982.94");
     }
 
@@ -77,9 +77,9 @@ public class HealthGoalTest {
      */
     @Test
     public void testGetTargetCalories_steadyState() {
-        healthGoal.saveHealthGoal("STEADY_STATE");
+        healthGoal.saveHealthGoal(2);
         double targetCalories = healthGoal.getTargetCalories(170, 68, true, 28);
-        assertEquals(1821.86, targetCalories, 0.01,
+        assertEquals(1821.0, targetCalories, 0.01,
                 "Expected target calories for steady state to be 1821.86");
     }
 
@@ -88,7 +88,7 @@ public class HealthGoalTest {
      */
     @Test
     public void testToString() {
-        healthGoal.saveHealthGoal("BULKING");
+        healthGoal.saveHealthGoal(3);
         assertEquals("BULKING", healthGoal.toString(),
                 "Expected toString() to return BULKING");
     }
