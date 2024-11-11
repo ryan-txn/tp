@@ -16,7 +16,10 @@
       Let's get healthy!
       Use the `list commands` command to have a look at all commands.
       _____________________________________________________________________________
-      It seems your user data file is incomplete. A new profile needs to be created
+      _____________________________________________________________________________
+      It seems your user profile is incomplete.
+      A new profile needs to be created.
+      _____________________________________________________________________________
       Create your profile: please enter...
       Height in cm (e.g. 180):
       Weight in kg (e.g. 80):

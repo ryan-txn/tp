@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.Scanner;
@@ -56,25 +57,30 @@ public class UserHistoryTracker extends HistoryTracker {
                 User user = getUserEntryFromFileLine(line);
                 userEntryList.addUserEntry(user);
             }
-
         } catch (IOException e) {
-            UI.printString("Error loading user data file. A new profile needs to be created");
+            List<String> messages = List.of("Sorry: There was an error loading your user profile.",
+                    "A new profile needs to be created.");
+            UI.printMultiLineReply(messages);
         } catch (ArrayIndexOutOfBoundsException e) {
             clearSaveFile();
-            UI.printString("It seems your user data file is corrupted - invalid number of entries per line in save file.");
-            UI.printString("All data has been cleared, and a new profile needs to be created.");
+            List<String> messages = List.of("It seems your user profile is incomplete.",
+                    "A new profile needs to be created.");
+            UI.printMultiLineReply(messages);
         } catch (NumberFormatException e) {
             clearSaveFile();
-            UI.printString("Error parsing a number from user data file.");
-            UI.printString("All data has been cleared, and a new profile needs to be created.");
+            List<String> messages = List.of("It seems some numbers in you user profile are corrupted.",
+                    "A new profile needs to be created.");
+            UI.printMultiLineReply(messages);
         } catch (IllegalArgumentException e) {
             clearSaveFile();
-            UI.printString("Error parsing a boolean / health goal from user data file.");
-            UI.printString("All data has been cleared, and a new profile needs to be created.");
+            List<String> messages = List.of("It seems some boolean(s) / health goal(s) in you user profile are corrupted.",
+                    "A new profile needs to be created.");
+            UI.printMultiLineReply(messages);
         } catch (DateTimeParseException e) {
             clearSaveFile();
-            UI.printString("Error parsing datetime from user data file.");
-            UI.printString("All data has been cleared, and a new profile needs to be created.");
+            List<String> messages = List.of("It seems some datetime(s) in you user profile are corrupted.",
+                    "A new profile needs to be created.");
+            UI.printMultiLineReply(messages);
         } catch (NoSuchElementException e) {
             // silent catch if existing user file contains no content
         }
