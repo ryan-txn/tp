@@ -13,7 +13,7 @@ import seedu.healthmate.services.UserHistoryTracker;
  * Represents a user record captured at a specific date and time.
  */
 public class User {
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     private final double idealCalories;
     private final double heightEntry;
@@ -66,7 +66,7 @@ public class User {
         this.age = age;
         this.healthGoal = new HealthGoal(healthGoal);
         this.idealCalories = idealCalories;
-        this.localDateTime = LocalDateTime.parse(localDateTime, formatter);
+        this.localDateTime = LocalDateTime.parse(localDateTime, DATE_TIME_FORMATTER);
         this.isAbleToSeeSpecialChars = isAbleToSeeSpecialChars;
     }
 
@@ -136,7 +136,7 @@ public class User {
                 + age + ","
                 + healthGoal.toString() + ","
                 + idealCalories + ","
-                + localDateTime.format(formatter) + ","
+                + localDateTime.format(DATE_TIME_FORMATTER) + ","
                 + isAbleToSeeSpecialChars;
     }
 
@@ -147,7 +147,7 @@ public class User {
         UI.printString("Age: " + age);
         UI.printString("Health Goal: " + healthGoal.toString());
         UI.printString("Ideal Daily Caloric Intake: " + idealCalories);
-        UI.printString("Recorded at: " + localDateTime.format(formatter));
+        UI.printString("Recorded at: " + localDateTime.format(DATE_TIME_FORMATTER));
         UI.printString("Is able to see special chars: " + isAbleToSeeSpecialChars);
     }
 

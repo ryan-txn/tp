@@ -4,9 +4,13 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Date;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.Scanner;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 import seedu.healthmate.core.User;
 import seedu.healthmate.core.UserEntryList;
@@ -18,6 +22,8 @@ import seedu.healthmate.core.UserEntryList;
 public class UserHistoryTracker extends HistoryTracker {
 
     private static final String USER_DATA_FILE = "user_data.csv";
+    public static final int USER_ENTRY_PRINTING_COUNT = 5;
+    public static final int USER_DATA_SAVE_FILE_FIELDS = 8;
 
     public UserHistoryTracker() {
         super();
@@ -54,9 +60,21 @@ public class UserHistoryTracker extends HistoryTracker {
         } catch (IOException e) {
             UI.printString("Error loading user data file. A new profile needs to be created");
         } catch (ArrayIndexOutOfBoundsException e) {
-            UI.printString("It seems your user data file is incomplete. A new profile needs to be created");
+            clearSaveFile();
+            UI.printString("It seems your user data file is corrupted - invalid number of entries per line in save file.");
+            UI.printString("All data has been cleared, and a new profile needs to be created.");
         } catch (NumberFormatException e) {
-            UI.printString("Error parsing a number.");
+            clearSaveFile();
+            UI.printString("Error parsing a number from user data file.");
+            UI.printString("All data has been cleared, and a new profile needs to be created.");
+        } catch (IllegalArgumentException e) {
+            clearSaveFile();
+            UI.printString("Error parsing a boolean / health goal from user data file.");
+            UI.printString("All data has been cleared, and a new profile needs to be created.");
+        } catch (DateTimeParseException e) {
+            clearSaveFile();
+            UI.printString("Error parsing datetime from user data file.");
+            UI.printString("All data has been cleared, and a new profile needs to be created.");
         } catch (NoSuchElementException e) {
             // silent catch if existing user file contains no content
         }
@@ -98,9 +116,9 @@ public class UserHistoryTracker extends HistoryTracker {
 
             UserEntryList userList = userListOpt.get();
             int start = userList.getUserEntryList().size() - 1; // Calculate starting index for last 5 entries
-            int end = Math.max(userList.getUserEntryList().size() - 6, 0);
+            int end = Math.max(start - (USER_ENTRY_PRINTING_COUNT - 1), 0);
 
-            for (int i = start; i > end; i--) {
+            for (int i = start; i >= end; i--) {
                 User user = userList.getUserEntryList().get(i);
                 System.out.println();
                 user.printUIString();
@@ -117,19 +135,66 @@ public class UserHistoryTracker extends HistoryTracker {
      * @param line CSV-formatted string representing a user entry.
      * @return User object with data from the parsed line.
      */
-    private static User getUserEntryFromFileLine(String line) {
+    private static User getUserEntryFromFileLine(String line) throws ArrayIndexOutOfBoundsException,
+            IllegalArgumentException, DateTimeParseException {
 
         String[] fields = line.split(",");  // Split the CSV line by commas
+        if (fields.length != USER_DATA_SAVE_FILE_FIELDS) {
+            throw new ArrayIndexOutOfBoundsException();
+        }
         double height = Double.parseDouble(fields[0]);
         double weight = Double.parseDouble(fields[1]);
-        boolean isMale = Boolean.parseBoolean(fields[2]);
+        boolean isMale = parseGender(fields[2].trim());
         int age = Integer.parseInt(fields[3]);
-        String healthGoal = fields[4];
+        String healthGoal = parseHealthGoal(fields[4].trim());
         double idealCalories = Double.parseDouble(fields[5]);
-        String localDateTime = fields[6].trim();
+        String localDateTime = parseLocalDateTime(fields[6].trim());
         boolean isAbleToSeeSpecialChars = Boolean.parseBoolean(fields[7]);
 
         return new User(height, weight, isMale, age, healthGoal, idealCalories, localDateTime, isAbleToSeeSpecialChars);
+    }
+
+    /**
+     * Parses and validates a health goal string.
+     *
+     * @param healthGoal the health goal to parse, expected to be "WEIGHT_LOSS", "STEADY_STATE", or "BULKING"
+     * @return the validated health goal string if it matches one of the expected values
+     * @throws IllegalArgumentException if the health goal is invalid
+     */
+    private static String parseHealthGoal(String healthGoal) throws IllegalArgumentException{
+        if (!healthGoal.equals("WEIGHT_LOSS") && !healthGoal.equals("STEADY_STATE") && !healthGoal.equals("BULKING")) {
+            throw new IllegalArgumentException();
+        }
+        return healthGoal;
+    }
+
+    /**
+     * Parses and validates a local date-time string.
+     *
+     * @param localDateTime the date-time string to parse, expected to follow User.DATE_TIME_FORMATTER
+     * @return the validated date-time string if it matches the expected format
+     * @throws DateTimeParseException if the date-time format is invalid
+     */
+    private static String parseLocalDateTime(String localDateTime) throws DateTimeParseException{
+        LocalDateTime.parse(localDateTime, User.DATE_TIME_FORMATTER);
+        return localDateTime;
+    }
+
+    /**
+     * Parses and validates a gender string.
+     *
+     * @param isMaleString the gender string to parse, expected to be "true" or "false"
+     * @return true if the string is "true", false if the string is "false"
+     * @throws IllegalArgumentException if the gender string is neither "true" nor "false"
+     */
+    private static boolean parseGender(String isMaleString) {
+        if ("true".equals(isMaleString)) {
+            return true;
+        } else if ("false".equals(isMaleString)) {
+            return false;
+        } else {
+            throw new IllegalArgumentException();
+        }
     }
 
     /**
@@ -149,6 +214,7 @@ public class UserHistoryTracker extends HistoryTracker {
             System.out.println("Error adding userEntry to data file: " + e.getMessage());
         }
     }
+    //@@author
 
     //@@author kennethSty
     /**
