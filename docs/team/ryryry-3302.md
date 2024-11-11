@@ -24,7 +24,12 @@ Given below are my contributions to the project.
 4. **Enhanced add meal command**
    - Modified extractAndAppendMeal to include optional parameters from the Parameter class
    - Added exception handling for Bad formatting/ Missing values accompanied by a UI reply
-5. **Unit Testing**
+5. **Weight timeline command**
+   - Made WeightEntryDisplay class to generate a graph of the last 10 weight entries
+6. **Meal recommendations command**
+   - Made Recipe parent class and child recipe classes
+   - Made Recipe map to store recipes to return the right recipes based on user's health goal
+6. **Unit Testing**
    - Implemented all tests Parameters
    - Implemented all tests UI
    - Updated ChatParser tests
@@ -36,13 +41,15 @@ Wrote documentation for the following commands including description, sample usa
 3. `add mealEntry`
 4. `delete meal`
 5. `meal menu`
-6. `log meals`
+6. `meal log`
+7. `meal recommendations`
 7. `delete mealEntry`
-8. Summary table
+8. `weight timline`
+9. Summary table
 
 ### Contributions to the Developer Guide
 - Added implementation details of the `CommandMap` class and `listCommands`
-- Created UML diagrams for `askForUserData`, `readUserDataFromFile`
+- Created UML diagrams for `askForUserData`, `addMeal`, `listCommands`
 
 ### Contributions to team based tasks
 - Setting up milestones and maintaining issues
