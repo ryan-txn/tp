@@ -284,24 +284,33 @@ meal menu
 - Requires users to have saved sufficient weight entries of different values using the `update userdata` command
 before being able to display a graph of weight in kilograms over time. Graph is normalized to the Max and minimum 
   weight values hence resolution of graph decreases if the gap between minimum and maximum weight is unrealistically 
-  large
+  large 
 ```
 weight timeline
 Weight Timeline
- 90.0 |                                                        *    
- 88.5 |                          *                       *     *    
- 87.0 |                    *     *                       *     *    
- 85.5 |              *     *     *                       *     *    
- 84.0 |              *     *     *                 *     *     *    
- 82.5 |              *     *     *                 *     *     *    
- 81.0 |        *     *     *     *           *     *     *     *    
- 79.5 |  *     *     *     *     *           *     *     *     *    
- 78.0 |  *     *     *     *     *           *     *     *     *    
- 76.5 |  *     *     *     *     *           *     *     *     *    
- 75.0 |  *     *     *     *     *     *     *     *     *     *    
+170.0 |                                      *                      
+165.5 |                                      *                      
+161.0 |                                      *                      
+156.5 |                                      *                      
+152.0 |                                      *                      
+147.5 |                                      *                      
+143.0 |                                      *                      
+138.5 |                                      *                      
+134.0 |                                      *                      
+129.5 |                                      *                      
+125.0 |                                      *                      
+120.5 |                                      *                      
+116.0 |                          *           *                      
+111.5 |                          *           *                      
+107.0 |                          *           *                      
+102.5 |                          *           *                      
+ 98.0 |                    *     *           *                      
+ 93.5 |                    *     *           *                      
+ 89.0 |                    *     *           *                      
+ 84.5 |        *           *     *           *                      
+ 80.0 |  *     *     *     *     *     *     *     *     *     *    
        ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- 
-       11-06 11-06 11-06 11-06 11-06 11-06 11-06 11-06 11-06 11-06 
-
+       11-09 11-09 11-09 11-09 11-09 11-09 11-09 11-09 11-09 11-09 
 ```
 
 
