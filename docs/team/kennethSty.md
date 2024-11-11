@@ -20,6 +20,7 @@ The app enables users to log meals, track calories, and observe their progress t
 ### Enhancements Implemented
 1. **Implementing the Meal and MealEntry classes**
 * Created the Meal and MealEntry class and their inheritance relationship. 
+* Ensured the name is optional for mealEntries such, making it easier and faster for the user to track consumption. 
 * Implemented the usage of the Optional context to allow MealEntries without a name.
 * Added low-level methods for extracting meals and mealEntries from user input. 
 
@@ -30,10 +31,15 @@ The app enables users to log meals, track calories, and observe their progress t
 3. **Enhancing the User and UserHistoryTracker class**
 * Created basic structure of the User class.
 * Added `checkForUserData` method and implemented the logic of `loadUserEntries`.  
-* Refactored the creation of a new user instance (`askForUserData`), if no user file exists so far.
+* Refactored the creation of a new user instance, if no user file exists so far.
+* SLAP `askForUserData` and included better exception handling which enables user to reenter wrong input 
+without jumping to the beginning of full the process. 
+* Included the posibility for the user to customize the UI based on whether the user's system can display certain
+special characters needed for the consumption bar (s. UI).
 
 4. **Contributions to the ChatParser class**
 * Designed the overall ChatParser structure
+* Implemented data-synching across multiple running versions of the application 
 * Implemented the preprocessing of user input into commands
 * Created Exception handling for system recovery after incorrect user input
 * Implemented the command routing in the ChatParser class via the `run` and the `multiCommandParsing` methods.
@@ -83,7 +89,7 @@ Added the sections:
 - `Get an overview on your calorie consumption` 
 - `Track your daily progress`
 - `Create your user profile`
-Overall proofreading.
+Overall proofreading and improvements.
 
   
 ### Contributions to the Developer Guide
@@ -106,6 +112,7 @@ Overall proofreading.
 * Created the first POC application for tracking mealEntries and mealOptions to kickstart the project. 
 * Fixed IO Testing issues.
 * Left feedback in my PR reviews, resulting in follow-up issues.
+* Resolved 18 issues after the Dry-PE run. 
 
 ### Review/Mentoring Contributions
 * Reviewed, approved or if necessary requested changes to multiple PRs
