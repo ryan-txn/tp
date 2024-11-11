@@ -4,13 +4,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.Scanner;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 import seedu.healthmate.core.User;
@@ -22,9 +20,9 @@ import seedu.healthmate.core.UserEntryList;
  */
 public class UserHistoryTracker extends HistoryTracker {
 
-    private static final String USER_DATA_FILE = "user_data.csv";
     public static final int USER_ENTRY_PRINTING_COUNT = 5;
     public static final int USER_DATA_SAVE_FILE_FIELDS = 8;
+    private static final String USER_DATA_FILE = "user_data.csv";
 
     public UserHistoryTracker() {
         super();
