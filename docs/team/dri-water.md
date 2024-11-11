@@ -12,32 +12,32 @@ HealthMate is a meal and calorie tracking application designed to help users man
 1. **Enhanced Meal Menu System**
    * Implemented the meal saving functionality that allows users to store frequently eaten meals with their calorie counts using the `save meal` command (details in mealSaver class)
    * Added ability to retrieve saved meals when logging new meal entries using `add mealEntry`, improving user experience by eliminating the need to remember and re-enter calorie information
-   * Modified mealEntry class to accommodate retrieval of saved meals
+   * Modified `mealEntry` class to accommodate retrieval of saved meals
 
 2. **Implemented MealSaver Class**
-   * This class handles the logic of writing and overwriting the mealOptions
+   * This class handles the logic of writing and overwriting the `mealOptions`
    * This abstracts the logic of saving meals from the main logic of the program, making the code more modular and easier to understand
 
 3. **Implemented History Tracking System** 
-   * Added a HistoryTracker class
+   * Added a `HistoryTracker` class
    * Developed the meal history tracking system that maintains a chronological record of all meal entries that persists beyond the current session
-   * Writes to a csv file the current meal_entries and meal_options within the /data folder
+   * Writes to a csv file the current `meal_entries` and `meal_options` within the /data folder
 
 4. **Implemented manual mealEntry timestamp** 
    * Added functionality to allow users to add a mealEntry with a custom specified timestamp
-   * Modified Parser class to accept timestamp input
+   * Modified parsing logic to accept timestamp input
    * Added error-handling for invalid timestamp inputs
 
 ### Contributions to the User Guide
   * Added Quick start guide
-  * Added details for add mealEntry command
+  * Added details for `add mealEntry` command
 
 
 ### Contributions to the Developer Guide
 * Added implementation details for:
-  * Meal Menu feature
-  * HistoryTracker class
-  * UML diagram for 'meal menu' command
+  * `Meal Menu` feature
+  * `HistoryTracker` class
+  * UML diagram for `meal menu` command
 * Added instructions for:
   1. Installation and Setup
   2. Running the application
