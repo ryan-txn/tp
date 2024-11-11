@@ -442,18 +442,46 @@ show historicCalories 10
 ```
 
 
-### Update your data
-Your goal or your body weight changed? By running the `update userdata` you can update the specifics of your profile. 
+### User Data Commands:
+#### Save a new user data instance: `update userdata`
+- Update the specifics of your profile, such as changes in health goal or body weight
+- Upon updating successfully, up to the past 5 user data entries are printed out in reverse chronological 
+order to show user the changes over time
 
 ```
-_____________________________________________________________________________
 update userdata
       Create your profile: please enter...
       Height in cm (e.g. 180):
+180
+      Weight in kg (e.g. 80):
+70
+      Gender (male or female):
+male
+      Age (e.g. 20):
+22
+      _____________________________________________________________________________
+      Enter a health goal:
+      Choose one of the following:
+      1. WEIGHT_LOSS
+      2. STEADY_STATE
+      3. BULKING
+      Enter the necessary number (1,2,3) to select
+      _____________________________________________________________________________
+3
+      _____________________________________________________________________________
+      Does progressbar below look well formatted as a questionmark? 
+      Enter: {y} if it looks good. Enter: {n} if it contains weird characters such as '?'.
+      _____________________________________________________________________________
+      ███████░░░░░░░░░░░░░░░░░░░░░░|  25%|░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+y
+      Profile creation Successful!
+      _____________________________________________________________________________
+      Great! You can now begin to use the app!
+      _____________________________________________________________________________
 ```
-
-If you want to see the specifics for which your ideal calorie consumption is calculated 
-run the `current userdata` command. 
+#### Display most current userdata entry: `current userdata`
+- See the current user details 
+- Ideal daily calorie consumption is calculated based off this data
 
 ```
 current userdata
@@ -464,10 +492,23 @@ current userdata
       Gender: male
       Age: 20
       Health Goal: BULKING
-          Ideal Daily Caloric Intake: 2865.0
+      Ideal Daily Caloric Intake: 2865.0
       Recorded at: 2024-11-07 12:35:26
+      Is able to see special chars: true
       _____________________________________________________________________________
 
+```
+#### Delete all userdata: `clear userdata`
+- Delete the user's saved personal data to reset their tracking history
+- Note that any future commands would first prompt the entering of user data before being executed due to 
+commands' dependency on user data
+```
+      _____________________________________________________________________________
+      Success: User Data has been cleared!
+      _____________________________________________________________________________
+add mealentry c/300
+      Create your profile: please enter...
+      Height in cm (e.g. 180):
 ```
 
 ## FAQ
