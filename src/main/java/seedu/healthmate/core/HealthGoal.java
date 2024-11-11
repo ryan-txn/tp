@@ -12,13 +12,14 @@ public class HealthGoal {
     private static final String STEADY_STATE = "STEADY_STATE";
     private static final String BULKING = "BULKING";
 
-    public static final double WEIGHT_LOSS_MODIFIER = 0.9;
-    public static final double STEADY_STATE_MODIFIER = 1.1;
-    public static final double BULKING_MODIFIER = 1.4;
+    private static final double WEIGHT_LOSS_MODIFIER = 0.9;
+    private static final double STEADY_STATE_MODIFIER = 1.1;
+    private static final double BULKING_MODIFIER = 1.4;
+
+    private static final String[] healthGoals = {WEIGHT_LOSS, STEADY_STATE, BULKING};
 
     private String currentHealthGoal;
 
-    private static final String[] healthGoals = {WEIGHT_LOSS, STEADY_STATE, BULKING};
 
     /**
      * Constructor for HealthGoal.
@@ -30,7 +31,9 @@ public class HealthGoal {
         saveHealthGoal(healthGoalInput);
     }
 
-    public HealthGoal(String healthGoalInput) { saveHealthGoal(healthGoalInput);}
+    public HealthGoal(String healthGoalInput) {
+        saveHealthGoal(healthGoalInput);
+    }
 
     /**
      * Saves the current health goal based on input.

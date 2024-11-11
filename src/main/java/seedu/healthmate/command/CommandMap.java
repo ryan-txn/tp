@@ -15,7 +15,10 @@ import seedu.healthmate.command.commands.MealRecommendationsCommand;
 import seedu.healthmate.command.commands.WeightTimelineCommand;
 import seedu.healthmate.command.commands.ByeCommand;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
 

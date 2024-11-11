@@ -8,10 +8,11 @@ import seedu.healthmate.exceptions.EmptyCalorieException;
 import seedu.healthmate.utils.Parameter;
 
 public class Meal {
+    
+    public static final int MAX_DESCRIPTION_LENGTH = 50;
+
     private final Optional<String> name;
     private final int calories;
-
-    public static final int MAX_DESCRIPTION_LENGTH = 50;
 
     public Meal(Optional<String> name, int calories) {
         this.name = name;
