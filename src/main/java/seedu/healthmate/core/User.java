@@ -245,19 +245,28 @@ public class User {
     }
 
     private static HealthGoal askForHealthGoal(Scanner scanner) {
-        UI.printString("Health Goal (WEIGHT_LOSS, STEADY_STATE, BULKING):");
-        String healthGoal = scanner.nextLine().strip().toUpperCase();
-        boolean inputIsInvalid = !healthGoal.equals("WEIGHT_LOSS")
-                && !healthGoal.equals("STEADY_STATE")
-                && !healthGoal.equals("BULKING");
-        if (inputIsInvalid) {
-            List<String> messages = List.of("Enter a valid health goal.",
-                    "Choose one of the following: WEIGHT_LOSS, STEADY_STATE, BULKING");
-            UI.printMultiLineReply(messages);
+
+        List<String> messages = List.of("Enter a health goal:",
+                "Choose one of the following:",
+                "1. WEIGHT_LOSS",
+                "2. STEADY_STATE",
+                "3. BULKING",
+                "Enter the necessary number (1,2,3) to select");
+        UI.printMultiLineReply(messages);
+        try {
+            int healthGoal = Integer.parseInt(scanner.nextLine().strip());
+            boolean inputIsInvalid = healthGoal < 1 | healthGoal > 3;
+            if (inputIsInvalid) {
+                UI.printString("INVALID HEALTH GOAL: TRY AGAIN");
+                return askForHealthGoal(scanner);
+            } else {
+                return new HealthGoal(healthGoal);
+            }
+        } catch (NumberFormatException n) {
+            UI.printString("INVALID HEALTH GOAL: TRY AGAIN");
             return askForHealthGoal(scanner);
-        } else {
-            return new HealthGoal(healthGoal);
         }
+
     }
 
     private static boolean askForSpecialChars(Scanner scanner) {
