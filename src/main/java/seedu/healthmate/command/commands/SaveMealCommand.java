@@ -18,7 +18,7 @@ public class SaveMealCommand extends Command {
 
     /** Command keyword to invoke this action. */
     public static final String COMMAND = "save meal";
-
+    public static final String COMMAND_LOWER = "save meal";
     /** Command format for saving a meal with a specified name and calorie count. */
     private static final String FORMAT = "save meal {meal name} /c{number of calories}";
 

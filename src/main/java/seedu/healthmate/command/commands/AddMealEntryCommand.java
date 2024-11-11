@@ -18,7 +18,7 @@ public class AddMealEntryCommand extends Command {
 
     /** Command keyword to invoke this action. */
     public static final String COMMAND = "add mealEntry";
-
+    public static final String COMMAND_LOWER = "add mealentry";
     /** Command format for adding a meal entry with proper parameters. */
     private static final String FORMAT =
             "add mealEntry {meal name from menu} | or | add mealEntry {meal name} /c{number of calories}";
