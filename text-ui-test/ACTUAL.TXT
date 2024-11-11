@@ -16,16 +16,19 @@
       Let's get healthy!
       Use the `list commands` command to have a look at all commands.
       _____________________________________________________________________________
-      _____________________________________________________________________________
-      It seems your user profile is incomplete.
-      A new profile needs to be created.
-      _____________________________________________________________________________
       Create your profile: please enter...
       Height in cm (e.g. 180):
       Weight in kg (e.g. 80):
       Gender (male or female):
       Age (e.g. 20):
-      Health Goal (WEIGHT_LOSS, STEADY_STATE, BULKING):
+      _____________________________________________________________________________
+      Enter a health goal:
+      Choose one of the following:
+      1. WEIGHT_LOSS
+      2. STEADY_STATE
+      3. BULKING
+      Enter the necessary number (1,2,3) to select
+      _____________________________________________________________________________
       _____________________________________________________________________________
       Does progressbar below look well formatted as a questionmark? 
       Enter: {y} if it looks good. Enter: {n} if it contains weird characters such as '?'.
