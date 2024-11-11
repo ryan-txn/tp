@@ -11,7 +11,7 @@ HealthMate is a meal and calorie tracking application designed to help users man
 ### Enhancements Implemented
 1. **Implement User Data Format**
     * Created a data structure to store user information including height, weight, gender, age, timestamp, and health goal
-    * Enables usage for displaying weight changes over time ([ryryry-3302](ryryry-3302.md)) and calculating ideal daily calories ([DarkDragoon](DarkDragoon2002.md))
+    * Enables usage for displaying weight changes over time ([ryryry-3302](ryryry-3302.md)) and calculating ideal daily calories ([DarkDragoon](darkdragoon2002))
 
 2. **Implement Saving and Loading of User Data into CSV File**
     * Developed the `UserHistoryTracker` class with methods for:

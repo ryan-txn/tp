@@ -37,6 +37,8 @@ HealthMate is a meal and calorie tracking application designed to help users man
    - Inline with Single Responsibility Principle
    - Added Assertions and other checks in other Classes to prevent bugs
 
+
+   
 6. **Unit Testing**
     - Created Unit Tests for sections I worked on
     - Created `HealthGoalTest`
