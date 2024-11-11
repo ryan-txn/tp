@@ -9,6 +9,7 @@ import seedu.healthmate.command.commands.DeleteMealCommand;
 import seedu.healthmate.command.commands.DeleteMealEntryCommand;
 import seedu.healthmate.command.commands.MealMenuCommand;
 import seedu.healthmate.command.commands.UpdateUserDataCommand;
+import seedu.healthmate.command.commands.ClearUserDataCommand;
 import seedu.healthmate.command.commands.TodayCalorieProgressCommand;
 import seedu.healthmate.command.commands.HistoricCalorieProgressCommand;
 import seedu.healthmate.command.commands.CurrentUserDataCommand;
@@ -154,6 +155,9 @@ public class ChatParser {
             break;
         case UpdateUserDataCommand.COMMAND:
             UpdateUserDataCommand.executeCommand(userHistoryTracker, logger);
+            break;
+        case ClearUserDataCommand.COMMAND:
+            ClearUserDataCommand.executeCommand(userHistoryTracker, logger);
             break;
         case CurrentUserDataCommand.COMMAND:
             CurrentUserDataCommand.executeCommand(userHistoryTracker, logger);
