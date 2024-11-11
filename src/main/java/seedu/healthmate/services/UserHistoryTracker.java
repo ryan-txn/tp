@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.Scanner;
@@ -52,11 +53,17 @@ public class UserHistoryTracker extends HistoryTracker {
             }
 
         } catch (IOException e) {
-            UI.printString("Error loading user data file. A new profile needs to be created");
+            List<String> messages = List.of("Sorry: There was an error loading your user profile.",
+                    "A new profile needs to be created.");
+            UI.printMultiLineReply(messages);
         } catch (ArrayIndexOutOfBoundsException e) {
-            UI.printString("It seems your user data file is incomplete. A new profile needs to be created");
+            List<String> messages = List.of("It seems your user profile is incomplete.",
+                    "A new profile needs to be created.");
+            UI.printMultiLineReply(messages);
         } catch (NumberFormatException e) {
-            UI.printString("Error parsing a number.");
+            List<String> messages = List.of("It seems some numbers in you user profile are corrupted.",
+                    "A new profile needs to be created.");
+            UI.printMultiLineReply(messages);
         } catch (NoSuchElementException e) {
             // silent catch if existing user file contains no content
         }
@@ -120,6 +127,9 @@ public class UserHistoryTracker extends HistoryTracker {
     private static User getUserEntryFromFileLine(String line) {
 
         String[] fields = line.split(",");  // Split the CSV line by commas
+        if (fields.length < 8) {
+            throw new ArrayIndexOutOfBoundsException();
+        }
         double height = Double.parseDouble(fields[0]);
         double weight = Double.parseDouble(fields[1]);
         boolean isMale = Boolean.parseBoolean(fields[2]);
