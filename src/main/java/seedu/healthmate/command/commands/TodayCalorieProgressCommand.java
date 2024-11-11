@@ -16,7 +16,7 @@ public class TodayCalorieProgressCommand extends Command {
 
     /** Command keyword to invoke this action. */
     public static final String COMMAND = "show todayCalories";
-
+    public static final String COMMAND_LOWER = "show todaycalories";
     /** Command format for displaying today's calorie progress. */
     private static final String FORMAT = "show todayCalories";
 

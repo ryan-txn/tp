@@ -18,7 +18,7 @@ public class HistoricCalorieProgressCommand extends Command {
 
     /** Command keyword to invoke this action. */
     public static final String COMMAND = "show historicCalories";
-
+    public static final String COMMAND_LOWER = "show historiccalories";
     /** Command format specifying the number of days to include in the historic calorie progress. */
     private static final String FORMAT = "show historicCalories {Number of Days inclu. Today}";
 

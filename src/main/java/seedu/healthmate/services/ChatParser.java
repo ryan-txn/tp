@@ -21,6 +21,7 @@ import seedu.healthmate.core.MealList;
 import seedu.healthmate.core.User;
 import seedu.healthmate.utils.Logging;
 
+import java.util.Locale;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -127,11 +128,11 @@ public class ChatParser {
 
         String command = commandPair.getMainCommand();
 
-        switch (command) {
-        case MealMenuCommand.COMMAND:
+        switch (command.toLowerCase()) {
+        case MealMenuCommand.COMMAND_LOWER:
             MealMenuCommand.executeCommand(mealOptions, logger);
             break;
-        case SaveMealCommand.COMMAND:
+        case SaveMealCommand.COMMAND_LOWER:
             SaveMealCommand.executeCommand(historyTracker, mealOptions, userInput, logger);
             break;
         case DeleteMealCommand.COMMAND:
@@ -142,7 +143,7 @@ public class ChatParser {
             DeleteMealEntryCommand.executeCommand(
                     historyTracker, mealEntries, user, userInput, command, logger);
             break;
-        case AddMealEntryCommand.COMMAND:
+        case AddMealEntryCommand.COMMAND_LOWER:
             AddMealEntryCommand.executeCommand(
                     historyTracker, mealOptions, mealEntries, user, userInput, command, logger);
             break;
