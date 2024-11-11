@@ -26,6 +26,7 @@ HealthMate is a meal and calorie tracking application designed to help users man
 4. **Implemented manual mealEntry timestamp** 
    * Added functionality to allow users to add a mealEntry with a custom specified timestamp
    * Modified Parser class to accept timestamp input
+   * Added error-handling for invalid timestamp inputs
 
 ### Contributions to the User Guide
   * Added Quick start guide
@@ -36,7 +37,15 @@ HealthMate is a meal and calorie tracking application designed to help users man
 * Added implementation details for:
   * Meal Menu feature
   * HistoryTracker class
-  * UML diagrams for 'meal menu' command
+  * UML diagram for 'meal menu' command
+* Added instructions for:
+  1. Installation and Setup
+  2. Running the application
+  3. Testing basic commands
+  4. Adding a mealEntry
+  5. Testing data persistence
+  6. Error Handling
+* Added Non-functional requirements for project
 
 ### Contributions to Team Tasks
 * Helped in setting up the initial project structure
@@ -46,4 +55,5 @@ HealthMate is a meal and calorie tracking application designed to help users man
 ### Review/Mentoring Contributions
 * Reviewed and approved multiple PRs
 * Helped troubleshoot integration issues between different components
+* Helped to resolve merge conflicts for multiple PRs
 
