@@ -1,7 +1,6 @@
 package seedu.healthmate.command.commands;
 
 import seedu.healthmate.command.Command;
-import seedu.healthmate.core.User;
 import seedu.healthmate.core.UserEntryList;
 import seedu.healthmate.services.UserHistoryTracker;
 import seedu.healthmate.services.UI;
