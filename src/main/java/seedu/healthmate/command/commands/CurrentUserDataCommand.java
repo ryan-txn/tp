@@ -52,7 +52,7 @@ public class CurrentUserDataCommand extends Command {
                     user.printUIString();
                     UI.printSeparator();
                 },
-                () -> UI.printReply("No user data found.", "Error: ")
+                () -> UI.printReply("Hit ENTER to set up a new user.", "")
         );
 
         logger.log(Level.INFO, "Finish executing command to return current user data");
