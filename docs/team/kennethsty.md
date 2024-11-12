@@ -9,6 +9,7 @@ The app enables users to log meals, track calories, and observe their progress t
 
 ### Code Contributed
 [Link to code contributions](https://nus-cs2113-ay2425s1.github.io/tp-dashboard/?search=Kenneth&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2024-09-20&tabOpen=true&tabType=authorship&tabAuthor=kennethSty&tabRepo=AY2425S1-CS2113-W12-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
+
 *Created foundational application design, including packaging, and contributed to the following classes:*
 - `Meal` and `MealEntry` - initial version and design improvements
 - `MealList` and `MealEntriesList` - initial version and refinements
@@ -28,11 +29,11 @@ The app enables users to log meals, track calories, and observe their progress t
 3. **User- & Storage-Related Enhancements (`User`, `UserHistoryTracker`, `HistoryTracker`)**
   - Created `User` class structure, added `checkForUserData()` and `loadUserEntries()` for user initialization.
   - Refactored `askForUserData` to improve exception handling and support re-entry without restarting.
-  - Assisted in refactoring `UserHistoryTracker` to handle data corruption;
+  - Assisted in refactoring `UserHistoryTracker` to handle data corruption.
   - Enhanced `HistoryTracker` to allow users to revert corrupted data.
 
 4. **`ChatParser` Class Contributions**
-  - Designed `ChatParser` and implemented command preprocessing, command routing (via `run` and `multiCommandParsing`), command logging.
+  - Designed `ChatParser` and implemented command preprocessing, command routing (via `run` and `multiCommandParsing`) and command logging.
   - Developed command logic for `meal log`, `meal menu`, `save meal`, and `add mealentry`.
 
 5. **`UI` Class Implementation**
@@ -72,21 +73,20 @@ Overall proofreading and improvements.
   - `Creating a User Profile` and the sequence diagram `userSequenceDiagram.jpg`
   - `ChatParser Input Handling` including the subsections
 * Other contributions:
-  - Adding the target user profile and personification with the "Martin".
-  - Helped define valule propositions
+  - Adding the target user profile and personification.
+  - Helped define value propositions
 
 ### Contributions to Team Tasks
 * Took over responsibility for managing and creating issues for steering team progress.
 * Created the first POC application for tracking meal entries and meal options to kickstart the project. 
 * Fixed IO Testing issues.
-* Left feedback in my PR reviews, resulting in follow-up issues.
 * Resolved 18 issues after the Dry-PE run.
 * Will help to do the product demo.
-* Test the application before submitting.
+* Performed testing. 
 
 ### Review/Mentoring Contributions
-* Reviewed, approved or if necessary requested changes to multiple PRs
-* Helped to finish the User profile creation procedure when the previous approach got stuck.
-* Helped to SLAP code (e.g. the Feature to print historic consumption bars).
-* Initiated calls to help my teammates solve bugs with test cases and create the final Jar.
+* Reviewed, approved or if necessary requested changes to several PRs every week
+* Helped to finish the user profile creation procedure when the previous approach got stuck.
+* Helped to SLAP code (e.g. the feature to print historic consumption bars).
+* Initiated calls to help my teammates solve final bugs before creating the final Jar.
 * Simply had a good time :-) 
