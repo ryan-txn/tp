@@ -72,6 +72,7 @@ add mealEntry burger /c300
 **Get an overview on your calorie consumption**
 - Use the "meal log" feature to view your meal entries and track your daily caloric intake.
 - Example: Add your first mealEntry and then use `meal log` to assess the meals tracked so far. 
+
   ```
   meal log
   _____________________________________________________________________________
@@ -112,6 +113,7 @@ Enjoy your journey towards a healthier lifestyle with HealthMate!
 {} = parameter
 ### Exit: `bye`
 - Exits program
+
 ```
 bye
       Stay healthy!
@@ -171,7 +173,8 @@ list commands
       _____________________________________________________________________________
 ```
 
-List Commands with command parameter
+List Commands with command parameter:
+
 ```
 list commands delete meal
       _____________________________________________________________________________
@@ -185,6 +188,7 @@ list commands delete meal
 #### Save Meal to Meal Menu: `save meal {Name of Meal} /c{Number of calories}`
 - Allows user to store a meal with its calories to be used with the add mealEntry command
 - Example usage to store a meal of pizza with 300 calories
+
 ```
 save meal pizza /c300
       _____________________________________________________________________________
@@ -194,6 +198,7 @@ save meal pizza /c300
 
 #### Overwrite Saved Meal in Meal Menu: `save meal {Name of existing Meal} /c{Number of calories}`
 - Allows user to update an existing meal option with a new calorie number
+
 ```
 save meal soup /c300
       _____________________________________________________________________________
@@ -209,13 +214,14 @@ meal menu
       1: pizza with 400 calories
       2: soup with 200 calories
       _____________________________________________________________________________
-
 ```
+
 #### Add Meal Entry for Tracking:`add mealEntry {meal} /c{Number of calories} /p{portions} /t{YYYY-MM-DD}`or `add mealEntry {meal from meal menu}` or
 - Adds a meal from the saved meal options to your daily caloric intake.
 - After adding the meal, the app will show how the meal affects your progress towards your daily caloric goal.
 
-Log a meal with calories
+Log a meal with calories:
+
 ```
 add mealEntry grapes /c100
       _____________________________________________________________________________
@@ -231,6 +237,7 @@ add mealEntry grapes /c100
 ```
 
 Log a meal for a specific day in the past:
+
 ``` 
 add mealEntry pizza /c300 /t2024-10-30
       _____________________________________________________________________________
@@ -244,7 +251,9 @@ add mealEntry pizza /c300 /t2024-10-30
       ███░░░░░░░░░░░░░░░░░░░░░░░░░░|  11%|░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ (2024-10-30)
       _____________________________________________________________________________
 ```
-Shorcut: log a meal without a name and only calories. 
+
+Shorcut: log a meal without a name and only calories.
+
 ```
 add mealEntry /c200
       _____________________________________________________________________________
@@ -260,7 +269,8 @@ add mealEntry /c200
 
 ```
 
-Shortcut: log a presaved meal from the list of meal options (no calories needed)
+Shortcut: log a presaved meal from the list of meal options (no calories needed).
+
 ```
 add mealEntry pizza
 Getting info from meal options...
@@ -281,6 +291,7 @@ Getting info from meal options...
 - Deletes meal option from the meal menu at the specified index
 - To identify the right index consider running `meal menu` beforehand
 - Example usage
+
 ```
 delete meal 1
       _________________________________________________________________________
@@ -289,6 +300,7 @@ delete meal 1
 ```
 #### Show List of Available Meal Options: `meal menu`
 - Lists all the saved meal options for quick selection when logging your meals.
+
 ```
 meal menu
       _________________________________________________________________________
@@ -303,6 +315,7 @@ meal menu
 before being able to display a graph of weight in kilograms over time. Graph is normalized to the Max and minimum 
   weight values hence resolution of graph decreases if the gap between minimum and maximum weight is unrealistically 
   large 
+
 ```
 weight timeline
 Weight Timeline
@@ -355,7 +368,6 @@ meal recommendations
       ½ cup baby spinach
       2 tablespoons crumbled feta cheese
       4 black olives, sliced
-
 ```
 
 ### Meal Log Commands:
@@ -365,6 +377,7 @@ meal recommendations
 #### Show Meal History: `meal log`
 - Displays the log of all meal entries along with their Timestamp in Date Time format.
 - Example Usage
+
 ```
 meal log
       _____________________________________________________________________________
@@ -380,6 +393,7 @@ meal log
 - Deletes meal entry from the meal log at the specified index
 - Note: depending on your system the bars might look different
 - Example Usage
+
 ```
 delete mealEntry 1
       _____________________________________________________________________________
@@ -399,7 +413,6 @@ delete mealEntry 1
 - Note: depending on your system the bars might look different
 - Example Usage:
 
-
 ```
 show todayCalories
       _____________________________________________________________________________
@@ -409,13 +422,13 @@ show todayCalories
       % of Expected Calorie Intake Consumed: 
       █████████░░░░░░░░░░░░░░░░░░░░|  32% |░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ (2024-10-29)
       _____________________________________________________________________________
-
 ```
 
 #### Show Historic Calorie Progress: `show historicCalories {Number of Days inclu. Today}`
 - Prints Calorie Progress Bars & Various Stats to represent Historical Calorie Progress
 - Combines global and local view on eating patterns via the progress bar and details such as the meal with the highest calories.
 - Example Usage (Note: depending on your system the bars might look different):
+
 ```
 show historicCalories 10
       _____________________________________________________________________________
@@ -459,13 +472,14 @@ run the `current userdata` command.
 current userdata
       _____________________________________________________________________________
       Here is your current user data:
-      Height: 180.0cm
+      Height: 182.0cm
       Weight: 80.0kg
       Gender: male
       Age: 20
       Health Goal: BULKING
-          Ideal Daily Caloric Intake: 2865.0
-      Recorded at: 2024-11-07 12:35:26
+      Ideal Daily Caloric Intake: 2688.0
+      Recorded at: 2024-11-12 09:01:41
+      Is able to see special chars: true
       _____________________________________________________________________________
 
 ```
@@ -499,8 +513,8 @@ HealthMate stores your meal logs, meal options, and user profile data in CSV fil
 This allows your data to persist between sessions, so you won’t lose your progress when you close the application. 
 
 Here’s how HealthMate manages your data in detail:
-1. Meal Entries and Options: Your logged meals and saved meal options are stored in meal_entries.csv and meal_options.csv. 
-2. User Profile: Your profile data, including height, weight, age, gender, and health goal, is saved in user_data.csv. 
+1. Meal Entries and Options: Your logged meals and saved meal options are stored in `meal_entries.csv` and `meal_options.csv`. 
+2. User Profile: Your profile data, including height, weight, age, gender, and health goal, is saved in `user_data.csv`. 
 
 ### Data Security
 To ensure no data is lost DO NOT manually modify these files or move them out of the directory.

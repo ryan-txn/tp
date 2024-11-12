@@ -74,10 +74,11 @@ Overall proofreading and improvements.
   - `ChatParser Input Handling` including the subsections
 * Other contributions:
   - Adding the target user profile and personification.
-  - Helped define value propositions
+  - Added non-functional requirements.
+  - Helped define value propositions.
 
 ### Contributions to Team Tasks
-* Took over responsibility for managing and creating issues for steering team progress.
+* Took over responsibility for managing and creating issues for steering team progress (opened 30 issues, closed 46 myself).
 * Created the first POC application for tracking meal entries and meal options to kickstart the project. 
 * Fixed IO Testing issues.
 * Resolved 18 issues after the Dry-PE run.
@@ -85,7 +86,7 @@ Overall proofreading and improvements.
 * Performed testing. 
 
 ### Review/Mentoring Contributions
-* Reviewed, approved or if necessary requested changes to several PRs every week
+* Reviewed, approved or if necessary requested changes to several PRs every week (authored 42 PRs, reviewed 30)
 * Helped to finish the user profile creation procedure when the previous approach got stuck.
 * Helped to SLAP code (e.g. the feature to print historic consumption bars).
 * Initiated calls to help my teammates solve final bugs before creating the final Jar.
