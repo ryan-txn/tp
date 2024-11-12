@@ -145,7 +145,7 @@ to input new information for creating a new profile as shown in the sequence dia
 Reference diagrams used
 ![loadUserEntries SD](images/loadUserEntriesSD.png)
 ![askForUserData SD](images/askForUserData.drawio.svg)
-![createFileIfNotExists](images/createFileIfNotExists.drawio.png)
+![createFileIfNotExists](images/createFileIfNotFound.png)
 
 
 ### ChatParser Input Handling
