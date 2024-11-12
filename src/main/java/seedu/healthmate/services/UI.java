@@ -65,10 +65,12 @@ public class UI {
         System.out.println(LINE);
         System.out.println(INDENTATION + "Welcome to HealthMate");
         System.out.println(INDENTATION + "Let's get healthy!");
-        System.out.println(INDENTATION + "Use the `list commands` command to have a look at all commands.");
         System.out.println(LINE);
     }
 
+    public static void printHelpReminder() {
+        System.out.println(INDENTATION + "Use the `list commands` command to have a look at all commands.");
+    }
     /** Prints a farewell message. */
     public static void printFarewell() {
         System.out.println(INDENTATION + "Stay healthy!");
@@ -363,11 +365,20 @@ public class UI {
      * Simulates the initial output for successfully loaded meal entries and meal options.
      * @return A String representing the formatted initial output message.
      */
-    public static String simulateInitOutput() {
+    public static String simulateInitOutputAddMeal(){
         String line2 = INDENTATION + "Meal Entries Loaded Successfully!" + NEW_LINE;
         String line3 = INDENTATION + "Meal Options Loaded Successfully!" + NEW_LINE;
         return FRAME_LINE + line2 + line3 + FRAME_LINE;
     }
+
+    public static String simulateInitOutput() {
+        String line2 = INDENTATION + "Meal Entries Loaded Successfully!" + NEW_LINE;
+        String line3 = INDENTATION + "Meal Options Loaded Successfully!" + NEW_LINE;
+        String line4 = INDENTATION + "Use the `list commands` command to have a look at all commands." + NEW_LINE;
+        return FRAME_LINE + line2 + line3 + FRAME_LINE +line4;
+    }
+
+
 
     /**
      * Simulates the progress bar for historic consumption with a timestamp for testing.
