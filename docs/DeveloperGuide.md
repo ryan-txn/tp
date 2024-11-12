@@ -2,9 +2,10 @@
 
 ## Acknowledgements
 ChatParser structure inspired by: 
-[this repository](https://github.com/kennethSty/ip)
+[this repository](https://github.com/kennethSty/ip).
+
 Calorie consumption bar inspired by 
-[this blogpost](https://medium.com/javarevisited/how-to-display-progressbar-on-the-standard-console-using-java-18f01d52b30e)
+[this blogpost](https://medium.com/javarevisited/how-to-display-progressbar-on-the-standard-console-using-java-18f01d52b30e).
 
 ## Design & implementation
 The overall project is structured into six packages:
@@ -173,7 +174,7 @@ The ChatParser class was implemented in the above manner for three reasons:
 Direct command handling in the main loop. Reduces the depth of the application, 
 but comes at the cost of reduced readability and higher cohesion. 
 
-#### Extensions for v.2.1
+#### Future additions
 Separating the responsibilities of reading and preprocessing user input from the responsibility 
 to steer command routing. This could improve the maintainability of the ChatParser class in the future. 
 
