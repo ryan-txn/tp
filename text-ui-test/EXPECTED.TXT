@@ -38,3 +38,4 @@
       Great! You can now begin to use the app!
       _____________________________________________________________________________
       Use the `list commands` command to have a look at all commands.
+      
