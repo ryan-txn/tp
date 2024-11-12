@@ -49,7 +49,6 @@ public class UITest {
                 + LINE + LINE_SEPARATOR
                 + INDENTATION + "Welcome to HealthMate" + LINE_SEPARATOR
                 + INDENTATION + "Let's get healthy!" + LINE_SEPARATOR
-                + INDENTATION + "Use the `list commands` command to have a look at all commands." + LINE_SEPARATOR
                 + LINE + LINE_SEPARATOR;
 
         assertEquals(expectedOutput, outContent.toString());

@@ -70,6 +70,7 @@ public class ChatParser {
 
         logger.log(Level.INFO, "Checking if user data exists");
         User user = this.userHistoryTracker.checkForUserData();
+        UI.printHelpReminder();
         assert user != null : "User entry should not be null";
         logger.log(Level.INFO, "User is: " + user);
 

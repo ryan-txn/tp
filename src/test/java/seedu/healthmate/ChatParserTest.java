@@ -65,7 +65,7 @@ public class ChatParserTest {
                                                  String simulatedInput, String expectedOutput) {
         System.setIn(new ByteArrayInputStream(simulatedInput.getBytes()));
         chatParser.simulateRunWithStub(userStub);
-        assertEquals(outputStream.toString(), expectedOutput);
+        assertEquals(expectedOutput,outputStream.toString());
         chatParser.cleanMealLists();
     }
 
@@ -202,7 +202,7 @@ public class ChatParserTest {
         String expectedAddPastMealResult = simulateAddingPastMeals(pastDays, user);
         String expectedShowHistoricCalories = simulateHistoricCalories(testMeal, pastDays);
 
-        return UI.simulateInitOutput()
+        return UI.simulateInitOutputAddMeal()
                 + expectedAddPastMealResult
                 + expectedShowHistoricCalories
                 + System.lineSeparator()
